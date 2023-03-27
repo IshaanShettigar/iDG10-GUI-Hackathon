@@ -156,8 +156,13 @@
             }
         });
 
-        eleView = element.findView(paper)
-        eleView.addTools(ResizeTool);
+        var EletoolsView = new joint.dia.ToolsView({
+            tools: [new ResizeTool({ selector: 'outline' })]
+        });
+
+        var elementView = element.findView(paper);
+        elementView.addTools(EletoolsView);
+        // elementView.showTools()
     </script>
 </body>
 
