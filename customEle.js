@@ -26,22 +26,27 @@ var paper = new joint.dia.Paper({
     }
 });
 
-var CustomElement = joint.dia.Element.define('examples.CustomElement', {
+var blueRect = joint.dia.Element.define('blueRect', {
     attrs: {
-        e: {
-            strokeWidth: 1,
-            stroke: '#000000',
-            fill: 'rgba(255,0,0,0.3)'
-        },
-        r: {
-            strokeWidth: 1,
-            stroke: '#000000',
+        l1: {
+            strokeWidth: 3,
+            stroke: 'black',
             fill: 'rgba(0,255,0,0.3)'
         },
-        c: {
-            strokeWidth: 1,
-            stroke: '#000000',
-            fill: 'rgba(0,0,255,0.3)'
+        l2: {
+            strokeWidth: 3,
+            stroke: 'black',
+            fill: 'rgba(0,255,0,0.3)'
+        },
+        l3: {
+            strokeWidth: 3,
+            stroke: 'black',
+            fill: 'rgba(0,255,0,0.3)'
+        },
+        l4: {
+            strokeWidth: 3,
+            stroke: 'black',
+            fill: 'rgba(0,255,0,0.3)'
         },
         outline: {
             x: 0,
@@ -50,54 +55,67 @@ var CustomElement = joint.dia.Element.define('examples.CustomElement', {
             height: 'calc(h)',
             strokeWidth: 1,
             stroke: '#000000',
-            strokeDasharray: '5 5',
-            strokeDashoffset: 2.5,
-            fill: 'none'
+            fill: '#035afc'
         }
     }
 }, {
-    markup: [{
-        tagName: 'ellipse',
-        selector: 'e'
-    }, {
-        tagName: 'rect',
-        selector: 'r'
-    }, {
-        tagName: 'circle',
-        selector: 'c'
-    }, {
-        tagName: 'rect',
-        selector: 'outline'
-    }]
+    markup: [
+        {
+            tagName: 'line',
+            selector: 'l1'
+        },
+        {
+            tagName: 'line',
+            selector: 'l2'
+        },
+        {
+            tagName: 'line',
+            selector: 'l3'
+        },
+        {
+            tagName: 'line',
+            selector: 'l4'
+        },
+        {
+            tagName: 'rect',
+            selector: 'outline'
+        }]
 });
 
 
-var element = new CustomElement();
-element.attr({
-    e: {
-        rx: 'calc(0.5*w)',
-        ry: 'calc(0.25*h)',
-        cx: 0,
-        cy: 'calc(0.25*h)'
+var element1 = new blueRect();
+element1.attr({
+    l1: {
+        x1: 'calc(w)',
+        y1: 'calc(h)',
+        x2: 'calc(1.25*w)',
+        y2: 'calc(1.25*h)'
     },
-    r: {
-        // additional x offset
-        x: 'calc(w-10)',
-        // additional y offset
-        y: 'calc(h-10)',
-        width: 'calc(0.5*w)',
-        height: 'calc(0.5*h)'
+    l2: {
+        x1: '0',
+        y1: '0',
+        x2: 'calc(-0.25*w)',
+        y2: 'calc(-0.25*h)'
+
     },
-    c: {
-        r: 'calc(0.5*d)',
-        cx: 'calc(0.5*w)',
-        cy: 'calc(0.5*h)'
-    }
+    l3: {
+        x1: 'calc(w)',
+        y1: '0',
+        x2: 'calc(1.25*w)',
+        y2: 'calc(-0.25*h)'
+    },
+    l4: {
+        x1: '0',
+        y1: 'calc(h)',
+        x2: 'calc(-0.25*w)',
+        y2: 'calc(1.25*h)'
+    },
+
 });
 
-element.position(280, 130);
-element.resize(40, 40);
-element.addTo(graph);
+element1.position(280, 130);
+element1.resize(40, 40);
+element1.addTo(graph);
 
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
@@ -143,6 +161,5 @@ var EletoolsView = new joint.dia.ToolsView({
     tools: [new ResizeTool({ selector: 'outline' })]
 });
 
-var elementView = element.findView(paper);
+var elementView = element1.findView(paper);
 elementView.addTools(EletoolsView);
-        // elementView.showTools()
