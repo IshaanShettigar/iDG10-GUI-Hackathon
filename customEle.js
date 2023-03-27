@@ -113,9 +113,115 @@ element1.attr({
 
 });
 
-element1.position(280, 130);
-element1.resize(40, 40);
+element1.position(200, 200);
+element1.resize(60, 60);
 element1.addTo(graph);
+
+var yellowRect = joint.dia.Element.define('yellowRect', {
+    attrs: {
+        l1: {
+            strokeWidth: 3,
+            stroke: 'red',
+            fill: 'none'
+        },
+        l2: {
+            strokeWidth: 3,
+            stroke: 'blue',
+            fill: 'none'
+        },
+        l3: {
+            strokeWidth: 3,
+            stroke: 'green',
+            fill: 'none'
+        },
+        l4: {
+            strokeWidth: 3,
+            stroke: 'red',
+            fill: 'none'
+        },
+        l5: {
+            strokeWidth: 3,
+            stroke: 'blue',
+            fill: 'none'
+        },
+        outline: {
+            x: 0,
+            y: 0,
+            width: 'calc(w)',
+            height: 'calc(h)',
+            strokeWidth: 1,
+            stroke: '#000000',
+            fill: '#fac905'
+        }
+    }
+}, {
+    markup: [
+        {
+            tagName: 'line',
+            selector: 'l1'
+        },
+        {
+            tagName: 'line',
+            selector: 'l2'
+        },
+        {
+            tagName: 'line',
+            selector: 'l3'
+        },
+        {
+            tagName: 'line',
+            selector: 'l4'
+        },
+        {
+            tagName: 'line',
+            selector: 'l5'
+        },
+        {
+            tagName: 'rect',
+            selector: 'outline'
+        }
+    ]
+});
+
+var element2 = new yellowRect();
+element2.position(400, 200);
+element2.resize(100, 50)
+element2.addTo(graph)
+element2.attr({
+    l1: {
+        x1: '0',
+        y1: 'calc(0.25*h)',
+        x2: 'calc(-0.35*w)',  // modify this to control to length of the line 
+        y2: 'calc(0.25*h)'
+    },
+    l2: {
+        x1: '0',
+        y1: 'calc(0.5*h)',
+        x2: 'calc(-0.35*w)',
+        y2: 'calc(0.5*h)'
+    },
+    l3: {
+        x1: '0',
+        y1: 'calc(0.75*h)',
+        x2: 'calc(-0.35*w)',
+        y2: 'calc(0.75*h)'
+    },
+    l4: {
+        x1: 'calc(w)',
+        y1: 'calc(0.33*h)',
+        x2: 'calc(1.35*w)', // controls the length
+        y2: 'calc(0.33*h)'
+    },
+    l5: {
+        x1: 'calc(w)',
+        y1: 'calc(0.67*h)',
+        x2: 'calc(1.35*w)', // controls the length
+        y2: 'calc(0.67*h)'
+    }
+
+})
+
+
 
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
@@ -156,6 +262,9 @@ const ResizeTool = joint.elementTools.Control.extend({
         );
     }
 });
+
+
+
 
 var EletoolsView = new joint.dia.ToolsView({
     tools: [new ResizeTool({ selector: 'outline' })]
