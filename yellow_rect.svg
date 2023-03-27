@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
+    height="100%" viewBox="0 0 1080 660" preserveAspectRatio="xMinYMin meet">
+    <rect id="svgEditorBackground" x="0" y="0" width="1080" height="660"
+        style="fill: none; stroke: none;" />
+    <g style="fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px"
+        id="e1_shape" transform="matrix(2.68046 0 0 2.68046 668.263 180.039)" />
+    <rect x="113.67" y="62.96" style="fill:gold;stroke:black;stroke-width:1px" id="e2_rectangle"
+        width="155.37" height="58.14" transform="matrix(0.753349 0 0 0.993163 25.5479 0.361935)" />
+    <path d="M77.123285,77.597995h34.085175" style="fill:red;stroke:red;stroke-width:3px"
+        id="e4_pathH" />
+    <path d="M77.123285,92.634009h34.085175" style="fill:blue;stroke:blue;stroke-width:3px"
+        id="e2_pathH" />
+    <path d="M77.123285,108.672424h34.085175"
+        style="fill:mediumseagreen;stroke:mediumseagreen;stroke-width:3px" id="e3_pathH" />
+    <path d="M228.485823,85.617203h34.085175" style="fill:red;stroke:red;stroke-width:3px"
+        id="e5_pathH" />
+    <path d="M228.485822,102.658018h34.085175" style="fill:blue;stroke:blue;stroke-width:3px"
+        id="e6_pathH" />
+</svg>

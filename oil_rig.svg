@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
+    height="100%" viewBox="0 0 1050 660" preserveAspectRatio="xMinYMin meet">
+    <rect id="svgEditorBackground" x="0" y="0" width="1050" height="660"
+        style="fill: none; stroke: none;" />
+    <rect x="410.2436949299" y="207.3210141809"
+        style="fill:cornflowerblue;stroke:black;stroke-width:1px" id="e1_rectangle" width="126.956"
+        height="29.9892" />
+    <rect x="421.24" y="183.332" style="fill:gold;stroke:black;stroke-width:1px" id="e2_rectangle"
+        width="57.9778" height="23.9912" />
+    <rect x="428.236839712" y="238.3092079722" style="fill:none;stroke:black;stroke-width:1px"
+        id="e4_rectangle" width="22.9918" height="19.992" />
+    <rect x="499.210000" y="237.310000" style="fill:none;stroke:black;stroke-width:1px"
+        id="e3_rectangle" width="22.991800" height="19.992000" />
+    <line id="e5_line" x1="438.2330312576" y1="238.3092079722" x2="438.233" y2="270.294"
+        style="stroke:mediumseagreen;fill:none;stroke-width:2px" />
+    <line id="e2_line" x1="507.207" y1="237.309" x2="507.207" y2="271.294"
+        style="stroke:red;fill:none;stroke-width:2px" />
+    <line id="e3_line" x1="516.204000" y1="237.309000" x2="516.204" y2="271.293"
+        style="stroke:blue;fill:none;stroke-width:2px" />
+    <polygon style="stroke:black;fill:gold;stroke-width:1px" id="e7_polygon"
+        points="431.235 183.33 436.234 119.354 445.23 119.355 448.229 183.33" />
+    <polygon style="stroke:black;fill:none;stroke-width:1px" id="e8_polygon"
+        points="472.22,181.331,532.197,139.347,536.196,147.344,481.217,189.328" />
+    <line id="e4_line" x1="532.198000" y1="144.344000" x2="532.198000" y2="185.329000"
+        style="stroke:black;fill:none;stroke-width:2px" />
+</svg>

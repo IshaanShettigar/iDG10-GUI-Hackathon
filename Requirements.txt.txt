@@ -1,0 +1,44 @@
+1. Custom Shape implementation based on the svg 
+2. Add a + button on the link which lets you set the label.
+3. How to make the above label's text editable. 
+3. Add an x button on all elements.  
+4. Figure out how to pan across the infinite space.
+5. Figure out how to do a zoom in zoom out.
+6. Figure out how to open and save diagrams. (https://resources.jointjs.com/tutorial/serialization)
+7. Element resize (https://codepen.io/jointjs/pen/ZERyVxe/c92472ae00ccfc127b934c6b693d3e15)
+https://www.jointjs.com/demos/resize-control-tool
+8. Undo and Redo in JointJS.
+
+
+---Their own github is a good place to look for help---
+
+
+drawing shapes  https://www.jointjs.com/demos/shapes-drawing
+
+
+the infinite space problem, i think the solution could be to fiddle with the css of the paper. I saw this in the element resize control tool
+demo 
+#paper-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: scroll;
+}
+
+Go to the demos page and see how in each demo there is the jointjs logo overlayed on the bottom right hand side of the page,
+figure out a way to put idG10's logo there. (done)
+
+In order to make it easier to click on the element resize tool just maybe modify the wrapper around the shapes, i think you have to 
+create your own elementview for each element, im not too sure, look it up.
+
+
+Drag and drop elements from one paper to another 
+(https://stackoverflow.com/questions/31283895/joint-js-drag-and-drop-element-between-two-papers/36932973?r=SearchResults&s=5%7C28.1925#36932973)
+
+Highlighters can be used to provide visual emphasis to an element; during user interactions for example.
+https://resources.jointjs.com/docs/jointjs/v3.6/demo/highlighters/js/mask.js
+
+
+
