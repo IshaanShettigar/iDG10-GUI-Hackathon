@@ -221,7 +221,79 @@ element2.attr({
 
 })
 
+var oilRig = joint.dia.Element.define('oilRig', {
+    attrs: {
+        bottom_r1: {
+            strokeWidth: 1,
+            stroke: 'black',
+            fill: 'none'
+        },
+        bottom_r2: {
+            strokeWidth: 1,
+            stroke: 'black',
+            fill: 'none'
+        },
+        sub_rect: {
+            strokeWidth: 1,
+            stroke: 'black',
+            fill: '#fac905'
+        },
 
+        outline: {
+            x: 0,
+            y: 0,
+            width: 'calc(w)',
+            height: 'calc(h)',
+            strokeWidth: 1,
+            stroke: '#000000',
+            fill: '#035afc'
+        }
+    }
+}, {
+    markup: [
+        {
+            tagName: 'rect',
+            selector: 'sub_rect'
+        },
+        {
+            tagName: 'rect',
+            selector: 'bottom_r1'
+        },
+        {
+            tagName: 'rect',
+            selector: 'bottom_r2'
+        },
+        {
+            tagName: 'rect',
+            selector: 'outline'
+        }
+    ]
+});
+
+var element3 = new oilRig();
+element3.position(500, 500)
+element3.resize(125, 30)
+element3.addTo(graph)
+element3.attr({
+    bottom_r1: {
+        x: 'calc(0.65*w)',
+        y: 'calc(h)',
+        width: 'calc(0.8*h)', //both w & h are as we need a square, using h as ref here
+        height: 'calc(0.8*h)'
+    },
+    bottom_r2: {
+        x: 'calc(0.15*w)',
+        y: 'calc(h)',
+        width: 'calc(0.8*h)', //both w & h are as we need a square, using h as ref here
+        height: 'calc(0.8*h)'
+    },
+    sub_rect: {
+        x: 'calc(0.1*w)',
+        y: '-calc(0.8*h)',
+        width: 'calc(0.5*w)',
+        height: 'calc(0.8*h)'
+    }
+})
 
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
@@ -270,5 +342,12 @@ var EletoolsView = new joint.dia.ToolsView({
     tools: [new ResizeTool({ selector: 'outline' })]
 });
 
-var elementView = element1.findView(paper);
-elementView.addTools(EletoolsView);
+var element1View = element1.findView(paper);
+element1View.addTools(EletoolsView);
+
+var element2View = element2.findView(paper);
+// element2View.addTools(EletoolsView);
+// note the stroke width is not relative
+
+// var element3View = element3.findView(paper);
+// element3View.addTools(EletoolsView);
