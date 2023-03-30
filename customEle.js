@@ -290,7 +290,7 @@ element3.attr({
     sub_rect: {
         x: 'calc(0.1*w)',
         y: '-calc(0.8*h)',
-        width: 'calc(0.5*w)',
+        width: 'calc(0.4*w)',
         height: 'calc(0.8*h)'
     }
 })

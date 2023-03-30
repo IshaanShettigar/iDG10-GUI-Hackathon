@@ -47,3 +47,15 @@ ensureLegibility: true to keep link alphabets viewable
 
 Highlighters can be used to provide visual emphasis to an element; during user interactions for example.
 https://resources.jointjs.com/docs/jointjs/v3.6/demo/highlighters/js/mask.js
+
+
+This link talks about adding text editing to labels
+https://groups.google.com/g/jointjs/c/FNj96dva3tE
+
+
+Making label text editable
+https://stackoverflow.com/questions/57226665/change-label-of-a-jointjs-cell-by-clicking-on-it-and-type-in-a-new-label
+
+
+Drag and Drop in JointJS
+https://observablehq.com/@quantellia/jointjs-drag-and-drop-ideation
