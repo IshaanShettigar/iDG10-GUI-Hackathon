@@ -158,6 +158,7 @@
             }
         });
 
+
         var infoButton = new joint.linkTools.InfoButton();
 
 
@@ -243,7 +244,97 @@
             }
         });
 
+        var linkBlackList = []
+        joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
+            name: 'add-label-button',
+            options: {
+                markup: [{
+                    tagName: 'circle',
+                    selector: 'button',
+                    attributes: {
+                        'r': 7,
+                        'fill': 'mediumseagreen',
+                        'cursor': 'pointer'
+                    }
+                }, {
+                    tagName: 'path',
+                    selector: 'icon',
+                    attributes: {
+                        'd': 'M 0 0 0 0 M 0 5 0 0 M -1 -1 1 -1 M 0 0 0 -4.5 M -4 0 0 0 M 4.5 0 0 0 ',
+                        'fill': 'none',
+                        'stroke': '#FFFFFF',
+                        'stroke-width': 2,
+                        'pointer-events': 'none'
+                    }
+                }],
+                x: '100%',
+                y: '0%',
+                offset: {
+                    x: 0,
+                    y: 0
+                },
+                rotate: true,
+                action: function (evt, elementView, buttonView) {
+                    // alert('View id: ' + this.id + '\n' + 'Model id: ' + this.model.id);
+                    var model = elementView.model;
+                    console.log(model.attributes.size)
 
+                    const newText = prompt("Enter Label Text");
+                    var GAP = 40
+                    var additionalWidth = newText.length;
+                    var label = new joint.shapes.standard.Rectangle({
+                        label: true,
+                        size: {
+                            width: model.attributes.size.width / 2 + additionalWidth * 5.5,
+                            height: 25
+                        },
+                        position: {
+                            x: model.attributes.position.x,
+                            y: model.attributes.position.y - GAP
+                        },
+                        attrs: {
+                            label: {
+                                text: newText,
+                                pointerEvents: 'all'
+                            },
+                            body: {
+                                strokeWidth: 1,
+                                pointerEvents: 'none',
+                                opacity: 1,
+                                fill: "#e6e6e6",
+                                rx: 10,
+                                ry: 10
+
+                            }
+                        }
+                    });
+
+
+                    var elementModel = elementView.model
+                    elementModel.embed(label)
+                    label.addTo(mainGraph)
+                    // Let us try to create a simple dash lined link to connect between 
+                    var dashLink = new joint.shapes.standard.Link();
+                    dashLink.source(model);
+                    dashLink.target(label);
+                    dashLink.addTo(mainGraph);
+                    dashLink.attr({
+                        line: {
+                            stroke: 'black',
+                            strokeWidth: 1,
+                            strokeDasharray: '4 2',
+                            targetMarker: {
+                                'opacity': 0
+                            }
+                        }
+                    });
+
+                    // Add this dashlink to the blacklist so that the user doesnt see the linkTools
+                    linkBlackList.push(dashLink)
+
+                }
+            }
+        });
 
 
 
@@ -260,8 +351,10 @@
                 useModelGeometry: true,
                 // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
             });
+            var addLabelButton = new joint.elementTools.AddLabelButton();
+
             var EletoolsView = new joint.dia.ToolsView({
-                tools: [removeButton, new ResizeTool({ selector: 'body' })]
+                tools: [addLabelButton, removeButton, new ResizeTool({ selector: 'body' })]
             });
 
             newEleView = newEle.findView(mainPaper);
@@ -277,6 +370,9 @@
             newLink.source({ x: 500, y: 500 })
             newLink.target({ x: 580, y: 450 })
             newLink.addTo(mainGraph)
+            const newLinkView = newLink.findView(mainPaper);
+            newLinkView.addTools(toolsView)
+            newLinkView.hideTools()
         })
 
 
@@ -382,11 +478,19 @@
 
 
         mainPaper.on("link:mouseenter", function (linkView) {
-            linkView.addTools(toolsView);
+            const flag = false;
+            for (let i = 0; i < linkBlackList.length; i++) {
+                if (linkView.model === linkBlackList[i]) {
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                linkView.showTools(toolsView);
+            }
         })
 
         mainPaper.on("link:mouseleave", function (linkView) {
-            linkView.removeTools(toolsView);
+            linkView.hideTools(toolsView);
         })
 
         mainPaper.on("element:mouseenter", function (eleView) {

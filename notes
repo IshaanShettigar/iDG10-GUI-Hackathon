@@ -70,5 +70,6 @@ similar to snapLabels= True. We somehow have to tinker with the restrictTransalt
 See https://jsfiddle.net/kumilingus/zmb6hpy7/4/
 
 
+Since we have used a linkBlackList to not show the linkTools on the labels, just run some quick calculations on a complex diagram to see how long that check is going to take O(n)
 
 We can react to the graph.remove event listener to ask the user if they really want to remove the object (Are you sure?)
