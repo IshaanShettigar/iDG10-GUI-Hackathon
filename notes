@@ -69,3 +69,6 @@ I believe we can add a label to an element but we need to restrict the translati
 similar to snapLabels= True. We somehow have to tinker with the restrictTransalte attribute of the paper.
 See https://jsfiddle.net/kumilingus/zmb6hpy7/4/
 
+
+
+We can react to the graph.remove event listener to ask the user if they really want to remove the object (Are you sure?)
