@@ -59,3 +59,13 @@ https://stackoverflow.com/questions/57226665/change-label-of-a-jointjs-cell-by-c
 
 Drag and Drop in JointJS
 https://observablehq.com/@quantellia/jointjs-drag-and-drop-ideation
+
+
+You can modify the location of a button on an element by tinkering with the offset setting, you can make it conform to one standard for all elements by accessing the 
+elements bbox and adding an appropriate offset. https://resources.jointjs.com/tutorial/element-tools
+
+Element label
+I believe we can add a label to an element but we need to restrict the translation of the element along the line of the element
+similar to snapLabels= True. We somehow have to tinker with the restrictTransalte attribute of the paper.
+See https://jsfiddle.net/kumilingus/zmb6hpy7/4/
+
