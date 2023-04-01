@@ -200,6 +200,8 @@
         standardLink.addTo(toolGraph)
         doubleLink.addTo(toolGraph);
 
+
+        // Below are the three element definitions
         var yellowRect = joint.dia.Element.define('yellowRect', {
             attrs: {
                 l1: {
@@ -596,15 +598,11 @@
 
 
 
-        // rectView.addTools(resizeToolView)
-
-
-
         // now let us add some event listeners
         toolPaper.on('element:pointerdblclick', function (elementView) {
             var currentEle = elementView.model;
             var newEle = currentEle.clone()
-            // newEle.resize(100, 100);
+
             newEle.position(200, 200)
             newEle.addTo(mainGraph)
             // var eleBbox = currentEle.getBBox()
@@ -612,13 +610,15 @@
             //     useModelGeometry: true,
             //     // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
             // });
-            // var EletoolsView = new joint.dia.ToolsView({
-            //     tools: [removeButton, new ResizeTool({ selector: 'body' })]
-            // });
 
-            // newEleView = newEle.findView(mainPaper);
-            // newEleView.addTools(EletoolsView);
-            // newEleView.hideTools();
+            var removeButton = new joint.elementTools.Remove();
+            var EletoolsView = new joint.dia.ToolsView({
+                tools: [removeButton, new ResizeTool({ selector: 'outline' })]
+            });
+
+            newEleView = newEle.findView(mainPaper);
+            newEleView.addTools(EletoolsView);
+            newEleView.hideTools();
         })
 
         toolPaper.on('link:pointerdblclick', function (linkView) {
@@ -683,25 +683,28 @@
         document.addEventListener('keydown', function (event) {
             if (event.keyCode === 86 && event.ctrlKey) {
                 if (createCopy != null) {
-                    createCopy.position(copiedCoordinates.x + 20, copiedCoordinates.y + 20)
+                    createCopy.position(copiedCoordinates.x + 50, copiedCoordinates.y + 50)
 
 
                     // var removeButton = new joint.elementTools.Remove({
                     //     useModelGeometry: true,
                     //     // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
                     // });
-                    // var EletoolsView = new joint.dia.ToolsView({
-                    //     tools: [removeButton, new ResizeTool({ selector: 'body' })]
-                    // });
+                    var removeButton = new joint.elementTools.Remove()
+                    var EletoolsView = new joint.dia.ToolsView({
+                        tools: [removeButton, new ResizeTool({ selector: 'outline' })]
+                    });
 
 
                     createCopy.addTo(mainGraph);
                     console.log("pasted element to mainGraph")
-                    // var copyView = createCopy.findView(mainPaper);
-                    // copyView.addTools(EletoolsView);
-                    // copyView.hideTools();
+                    var copyView = createCopy.findView(mainPaper);
+                    copyView.addTools(EletoolsView);
+                    console.log("Added elementTools to the new element")
+                    copyView.hideTools();
                     createCopy = null;
                     copiedCoordinates = null;
+                    console.log('copy == null')
                 }
                 else {
                     alert("There is nothing to paste, clipboard empty!")
