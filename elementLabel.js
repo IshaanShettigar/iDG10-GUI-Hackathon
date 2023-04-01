@@ -205,7 +205,7 @@ var defaultSizeLabel = new joint.shapes.standard.Rectangle({
 });
 
 defaultSizeLabel.addTo(graph)
-
+element.embed(defaultSizeLabel)
 var defaultLink = new joint.shapes.standard.Link();
 defaultLink.source(element);
 defaultLink.target(defaultSizeLabel);

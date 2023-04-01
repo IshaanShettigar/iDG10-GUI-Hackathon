@@ -16,7 +16,6 @@ The main way to define the styling of diagram elements, links, and labels in Joi
 
 We can position subelements on links relative to the position of the link. we can use this for the position of attribute attachments to links.
 
-
 You can create complex interactions between the user and all the tools by using:
 paper.showTools() - shows tools on all link and element views.
 paper.hideTools() - hides tools on all link and element views.
@@ -73,3 +72,9 @@ See https://jsfiddle.net/kumilingus/zmb6hpy7/4/
 Since we have used a linkBlackList to not show the linkTools on the labels, just run some quick calculations on a complex diagram to see how long that check is going to take O(n)
 
 We can react to the graph.remove event listener to ask the user if they really want to remove the object (Are you sure?)
+
+Adding pan & zoom functionality https://github.com/bumbu/svg-pan-zoom
+
+interesting use of jointjs (https://www.netvlies.nl/blogs/creating-interactive-svg-metro-map-jointjs)
+
+embedding HTML elements into jointjs elements (https://codesandbox.io/s/jointjs-dynamic-resize-6f7wj?file=/src/index.js)

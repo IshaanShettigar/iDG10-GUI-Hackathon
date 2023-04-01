@@ -200,148 +200,358 @@
         standardLink.addTo(toolGraph)
         doubleLink.addTo(toolGraph);
 
-        var svgMarkup1 = '<g>' +
-            '<rect id="svgEditorBackground" x="0" y="0" width="em" height="em" style="fill: none; stroke: none;" />' +
-            '<g style="fill:rosybrown;stroke:black;vector-effect:non-scaling-stroke;stroke-width:1px" id="e1_shape" transform="matrix(2.68046 0 0 2.68046 668.263 180.039)" />' +
-            '<rect x="113.67" y="62.96" style="fill:gold;stroke:black;stroke-width:1px" id="e2_rectangle" width="155.37" height="58.14" transform="matrix(0.753349 0 0 0.993163 25.5479 0.361935)" />' +
-            '<path d="M77.123285,77.597995h34.085175" style="fill:red;stroke:red;stroke-width:3px" id="e4_pathH" />' +
-            '<path d="M77.123285,92.634009h34.085175" style="fill:blue;stroke:blue;stroke-width:3px" id="e2_pathH" />' +
-            '<path d="M77.123285,108.672424h34.085175" style="fill:mediumseagreen;stroke:mediumseagreen;stroke-width:3px" id="e3_pathH" />' +
-            '<path d="M228.485823,85.617203h34.085175" style="fill:red;stroke:red;stroke-width:3px" id="e5_pathH" />' +
-            '<path d="M228.485822,102.658018h34.085175" style="fill:blue;stroke:blue;stroke-width:3px" id="e6_pathH" />' +
-            '</g>';
-
-        // Define the custom JointJS element
-        var myElement1 = joint.shapes.basic.Generic.extend({
-
-            // Set the element's markup to the SVG code
-            markup: svgMarkup1,
-
-            // Set the default attributes for the element
-            defaults: joint.util.deepSupplement({
-                type: 'myElement1',
-                size: {
-                    width: "em",
-                    height: "em"
+        var yellowRect = joint.dia.Element.define('yellowRect', {
+            attrs: {
+                l1: {
+                    strokeWidth: 3,
+                    stroke: 'red',
+                    fill: 'none'
                 },
-                attrs: {
-                    rect: {
-                        'pointer-events': 'boundingBox'
-                    },
-                    path: {
-                        'pointer-events': 'none'
-                    }
-                }
-            }, joint.shapes.basic.Generic.prototype.defaults)
-        });
-
-        // Register the element with the graph
-        joint.shapes.myElement1 = myElement1;
-
-        // Create a new instance of the element
-        var myElementInstance1 = new joint.shapes.myElement1({
-            position: { x: -70, y: 1 }
-        });
-        myElementInstance1.resize(50, 50);
-        // Add the element to the graph
-        toolGraph.addCell(myElementInstance1);
-
-
-
-        var svgMarkup2 = '<g>' +
-            '<rect id="svgEditorBackground" x="0" y="0" width="em" height="em" style = "fill: none; stroke: none;" /> ' +
-            '<rect x = "372.2061111014" y = "208.730" style = "fill:royalblue;stroke:black;stroke-width:1px" id = "e1_rectangle" width = "83.731" height = "75.7570029623" />' +
-            '<line id="e2_line" x1="454.9407327576" y1="208.730" x2="477.8671941803" y2="188.7944273242" style="stroke:black;fill:none;stroke-width:2px" />' +
-            '<line id="e3_line" x1="350.277000" y1="303.426000" x2="373.203000" y2="283.491000" style="stroke:black;fill:none;stroke-width:2px" />' +
-            '<line id="e4_line" x1="455.936" y1="284.488" x2="475.873" y2="304.431" style="stroke:black;fill:none;stroke-width:2px" />' +
-            '<line id="e5_line" x1="349.279" y1="189.793" x2="372.207000" y2="209.736000" style="stroke:black;fill:none;stroke-width:2px" />' +
-            '</g>';
-
-        var myElement2 = joint.shapes.basic.Generic.extend({
-
-            // Set the element's markup to the SVG code
-            markup: svgMarkup2,
-
-            // Set the default attributes for the element
-            defaults: joint.util.deepSupplement({
-                type: 'myElement2',
-                size: {
-                    width: "em",
-                    height: "em"
+                l2: {
+                    strokeWidth: 3,
+                    stroke: 'blue',
+                    fill: 'none'
                 },
-                attrs: {
-                    rect: {
-                        'pointer-events': 'boundingBox'
-                    },
-                    path: {
-                        'pointer-events': 'none'
-                    }
-                }
-            }, joint.shapes.basic.Generic.prototype.defaults)
-        });
-
-        // Register the element with the graph
-        joint.shapes.myElement2 = myElement2;
-
-        // Create a new instance of the element
-        var myElementInstance2 = new joint.shapes.myElement2({
-            position: { x: -315, y: 1 }
-        });
-        myElementInstance2.resize(50, 50)
-        // Add the element to the graph
-        toolGraph.addCell(myElementInstance2);
-
-
-        var svgMarkup3 = '<g>' +
-            '<rect id="svgEditorBackground" x="0" y="0" width="em" height="em" style="fill: none; stroke: none;" />' +
-            '<rect x="410.2436949299" y="207.3210141809" style="fill:cornflowerblue;stroke:black;stroke-width:1px" id="e1_rectangle" width="126.956" height="29.9892" />' +
-            '<rect x="421.24" y="183.332" style="fill:gold;stroke:black;stroke-width:1px" id="e2_rectangle" width="57.9778" height="23.9912" />' +
-            '<rect x="428.236839712" y="238.3092079722" style="fill:none;stroke:black;stroke-width:1px" id="e4_rectangle" width="22.9918" height="19.992" />' +
-            '<rect x="499.210000" y="237.310000" style="fill:none;stroke:black;stroke-width:1px" id="e3_rectangle" width="22.991800" height="19.992000" />' +
-            '<line id="e5_line" x1="438.2330312576" y1="238.3092079722" x2="438.233" y2="270.294" style="stroke:mediumseagreen;fill:none;stroke-width:3px" />' +
-            '<line id="e2_line" x1="507.207" y1="237.309" x2="507.207" y2="271.294" style="stroke:red;fill:none;stroke-width:3px" />' +
-            '<line id="e3_line" x1="516.204000" y1="237.309000" x2="516.204" y2="271.293" style="stroke:blue;fill:none;stroke-width:3px" />' +
-            '<polygon style="stroke:black;fill:gold;stroke-width:1px" id="e7_polygon" points="431.235 183.33 436.234 119.354 445.23 119.355 448.229 183.33" />' +
-            '<polygon style="stroke:black;fill:none;stroke-width:1px" id="e8_polygon" points="472.22,181.331,532.197,139.347,536.196,147.344,481.217,189.328" />' +
-            '<line id="e4_line" x1="532.198000" y1="144.344000" x2="532.198000" y2="185.329000" style="stroke:black;fill:none;stroke-width:2px" />' +
-            '</g>';
-
-        var myElement3 = joint.shapes.basic.Generic.extend({
-
-            // Set the element's markup to the SVG code
-            markup: svgMarkup3,
-
-            // Set the default attributes for the element
-            defaults: joint.util.deepSupplement({
-                type: 'myElement3',
-                size: {
-                    width: "50",
-                    height: "50"
+                l3: {
+                    strokeWidth: 3,
+                    stroke: 'green',
+                    fill: 'none'
                 },
-                attrs: {
-                    rect: {
-                        'pointer-events': 'boundingBox'
-                    },
-                    path: {
-                        'pointer-events': 'none'
-                    },
-                    line: {
-                        'pointer-events': 'boundingBox'
-                    }
+                l4: {
+                    strokeWidth: 3,
+                    stroke: 'red',
+                    fill: 'none'
+                },
+                l5: {
+                    strokeWidth: 3,
+                    stroke: 'blue',
+                    fill: 'none'
+                },
+                outline: {
+                    x: 0,
+                    y: 0,
+                    width: 'calc(w)',
+                    height: 'calc(h)',
+                    strokeWidth: 1,
+                    stroke: '#000000',
+                    fill: '#fac905'
                 }
-            }, joint.shapes.basic.Generic.prototype.defaults)
+            }
+        }, {
+            markup: [
+                {
+                    tagName: 'line',
+                    selector: 'l1'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l2'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l3'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l4'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l5'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'outline'
+                }
+            ]
         });
 
-        // Register the element with the graph
-        joint.shapes.myElement3 = myElement3;
+        var myElement2 = new yellowRect();
+        myElement2.position(50, 200);
+        myElement2.resize(100, 50)
+        myElement2.addTo(toolGraph)
+        myElement2.attr({
+            l1: {
+                x1: '0',
+                y1: 'calc(0.25*h)',
+                x2: 'calc(-0.35*w)',  // modify this to control to length of the line 
+                y2: 'calc(0.25*h)'
+            },
+            l2: {
+                x1: '0',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(-0.35*w)',
+                y2: 'calc(0.5*h)'
+            },
+            l3: {
+                x1: '0',
+                y1: 'calc(0.75*h)',
+                x2: 'calc(-0.35*w)',
+                y2: 'calc(0.75*h)'
+            },
+            l4: {
+                x1: 'calc(w)',
+                y1: 'calc(0.33*h)',
+                x2: 'calc(1.35*w)', // controls the length
+                y2: 'calc(0.33*h)'
+            },
+            l5: {
+                x1: 'calc(w)',
+                y1: 'calc(0.67*h)',
+                x2: 'calc(1.35*w)', // controls the length
+                y2: 'calc(0.67*h)'
+            }
 
-        // Create a new instance of the element
-        var myElementInstance3 = new joint.shapes.myElement3({
-            position: { x: -380, y: 240 }
+        })
+
+
+
+        var blueRect = joint.dia.Element.define('blueRect', {
+            attrs: {
+                l1: {
+                    strokeWidth: 3,
+                    stroke: 'black',
+                    fill: 'rgba(0,255,0,0.3)'
+                },
+                l2: {
+                    strokeWidth: 3,
+                    stroke: 'black',
+                    fill: 'rgba(0,255,0,0.3)'
+                },
+                l3: {
+                    strokeWidth: 3,
+                    stroke: 'black',
+                    fill: 'rgba(0,255,0,0.3)'
+                },
+                l4: {
+                    strokeWidth: 3,
+                    stroke: 'black',
+                    fill: 'rgba(0,255,0,0.3)'
+                },
+                outline: {
+                    x: 0,
+                    y: 0,
+                    width: 'calc(w)',
+                    height: 'calc(h)',
+                    strokeWidth: 1,
+                    stroke: '#000000',
+                    fill: '#035afc'
+                }
+            }
+        }, {
+            markup: [
+                {
+                    tagName: 'line',
+                    selector: 'l1'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l2'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l3'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'l4'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'outline'
+                }]
         });
-        myElementInstance3.resize(50, 50)
-        // Add the element to the graph
-        toolGraph.addCell(myElementInstance3);
+
+
+        var myElement1 = new blueRect();
+        myElement1.attr({
+            l1: {
+                x1: 'calc(w)',
+                y1: 'calc(h)',
+                x2: 'calc(1.25*w)',
+                y2: 'calc(1.25*h)'
+            },
+            l2: {
+                x1: '0',
+                y1: '0',
+                x2: 'calc(-0.25*w)',
+                y2: 'calc(-0.25*h)'
+
+            },
+            l3: {
+                x1: 'calc(w)',
+                y1: '0',
+                x2: 'calc(1.25*w)',
+                y2: 'calc(-0.25*h)'
+            },
+            l4: {
+                x1: '0',
+                y1: 'calc(h)',
+                x2: 'calc(-0.25*w)',
+                y2: 'calc(1.25*h)'
+            },
+
+        });
+
+        myElement1.position(65, 50);
+        myElement1.resize(60, 60);
+        myElement1.addTo(toolGraph);
+
+
+        var oilRig = joint.dia.Element.define('oilRig', {
+            attrs: {
+                red_line: {
+                    strokeWidth: 3,
+                    stroke: 'red'
+                },
+                blue_line: {
+                    strokeWidth: 3,
+                    stroke: 'blue'
+                },
+                green_line: {
+                    strokeWidth: 3,
+                    stroke: 'green'
+                },
+                vertical_black_line: {
+                    strokeWidth: 2,
+                    stroke: '#000000'
+                },
+                no_fill_polygon: {
+                    strokeWidth: 1,
+                    stroke: '#000000',
+                    fill: 'none'
+                },
+                yellow_polygon: {
+                    strokeWidth: 1,
+                    stroke: 'black',
+                    fill: '#fac905'
+                },
+                bottom_r1: {
+                    strokeWidth: 1,
+                    stroke: 'black',
+                    fill: 'none'
+                },
+                bottom_r2: {
+                    strokeWidth: 1,
+                    stroke: 'black',
+                    fill: 'none'
+                },
+                sub_rect: {
+                    strokeWidth: 1,
+                    stroke: 'black',
+                    fill: '#fac905'
+                },
+
+                outline: {
+                    x: 0,
+                    y: 0,
+                    width: 'calc(w)',
+                    height: 'calc(h)',
+                    strokeWidth: 1,
+                    stroke: '#000000',
+                    fill: '#035afc'
+                }
+            }
+        }, {
+            markup: [
+                {
+                    tagName: 'line',
+                    selector: 'red_line'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'blue_line'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'green_line'
+                },
+                {
+                    tagName: 'line',
+                    selector: 'vertical_black_line'
+                },
+                {
+                    tagName: 'polygon',
+                    selector: 'no_fill_polygon'
+                },
+                {
+                    tagName: 'polygon',
+                    selector: 'yellow_polygon'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'sub_rect'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'bottom_r1'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'bottom_r2'
+                },
+                {
+                    tagName: 'rect',
+                    selector: 'outline'
+                }
+            ]
+        });
+
+        var myElement3 = new oilRig();
+        myElement3.position(40, 400)
+        myElement3.resize(125, 30)
+        myElement3.addTo(toolGraph)
+        myElement3.attr({
+            red_line: {
+                x1: 'calc(0.79*w)',
+                y1: 'calc(1*h)',
+                x2: 'calc(0.79*w)',
+                y2: 'calc(2.5*h)'
+            },
+            blue_line: {
+                x1: 'calc(0.72*w)',
+                y1: 'calc(1*h)',
+                x2: 'calc(0.72*w)',
+                y2: 'calc(2.5*h)'
+            },
+            green_line: {
+                x1: 'calc(0.245*w)',
+                y1: 'calc(1*h)',
+                x2: 'calc(0.245*w)',
+                y2: 'calc(2.5*h)'
+            },
+
+            vertical_black_line: {
+                x1: 'calc(0.9*w)',
+                y1: '-calc(2.1*h)',
+                x2: 'calc(0.9*w)',
+                y2: '-calc(0.9*h)'
+            },
+            no_fill_polygon: {
+                points: 'calc(0.44*w) -calc(0.8*h) calc(0.9*w) -calc(2.27*h) calc(0.95*w) -calc(2*h) calc(0.49*w) -calc(0.5*h)'
+            },
+            yellow_polygon: {
+                points: 'calc(0.2*w) -calc(0.8*h) calc(0.23*w) -calc(2.9*h) calc(0.30*w) -calc(2.9*h) calc(0.33*w) -calc(0.8*h)  '
+            },
+            bottom_r1: {
+                x: 'calc(0.65*w)',
+                y: 'calc(h)',
+                width: 'calc(0.8*h)', //both w & h are as we need a square, using h as ref here
+                height: 'calc(0.8*h)'
+            },
+            bottom_r2: {
+                x: 'calc(0.15*w)',
+                y: 'calc(h)',
+                width: 'calc(0.8*h)', //both w & h are as we need a square, using h as ref here
+                height: 'calc(0.8*h)'
+            },
+            sub_rect: {
+                x: 'calc(0.1*w)',
+                y: '-calc(0.8*h)',
+                width: 'calc(0.40*w)',
+                height: 'calc(0.8*h)'
+            }
+        })
 
 
         const ResizeTool = joint.elementTools.Control.extend({
@@ -438,64 +648,66 @@
                 deep: true,
                 attrs: {
                     'stroke': '#FF4365',
-                    'stroke-width': 3
+                    'stroke-width': 1.5,
+
+
                 }
             });
         })
 
-        // var createCopy = null;
-        // var copiedCoordinates = null;
+        var createCopy = null;
+        var copiedCoordinates = null;
 
-        // // copy
-        // document.addEventListener('keydown', function (event) {
-        //     if (event.keyCode === 67 && event.ctrlKey) {
+        // copy
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode === 67 && event.ctrlKey) {
 
-        //         if (selectedCellView != null) {
-        //             // Ctrl+C was pressed
-        //             console.log('Ctrl+C was pressed');
-        //             console.log(`Cellview to be copied is ${JSON.stringify(selectedCellView.model)
-        //                 }`)
-        //             // selectedElementView
-        //             createCopy = selectedCellView.model.clone();
+                if (selectedCellView != null) {
+                    // Ctrl+C was pressed
+                    console.log('Ctrl+C was pressed');
+                    console.log(`Cellview to be copied is ${JSON.stringify(selectedCellView.model)
+                        }`)
+                    // selectedElementView
+                    createCopy = selectedCellView.model.clone();
 
-        //             copiedCoordinates = selectedCellView.getBBox()
-        //             console.log(`Coordinates where copy occurred is ${copiedCoordinates}`);
-        //         }
-        //         else {
-        //             alert("You have not selected an element to copy");
-        //         }
-        //     }
-        // });
+                    copiedCoordinates = selectedCellView.getBBox()
+                    console.log(`Coordinates where copy occurred is ${copiedCoordinates}`);
+                }
+                else {
+                    alert("You have not selected an element to copy");
+                }
+            }
+        });
 
-        // // paste
-        // document.addEventListener('keydown', function (event) {
-        //     if (event.keyCode === 86 && event.ctrlKey) {
-        //         if (createCopy != null) {
-        //             createCopy.position(copiedCoordinates.x + 20, copiedCoordinates.y + 20)
-
-
-        //             var removeButton = new joint.elementTools.Remove({
-        //                 useModelGeometry: true,
-        //                 // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
-        //             });
-        //             var EletoolsView = new joint.dia.ToolsView({
-        //                 tools: [removeButton, new ResizeTool({ selector: 'body' })]
-        //             });
+        // paste
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode === 86 && event.ctrlKey) {
+                if (createCopy != null) {
+                    createCopy.position(copiedCoordinates.x + 20, copiedCoordinates.y + 20)
 
 
-        //             createCopy.addTo(mainGraph);
-        //             console.log("pasted element to mainGraph")
-        //             var copyView = createCopy.findView(mainPaper);
-        //             copyView.addTools(EletoolsView);
-        //             copyView.hideTools();
-        //             createCopy = null;
-        //             copiedCoordinates = null;
-        //         }
-        //         else {
-        //             alert("There is nothing to paste, clipboard empty!")
-        //         }
-        //     }
-        // })
+                    // var removeButton = new joint.elementTools.Remove({
+                    //     useModelGeometry: true,
+                    //     // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
+                    // });
+                    // var EletoolsView = new joint.dia.ToolsView({
+                    //     tools: [removeButton, new ResizeTool({ selector: 'body' })]
+                    // });
+
+
+                    createCopy.addTo(mainGraph);
+                    console.log("pasted element to mainGraph")
+                    // var copyView = createCopy.findView(mainPaper);
+                    // copyView.addTools(EletoolsView);
+                    // copyView.hideTools();
+                    createCopy = null;
+                    copiedCoordinates = null;
+                }
+                else {
+                    alert("There is nothing to paste, clipboard empty!")
+                }
+            }
+        })
 
         // delete
         document.addEventListener('keydown', function (event) {

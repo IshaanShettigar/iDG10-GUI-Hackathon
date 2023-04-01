@@ -83,8 +83,8 @@ var blueRect = joint.dia.Element.define('blueRect', {
 });
 
 
-var element1 = new blueRect();
-element1.attr({
+var myElement1 = new blueRect();
+myElement1.attr({
     l1: {
         x1: 'calc(w)',
         y1: 'calc(h)',
@@ -113,9 +113,9 @@ element1.attr({
 
 });
 
-element1.position(200, 200);
-element1.resize(60, 60);
-element1.addTo(graph);
+myElement1.position(200, 200);
+myElement1.resize(60, 60);
+myElement1.addTo(graph);
 
 var yellowRect = joint.dia.Element.define('yellowRect', {
     attrs: {
@@ -183,11 +183,11 @@ var yellowRect = joint.dia.Element.define('yellowRect', {
     ]
 });
 
-var element2 = new yellowRect();
-element2.position(400, 200);
-element2.resize(100, 50)
-element2.addTo(graph)
-element2.attr({
+var myElement2 = new yellowRect();
+myElement2.position(400, 200);
+myElement2.resize(100, 50)
+myElement2.addTo(graph)
+myElement2.attr({
     l1: {
         x1: '0',
         y1: 'calc(0.25*h)',
@@ -320,11 +320,11 @@ var oilRig = joint.dia.Element.define('oilRig', {
     ]
 });
 
-var element3 = new oilRig();
-element3.position(500, 500)
-element3.resize(125, 30)
-element3.addTo(graph)
-element3.attr({
+var myElement3 = new oilRig();
+myElement3.position(500, 500)
+myElement3.resize(125, 30)
+myElement3.addTo(graph)
+myElement3.attr({
     red_line: {
         x1: 'calc(0.79*w)',
         y1: 'calc(1*h)',
@@ -415,20 +415,116 @@ const ResizeTool = joint.elementTools.Control.extend({
         );
     }
 });
+var removeButton = new joint.elementTools.Remove();
+joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
+    name: 'add-label-button',
+    options: {
+        markup: [{
+            tagName: 'circle',
+            selector: 'button',
+            attributes: {
+                'r': 7,
+                'fill': 'mediumseagreen',
+                'cursor': 'pointer'
+            }
+        }, {
+            tagName: 'path',
+            selector: 'icon',
+            attributes: {
+                'd': 'M 0 0 0 0 M 0 5 0 0 M -1 -1 1 -1 M 0 0 0 -4.5 M -4 0 0 0 M 4.5 0 0 0 ',
+                'fill': 'none',
+                'stroke': '#FFFFFF',
+                'stroke-width': 2,
+                'pointer-events': 'none'
+            }
+        }],
+        x: '50%',
+        y: '50%',
+        offset: {
+            x: 0,
+            y: 0
+        },
+        rotate: true,
+        action: function (evt, elementView, buttonView) {
+            // alert('View id: ' + this.id + '\n' + 'Model id: ' + this.model.id);
+            var model = elementView.model;
+            console.log(model.attributes.size)
+
+            const newText = prompt("Enter Label Text");
+            var GAP = 40
+            var additionalWidth = newText.length;
+            var label = new joint.shapes.standard.Rectangle({
+                label: true,
+                size: {
+                    width: model.attributes.size.width / 2 + additionalWidth * 5.5,
+                    height: 25
+                },
+                position: {
+                    x: model.attributes.position.x,
+                    y: model.attributes.position.y - GAP
+                },
+                attrs: {
+                    label: {
+                        text: newText,
+                        pointerEvents: 'all'
+                    },
+                    body: {
+                        strokeWidth: 1,
+                        pointerEvents: 'none',
+                        opacity: 1,
+                        fill: "#e6e6e6",
+                        rx: 10,
+                        ry: 10
+
+                    }
+                }
+            });
+
+            var elementModel = elementView.model
+            elementModel.embed(label)
+            label.addTo(graph)
+            // Let us try to create a simple dash lined link to connect between 
+            var dashLink = new joint.shapes.standard.Link();
+            dashLink.source(model);
+            dashLink.target(label);
+            dashLink.addTo(graph);
+            dashLink.attr({
+                line: {
+                    stroke: 'black',
+                    strokeWidth: 1,
+                    strokeDasharray: '4 2',
+                    targetMarker: {
+                        'opacity': 0
+                    }
+                }
+            });
+
+        }
+    }
+});
+
+var addLabelButton = new joint.elementTools.AddLabelButton();
 
 
 
 
 var EletoolsView = new joint.dia.ToolsView({
-    tools: [new ResizeTool({ selector: 'outline' })]
+    tools: [new ResizeTool({ selector: 'outline' }), removeButton, addLabelButton]
 });
 
-var element1View = element1.findView(paper);
+var element1View = myElement1.findView(paper);
 element1View.addTools(EletoolsView);
 
-var element2View = element2.findView(paper);
+// var element2View = myElement2.findView(paper);
 // element2View.addTools(EletoolsView);
-// note the stroke width is not relative
+// // note the stroke width is not relative
 
-// var element3View = element3.findView(paper);
-// element3View.addTools(EletoolsView);
+var element3View = myElement3.findView(paper);
+element3View.addTools(EletoolsView);
+
+paper.on('element:mouseenter', function (elementView) {
+    element1View.showTools();
+})
+paper.on('element:mouseleave', function (elementView) {
+    element1View.hideTools();
+})
