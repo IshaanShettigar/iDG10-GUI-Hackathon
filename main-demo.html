@@ -50,50 +50,6 @@
             gridSize: 8
         });
 
-        // create shapes for toolbar
-        /*var rect1 = new joint.shapes.standard.Rectangle();
-        rect1.resize(100, 100);
-        rect1.position(10, 10);
-        rect1.attr({
-            body: {
-                fill: 'white',
-                stroke: 'black',
-                strokeWidth: 2
-            },
-            label: {
-                text: 'Rect1',
-                fill: 'black'
-            }
-        })
-
-        var circle1 = new joint.shapes.standard.Circle()
-        circle1.resize(100, 100);
-        circle1.position(10, 150);
-        circle1.attr({
-            body: {
-                fill: 'white'
-            },
-            label: {
-                text: 'Circle1',
-                fill: 'black'
-            }
-        })
-
-        var cylinder1 = new joint.shapes.standard.Cylinder()
-        cylinder1.resize(100, 100);
-        cylinder1.position(10, 290);
-        cylinder1.attr({
-            body: {
-                fill: 'white',
-                stroke: 'black',
-                strokeWidth: 2
-            },
-            label: {
-                text: 'Cylinder1',
-                fill: 'black'
-            }
-        })*/
-
         function getInput(evt, linkView, buttonView) {
             // Create a new input element
             // const input = document.createElement('input');
@@ -194,9 +150,7 @@
             interactive: false
         });
 
-        // rect1.addTo(toolGraph)
-        // circle1.addTo(toolGraph)
-        // cylinder1.addTo(toolGraph)
+
         standardLink.addTo(toolGraph)
         doubleLink.addTo(toolGraph);
 
@@ -595,6 +549,9 @@
                 );
             }
         });
+
+
+        var linkBlackList = []
         joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
             name: 'add-label-button',
             options: {
@@ -617,8 +574,8 @@
                         'pointer-events': 'none'
                     }
                 }],
-                x: '100%',
-                y: '0%',
+                x: '50%',
+                y: '50%',
                 offset: {
                     x: 0,
                     y: 0
@@ -678,6 +635,8 @@
                         }
                     });
 
+                    // Add this dashlink to the blacklist so that the user doesnt see the linkTools
+                    linkBlackList.push(dashLink)
                 }
             }
         });
@@ -725,6 +684,7 @@
             mainGraph.getCells().forEach(function (cell) {
                 mask.remove(cell.findView(mainPaper));
             });
+
             selectedCellView = cellView;
 
             //add highlight for this element
@@ -825,7 +785,15 @@
 
 
         mainPaper.on("link:mouseenter", function (linkView) {
-            linkView.addTools(toolsView);
+            const flag = false;
+            for (let i = 0; i < linkBlackList.length; i++) {
+                if (linkView.model === linkBlackList[i]) {
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                linkView.showTools(toolsView);
+            }
         })
 
         mainPaper.on("link:mouseleave", function (linkView) {
