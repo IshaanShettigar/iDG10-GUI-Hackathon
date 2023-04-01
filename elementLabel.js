@@ -104,6 +104,7 @@ joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
         }
     }
 });
+
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
         {
