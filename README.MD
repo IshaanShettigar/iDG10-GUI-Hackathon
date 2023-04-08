@@ -1,7 +1,7 @@
 
 ## Team Bro-Code 
 
-The main file is called "twopaper.html" 
+The main file is called "mainDemo.html" 
 
 #### Tech stack:
 
@@ -30,13 +30,3 @@ We have used HTML,CSS and JS along with a JavaScript library called JointJS that
 
 
 #### File Details:
-The custom elements are in "blue_square.svg", "oil_rig.svg" and "yellow_rect.svg"
-
-We have rendered one of the above shapes onto the diagram in "newEle.html"
-
-Due to time constraints we weren't able to place the custom elements in the main "twopaper.html". 
-
-User can double click on any icon on the left hand side to make it appear in the main diagram, attach or delete links etc.
-
-
-Due to a time constraint and other college related work we were unable to complete this project
