@@ -774,7 +774,7 @@ mainPaper.on("blank:pointerclick", function () {
 });
 
 mainPaper.on("link:mouseenter", function (linkView) {
-    const flag = false;
+    var flag = false;
     for (let i = 0; i < linkBlackList.length; i++) {
         if (linkView.model === linkBlackList[i]) {
             flag = true;
