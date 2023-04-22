@@ -1,6 +1,3 @@
-
-## Team Bro-Code 
-
 The main file is called "mainDemo.html" 
 
 #### Tech stack:
@@ -28,6 +25,13 @@ We have used HTML,CSS and JS along with a JavaScript library called JointJS that
     6. Styling: JointJS allows developers to customize the styling of shapes and links, including colors, fonts, and border styles
 
 
+#### File Structure:
+mainDemo.html and mainDemo.js are the final products.
 
-#### File Details:
-testing - issue i branch
+
+#### How to Contribute to this project?
+Once you decide which Issue you want to tackle from the issues tab, fork the issue-branch repository and start working on it. I have detailed below how I go about adding new features to the project. 
+1. If the new feature is related to creating a new element that is to be added to the graph, then first create and test it by adding to newEle.html (it has a script tag within). Once you are satisfied, make sure to open a pull request and we will take care of integrating that element into mainDemo.html
+2. If the new feature is an enchancement then integrate it into elementLabel.html & elementLabel.js. I have rendered a simple square with the right tools and a label attached to the element already. Test your feature out here.
+3. If we ask you to merge the issue with the main demo then first try out your chagnes on twopaper.html only if everything works, then go ahead and make the same changes to mainDemo.html
+4. If we are asking for a UI enchancement then make changes to twopaper.html before making the same ones to mainDemo.html
