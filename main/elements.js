@@ -405,5 +405,134 @@ const platform = joint.dia.Element.define(
     }
 );
 
+/* Might not work since we aint exporting borderRadiusUTA */
+const borderRadiusUTA = 5;
+const UTA = joint.dia.Element.define("UTA",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#608bd1',
+            },
+            rightLine: {
+                x1: 'calc(0.82*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(1.1*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+            leftDashLine: {
+                x1: 'calc(0.15*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(-0.15*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                strokeDasharray: '8 5',
+                fill: 'none',
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
 
-export { productionWellST, injectionWellST, manifold, platform }
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftDashLine'
+            }
+        ]
+    }
+);
+
+
+const subseaPump = joint.dia.Element.define('subseaPump', {
+    attrs: {
+        outline: {
+            height: 'calc(h)',
+            widght: 'calc(w)',
+            stroke: 'black',
+            strokeWidth: 1,
+            fill: 'none'
+        },
+        leftLine: {
+            stroke: '#02a31d',
+            strokeWidth: 3,
+            x1: 0,
+            y1: 'calc(0.5*h)',
+            x2: 'calc(-0.5*w)',
+            y2: 'calc(0.5*h)',
+
+        },
+        rightLine: {
+            stroke: '#02a31d',
+            strokeWidth: 3,
+            x1: 'calc(w)',
+            y1: 'calc(0.5*h)',
+            x2: 'calc(1.5*w)',
+            y2: 'calc(0.5*h)',
+        },
+        pump: {
+            d: `Mcalc(w),calc(0.5*h) 
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 0,calc(0.5*h)
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 calc(0.5*w),0
+            Hcalc(w) Vcalc(0.15*h) Hcalc(0.8*w)
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 calc(w),calc(0.5*h)`,
+            stroke: '#8c7103',
+            strokeWidth: 2,
+            fill: '#fac905',
+        }
+    }
+},
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'pump'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftLine'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            }
+        ]
+    }
+)
+
+
+export { subseaPump, UTA, productionWellST, injectionWellST, manifold, platform }

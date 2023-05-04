@@ -485,7 +485,7 @@ const productionWellST = joint.dia.Element.define(
 );
 
 const element4 = new productionWellST();
-element4.position(500, 500)
+element4.position(250, 500)
 element4.resize(50, 50)
 element4.addTo(graph);
 
@@ -560,6 +560,72 @@ const ele5 = new UTA()
 ele5.position(600, 200)
 ele5.resize(140, 82)
 ele5.addTo(graph)
+
+
+const subseaPump = joint.dia.Element.define('subseaPump', {
+    attrs: {
+        outline: {
+            height: 'calc(h)',
+            widght: 'calc(w)',
+            stroke: 'black',
+            strokeWidth: 1,
+            fill: 'none'
+        },
+        leftLine: {
+            stroke: '#02a31d',
+            strokeWidth: 3,
+            x1: 0,
+            y1: 'calc(0.5*h)',
+            x2: 'calc(-0.5*w)',
+            y2: 'calc(0.5*h)',
+
+        },
+        rightLine: {
+            stroke: '#02a31d',
+            strokeWidth: 3,
+            x1: 'calc(w)',
+            y1: 'calc(0.5*h)',
+            x2: 'calc(1.5*w)',
+            y2: 'calc(0.5*h)',
+        },
+        pump: {
+            d: `Mcalc(w),calc(0.5*h) 
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 0,calc(0.5*h)
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 calc(0.5*w),0
+            Hcalc(w) Vcalc(0.15*h) Hcalc(0.8*w)
+            Acalc(0.5*w),calc(0.5*h) 0 0 1 calc(w),calc(0.5*h)`,
+            stroke: '#8c7103',
+            strokeWidth: 2,
+            fill: '#fac905',
+        }
+    }
+},
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'pump'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftLine'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            }
+        ]
+    }
+)
+
+const ele6 = new subseaPump();
+ele6.position(900, 500);
+ele6.size(70, 70);
+ele6.addTo(graph)
 
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
