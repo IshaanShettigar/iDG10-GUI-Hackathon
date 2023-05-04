@@ -1,4 +1,4 @@
-import { yellowRect, blueRect, oilRig } from './elements.js'
+import { injectionWellST, manifold, platform } from './elements.js'
 
 var namespace = joint.shapes;
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -201,12 +201,12 @@ doubleLink.addTo(toolGraph);
 //     }
 // );
 
-var myElement1 = new blueRect();
+var myElement1 = new injectionWellST();
 myElement1.position(65, 50);
 myElement1.resize(60, 60);
 myElement1.addTo(toolGraph);
 
-var myElement2 = new yellowRect();
+var myElement2 = new manifold();
 myElement2.position(50, 200);
 myElement2.resize(100, 50);
 myElement2.addTo(toolGraph);
@@ -272,7 +272,7 @@ myElement2.addTo(toolGraph);
 //     }
 // );
 
-var myElement3 = new oilRig();
+var myElement3 = new platform();
 myElement3.position(40, 400);
 myElement3.resize(125, 30);
 myElement3.addTo(toolGraph);

@@ -376,6 +376,88 @@ myElement3.attr({
     }
 })
 
+const productionWellST = joint.dia.Element.define(
+    "productionWellST",
+    {
+        attrs: {
+            l1: {
+                x1: "calc(w)",
+                y1: "calc(h)",
+                x2: "calc(1.25*w)",
+                y2: "calc(1.25*h)",
+                strokeWidth: 3,
+                stroke: "black",
+                fill: "rgba(0,255,0,0.3)",
+            },
+            l2: {
+                x1: "0",
+                y1: "0",
+                x2: "calc(-0.25*w)",
+                y2: "calc(-0.25*h)",
+                strokeWidth: 3,
+                stroke: "black",
+                fill: "rgba(0,255,0,0.3)",
+            },
+            l3: {
+                x1: "calc(w)",
+                y1: "0",
+                x2: "calc(1.25*w)",
+                y2: "calc(-0.25*h)",
+                strokeWidth: 3,
+                stroke: "black",
+                fill: "rgba(0,255,0,0.3)",
+            },
+            l4: {
+                x1: "0",
+                y1: "calc(h)",
+                x2: "calc(-0.25*w)",
+                y2: "calc(1.25*h)",
+                strokeWidth: 3,
+                stroke: "black",
+                fill: "rgba(0,255,0,0.3)",
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                width: "calc(w)",
+                height: "calc(h)",
+                strokeWidth: 1,
+                stroke: "#000000",
+                fill: "#02a31d",
+            },
+        },
+    },
+    {
+        markup: [
+            {
+                tagName: "line",
+                selector: "l1",
+            },
+            {
+                tagName: "line",
+                selector: "l2",
+            },
+            {
+                tagName: "line",
+                selector: "l3",
+            },
+            {
+                tagName: "line",
+                selector: "l4",
+            },
+            {
+                tagName: "rect",
+                selector: "outline",
+            },
+        ],
+    }
+);
+
+const element4 = new productionWellST();
+element4.position(500, 500)
+element4.resize(50, 50)
+element4.addTo(graph);
+
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
         {
