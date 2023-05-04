@@ -489,6 +489,78 @@ element4.position(500, 500)
 element4.resize(50, 50)
 element4.addTo(graph);
 
+const borderRadiusUTA = 5;
+const UTA = joint.dia.Element.define("UTA",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#608bd1',
+            },
+            rightLine: {
+                x1: 'calc(0.82*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(1.1*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+            leftDashLine: {
+                x1: 'calc(0.15*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(-0.15*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                strokeDasharray: '8 5',
+                fill: 'none',
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftDashLine'
+            }
+        ]
+    }
+)
+
+const ele5 = new UTA()
+ele5.position(600, 200)
+ele5.resize(140, 82)
+ele5.addTo(graph)
+
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
         {
@@ -632,12 +704,12 @@ element1View.addTools(EletoolsView);
 // element2View.addTools(EletoolsView);
 // // note the stroke width is not relative
 
-var element3View = myElement3.findView(paper);
-element3View.addTools(EletoolsView);
+const element5View = ele5.findView(paper);
+element5View.addTools(EletoolsView);
 
 paper.on('element:mouseenter', function (elementView) {
-    element1View.showTools();
+    element5View.showTools();
 })
 paper.on('element:mouseleave', function (elementView) {
-    element1View.hideTools();
+    element5View.hideTools();
 })
