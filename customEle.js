@@ -144,6 +144,16 @@ var yellowRect = joint.dia.Element.define('yellowRect', {
             stroke: 'blue',
             fill: 'none'
         },
+        l6: {
+            strokeWidth: 3,
+            stroke: 'green',
+            fill: 'none'
+        },
+        l7: {
+            strokeWidth: 3,
+            stroke: 'black',
+            fill: 'none'
+        },
         outline: {
             x: 0,
             y: 0,
@@ -175,6 +185,14 @@ var yellowRect = joint.dia.Element.define('yellowRect', {
         {
             tagName: 'line',
             selector: 'l5'
+        },
+        {
+            tagName: 'line',
+            selector: 'l6'
+        },
+        {
+            tagName: 'line',
+            selector: 'l7'
         },
         {
             tagName: 'rect',
@@ -217,6 +235,19 @@ myElement2.attr({
         y1: 'calc(0.67*h)',
         x2: 'calc(1.35*w)', // controls the length
         y2: 'calc(0.67*h)'
+    },
+    l6: {
+        x1: 'calc(0.5*w)',
+        y1: '0',
+        x2: 'calc(0.5*w)',
+        y2: 'calc(-0.35*h)'
+
+    },
+    l7: {
+        x1: 'calc(0.7*w)',
+        y1: '0',
+        x2: 'calc(0.7*w)',
+        y2: 'calc(1.35*h)'
     }
 
 })

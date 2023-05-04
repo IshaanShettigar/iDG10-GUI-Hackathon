@@ -53,6 +53,25 @@ const manifold = joint.dia.Element.define(
                 stroke: "blue",
                 fill: "none",
             },
+            l6: {
+                strokeWidth: 3,
+                stroke: 'green',
+                fill: 'none',
+                x1: 'calc(0.5*w)',
+                y1: '0',
+                x2: 'calc(0.5*w)',
+                y2: 'calc(-0.35*h)'
+
+            },
+            l7: {
+                strokeWidth: 3,
+                stroke: 'black',
+                fill: 'none',
+                x1: 'calc(0.7*w)',
+                y1: '0',
+                x2: 'calc(0.7*w)',
+                y2: 'calc(1.35*h)'
+            },
             outline: {
                 x: 0,
                 y: 0,
