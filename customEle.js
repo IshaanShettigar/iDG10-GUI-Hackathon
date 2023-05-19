@@ -627,6 +627,91 @@ ele6.position(900, 500);
 ele6.size(70, 70);
 ele6.addTo(graph)
 
+const borderRadiusSS = 7;
+const subseaSeparator = joint.dia.Element.define("subseaSeparator",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.87*w),calc(0.865*h) hcalc(-0.75*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.65*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.75*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.65*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#02a31d',
+            },
+            rightLine: {
+                x1: 'calc(0.9*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(1.1*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+            leftDashLine: {
+                x1: 'calc(0.10*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(-0.15*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                strokeDasharray: '8 5',
+                fill: 'none',
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'none',
+                fill: 'none',
+            },
+            outerRect: {
+                strokeWidth: 2,
+                stroke: 'black',
+                d: `Mcalc(0.97*w),calc(1.03*h) hcalc(-0.95*w) 
+                a${borderRadiusSS},${borderRadiusSS} 0 0 1 -${borderRadiusSS},-${borderRadiusSS} vcalc(-0.95*h) 
+                a${borderRadiusSS},${borderRadiusSS} 0 0 1 ${borderRadiusSS},-${borderRadiusSS} hcalc(0.95*w)
+                a${borderRadiusSS},${borderRadiusSS} 0 0 1 ${borderRadiusSS},${borderRadiusSS} vcalc(0.95*h)
+                a${borderRadiusSS},${borderRadiusSS} 0 0 1 -${borderRadiusSS},${borderRadiusSS}`,
+                fill: 'none'
+            }
+
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftDashLine'
+            },
+            {
+                tagName: 'path',
+                selector: 'outerRect'
+            }
+        ]
+    }
+)
+
+const ele7 = new subseaSeparator();
+ele7.position(900, 200)
+ele7.size(140, 82);
+ele7.addTo(graph)
+
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
         {
