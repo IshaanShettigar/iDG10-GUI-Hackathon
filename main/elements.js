@@ -534,6 +534,7 @@ const subseaPump = joint.dia.Element.define('subseaPump', {
     }
 )
 
+/* We arent exporting borderRadiusSS */
 const borderRadiusSS = 7;
 const subseaSeparator = joint.dia.Element.define("subseaSeparator",
     {
