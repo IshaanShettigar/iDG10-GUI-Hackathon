@@ -82,10 +82,3 @@ graph.on('change:position', function (cell) {
     console.log(paper.getContentBBox())
 })
 
-// const resetButton = document.getElementById('reset-pan')
-// resetButton.addEventListener('click', function () {
-
-// })
-
-
-
