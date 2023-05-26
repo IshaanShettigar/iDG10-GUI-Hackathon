@@ -58,9 +58,10 @@ rect3.addTo(graph);
 
 //---------------------------------
 
-//Initial Parameters
-var gridsize = 1;
-var currentScale = 1;
+// //Initial Parameters
+// var gridsize = 1;
+// var currentScale = 1;
+
 
 const paperDiv = document.getElementById('paper-div')
 console.log(paperDiv.childNodes[2])
