@@ -4,8 +4,8 @@ var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
 var paper = new joint.dia.Paper({
     el: document.getElementById('paper-div'),
     model: graph,
-    width: 2000,
-    height: 2000,
+    width: window.innerWidth,
+    height: window.innerHeight,
     gridSize: 20,
     drawGrid: { name: "mesh" },
     background: {
@@ -57,10 +57,6 @@ rect3.attr({
 rect3.addTo(graph);
 
 //---------------------------------
-
-// //Initial Parameters
-// var gridsize = 1;
-// var currentScale = 1;
 
 
 const paperDiv = document.getElementById('paper-div')

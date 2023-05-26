@@ -1,0 +1,22 @@
+#paper-wrapper {
+    height: 100vh;
+    width: 100vw;
+    /* overflow: hidden; */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#paper-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#paper-wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+#paper-wrapper::-webkit-scrollbar-corner {
+    background: transparent;
+}
