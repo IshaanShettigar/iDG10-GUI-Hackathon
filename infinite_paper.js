@@ -82,9 +82,11 @@ console.log(paper.$grid)
 // console.log(paper.getFitToContentArea())
 paper.on('blank:pointerdown', function (evt, x, y) {
     paperPanAndZoom.enablePan();
+    document.getElementById('paper-div').style.cursor = "move";
 });
 paper.on('cell:pointerup blank:pointerup', function (cellView, event) {
     paperPanAndZoom.disablePan();
+    document.getElementById('paper-div').style.cursor = "auto";
 })
 
 // graph.on('change:position', function (cell) {
