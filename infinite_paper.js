@@ -1,13 +1,15 @@
 var namespace = joint.shapes;
 var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
+const GRID_SIZE = 20;
+const GRID_NAME = "mesh";
 var paper = new joint.dia.Paper({
     el: document.getElementById('paper-div'),
     model: graph,
     width: window.innerWidth,
     height: window.innerHeight,
-    gridSize: 20,
-    drawGrid: { name: "mesh" },
+    gridSize: GRID_SIZE,
+    drawGrid: { name: GRID_NAME },
     background: {
         color: "rgba(0,0,0,0.1)"
     },
@@ -60,16 +62,22 @@ rect3.addTo(graph);
 
 
 const paperDiv = document.getElementById('paper-div')
-console.log(paperDiv.childNodes[2])
+// console.log(paperDiv.childNodes[2])
 
 paperPanAndZoom = svgPanZoom("#paper-div svg", {
     fit: false,
     center: false,
-    zoomScaleSensitivity: 0.03,
+    zoomScaleSensitivity: 0.1,
     panEnabled: false,
-    controlIconsEnabled: true
-})
+    controlIconsEnabled: true,
+    onZoom: (newZoom) => {
+        console.log(newZoom)
+        paper.setGridSize(paper.options.gridSize + newZoom)
+        // paper.drawGrid()
+    },
 
+})
+console.log(paper.$grid)
 // paper.fitToContent()
 // console.log(paper.getFitToContentArea())
 paper.on('blank:pointerdown', function (evt, x, y) {
@@ -78,7 +86,8 @@ paper.on('blank:pointerdown', function (evt, x, y) {
 paper.on('cell:pointerup blank:pointerup', function (cellView, event) {
     paperPanAndZoom.disablePan();
 })
-graph.on('change:position', function (cell) {
-    console.log(paper.getContentBBox())
-})
+
+// graph.on('change:position', function (cell) {
+//     console.log(paper.getContentBBox())
+// })
 
