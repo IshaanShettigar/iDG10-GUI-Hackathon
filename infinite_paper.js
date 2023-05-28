@@ -77,11 +77,11 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
         flyPaper = new joint.dia.Paper({
             el: $('#flyPaper'),
             model: flyGraph,
-            height: 150,
+            height: 200,
             width: 150,
             interactive: false,
             background: {
-                color: "rgba(0,0,0,0.1)"
+                color: "rgba(0,0,0,0)"
             },
 
         }),
