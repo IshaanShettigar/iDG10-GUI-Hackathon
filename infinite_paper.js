@@ -1,3 +1,6 @@
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./main/elements.js"
+
+
 var namespace = joint.shapes;
 var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
@@ -16,55 +19,113 @@ var paper = new joint.dia.Paper({
     cellViewNamespace: namespace,
 });
 
-var rect = new joint.shapes.standard.Rectangle();
-rect.position(100, 100);
-rect.resize(100, 40);
-rect.attr({
-    body: {
-        fill: 'blue'
-    },
-    label: {
-        text: 'Hello',
-        fill: 'white'
-    }
-});
-rect.addTo(graph);
 
-var rect2 = new joint.shapes.standard.Rectangle();
-rect2.position(200, 500);
-rect2.resize(100, 40);
-rect2.attr({
-    body: {
-        fill: 'blue'
-    },
-    label: {
-        text: 'Hello',
-        fill: 'white'
-    }
-});
-rect2.addTo(graph);
+var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
-var rect3 = new joint.shapes.standard.Rectangle();
-rect3.position(500, 100);
-rect3.resize(100, 40);
-rect3.attr({
-    body: {
-        fill: 'blue'
+var toolPaper = new joint.dia.Paper({
+    el: document.getElementById('tool-paper-div'),
+    model: toolGraph,
+    width: 140,
+    height: 1000,
+    background: {
+        color: "rgba(255,255,255,0.75)"
     },
-    label: {
-        text: 'Hello',
-        fill: 'white'
-    }
+    cellViewNamespace: namespace,
+    interactive: false
 });
-rect3.addTo(graph);
 
-//---------------------------------
+const SS = new subseaSeparator()
+SS.position(30, 50)
+SS.size(85, 50)
+SS.addTo(toolGraph);
+
+const SP = new subseaPump();
+SP.position(40, 130)
+SP.size(60, 60);
+SP.addTo(toolGraph);
+
+const uta = new UTA()
+uta.position(25, 220)
+uta.size(93, 55)
+uta.addTo(toolGraph)
+
+const PWST = new productionWellST()
+PWST.position(50, 320)
+PWST.size(50, 50)
+PWST.addTo(toolGraph)
+
+const PL = new platform()
+PL.position(30, 480);
+PL.size(80, 20)
+PL.addTo(toolGraph)
+
+const IWST = new injectionWellST();
+IWST.position(50, 585)
+IWST.resize(50, 50)
+IWST.addTo(toolGraph)
+
+const MANIFOLD = new manifold()
+MANIFOLD.position(38, 695)
+MANIFOLD.resize(70, 35)
+MANIFOLD.addTo(toolGraph)
+
+
+toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
+    // console.log(cellView.model.getBBox("deep"))
+    $('body').append('<div id="flyPaper" style="position:fixed;z-index:100;opacity:.7;pointer-event:none;"></div>')
+    var flyGraph = new joint.dia.Graph,
+        flyPaper = new joint.dia.Paper({
+            el: $('#flyPaper'),
+            model: flyGraph,
+            height: 150,
+            width: 150,
+            interactive: false,
+            background: {
+                color: "rgba(0,0,0,0.1)"
+            },
+
+        }),
+        flyShape = cellView.model.clone(),
+        pos = cellView.model.position(),
+        offset = {
+            x: x - pos.x,
+            y: y - pos.y
+        };
+
+    flyShape.position(35, 40);
+    flyGraph.addCell(flyShape);
+    $("#flyPaper").offset({
+        left: e.pageX - offset.x,
+        top: e.pageY - offset.y
+    });
+    $('body').on('mousemove.fly', function (e) {
+        $("#flyPaper").offset({
+            left: e.pageX - offset.x,
+            top: e.pageY - offset.y
+        });
+    });
+    $('body').on('mouseup.fly', function (e) {
+        var x = e.pageX,
+            y = e.pageY,
+            target = paper.$el.offset();
+
+        // Dropped over paper ?
+        if (x > target.left && x < target.left + paper.$el.width() && y > target.top && y < target.top + paper.$el.height()) {
+            var s = flyShape.clone();
+            s.position(x - target.left - offset.x, y - target.top - offset.y);
+            graph.addCell(s);
+        }
+        $('body').off('mousemove.fly').off('mouseup.fly');
+        flyShape.remove();
+        $('#flyPaper').remove();
+    });
+});
 
 
 const paperDiv = document.getElementById('paper-div')
 // console.log(paperDiv.childNodes[2])
 
-paperPanAndZoom = svgPanZoom("#paper-div svg", {
+var paperPanAndZoom = svgPanZoom("#paper-div svg", {
     fit: false,
     center: false,
     zoomScaleSensitivity: 0.1,
@@ -77,7 +138,7 @@ paperPanAndZoom = svgPanZoom("#paper-div svg", {
     },
 
 })
-console.log(paper.$grid)
+
 // paper.fitToContent()
 // console.log(paper.getFitToContentArea())
 paper.on('blank:pointerdown', function (evt, x, y) {
@@ -88,6 +149,7 @@ paper.on('cell:pointerup blank:pointerup', function (cellView, event) {
     paperPanAndZoom.disablePan();
     document.getElementById('paper-div').style.cursor = "auto";
 })
+
 
 // graph.on('change:position', function (cell) {
 //     console.log(paper.getContentBBox())

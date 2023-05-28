@@ -4,14 +4,23 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.2/joint.css" />
     <link rel="stylesheet" href="infinite_paper.css" />
     <script src="./svg-pan-and-zoom/svg-pan-zoom/dist/svg-pan-zoom.js"></script>
+    <script src="https://kit.fontawesome.com/9eebd05896.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="paper-wrapper">
         <div id="paper-div"></div>
     </div>
-    <!-- <button id="reset-pan">ResetPan</button> -->
 
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="paper-wrapper">
+                <button class="scroll-up"><i class="fa-regular fa-angle-up"></i></button>
+                <div id="tool-paper-div"></div>
+                <button class="scroll-down">DOWN</button>
+            </div>
+        </div>
+    </div>
 
     <!---dependencies-->
     <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -21,7 +30,7 @@
     <!-- <script src="./svg-pan-and-zoom/svg-pan-zoom/dist/svg-pan-zoom.js"></script> -->
 
 
-    <script type="text/javascript" src="infinite_paper.js"></script>
+    <script type="module" src="infinite_paper.js"></script>
 </body>
 
 </html>
