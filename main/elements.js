@@ -106,6 +106,14 @@ const manifold = joint.dia.Element.define(
                 selector: "l5",
             },
             {
+                tagName: 'line',
+                selector: 'l6'
+            },
+            {
+                tagName: 'line',
+                selector: 'l7'
+            },
+            {
                 tagName: "rect",
                 selector: "outline",
             },
