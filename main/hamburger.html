@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <nav>
+        <div class="top-buttons-menu">
+            <button class="burger-button" id="burger-button"><img src="../icons/menu-burger.png"
+                    class="menu-icon" /></button>
+            <button class="element-button" id="element-button">Element</button>
+        </div>
+
+        <!--Hamburger Menu-->
+        <div class="sub-menu-wrap" id="sub-menu-wrap">
+            <div class="sub-menu">
+                <div class="open-file">
+                    <img src="../icons/open-file-24.png" />
+                    <span>Open</span>
+                </div>
+                <div class="save-file">
+                    <img src="../icons/download-32.png" />
+                    <span>Save to...</span>
+
+                </div>
+                <div class="clear-paper">
+                    <img src="../icons/delete.png" />
+                    <span>Reset the canvas</span>
+                </div>
+                <div class="settings" id="settings-button">
+                    <img src="../icons/settings-50.png" />
+                    <span>Settings</span>
+                </div>
+                <div class="help">
+                    <img src="../icons/help-32.png" />
+                    <span>Help</span>
+                </div>
+            </div>
+        </div>
+
+        <!--Element Settings-->
+        <div class="element-settings-wrapper">
+            <div class="element-settings">
+                <div id="para1" class="parameter double">
+                    <span>Parameter 1</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para2" class="parameter string">
+                    <span>Parameter 2</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para3" class="parameter double">
+                    <span>Parameter 3</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para4" class="parameter double">
+                    <span>Parameter 4</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para5" class="parameter string">
+                    <span>Parameter 5</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para6" class="parameter string">
+                    <span>Parameter 6</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para7" class="parameter double">
+                    <span>Parameter 7</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para8" class="parameter double">
+                    <span>Parameter 8</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para9" class="parameter string">
+                    <span>Parameter 9</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para10" class="parameter double">
+                    <span>Parameter 10</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para11" class="parameter double">
+                    <span>Parameter 11</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para12" class="parameter double">
+                    <span>Parameter 12</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para13" class="parameter double">
+                    <span>Parameter 13</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para14" class="parameter double">
+                    <span>Parameter 14</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para15" class="parameter string">
+                    <span>Parameter 15</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para16" class="parameter string">
+                    <span>Parameter 16</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para17" class="parameter string">
+                    <span>Parameter 17</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para18" class="parameter string">
+                    <span>Parameter 18</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!--Connector Settings-->
+        <div class="connector-settings-wrapper">
+            <div class="connector-settings">
+                <div id="subsea-intervention" class="parameter subsea-intervention">
+                    <span>Subsea Intervention</span>
+                    <select>
+                        <option> Rock Dumping </option>
+                        <option> Concrete Mattress </option>
+                        <option> Trenching/back filling </option>
+                        <option> Sleepers </option>
+                        <option> Rock-Removal </option>
+                        <option> GRP covers </option>
+
+                    </select>
+                </div>
+                <div id="install-vessel" class="parameter install-vessel">
+                    <span>Installation & Construction Vessel</span>
+                    <select>
+                        <option> S-Lay </option>
+                        <option> J-Lay </option>
+                        <option> Reel-Lay </option>
+                        <option> Rock-Lay Vessel </option>
+                        <option> Survey Vessel </option>
+                        <option> Flex/Umb-Lay Vessel </option>
+                        <option> Construction Vessel </option>
+                    </select>
+                </div>
+                <div id="para1" class="parameter double">
+                    <span>Parameter 1</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para2" class="parameter string">
+                    <span>Parameter 2</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para3" class="parameter double">
+                    <span>Parameter 3</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para4" class="parameter double">
+                    <span>Parameter 4</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para5" class="parameter string">
+                    <span>Parameter 5</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para6" class="parameter string">
+                    <span>Parameter 6</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para7" class="parameter double">
+                    <span>Parameter 7</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para8" class="parameter double">
+                    <span>Parameter 8</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para9" class="parameter string">
+                    <span>Parameter 9</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para10" class="parameter double">
+                    <span>Parameter 10</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para11" class="parameter double">
+                    <span>Parameter 11</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para12" class="parameter double">
+                    <span>Parameter 12</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para13" class="parameter double">
+                    <span>Parameter 13</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para14" class="parameter double">
+                    <span>Parameter 14</span>
+                    <input type="number" step="any" class="input-number" />
+                </div>
+                <div id="para15" class="parameter string">
+                    <span>Parameter 15</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para16" class="parameter string">
+                    <span>Parameter 16</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para17" class="parameter string">
+                    <span>Parameter 17</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+                <div id="para18" class="parameter string">
+                    <span>Parameter 18</span>
+                    <select>
+                        <option> None </option>
+                        <option> Option 2 </option>
+                        <option> Option 3 </option>
+                        <option> Option 4 </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!--Settings Pop-Up, when Settings icon is clicked in the hamburger menu-->
+        <section class="settings-modal hidden" id="settings-modal">
+            <button class="cross-btn" id="close-modal"><img src="../icons/cross-50.png" class="" /></button>
+            <div class="within-modal">
+                <div class="paper-background-color">
+                    <span>Canvas background color</span>
+                    <div class="paper-colors">
+                        <button class="paper-color-btn color1 active" id="color1"></button>
+                        <button class="paper-color-btn color2" id="color2"></button>
+                        <button class="paper-color-btn color3" id="color3"></button>
+                        <button class="paper-color-btn color4" id="color4"></button>
+                        <button class="paper-color-btn color5" id="color5"></button>
+                        <div style="border-left:1px solid #e8e6e6;height:33px"></div>
+                        <button class="paper-color-btn" id="color-custom"></button>
+                    </div>
+                </div>
+                <hr>
+                <div class="paper-background-type">
+                    <span>Canvas grid type</span>
+                    <select class="grid-type">
+                        <option>None</option>
+                        <option>Mesh</option>
+                        <option>Double-Mesh</option>
+                        <option>Dot</option>
+                        <option>Fixed Dot</option>
+                    </select>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <div class="settings-overlay hidden" id="settings-overlay"></div>
+
+        <!--Element Display, for drag and drop onto main paper-->
+        <div class="element-menu-wrap" id="element-menu-wrap">
+            <div class="element-menu">
+                <button class="pin-button" id="pin-button"> <img src="../icons/vertical-pin.png" alt="pin" /></button>
+                <span>Component Library</span>
+            </div>
+            <hr>
+            <div class="paper-wrapper">
+                <!-- <button class="scroll-up"><i class="fa-regular fa-angle-up"></i></button> -->
+                <div id="tool-paper-div"></div>
+                <!-- <button class="scroll-down">DOWN</button> -->
+            </div>
+        </div>
+    </nav>
+
+    <script type="text/javascript" src="hamburger.js"></script>
+</body>
+
+</html>
