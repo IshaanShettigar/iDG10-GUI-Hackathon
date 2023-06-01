@@ -126,6 +126,7 @@ const paperDiv = document.getElementById('paper-div')
 // console.log(paperDiv.childNodes[2])
 
 var paperPanAndZoom = svgPanZoom("#paper-div svg", {
+    viewport: document.getElementById('paper-div').childNodes[2].childNodes[1],
     fit: false,
     center: false,
     zoomScaleSensitivity: 0.1,
