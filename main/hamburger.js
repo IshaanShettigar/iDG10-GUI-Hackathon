@@ -1,3 +1,6 @@
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
+
+
 window.onload = () => {
 
     /* Left Hamburger Menu */
@@ -57,7 +60,56 @@ window.onload = () => {
     modalOverlay.addEventListener("click", closeModal)
 
 
+    /* Render the toolPaper and toolGraph  */
+    var namespace = joint.shapes;
+    var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+    var toolPaper = new joint.dia.Paper({
+        el: document.getElementById('tool-paper-div'),
+        model: toolGraph,
+        width: 158,
+        height: 1000,
+        background: {
+            color: "rgba(255,255,255,0.75)"
+        },
+        cellViewNamespace: namespace,
+        interactive: false
+    });
 
+
+    const SS = new subseaSeparator()
+    SS.position(30, 50)
+    SS.size(85, 50)
+    SS.addTo(toolGraph);
+
+    const SP = new subseaPump();
+    SP.position(40, 130)
+    SP.size(60, 60);
+    SP.addTo(toolGraph);
+
+    const uta = new UTA()
+    uta.position(25, 220)
+    uta.size(93, 55)
+    uta.addTo(toolGraph)
+
+    const PWST = new productionWellST()
+    PWST.position(50, 320)
+    PWST.size(50, 50)
+    PWST.addTo(toolGraph)
+
+    const PL = new platform()
+    PL.position(30, 480);
+    PL.size(80, 20)
+    PL.addTo(toolGraph)
+
+    const IWST = new injectionWellST();
+    IWST.position(50, 585)
+    IWST.resize(50, 50)
+    IWST.addTo(toolGraph)
+
+    const MANIFOLD = new manifold()
+    MANIFOLD.position(38, 695)
+    MANIFOLD.resize(70, 35)
+    MANIFOLD.addTo(toolGraph)
 }
 
 /* Code to highlight active grid color in settings modals */
@@ -88,3 +140,4 @@ color4.addEventListener("click", function () {
     activeColor.classList.remove("active");
     color4.classList.add("active")
 })
+
