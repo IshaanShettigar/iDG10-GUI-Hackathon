@@ -26,7 +26,6 @@ window.onload = () => {
             pinButton.classList.remove("is-active");
             isPinned = false;
         }
-
     })
 
     elementButton.addEventListener("click", () => {
@@ -110,6 +109,24 @@ window.onload = () => {
     MANIFOLD.position(38, 695)
     MANIFOLD.resize(70, 35)
     MANIFOLD.addTo(toolGraph)
+
+
+    /* Create the main paper and graph */
+    const GRID_SIZE = 20;
+    const GRID_NAME = "fixedDot";
+    var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
+    var paper = new joint.dia.Paper({
+        el: document.getElementById('main-paper-div'),
+        model: graph,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        gridSize: GRID_SIZE,
+        drawGrid: { name: GRID_NAME },
+        background: {
+            color: "rgba(255,255,255,1)"
+        },
+        cellViewNamespace: namespace,
+    });
 }
 
 /* Code to highlight active grid color in settings modals */

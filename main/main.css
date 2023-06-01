@@ -254,13 +254,14 @@ nav button:hover {
 .element-menu-wrap {
     position: fixed;
     top: 0;
+    background-color: #f7f7f7;
     left: 100%;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px, rgba(0, 0, 0, 0.10) 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 24px 0px, rgba(0, 0, 0, 0.10) 0px 0px 0px 1px;
     width: 200px;
-    height: 96vh;
-    border-radius: 8px;
+    height: 98vh;
+    /* border-radius: 8px; */
     padding: 10px 5px 10px 5px;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-right: 10px;
     transition: 0.3s;
 }
@@ -370,17 +371,15 @@ hr {
 }
 
 
-
 /* The paper related stuff */
 .paper-wrapper {
     background: rgba(198, 198, 198, 0.5);
     width: 180px;
     height: 89%;
-    margin: 50px auto 0 auto;
+    margin: 10px auto 0 auto;
     border-radius: 7px;
     border: 1px solid white;
     overflow: scroll;
-
 }
 
 .paper-wrapper #tool-paper-div {
@@ -393,4 +392,13 @@ hr {
 
 .paper-wrapper #tool-paper-div {
     border-radius: 7px;
+}
+
+/* Main paper */
+#main-paper-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
