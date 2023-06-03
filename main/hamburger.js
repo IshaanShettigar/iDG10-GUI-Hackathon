@@ -114,10 +114,10 @@ MANIFOLD.addTo(toolGraph)
 /* Create the main paper and graph */
 const GRID_SIZE = 20;
 const GRID_NAME = "fixedDot";
-var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
-var paper = new joint.dia.Paper({
+var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+var mainPaper = new joint.dia.Paper({
     el: document.getElementById('main-paper-div'),
-    model: graph,
+    model: mainGraph,
     width: window.innerWidth,
     height: window.innerHeight,
     gridSize: GRID_SIZE,
@@ -129,6 +129,7 @@ var paper = new joint.dia.Paper({
 });
 // }
 
+/* Drag and Drop */
 toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     // console.log(cellView.model.getBBox("deep"))
     $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
@@ -166,13 +167,13 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     $('body').on('mouseup.fly', function (e) {
         var x = e.pageX,
             y = e.pageY,
-            target = paper.$el.offset();
+            target = mainPaper.$el.offset();
 
         // Dropped over paper ?
-        if (x > target.left && x < target.left + paper.$el.width() && y > target.top && y < target.top + paper.$el.height()) {
+        if (x > target.left && x < target.left + mainPaper.$el.width() && y > target.top && y < target.top + mainPaper.$el.height()) {
             var s = flyShape.clone();
             s.position(x - target.left - offset.x, y - target.top - offset.y);
-            graph.addCell(s);
+            mainGraph.addCell(s);
         }
         $('body').off('mousemove.fly').off('mouseup.fly');
         flyShape.remove();
@@ -188,25 +189,58 @@ const color3 = document.getElementById("color3")
 const color4 = document.getElementById("color4")
 const color5 = document.getElementById("color5")
 
-
+console.log(color1.style.backgroundColor)
 color1.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color1.classList.add("active")
+    mainPaper.drawBackground({ color: '#ffffff' });
+
 })
 color2.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color2.classList.add("active")
+    mainPaper.drawBackground({ color: '#f5faff' });
+
 })
 color3.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color3.classList.add("active")
+    mainPaper.drawBackground({ color: '#fcfbed' });
+
 })
 color4.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color4.classList.add("active")
+    mainPaper.drawBackground({ color: '#fcf5f2' })
 })
+
+
+
+/* Code to highlight elements on main paper */
+// var mask = joint.highlighters.mask;
+
+// var selectedCellView = null;
+// mainPaper.on("element:pointerclick", function (cellView) {
+//     // remove highlights for all other elements
+//     mainGraph.getCells().forEach(function (cell) {
+//         mask.remove(cell.findView(mainPaper));
+//     });
+
+//     selectedCellView = cellView;
+
+//     //add highlight for this element
+//     mask.remove(cellView);
+//     console.log(selectedCellView);
+//     mask.add(cellView, "root", "element-highlight", {
+//         deep: true,
+//         attrs: {
+//             stroke: "#FF4365",
+//             "stroke-width": 1.5,
+//         },
+//     });
+// });
 
