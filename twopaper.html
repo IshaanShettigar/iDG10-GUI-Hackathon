@@ -13,7 +13,8 @@
     </a>
     <label><input type="button" class="save" id="save" value="Save"></label>
     <label><input type="file" class="open" id="open" name="filename"></label>
-
+    <button id="zoom-in">+</button>
+    <button id="zoom-out">-</button>
 
     <!---dependencies-->
     <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -31,7 +32,7 @@
             model: mainGraph,
             width: 1275,
             height: 800,
-            gridSize: 15,
+            gridSize: 30,
             drawGrid: { name: "mesh" },
             background: {
                 color: "#F3F7F6"
@@ -557,6 +558,42 @@
             });
             // Read the selected file as text
             reader.readAsText(file);
+        })
+
+
+        /* Trying out paper panning (not accounting for zoom) */
+        var dragStartPosition = null;
+        mainPaper.on("blank:pointerdown", function (evt, x, y) {
+            var scale = mainPaper.scale()
+
+            console.log("coordinates without scale," + x, y)
+            console.log("paper scale", mainPaper.scale())
+            console.log("coordinates withscale," + x * scale.sx, y * scale.sy)
+
+            dragStartPosition = { x: x * scale.sx, y: y * scale.sy };
+        })
+        mainPaper.on("cell:pointerup blank:pointerup", function (cellView, x, y) {
+            dragStartPosition = null;
+        })
+        $("#main").mousemove(function (event) {
+            if (dragStartPosition != null) {
+                mainPaper.translate(
+                    event.offsetX - dragStartPosition.x,
+                    event.offsetY - dragStartPosition.y);
+            }
+        });
+
+        /* Zoom in zoom out */
+        var currentScale = 1; // Initial scale level
+        var scaleIncrement = 0.1; // Amount to increment/decrement the scale
+        $('#zoom-in').click(function () {
+            currentScale += scaleIncrement
+            mainPaper.scale(currentScale, currentScale)
+        })
+
+        $('#zoom-out').click(function () {
+            currentScale -= scaleIncrement
+            mainPaper.scale(currentScale, currentScale)
         })
 
 
