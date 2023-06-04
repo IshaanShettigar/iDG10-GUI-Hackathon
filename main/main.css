@@ -244,10 +244,35 @@ nav button:hover {
     z-index: 100;
 }
 
+
+
+/* Custom color pop up within settings modal */
+.custom-color-pop-up {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 10px 10px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px, rgba(0, 0, 0, 0.10) 0px 0px 0px 1px;
+    margin: 45px 0 0 400px;
+}
+
+.custom-color-pop-up input {
+    padding: 6px 10px;
+    border-radius: 5px;
+    width: 80px;
+    margin: 5px 0px 0px 5px;
+    border: 1px solid #d5d9d9;
+}
+
+.custom-color-pop-up span {
+    margin: 5px 5px 0 5px;
+}
+
 .hidden {
     display: none;
 }
-
 
 /* Right hand side element menu*/
 .element-menu-wrap {

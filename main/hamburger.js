@@ -41,6 +41,7 @@ const settingsBtn = document.getElementById("settings-button");
 const settingsModal = document.getElementById("settings-modal");
 const closeModalBtn = document.getElementById("close-modal");
 const modalOverlay = document.getElementById("settings-overlay");
+const customColorPopUp = document.getElementById("custom-bg-color-modal")
 
 settingsBtn.addEventListener("click", function () {
     settingsModal.classList.remove("hidden");
@@ -48,10 +49,16 @@ settingsBtn.addEventListener("click", function () {
 
 })
 
+const closeCustomColorPopUp = function () {
+    if (!customColorPopUp.classList.contains("hidden")) {
+        customColorPopUp.classList.add("hidden");
+    }
+}
 const closeModal = function () {
     settingsModal.classList.add("hidden");
     modalOverlay.classList.add("hidden");
     subMenuWrap.classList.toggle("open-menu")
+    closeCustomColorPopUp();
 }
 closeModalBtn.addEventListener("click", closeModal)
 
@@ -229,20 +236,23 @@ const color2 = document.getElementById("color2")
 const color3 = document.getElementById("color3")
 const color4 = document.getElementById("color4")
 const color5 = document.getElementById("color5")
+const customColor = document.getElementById("color-custom")
 
-console.log(color1.style.backgroundColor)
 color1.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color1.classList.add("active")
     mainPaper.drawBackground({ color: '#ffffff' });
-
+    customColor.style.background = '#ffffff'
+    closeCustomColorPopUp()
 })
 color2.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color2.classList.add("active")
     mainPaper.drawBackground({ color: '#f5faff' });
+    customColor.style.background = '#f5faff'
+    closeCustomColorPopUp()
 
 })
 color3.addEventListener("click", function () {
@@ -250,13 +260,37 @@ color3.addEventListener("click", function () {
     activeColor.classList.remove("active");
     color3.classList.add("active")
     mainPaper.drawBackground({ color: '#fcfbed' });
-
+    customColor.style.background = '#fcfbed'
+    closeCustomColorPopUp()
 })
 color4.addEventListener("click", function () {
     const activeColor = document.querySelector(".active");
     activeColor.classList.remove("active");
     color4.classList.add("active")
     mainPaper.drawBackground({ color: '#fcf5f2' })
+    customColor.style.background = '#fcf5f2'
+    closeCustomColorPopUp()
+})
+customColor.addEventListener("click", function () {
+    // To open the customColorPopUp for user input
+    if (customColorPopUp.classList.contains("hidden")) {
+        customColorPopUp.classList.remove("hidden")
+    }
+})
+
+const customColorInput = document.getElementById("custom-color-input")
+customColorInput.addEventListener("input", function () {
+    const currentHEXValue = customColorInput.value;
+    // Checks if the current value is a valid hexcode as per regex
+    if (/^#[0-9A-F]{6}$/i.test(currentHEXValue)) {
+        // Valid hex code, change the background color of the button
+        customColor.style.backgroundColor = currentHEXValue;
+        mainPaper.drawBackground({ color: currentHEXValue })
+    } else {
+        // Invalid hex code, handle the error condition (e.g., display an error message)
+        console.log('Invalid hex code:', currentHEXValue);
+        // You can perform any necessary error handling here
+    }
 })
 
 /* Zoom in zoom out */
