@@ -31,7 +31,7 @@
                     <span>Save to...</span>
 
                 </div>
-                <div class="clear-paper">
+                <div class="clear-paper" id="clear-paper">
                     <img src="../icons/delete.png" />
                     <span>Reset the canvas</span>
                 </div>
@@ -342,6 +342,16 @@
             </section>
         </section>
 
+        <!-- To be displayed on click of the clear background option in the hamburger menu-->
+        <div class="clear-background-modal hidden" id="clear-background-modal">
+            <button class="cross-btn" id="close-modal-bg"><img src="../icons/cross-50.png" class="" /></button>
+            <label>Are you sure you want to clear the entire canvas?</label>
+            <div class="buttons-div">
+                <button class="normal" id="cancel-clear-bg">Cancel</button>
+                <button class="alert-button" id="confirm-clear-bg">Confirm</button>
+            </div>
+        </div>
+
         <div class="settings-overlay hidden" id="settings-overlay"></div>
 
         <!-- The Zoom-in Zoom-out and Reset-Zoom buttons in the bottom right -->
@@ -349,7 +359,6 @@
             <button class="zoom-in" id="zoom-in"><img src="../icons/zoom-in-50.png" /></button>
             <button class="reset-zoom" id="reset-zoom">Reset Zoom</button>
             <button class="zoom-out" id="zoom-out"><img src="../icons/zoom-out-50.png" /></button>
-
         </div>
 
 

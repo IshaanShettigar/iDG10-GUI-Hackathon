@@ -54,16 +54,7 @@ const closeCustomColorPopUp = function () {
         customColorPopUp.classList.add("hidden");
     }
 }
-const closeModal = function () {
-    settingsModal.classList.add("hidden");
-    modalOverlay.classList.add("hidden");
-    subMenuWrap.classList.toggle("open-menu")
-    closeCustomColorPopUp();
-}
-closeModalBtn.addEventListener("click", closeModal)
 
-/* close the modal if clicked outside the screen */
-modalOverlay.addEventListener("click", closeModal)
 
 
 // Handling change of the select box for grid-type
@@ -73,7 +64,38 @@ selectBox.addEventListener("change", function () {
     mainPaper.setGrid(selectBox.value).drawGrid();
 })
 
-console.log(joint.dia.Paper.gridPatterns)
+
+const clearCanvas = document.getElementById("clear-paper");
+const clearCanvasModal = document.getElementById("clear-background-modal")
+const closeClearCanvasModalBtn = document.getElementById("close-modal-bg")
+const confirmClearBG = document.getElementById("confirm-clear-bg")
+const cancelClearBG = document.getElementById("cancel-clear-bg")
+
+clearCanvas.addEventListener("click", function () {
+    clearCanvasModal.classList.remove("hidden");
+    modalOverlay.classList.remove("hidden");
+
+});
+
+
+const closeModal = function () {
+    settingsModal.classList.add("hidden");
+    modalOverlay.classList.add("hidden");
+    subMenuWrap.classList.toggle("open-menu")
+    closeCustomColorPopUp();
+    clearCanvasModal.classList.add("hidden");
+}
+closeModalBtn.addEventListener("click", closeModal)
+
+/* close the modal if clicked outside the screen */
+modalOverlay.addEventListener("click", closeModal)
+
+/* close modal if the x is clicked on clear background modal */
+closeClearCanvasModalBtn.addEventListener("click", closeModal)
+cancelClearBG.addEventListener("click", closeModal)
+
+
+
 /* Render the toolPaper and toolGraph  */
 var namespace = joint.shapes;
 var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -142,6 +164,12 @@ var mainPaper = new joint.dia.Paper({
     },
     cellViewNamespace: namespace,
 });
+
+confirmClearBG.addEventListener("click", function () {
+    mainGraph.clear()
+    closeModal()
+})
+
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
 no matter which place on the element the user starts the drag, the drop on the mainPaper happens in such a way that
@@ -236,6 +264,8 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
         $('#flyPaper').remove();
     });
 });
+
+
 
 
 /* Code to highlight active grid color in settings modals */

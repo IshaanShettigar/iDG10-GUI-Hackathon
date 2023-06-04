@@ -190,7 +190,8 @@ nav button:hover {
 
 
 /* cross button */
-.settings-modal .cross-btn {
+.settings-modal .cross-btn,
+.clear-background-modal .cross-btn {
     padding: 3px 5px 0 5px;
     /* border: 1px solid #d5d9d9; */
     border: none;
@@ -201,7 +202,8 @@ nav button:hover {
     box-sizing: border-box;
 }
 
-.settings-modal .cross-btn:hover {
+.settings-modal .cross-btn:hover,
+.clear-background-modal .cross-btn:hover {
     background-color: rgb(240, 240, 240);
 
 }
@@ -270,9 +272,7 @@ nav button:hover {
     margin: 5px 5px 0 5px;
 }
 
-.hidden {
-    display: none;
-}
+
 
 /* Right hand side element menu*/
 .element-menu-wrap {
@@ -394,6 +394,61 @@ hr {
     margin-top: 4px;
 }
 
+/* Clear Background Modal */
+.clear-background-modal {
+    width: 450px;
+    height: 200px;
+    background: #ffffff;
+    padding: 5px 0;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px, rgba(0, 0, 0, 0.10) 0px 0px 0px 1px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #4d4d4d;
+    position: relative;
+    margin: 100px auto;
+    z-index: 100;
+}
+
+.clear-background-modal .clear-background-modal .buttons-div {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 10px;
+}
+
+.clear-background-modal button {
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: #ffffff;
+}
+
+.clear-background-modal .alert-button {
+    background-color: #fc5549;
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.clear-background-modal .cross-btn {
+    box-shadow: none;
+}
+
+.clear-background-modal label {
+    margin: 20px 0 20px 0;
+}
+
+.clear-background-modal .cross-btn img {
+    height: 18px;
+    width: 18px;
+}
+
+
 /* The footer elements */
 .footer-tools {
     position: absolute;
@@ -461,4 +516,8 @@ hr {
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.hidden {
+    display: none;
 }
