@@ -113,7 +113,7 @@ MANIFOLD.addTo(toolGraph)
 
 /* Create the main paper and graph */
 const GRID_SIZE = 20;
-const GRID_NAME = "fixedDot";
+const GRID_NAME = "doubleMesh";
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 var mainPaper = new joint.dia.Paper({
     el: document.getElementById('main-paper-div'),
@@ -127,30 +127,32 @@ var mainPaper = new joint.dia.Paper({
     },
     cellViewNamespace: namespace,
 });
-// }
 
+/* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
+no matter which place on the element the user starts the drag, the drop on the mainPaper happens in such a way that
+The centre of the element is dropped where your mouse is, even if you started the mouse drag on the edge of the element */
 /* Drag and Drop */
 toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     // console.log(cellView.model.getBBox("deep"))
     $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
-    var flyGraph = new joint.dia.Graph,
-        flyPaper = new joint.dia.Paper({
-            el: $('#flyPaper'),
-            model: flyGraph,
-            height: 200,
-            width: 150,
-            interactive: false,
-            background: {
-                color: "rgba(0,0,0,0)"
-            },
+    var flyGraph = new joint.dia.Graph
+    var flyPaper = new joint.dia.Paper({
+        el: $('#flyPaper'),
+        model: flyGraph,
+        height: 200,
+        width: 150,
+        interactive: false,
+        background: {
+            color: "rgba(0,0,0,0)"
+        },
 
-        }),
-        flyShape = cellView.model.clone(),
-        pos = cellView.model.position(),
-        offset = {
-            x: x - pos.x,
-            y: y - pos.y
-        };
+    })
+    var flyShape = cellView.model.clone()
+    var pos = cellView.model.position()
+    var offset = {
+        x: x - pos.x,
+        y: y - pos.y
+    };
 
     flyShape.position(35, 40);
     flyGraph.addCell(flyShape);
@@ -164,17 +166,56 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
             top: e.pageY - offset.y - 35
         });
     });
-    $('body').on('mouseup.fly', function (e) {
-        var x = e.pageX,
-            y = e.pageY,
-            target = mainPaper.$el.offset();
+    /* This was the previously working solution doesnt work for pan or zoom */
+    // $('body').on('mouseup.fly', function (e) {
+    //     var x = e.pageX;
+    //     var y = e.pageY;
+    //     var target = mainPaper.$el.offset();
 
-        // Dropped over paper ?
-        if (x > target.left && x < target.left + mainPaper.$el.width() && y > target.top && y < target.top + mainPaper.$el.height()) {
-            var s = flyShape.clone();
-            s.position(x - target.left - offset.x, y - target.top - offset.y);
-            mainGraph.addCell(s);
+    //     // Check if dropped over the paper
+    //     if (
+    //         x > target.left &&
+    //         x < target.left + mainPaper.$el.width() &&
+    //         y > target.top &&
+    //         y < target.top + mainPaper.$el.height()
+    //     ) {
+    //         var droppedElement = flyShape.clone();
+    //         droppedElement.position(
+    //             x - target.left - offset.x,
+    //             y - target.top - offset.y
+    //         );
+    //         mainGraph.addCell(droppedElement);
+    //     }
+    //     $('body').off('mousemove.fly').off('mouseup.fly');
+    //     flyShape.remove();
+    //     $('#flyPaper').remove();
+    // });
+
+    /* This works for pan */
+    /* ISSUE: Need to figure out how to make the drag and drop work for zoom also */
+    $('body').on('mouseup.fly', function (e) {
+        var x = e.pageX;
+        var y = e.pageY;
+        var target = mainPaper.$el.offset();
+        var dropPosition = mainPaper.clientToLocalPoint(x - target.left - 35, y - target.top - 20);
+        var scale = mainPaper.scale()
+        console.log("scale", scale)
+        console.log("Height bounding box", 0 - (mainPaper.translate().ty * scale.sy), mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy), "DropPosition:y:", dropPosition.y)
+        console.log("Width bounding box", 0 - (mainPaper.translate().tx * scale.sx), mainPaper.$el.width() - (mainPaper.translate().tx * scale.sx), "DropPosition:x:", dropPosition.x)
+        //  mainPaper.$el.width() Represents the papers width 
+        //  mainPaper.$el.height() Represents the papers height
+        if (
+            dropPosition.x > 0 - (mainPaper.translate().tx * scale.sx) &&
+            dropPosition.x < (mainPaper.$el.width() - mainPaper.translate().tx * scale.sx) &&
+            dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
+            dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
+        ) {
+            var droppedElement = flyShape.clone();
+            droppedElement.position(dropPosition.x, dropPosition.y);
+            mainGraph.addCell(droppedElement);
         }
+
+        // Cleanup and remove temporary elements
         $('body').off('mousemove.fly').off('mouseup.fly');
         flyShape.remove();
         $('#flyPaper').remove();
@@ -218,29 +259,36 @@ color4.addEventListener("click", function () {
     mainPaper.drawBackground({ color: '#fcf5f2' })
 })
 
+/* Zoom in zoom out */
+var currentScale = 1; // Initial scale level
+var scaleIncrement = 0.1; // Amount to increment/decrement the scale
+$('#zoom-in').click(function () {
+    currentScale += scaleIncrement
+    mainPaper.scale(currentScale, currentScale)
+})
+
+$('#zoom-out').click(function () {
+    currentScale -= scaleIncrement
+    mainPaper.scale(currentScale, currentScale)
+})
 
 
-/* Code to highlight elements on main paper */
-// var mask = joint.highlighters.mask;
+/* Paper Panning */
+var dragStartPosition = null;
+mainPaper.on("blank:pointerdown", function (evt, x, y) {
+    var scale = mainPaper.scale()
+    dragStartPosition = { x: x * scale.sx, y: y * scale.sy };
+})
 
-// var selectedCellView = null;
-// mainPaper.on("element:pointerclick", function (cellView) {
-//     // remove highlights for all other elements
-//     mainGraph.getCells().forEach(function (cell) {
-//         mask.remove(cell.findView(mainPaper));
-//     });
+mainPaper.on("cell:pointerup blank:pointerup", function (cellView, x, y) {
+    dragStartPosition = null;
+    // console.log(mainPaper.translate())
+})
 
-//     selectedCellView = cellView;
-
-//     //add highlight for this element
-//     mask.remove(cellView);
-//     console.log(selectedCellView);
-//     mask.add(cellView, "root", "element-highlight", {
-//         deep: true,
-//         attrs: {
-//             stroke: "#FF4365",
-//             "stroke-width": 1.5,
-//         },
-//     });
-// });
-
+$("#main-paper-div").mousemove(function (event) {
+    if (dragStartPosition != null) {
+        mainPaper.translate(
+            event.offsetX - dragStartPosition.x,
+            event.offsetY - dragStartPosition.y);
+    }
+});
