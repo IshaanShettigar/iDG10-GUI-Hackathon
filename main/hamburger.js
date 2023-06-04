@@ -66,6 +66,14 @@ closeModalBtn.addEventListener("click", closeModal)
 modalOverlay.addEventListener("click", closeModal)
 
 
+// Handling change of the select box for grid-type
+const selectBox = document.getElementById("grid-type");
+selectBox.addEventListener("change", function () {
+    console.log("Change grid type to ", selectBox.value)
+    mainPaper.setGrid(selectBox.value).drawGrid();
+})
+
+console.log(joint.dia.Paper.gridPatterns)
 /* Render the toolPaper and toolGraph  */
 var namespace = joint.shapes;
 var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
