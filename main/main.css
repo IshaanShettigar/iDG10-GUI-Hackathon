@@ -41,7 +41,6 @@ img[class="menu-icon"] {
 }
 
 nav button:hover {
-    cursor: pointer;
     background-color: rgb(240, 240, 240);
 }
 
@@ -370,6 +369,42 @@ hr {
     margin-top: 4px;
 }
 
+/* The footer elements */
+.footer-tools {
+    position: absolute;
+    display: flex;
+    margin-left: 10px;
+    bottom: 10px;
+}
+
+.footer-tools img {
+    height: 18px;
+    width: 18px;
+}
+
+.footer-tools button {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    /* border-radius: 8px; */
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.zoom-in,
+.zoom-out {
+    padding: 5px 5px !important;
+}
+
+.zoom-in {
+    border-radius: 5px 0 0 5px;
+}
+
+.zoom-out {
+    border-radius: 0 5px 5px 0;
+}
 
 /* The paper related stuff */
 .paper-wrapper {
