@@ -1,4 +1,5 @@
 import { injectionWellST, manifold, platform } from './elements.js'
+import { assignCustomParams } from './element-attrs.js'
 
 var namespace = joint.shapes;
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -277,6 +278,11 @@ myElement3.position(40, 400);
 myElement3.resize(125, 30);
 myElement3.addTo(toolGraph);
 
+assignCustomParams(myElement1)
+assignCustomParams(myElement2)
+assignCustomParams(myElement3)
+
+
 const ResizeTool = joint.elementTools.Control.extend({
     children: [
         {
@@ -463,7 +469,7 @@ mainPaper.on("element:pointerclick", function (cellView) {
 
     //add highlight for this element
     mask.remove(cellView);
-    console.log(selectedCellView);
+    // console.log(selectedCellView);
     mask.add(cellView, "root", "element-highlight", {
         deep: false,
         padding: 10,
@@ -474,6 +480,10 @@ mainPaper.on("element:pointerclick", function (cellView) {
         },
     });
     cellView.showTools()
+
+    // Checking if the attributes are displayed
+    console.log(cellView.model.attributes.attrs)
+
 });
 
 var createCopy = null;

@@ -4,6 +4,10 @@ Production Well and Subsea Tree = ProductionWellST
 */
 
 
+/*
+This file contains only element definitions
+*/
+
 const manifold = joint.dia.Element.define(
     "manifold",
     {
