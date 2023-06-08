@@ -1,5 +1,5 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
-
+import { assignCustomParams } from "./element-attrs.js"
 
 // window.onload = () => {
 
@@ -163,7 +163,8 @@ customColorInput.addEventListener("input", function () {
     }
 })
 
-
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 /* Render the toolPaper and toolGraph  */
 var namespace = joint.shapes;
 var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -184,37 +185,43 @@ const SS = new subseaSeparator()
 SS.position(30, 50)
 SS.size(85, 50)
 SS.addTo(toolGraph);
+assignCustomParams(SS)
 
 const SP = new subseaPump();
 SP.position(40, 130)
 SP.size(60, 60);
 SP.addTo(toolGraph);
+assignCustomParams(SP)
 
 const uta = new UTA()
 uta.position(25, 220)
 uta.size(93, 55)
 uta.addTo(toolGraph)
+assignCustomParams(uta)
 
 const PWST = new productionWellST()
 PWST.position(50, 320)
 PWST.size(50, 50)
 PWST.addTo(toolGraph)
+assignCustomParams(PWST)
 
 const PL = new platform()
 PL.position(30, 480);
 PL.size(80, 20)
 PL.addTo(toolGraph)
+assignCustomParams(PL)
 
 const IWST = new injectionWellST();
 IWST.position(50, 585)
 IWST.resize(50, 50)
 IWST.addTo(toolGraph)
+assignCustomParams(IWST)
 
 const MANIFOLD = new manifold()
 MANIFOLD.position(38, 695)
 MANIFOLD.resize(70, 35)
 MANIFOLD.addTo(toolGraph)
-
+assignCustomParams(MANIFOLD)
 
 /* Create the main paper and graph */
 const GRID_SIZE = 20;
