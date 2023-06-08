@@ -465,12 +465,15 @@ mainPaper.on("element:pointerclick", function (cellView) {
     mask.remove(cellView);
     console.log(selectedCellView);
     mask.add(cellView, "root", "element-highlight", {
-        deep: true,
+        deep: false,
+        padding: 10,
         attrs: {
-            stroke: "#FF4365",
+            "stroke": "#FF4365",
             "stroke-width": 1.5,
+            "stroke-dasharray": "5",
         },
     });
+    cellView.showTools()
 });
 
 var createCopy = null;
@@ -555,7 +558,9 @@ document.addEventListener("keydown", function (event) {
 mainPaper.on("blank:pointerclick", function () {
     // Remove all Highlighters from all cells
     mainGraph.getCells().forEach(function (cell) {
-        mask.remove(cell.findView(mainPaper));
+        const currentCellView = cell.findView(mainPaper)
+        mask.remove(currentCellView);
+        currentCellView.hideTools()
     });
     selectedCellView = null;
 });
@@ -576,13 +581,13 @@ mainPaper.on("link:mouseleave", function (linkView) {
     linkView.hideTools(toolsView);
 });
 
-mainPaper.on("element:mouseenter", function (eleView) {
-    eleView.showTools();
-});
+// mainPaper.on("element:mouseenter", function (eleView) {
+//     eleView.showTools();
+// });
 
-mainPaper.on("element:mouseleave", function (eleView) {
-    eleView.hideTools();
-});
+// mainPaper.on("element:mouseleave", function (eleView) {
+//     eleView.hideTools();
+// });
 
 // var sampleJSON = {"cells":[{"type":"standard.Rectangle","position":{"x":432,"y":200},"size":{"width":132,"height":31},"angle":0,"id":"1c23e9de-eca0-4216-8790-f8614d64921a","z":1,"attrs":{"body":{"stroke":"black","fill":"white"},"label":{"fill":"black","text":"Rect1"}}},{"type":"standard.Circle","position":{"x":616,"y":408},"size":{"width":100,"height":100},"angle":0,"id":"ea1fac67-323f-4820-aae5-6e4443535a14","z":2,"attrs":{"body":{"fill":"white"},"label":{"fill":"black","text":"Circle1"}}},{"type":"standard.Circle","position":{"x":272,"y":344},"size":{"width":100,"height":100},"angle":0,"id":"aba7eca8-6a01-4336-b23c-7eb4477c9c70","z":2,"attrs":{"body":{"fill":"white"},"label":{"fill":"black","text":"Circle1"}}},{"type":"standard.Cylinder","position":{"x":704,"y":176},"size":{"width":100,"height":100},"angle":0,"id":"9d808706-17f0-457f-b7e3-26ead7af5e3f","z":3,"attrs":{"body":{"fill":"white","stroke":"black"},"label":{"fill":"black","text":"Cylinder1"}}},{"type":"standard.Link","source":{"id":"aba7eca8-6a01-4336-b23c-7eb4477c9c70"},"target":{"id":"9d808706-17f0-457f-b7e3-26ead7af5e3f"},"id":"a861d443-e17b-4732-84d2-42d5a44b1539","z":4,"attrs":{}},{"type":"standard.Link","source":{"id":"aba7eca8-6a01-4336-b23c-7eb4477c9c70"},"target":{"id":"ea1fac67-323f-4820-aae5-6e4443535a14"},"id":"5aef323f-d763-4dd6-9ca4-b5a4b672e059","z":4,"attrs":{}},{"type":"standard.Link","source":{"id":"9d808706-17f0-457f-b7e3-26ead7af5e3f"},"target":{"id":"ea1fac67-323f-4820-aae5-6e4443535a14"},"id":"e3f13c28-6430-479e-b2e5-36b64ca4d468","z":4,"vertices":[{"x":536,"y":128},{"x":240,"y":128},{"x":240,"y":552},{"x":666,"y":552}],"attrs":{}},{"type":"standard.DoubleLink","source":{"id":"1c23e9de-eca0-4216-8790-f8614d64921a"},"target":{"id":"9d808706-17f0-457f-b7e3-26ead7af5e3f"},"id":"6ae31f60-ec60-46cb-85a7-fe514eccbf5d","z":5,"attrs":{"line":{"stroke":"#30d0c6"},"root":{"tabindex":15,"title":"joint.shapes.standard.DoubleLink"}}}]}
 // listen for the save button being clicked
@@ -635,4 +640,6 @@ fileInput.addEventListener("change", function (event) {
     });
     // Read the selected file as text
     reader.readAsText(file);
+
+    // need to iterate over all elements and links and add the linktools and elementtools
 });
