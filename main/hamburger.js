@@ -56,7 +56,6 @@ const closeCustomColorPopUp = function () {
 }
 
 
-
 // Handling change of the select box for grid-type
 const selectBox = document.getElementById("grid-type");
 selectBox.addEventListener("change", function () {
@@ -94,6 +93,75 @@ modalOverlay.addEventListener("click", closeModal)
 closeClearCanvasModalBtn.addEventListener("click", closeModal)
 cancelClearBG.addEventListener("click", closeModal)
 
+// Confirmation modal shown that ask users whether they would like to clear the bg or not
+confirmClearBG.addEventListener("click", function () {
+    mainGraph.clear()
+    closeModal()
+})
+
+/* Code to highlight active grid color in settings modals */
+const color1 = document.getElementById("color1")
+const color2 = document.getElementById("color2")
+const color3 = document.getElementById("color3")
+const color4 = document.getElementById("color4")
+const color5 = document.getElementById("color5")
+const customColor = document.getElementById("color-custom")
+
+color1.addEventListener("click", function () {
+    const activeColor = document.querySelector(".active");
+    activeColor.classList.remove("active");
+    color1.classList.add("active")
+    mainPaper.drawBackground({ color: '#ffffff' });
+    customColor.style.background = '#ffffff'
+    closeCustomColorPopUp()
+})
+color2.addEventListener("click", function () {
+    const activeColor = document.querySelector(".active");
+    activeColor.classList.remove("active");
+    color2.classList.add("active")
+    mainPaper.drawBackground({ color: '#f5faff' });
+    customColor.style.background = '#f5faff'
+    closeCustomColorPopUp()
+
+})
+color3.addEventListener("click", function () {
+    const activeColor = document.querySelector(".active");
+    activeColor.classList.remove("active");
+    color3.classList.add("active")
+    mainPaper.drawBackground({ color: '#fcfbed' });
+    customColor.style.background = '#fcfbed'
+    closeCustomColorPopUp()
+})
+color4.addEventListener("click", function () {
+    const activeColor = document.querySelector(".active");
+    activeColor.classList.remove("active");
+    color4.classList.add("active")
+    mainPaper.drawBackground({ color: '#fcf5f2' })
+    customColor.style.background = '#fcf5f2'
+    closeCustomColorPopUp()
+})
+customColor.addEventListener("click", function () {
+    // To open the customColorPopUp for user input
+    if (customColorPopUp.classList.contains("hidden")) {
+        customColorPopUp.classList.remove("hidden")
+    }
+})
+
+// For the custom user defined paper background color 
+const customColorInput = document.getElementById("custom-color-input")
+customColorInput.addEventListener("input", function () {
+    const currentHEXValue = customColorInput.value;
+    // Checks if the current value is a valid hexcode as per regex
+    if (/^#[0-9A-F]{6}$/i.test(currentHEXValue)) {
+        // Valid hex code, change the background color of the button
+        customColor.style.backgroundColor = currentHEXValue;
+        mainPaper.drawBackground({ color: currentHEXValue })
+    } else {
+        // Invalid hex code, handle the error condition (e.g., display an error message)
+        console.log('Invalid hex code:', currentHEXValue);
+        // You can perform any necessary error handling here
+    }
+})
 
 
 /* Render the toolPaper and toolGraph  */
@@ -164,11 +232,6 @@ var mainPaper = new joint.dia.Paper({
     },
     cellViewNamespace: namespace,
 });
-
-confirmClearBG.addEventListener("click", function () {
-    mainGraph.clear()
-    closeModal()
-})
 
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
@@ -266,70 +329,6 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
 });
 
 
-
-
-/* Code to highlight active grid color in settings modals */
-const color1 = document.getElementById("color1")
-const color2 = document.getElementById("color2")
-const color3 = document.getElementById("color3")
-const color4 = document.getElementById("color4")
-const color5 = document.getElementById("color5")
-const customColor = document.getElementById("color-custom")
-
-color1.addEventListener("click", function () {
-    const activeColor = document.querySelector(".active");
-    activeColor.classList.remove("active");
-    color1.classList.add("active")
-    mainPaper.drawBackground({ color: '#ffffff' });
-    customColor.style.background = '#ffffff'
-    closeCustomColorPopUp()
-})
-color2.addEventListener("click", function () {
-    const activeColor = document.querySelector(".active");
-    activeColor.classList.remove("active");
-    color2.classList.add("active")
-    mainPaper.drawBackground({ color: '#f5faff' });
-    customColor.style.background = '#f5faff'
-    closeCustomColorPopUp()
-
-})
-color3.addEventListener("click", function () {
-    const activeColor = document.querySelector(".active");
-    activeColor.classList.remove("active");
-    color3.classList.add("active")
-    mainPaper.drawBackground({ color: '#fcfbed' });
-    customColor.style.background = '#fcfbed'
-    closeCustomColorPopUp()
-})
-color4.addEventListener("click", function () {
-    const activeColor = document.querySelector(".active");
-    activeColor.classList.remove("active");
-    color4.classList.add("active")
-    mainPaper.drawBackground({ color: '#fcf5f2' })
-    customColor.style.background = '#fcf5f2'
-    closeCustomColorPopUp()
-})
-customColor.addEventListener("click", function () {
-    // To open the customColorPopUp for user input
-    if (customColorPopUp.classList.contains("hidden")) {
-        customColorPopUp.classList.remove("hidden")
-    }
-})
-
-const customColorInput = document.getElementById("custom-color-input")
-customColorInput.addEventListener("input", function () {
-    const currentHEXValue = customColorInput.value;
-    // Checks if the current value is a valid hexcode as per regex
-    if (/^#[0-9A-F]{6}$/i.test(currentHEXValue)) {
-        // Valid hex code, change the background color of the button
-        customColor.style.backgroundColor = currentHEXValue;
-        mainPaper.drawBackground({ color: currentHEXValue })
-    } else {
-        // Invalid hex code, handle the error condition (e.g., display an error message)
-        console.log('Invalid hex code:', currentHEXValue);
-        // You can perform any necessary error handling here
-    }
-})
 
 /* Zoom in zoom out */
 var currentScale = 1; // Initial scale level
