@@ -22,11 +22,11 @@
         <!--Hamburger Menu-->
         <div class="sub-menu-wrap" id="sub-menu-wrap">
             <div class="sub-menu">
-                <div class="open-file">
+                <div class="open-file" id="open-file">
                     <img src="../icons/open-file-24.png" />
                     <span>Open</span>
                 </div>
-                <div class="save-file">
+                <div class="save-file" id="save-file">
                     <img src="../icons/download-32.png" />
                     <span>Save to...</span>
 
@@ -39,7 +39,7 @@
                     <img src="../icons/settings-50.png" />
                     <span>Settings</span>
                 </div>
-                <div class="help">
+                <div class="help" id="help">
                     <img src="../icons/help-32.png" />
                     <span>Help</span>
                 </div>
@@ -167,6 +167,26 @@
         <!--Connector Settings-->
         <div class="connector-settings-wrapper">
             <div class="connector-settings">
+                <div id="link-type" class="parameter link-type">
+                    <span>Connector</span>
+                    <select>
+                        <option value="Umbillical"> Umbillical </option>
+                        <option value="Rigid-Pipeline-PR"> Rigid-Pipeline-PR </option>
+                        <option value="Rigid-Pipeline-WI"> Rigid-Pipeline-WI </option>
+                        <option value="Rigid-Pipeline-GL/GI"> Rigid-Pipeline-GL/GI </option>
+                        <option value="Flexible Pipeline-PR"> Flexible Pipeline-PR </option>
+                        <option value="Flexible Pipeline-WI"> Flexible Pipeline-WI </option>
+                        <option value="Flexible Pipeline-GL/GI"> Flexible Pipeline-GL/GI </option>
+                        <option value="Hydr-Flying Lead"> Hydr-Flying Lead </option>
+                        <option value="Rigid-Pipeline-PiP PR"> Rigid-Pipeline-PiP PR </option>
+                        <option value="Rigid-Spool-PR"> Rigid-Spool-PR </option>
+                        <option value="Rigid-Spool-WI"> Rigid-Spool-WI </option>
+                        <option value="Rigid-Spool-GL/GI"> Rigid-Spool-GL/GI </option>
+                        <option value="Flexible-Jumper-PR"> Flexible-Jumper-PR </option>
+                        <option value="Flexible-Jumper-WI"> Flexible-Jumper-WI </option>
+                        <option value="Flexible-Jumper-GL/GI"> Flexible-Jumper-GL/GI </option>
+                    </select>
+                </div>
                 <div id="subsea-intervention" class="parameter subsea-intervention">
                     <span>Subsea Intervention</span>
                     <select>

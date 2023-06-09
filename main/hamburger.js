@@ -1,6 +1,6 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
-
+import { saveGraph, openFile } from "./persist.js"
 // window.onload = () => {
 
 /* Left Hamburger Menu */
@@ -34,6 +34,27 @@ elementButton.addEventListener("click", () => {
         elementButton.classList.toggle("is-active");
     }
 })
+
+
+const openFileButton = document.getElementById('open-file')
+const saveDiagramButton = document.getElementById('save-file')
+
+// file open
+openFileButton.addEventListener('click', (event) => {
+    // dynamically create 
+    var inputElement = document.createElement('input');
+    inputElement.type = 'file';
+    inputElement.addEventListener('change', function (event) {
+        // Call the openFile function with the selected file and the mainGraph argument
+        openFile(event, mainGraph);
+        // Remove the input element after the file has been selected
+        inputElement.remove();
+    });
+    // Simulate a click event on the input element
+    inputElement.click();
+});
+// save diagram
+saveDiagramButton.addEventListener('click', () => { saveGraph(mainGraph) });
 
 
 /* Settings Modal  */
@@ -370,3 +391,4 @@ $("#main-paper-div").mousemove(function (event) {
             event.offsetY - dragStartPosition.y);
     }
 });
+
