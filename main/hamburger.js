@@ -1,7 +1,7 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
-import { displayHighlight, removeHighlight } from "./utils.js"
+import { displayHighlight, removeHighlight, pasteElement } from "./utils.js"
 // window.onload = () => {
 
 /* Left Hamburger Menu */
@@ -359,11 +359,12 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     });
 });
 
+var selectedCellView = null;
 // Adding element highlighting
 var mask = joint.highlighters.mask;
 mainPaper.on("element:pointerclick", function (cellView) {
 
-    displayHighlight(cellView, mainGraph, mask, mainPaper)
+    selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
     // Checking if the attributes are displayed
     console.log(cellView.model.attributes.attrs)
 
@@ -374,7 +375,39 @@ mainPaper.on("blank:pointerclick", function () {
     // Remove all Highlighters from all cells
     console.log("remove highlight");
     removeHighlight(mainGraph, mask, mainPaper)
+    selectedCellView = null;
 });
+
+//////////////// copy paste /////////////////
+var copiedCoordinates = null;
+// copy
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode === 67 && event.ctrlKey) {
+        // console.log("copy");
+        // let ele = copyElement(copiedCoordinates, selectedCellView)
+        // if (ele) {
+        //     copiedCoordinates = ele.copiedCoordinates;
+        // }
+
+        if (selectedCellView != null) {
+            copiedCoordinates = selectedCellView.getBBox();
+        }
+        else {
+            alert("Nothing selected to be copied")
+        }
+
+    }
+});
+
+// paste
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode === 86 && event.ctrlKey) {
+        pasteElement(selectedCellView, copiedCoordinates, mainGraph, mainPaper)
+        // copiedCoordinates = null;
+        // createCopy = null;
+    }
+});
+
 
 /* Zoom in zoom out */
 var currentScale = 1; // Initial scale level

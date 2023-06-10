@@ -1,7 +1,7 @@
 import { injectionWellST, manifold, platform } from './elements.js'
 import { assignCustomParams } from './element-attrs.js'
 import { openFile, saveGraph } from './persist.js';
-import { displayHighlight, removeHighlight } from './utils.js'
+import { displayHighlight, pasteElement, removeHighlight } from './utils.js'
 
 
 var namespace = joint.shapes;
@@ -464,35 +464,23 @@ var mask = joint.highlighters.mask;
 var selectedCellView = null;
 mainPaper.on("element:pointerclick", function (cellView) {
 
-    displayHighlight(cellView, mainGraph, mask, mainPaper)
+    selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
     // Checking if the attributes are displayed
     console.log(cellView.model.attributes.attrs)
 
 });
 
-var createCopy = null;
+// var createCopy = null;
 var copiedCoordinates = null;
 
 // copy
 document.addEventListener("keydown", function (event) {
     if (event.keyCode === 67 && event.ctrlKey) {
         if (selectedCellView != null) {
-            // Ctrl+C was pressed
-            console.log("Ctrl+C was pressed");
-            console.log(
-                `Cellview to be copied is ${JSON.stringify(
-                    selectedCellView.model
-                )}`
-            );
-            // selectedElementView
-            createCopy = selectedCellView.model.clone();
-
             copiedCoordinates = selectedCellView.getBBox();
-            console.log(
-                `Coordinates where copy occurred is ${copiedCoordinates}`
-            );
-        } else {
-            alert("You have not selected an element to copy");
+        }
+        else {
+            alert("Nothing selected to be copied")
         }
     }
 });
@@ -500,39 +488,9 @@ document.addEventListener("keydown", function (event) {
 // paste
 document.addEventListener("keydown", function (event) {
     if (event.keyCode === 86 && event.ctrlKey) {
-        if (createCopy != null) {
-            createCopy.position(
-                copiedCoordinates.x + 50,
-                copiedCoordinates.y + 50
-            );
-
-            // var removeButton = new joint.elementTools.Remove({
-            //     useModelGeometry: true,
-            //     // offset: { x: eleBbox.width * 0.5, y: eleBbox.height }
-            // });
-
-            var addLabelButton = new joint.elementTools.AddLabelButton();
-            var removeButton = new joint.elementTools.Remove();
-            var EletoolsView = new joint.dia.ToolsView({
-                tools: [
-                    removeButton,
-                    new ResizeTool({ selector: "outline" }),
-                    addLabelButton,
-                ],
-            });
-
-            createCopy.addTo(mainGraph);
-            console.log("pasted element to mainGraph");
-            var copyView = createCopy.findView(mainPaper);
-            copyView.addTools(EletoolsView);
-            console.log("Added elementTools to the new element");
-            copyView.hideTools();
-            createCopy = null;
-            copiedCoordinates = null;
-            console.log("copy == null");
-        } else {
-            alert("There is nothing to paste, clipboard empty!");
-        }
+        pasteElement(selectedCellView, copiedCoordinates, mainGraph, mainPaper)
+        // copiedCoordinates = null;
+        // createCopy = null;
     }
 });
 
@@ -552,6 +510,7 @@ document.addEventListener("keydown", function (event) {
 mainPaper.on("blank:pointerclick", function () {
     // Remove all Highlighters from all cells
     removeHighlight(mainGraph, mask, mainPaper)
+    selectedCellView = null;
 });
 
 mainPaper.on("link:mouseenter", function (linkView) {
