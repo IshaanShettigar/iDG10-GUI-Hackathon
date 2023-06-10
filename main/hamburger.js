@@ -1,6 +1,7 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
+import { displayHighlight, removeHighlight } from "./utils.js"
 // window.onload = () => {
 
 /* Left Hamburger Menu */
@@ -245,8 +246,8 @@ MANIFOLD.addTo(toolGraph)
 assignCustomParams(MANIFOLD)
 
 /* Create the main paper and graph */
-const GRID_SIZE = 20;
-const GRID_NAME = "doubleMesh";
+const GRID_SIZE = 5;
+const GRID_NAME = "fixedDot";
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 var mainPaper = new joint.dia.Paper({
     el: document.getElementById('main-paper-div'),
@@ -258,6 +259,8 @@ var mainPaper = new joint.dia.Paper({
     background: {
         color: "rgba(255,255,255,1)"
     },
+    linkPinning: false,
+    defaultLink: () => { return new joint.shapes.standard.Link() },
     cellViewNamespace: namespace,
 });
 
@@ -356,7 +359,22 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     });
 });
 
+// Adding element highlighting
+var mask = joint.highlighters.mask;
+mainPaper.on("element:pointerclick", function (cellView) {
 
+    displayHighlight(cellView, mainGraph, mask, mainPaper)
+    // Checking if the attributes are displayed
+    console.log(cellView.model.attributes.attrs)
+
+});
+
+// Remove element highlighting
+mainPaper.on("blank:pointerclick", function () {
+    // Remove all Highlighters from all cells
+    console.log("remove highlight");
+    removeHighlight(mainGraph, mask, mainPaper)
+});
 
 /* Zoom in zoom out */
 var currentScale = 1; // Initial scale level
@@ -391,4 +409,6 @@ $("#main-paper-div").mousemove(function (event) {
             event.offsetY - dragStartPosition.y);
     }
 });
+
+
 

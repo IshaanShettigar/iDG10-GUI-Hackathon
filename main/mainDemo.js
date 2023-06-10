@@ -1,6 +1,8 @@
 import { injectionWellST, manifold, platform } from './elements.js'
 import { assignCustomParams } from './element-attrs.js'
 import { openFile, saveGraph } from './persist.js';
+import { displayHighlight, removeHighlight } from './utils.js'
+
 
 var namespace = joint.shapes;
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -461,27 +463,8 @@ var mask = joint.highlighters.mask;
 
 var selectedCellView = null;
 mainPaper.on("element:pointerclick", function (cellView) {
-    // remove highlights for all other elements
-    mainGraph.getCells().forEach(function (cell) {
-        mask.remove(cell.findView(mainPaper));
-    });
 
-    selectedCellView = cellView;
-
-    //add highlight for this element
-    mask.remove(cellView);
-    // console.log(selectedCellView);
-    mask.add(cellView, "root", "element-highlight", {
-        deep: false,
-        padding: 10,
-        attrs: {
-            "stroke": "#FF4365",
-            "stroke-width": 1.5,
-            "stroke-dasharray": "5",
-        },
-    });
-    cellView.showTools()
-
+    displayHighlight(cellView, mainGraph, mask, mainPaper)
     // Checking if the attributes are displayed
     console.log(cellView.model.attributes.attrs)
 
@@ -568,12 +551,7 @@ document.addEventListener("keydown", function (event) {
 
 mainPaper.on("blank:pointerclick", function () {
     // Remove all Highlighters from all cells
-    mainGraph.getCells().forEach(function (cell) {
-        const currentCellView = cell.findView(mainPaper)
-        mask.remove(currentCellView);
-        currentCellView.hideTools()
-    });
-    selectedCellView = null;
+    removeHighlight(mainGraph, mask, mainPaper)
 });
 
 mainPaper.on("link:mouseenter", function (linkView) {
