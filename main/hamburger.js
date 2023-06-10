@@ -378,7 +378,7 @@ mainPaper.on("blank:pointerclick", function () {
     selectedCellView = null;
 });
 
-//////////////// copy paste /////////////////
+//////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
 // copy
 document.addEventListener("keydown", function (event) {
@@ -395,7 +395,6 @@ document.addEventListener("keydown", function (event) {
         else {
             alert("Nothing selected to be copied")
         }
-
     }
 });
 
@@ -405,6 +404,19 @@ document.addEventListener("keydown", function (event) {
         pasteElement(selectedCellView, copiedCoordinates, mainGraph, mainPaper)
         // copiedCoordinates = null;
         // createCopy = null;
+    }
+});
+
+// delete
+document.addEventListener("keydown", function (event) {
+    if (event.keyCode === 46 && event.key === "Delete") {
+        if (selectedCellView != null) {
+            var theModel = selectedCellView.model;
+            theModel.remove();
+            // this removes the attached links as well
+        } else {
+            alert("You have not selected an element, Nothing to delete");
+        }
     }
 });
 
