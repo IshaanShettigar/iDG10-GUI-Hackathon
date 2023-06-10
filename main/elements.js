@@ -8,10 +8,18 @@ Production Well and Subsea Tree = ProductionWellST
 This file contains only element definitions
 */
 
+// Port definitions
+const portDetails = {
+    magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+}
+
 const manifold = joint.dia.Element.define(
     "manifold",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             l1: {
                 x1: "0",
                 y1: "calc(0.25*h)",
@@ -86,6 +94,70 @@ const manifold = joint.dia.Element.define(
                 fill: "#fac905",
             },
         },
+        // adding ports
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(w / 2)',
+                    y: 0,
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(w)',
+                    y: 'calc(h/ 3)'
+                },
+            }, {
+                id: 'p3',
+                group: 'main',
+                args: {
+                    x: 'calc(w)',
+                    y: 'calc(2*h/3)'
+                }
+            }, {
+                id: 'p4',
+                group: 'main',
+                args: {
+                    x: 'calc(0.7*w)',
+                    y: 'calc(h)'
+                }
+            },
+            {
+                id: 'p5',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(h/4)'
+                }
+            },
+            {
+                id: 'p6',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(h/2)'
+                }
+            }, {
+                id: 'p7',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(3*h/4)'
+                }
+            }]
+        }
     },
     {
         markup: [
@@ -130,6 +202,9 @@ const injectionWellST = joint.dia.Element.define(
     "injectionWellST",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             l1: {
                 x1: "calc(w)",
                 y1: "calc(h)",
@@ -176,6 +251,47 @@ const injectionWellST = joint.dia.Element.define(
                 fill: "#035afc",
             },
         },
+        // adding ports
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(w / 2)',
+                    y: 0,
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(w)',
+                    y: 'calc(h/ 2)'
+                },
+            }, {
+                id: 'p3',
+                group: 'main',
+                args: {
+                    x: 'calc(w /2)',
+                    y: 'calc(h)'
+                }
+            }, {
+                id: 'p4',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(h / 2)'
+                }
+            }]
+        }
     },
     {
         markup: [
@@ -208,6 +324,9 @@ const productionWellST = joint.dia.Element.define(
     "productionWellST",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             l1: {
                 x1: "calc(w)",
                 y1: "calc(h)",
@@ -254,6 +373,47 @@ const productionWellST = joint.dia.Element.define(
                 fill: "#02a31d",
             },
         },
+        // adding ports
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(w / 2)',
+                    y: 0,
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(w)',
+                    y: 'calc(h/ 2)'
+                },
+            }, {
+                id: 'p3',
+                group: 'main',
+                args: {
+                    x: 'calc(w /2)',
+                    y: 'calc(h)'
+                }
+            }, {
+                id: 'p4',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(h / 2)'
+                }
+            }]
+        }
     },
     {
         markup: [
@@ -286,6 +446,9 @@ const platform = joint.dia.Element.define(
     "platform",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             red_line: {
                 x1: "calc(0.79*w)",
                 y1: "calc(1*h)",
@@ -422,6 +585,9 @@ const borderRadiusUTA = 5;
 const UTA = joint.dia.Element.define("UTA",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             innerRect: {
                 d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
                 a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
@@ -461,6 +627,34 @@ const UTA = joint.dia.Element.define("UTA",
                 fill: 'none',
             },
 
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: {
+                            magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+                        }
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(h/2)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(w)',
+                    y: 'calc(h/ 2)'
+                },
+            }]
         }
     },
     {
@@ -488,6 +682,9 @@ const UTA = joint.dia.Element.define("UTA",
 
 const subseaPump = joint.dia.Element.define('subseaPump', {
     attrs: {
+        root: {
+            magnet: false // Adding this prevents the ports from linking to the root
+        },
         outline: {
             height: 'calc(h)',
             widght: 'calc(w)',
@@ -522,6 +719,35 @@ const subseaPump = joint.dia.Element.define('subseaPump', {
             strokeWidth: 2,
             fill: '#fac905',
         }
+    },
+    // adding ports
+    ports: {
+        groups: {
+            main: {
+                position: 'absolute',
+                attrs: {
+                    circle: {
+                        magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+                    }
+                }
+            },
+        },
+        items: [{
+            id: 'p1',
+            group: 'main',
+            args: {
+                x: 0,
+                y: 'calc(h/2)',
+
+            },
+        }, {
+            id: 'p2',
+            group: 'main',
+            args: {
+                x: 'calc(w)',
+                y: 'calc(h/ 2)'
+            },
+        }]
     }
 },
     {
@@ -551,6 +777,9 @@ const borderRadiusSS = 7;
 const subseaSeparator = joint.dia.Element.define("subseaSeparator",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             innerRect: {
                 d: `Mcalc(0.87*w),calc(0.865*h) hcalc(-0.75*w) 
                 a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.65*h) 
@@ -599,6 +828,34 @@ const subseaSeparator = joint.dia.Element.define("subseaSeparator",
                 fill: 'none'
             }
 
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: {
+                            magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+                        }
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(-0.07*w)',
+                    y: 'calc(h/2)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(1.07*w)',
+                    y: 'calc(h/ 2)'
+                },
+            }]
         }
     },
     {
