@@ -354,9 +354,14 @@ hr {
     border-radius: 8px;
     margin: 15px 0 15px 10px;
     overflow: scroll;
-    max-height: 87vh;
+    max-height: 80vh;
     display: none;
 }
+
+/*for testing*/
+/* .element-settings-wrapper {
+    display: block;
+} */
 
 .element-settings-wrapper.is-active,
 .connector-settings-wrapper.is-active {

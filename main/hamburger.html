@@ -168,11 +168,11 @@
         </div>
 
         <!--Connector Settings-->
-        <div class="connector-settings-wrapper">
+        <div class="connector-settings-wrapper" id="connector-settings-wrapper">
             <div class="connector-settings">
                 <div id="link-type" class="parameter link-type">
                     <span>Connector</span>
-                    <select>
+                    <select id="connector">
                         <option value="Umbillical"> Umbillical </option>
                         <option value="Rigid-Pipeline-PR"> Rigid-Pipeline-PR </option>
                         <option value="Rigid-Pipeline-WI"> Rigid-Pipeline-WI </option>
@@ -190,9 +190,9 @@
                         <option value="Flexible-Jumper-GL/GI"> Flexible-Jumper-GL/GI </option>
                     </select>
                 </div>
-                <div id="subsea-intervention" class="parameter subsea-intervention">
+                <div class="parameter subsea-intervention">
                     <span>Subsea Intervention</span>
-                    <select>
+                    <select id="subsea-intervention">
                         <option> Rock Dumping </option>
                         <option> Concrete Mattress </option>
                         <option> Trenching/back filling </option>
@@ -202,9 +202,9 @@
 
                     </select>
                 </div>
-                <div id="install-vessel" class="parameter install-vessel">
+                <div class="parameter install-vessel">
                     <span>Installation & Construction Vessel</span>
-                    <select>
+                    <select id="install-vessel">
                         <option> S-Lay </option>
                         <option> J-Lay </option>
                         <option> Reel-Lay </option>
@@ -216,11 +216,11 @@
                 </div>
                 <div id="para1" class="parameter double">
                     <span>Parameter 1</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p1" />
                 </div>
                 <div id="para2" class="parameter string">
                     <span>Parameter 2</span>
-                    <select>
+                    <select id="conn-p2">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -229,15 +229,15 @@
                 </div>
                 <div id="para3" class="parameter double">
                     <span>Parameter 3</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p3" />
                 </div>
                 <div id="para4" class="parameter double">
                     <span>Parameter 4</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p4" />
                 </div>
                 <div id="para5" class="parameter string">
                     <span>Parameter 5</span>
-                    <select>
+                    <select id="conn-p5">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -246,7 +246,7 @@
                 </div>
                 <div id="para6" class="parameter string">
                     <span>Parameter 6</span>
-                    <select>
+                    <select id="conn-p6">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -255,15 +255,15 @@
                 </div>
                 <div id="para7" class="parameter double">
                     <span>Parameter 7</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p7" />
                 </div>
                 <div id="para8" class="parameter double">
                     <span>Parameter 8</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p8" />
                 </div>
                 <div id="para9" class="parameter string">
                     <span>Parameter 9</span>
-                    <select>
+                    <select id="conn-p9">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -272,27 +272,27 @@
                 </div>
                 <div id="para10" class="parameter double">
                     <span>Parameter 10</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p10" />
                 </div>
                 <div id="para11" class="parameter double">
                     <span>Parameter 11</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p11" />
                 </div>
                 <div id="para12" class="parameter double">
                     <span>Parameter 12</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p12" />
                 </div>
                 <div id="para13" class="parameter double">
                     <span>Parameter 13</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p13" />
                 </div>
                 <div id="para14" class="parameter double">
                     <span>Parameter 14</span>
-                    <input type="number" step="any" class="input-number" />
+                    <input type="number" step="any" class="input-number" id="conn-p14" />
                 </div>
                 <div id="para15" class="parameter string">
                     <span>Parameter 15</span>
-                    <select>
+                    <select id="conn-p15">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -301,7 +301,7 @@
                 </div>
                 <div id="para16" class="parameter string">
                     <span>Parameter 16</span>
-                    <select>
+                    <select id="conn-p16">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -310,7 +310,7 @@
                 </div>
                 <div id="para17" class="parameter string">
                     <span>Parameter 17</span>
-                    <select>
+                    <select id="conn-p17">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>
@@ -319,7 +319,7 @@
                 </div>
                 <div id="para18" class="parameter string">
                     <span>Parameter 18</span>
-                    <select>
+                    <select id="conn-p18">
                         <option> None </option>
                         <option> Option 2 </option>
                         <option> Option 3 </option>

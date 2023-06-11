@@ -2,6 +2,7 @@ import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, ma
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement } from "./utils.js"
+
 // window.onload = () => {
 
 /* Left Hamburger Menu */
@@ -205,27 +206,49 @@ const elementP16 = document.getElementById('ele-p16')
 const elementP17 = document.getElementById('ele-p17')
 const elementP18 = document.getElementById('ele-p18')
 
+const connectorP1 = document.getElementById('conn-p1')
+const connectorP2 = document.getElementById('conn-p2')
+const connectorP3 = document.getElementById('conn-p3')
+const connectorP4 = document.getElementById('conn-p4')
+const connectorP5 = document.getElementById('conn-p5')
+const connectorP6 = document.getElementById('conn-p6')
+const connectorP7 = document.getElementById('conn-p7')
+const connectorP8 = document.getElementById('conn-p8')
+const connectorP9 = document.getElementById('conn-p9')
+const connectorP10 = document.getElementById('conn-p10')
+const connectorP11 = document.getElementById('conn-p11')
+const connectorP12 = document.getElementById('conn-p12')
+const connectorP13 = document.getElementById('conn-p13')
+const connectorP14 = document.getElementById('conn-p14')
+const connectorP15 = document.getElementById('conn-p15')
+const connectorP16 = document.getElementById('conn-p16')
+const connectorP17 = document.getElementById('conn-p17')
+const connectorP18 = document.getElementById('conn-p18')
+const connector = document.getElementById('connector')
+const installationAndConstructionVessel = document.getElementById('install-vessel')
+const subseaIntervention = document.getElementById('subsea-intervention')
+
 
 // possible export to utils?
 let mapping = {
-    'parameter1': elementP1,
-    'parameter2': elementP2,
-    'parameter3': elementP3,
-    'parameter4': elementP4,
-    'parameter5': elementP5,
-    'parameter6': elementP6,
-    'parameter7': elementP7,
-    'parameter8': elementP8,
-    'parameter9': elementP9,
-    'parameter10': elementP10,
-    'parameter11': elementP11,
-    'parameter12': elementP12,
-    'parameter13': elementP13,
-    'parameter14': elementP14,
-    'parameter15': elementP15,
-    'parameter16': elementP16,
-    'parameter17': elementP17,
-    'parameter18': elementP18,
+    'parameter1': [elementP1, connectorP1],
+    'parameter2': [elementP2, connectorP2],
+    'parameter3': [elementP3, connectorP3],
+    'parameter4': [elementP4, connectorP4],
+    'parameter5': [elementP5, connectorP5],
+    'parameter6': [elementP6, connectorP6],
+    'parameter7': [elementP7, connectorP7],
+    'parameter8': [elementP8, connectorP8],
+    'parameter9': [elementP9, connectorP9],
+    'parameter10': [elementP10, connectorP10],
+    'parameter11': [elementP11, connectorP11],
+    'parameter12': [elementP12, connectorP12],
+    'parameter13': [elementP13, connectorP13],
+    'parameter14': [elementP14, connectorP14],
+    'parameter15': [elementP15, connectorP15],
+    'parameter16': [elementP16, connectorP16],
+    'parameter17': [elementP17, connectorP17],
+    'parameter18': [elementP18, connectorP18]
 }
 
 /* function is called when element is clicked on so that the element
@@ -236,9 +259,26 @@ const populateElementSettings = (model) => {
     for (let i = 1; i <= 18; i++) {
         // if (modelAttrs[`parameter${i}`] != null) {
         // copy to elementsettings
-        mapping[`parameter${i}`].value = modelAttrs[`parameter${i}`]
+        mapping[`parameter${i}`][0].value = modelAttrs[`parameter${i}`]
         // }
     }
+}
+
+
+/* Connector Settings */
+
+const populateConnectorSettings = (model) => {
+    // console.log(`Populating ${model.attributes.}`)
+    let modelAttrs = model.attributes.attrs
+    for (let i = 1; i <= 18; i++) {
+        // if (modelAttrs[`parameter${i}`] != null) {
+        // copy to elementsettings
+        mapping[`parameter${i}`][1].value = modelAttrs[`parameter${i}`]
+        // }
+    }
+    connector.value = modelAttrs['connector']
+    installationAndConstructionVessel.value = modelAttrs['installationAndConstructionVessel']
+    subseaIntervention.value = modelAttrs['subseaIntervention']
 }
 
 ////////////////////////////////////////////////////////
@@ -301,6 +341,8 @@ MANIFOLD.resize(70, 35)
 MANIFOLD.addTo(toolGraph)
 assignCustomParams(MANIFOLD)
 
+
+
 /* Create the main paper and graph */
 const GRID_SIZE = 5;
 const GRID_NAME = "fixedDot";
@@ -315,8 +357,81 @@ var mainPaper = new joint.dia.Paper({
     background: {
         color: "rgba(255,255,255,1)"
     },
+    interactive: {
+        linkMove: true,
+        labelMove: true,
+        arrowheadMove: true,
+        vertexMove: true,
+        vertexAdd: true,
+        vertexRemove: true,
+        useLinkTools: true,
+    },
     linkPinning: false,
-    defaultLink: () => { return new joint.shapes.standard.Link() },
+    defaultLink: () => {
+        var stdLink = new joint.shapes.standard.Link({
+            router: { name: 'normal' },
+            connector: { name: 'rounded' },
+            attrs: {
+                line: {
+                    stroke: '#333333',
+                    strokeWidth: 3
+                },
+                connector: "Umbillical",
+                installationAndConstructionVessel: null,
+                subseaIntervention: null,
+                parameter1: null,
+                parameter1: null,
+                parameter2: null,
+                parameter3: null,
+                parameter4: null,
+                parameter5: null,
+                parameter6: null,
+                parameter7: null,
+                parameter8: null,
+                parameter9: null,
+                parameter10: null,
+                parameter11: null,
+                parameter12: null,
+                parameter13: null,
+                parameter14: null,
+                parameter15: null,
+                parameter16: null,
+                parameter17: null,
+                parameter18: null,
+            }
+        })
+
+        // to access parameters use model.attributes.attrs[`parameter{Number}`]
+
+        // adding link tools, cant add here
+        // var verticesTool = new joint.linkTools.Vertices();
+        // var segmentsTool = new joint.linkTools.Segments();
+        // var toolsView = new joint.dia.ToolsView({
+        //     tools: [
+        //         verticesTool,
+        //         segmentsTool
+        //     ]
+        // });
+        // var stdLinkView = stdLink.findView(mainPaper);
+        // stdLinkView.addTools(toolsView)
+        // newLinkView.hideTools();
+        return stdLink
+    },
+    // options: {
+    //     defaultRouter: {
+    //         name: 'manhattan',
+    //         args: {
+    //             padding: 10
+    //         }
+    //     },
+    //     defaultConnector: {
+    //         name: 'curve',
+    //         args: {
+    //             cornerType: 'circle',
+    //             cornerRadius: 20
+    //         }
+    //     }
+    // },
     cellViewNamespace: namespace,
 });
 
@@ -425,11 +540,11 @@ var mask = joint.highlighters.mask;
 mainPaper.on("element:pointerclick", function (cellView) {
 
     selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
-    // Checking if the attributes are displayed
-    // console.log(cellView.model.attributes.attrs)
     populateElementSettings(cellView.model)
     elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
     elementSettingsWrapper.classList.add('is-active')
+    connectorSettingsWrapper.classList.remove('is-active')
+
 });
 
 // Remove element highlighting
@@ -438,8 +553,76 @@ mainPaper.on("blank:pointerclick", function () {
     console.log("remove highlight");
     removeHighlight(mainGraph, mask, mainPaper)
     selectedCellView = null;
+    selectedLinkView = null;
     elementSettingsWrapper.classList.remove('is-active')
+    connectorSettingsWrapper.classList.remove('is-active')
+
 });
+
+// mainGraph.on('change:source change:target', function (link) {
+//     console.log(link);
+// })
+// creating a custom button
+var selectedLinkView = null;
+const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
+joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
+    name: "show-link-settings",
+    options: {
+        markup: [
+            {
+                tagName: "circle",
+                selector: "button",
+                attributes: {
+                    r: 7,
+                    fill: "mediumseagreen",
+                    cursor: "pointer",
+                },
+            },
+            {
+                tagName: "path",
+                selector: "icon",
+                attributes: {
+                    d: "M 0 0 0 0 M 0 5 0 0 M -1 -1 1 -1 M 0 0 0 -4.5 M -4 0 0 0 M 4.5 0 0 0 ",
+                    fill: "none",
+                    stroke: "#FFFFFF",
+                    "stroke-width": 2,
+                    "pointer-events": "none",
+                },
+            },
+        ],
+        distance: "50%",
+        offset: 0,
+        action: function (evt, linkView, buttonView) {
+            console.log(linkView.model.attributes.attrs)
+
+            connectorSettingsWrapper.classList.add('is-active')
+            populateConnectorSettings(linkView.model)
+            elementSettingsWrapper.classList.remove('is-active')
+            selectedLinkView = linkView;
+            removeHighlight(mainGraph, mask, mainPaper)
+        },
+    },
+});
+
+mainPaper.on('link:mouseenter', (linkView) => {
+    if (!linkView.hasTools()) {
+        var verticesTool = new joint.linkTools.Vertices();
+        var segmentsTool = new joint.linkTools.Segments();
+        var showConnectorSettings = new joint.linkTools.showLinkSettings();
+
+        // var boundaryTool = new joint.linkTools.Boundary();
+        console.log((linkView));
+        var toolsView = new joint.dia.ToolsView({
+            tools: [verticesTool, segmentsTool, showConnectorSettings]
+        });
+        linkView.addTools(toolsView)
+    }
+    linkView.showTools()
+})
+
+mainPaper.on('link:mouseleave', (linkView) => {
+    linkView.hideTools()
+})
 
 /* Adding logic to popup the element settings table and listen to input changes */
 const addElementEventListener = (DOMElement, event) => {
@@ -483,29 +666,73 @@ addElementEventListener(elementP17, 'change')
 addElementEventListener(elementP18, 'change')
 
 
+const addLinkEventListener = (DOMElement, event) => {
+    // event can be ='input' or 'change' 
+    // 'input' is for number modification. 'change' is for select box change
+    DOMElement.addEventListener(event, () => {
+        // change the attributes of the selected cellview
+        if (selectedLinkView != null) {
+            const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
+            console.log(parameterNumber);
+            selectedLinkView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
+        }
+        else {
+            alert("No selected link")
+            if (event == 'change') { DOMElement.value = None }
+            else {
+                DOMElement.value = null
+            }
+        }
+    })
+}
 
-// elementP1.addEventListener('input', () => {
-//     // change the attributes of the selected cellview
-//     if (selectedCellView != null) {
-//         selectedCellView.model.attributes.attrs["parameter1"] = elementP1.value;
-//         console.log("Changed P1 for ", selectedCellView.model.attributes.type);
-//     }
-//     else {
-//         alert("No selected element")
-//         elementP1.value = null
-//     }
-// })
+addLinkEventListener(connectorP1, 'input')
+addLinkEventListener(connectorP3, 'input')
+addLinkEventListener(connectorP4, 'input')
+addLinkEventListener(connectorP7, 'input')
+addLinkEventListener(connectorP8, 'input')
+addLinkEventListener(connectorP10, 'input')
+addLinkEventListener(connectorP11, 'input')
+addLinkEventListener(connectorP12, 'input')
+addLinkEventListener(connectorP13, 'input')
+addLinkEventListener(connectorP14, 'input')
+addLinkEventListener(connectorP2, 'change')
+addLinkEventListener(connectorP5, 'change')
+addLinkEventListener(connectorP6, 'change')
+addLinkEventListener(connectorP9, 'change')
+addLinkEventListener(connectorP15, 'change')
+addLinkEventListener(connectorP16, 'change')
+addLinkEventListener(connectorP17, 'change')
+addLinkEventListener(connectorP18, 'change')
 
-// elementP2.addEventListener('change', () => {
-//     if (selectedCellView != null) {
-//         selectedCellView.model.attributes.attrs["parameter2"] = elementP2.value;
-//         console.log("Changed P2 for ", selectedCellView.model.attributes.type);
-//     }
-//     else {
-//         alert("No selected element")
-//         elementP2.value = "None"
-//     }
-// })
+connector.addEventListener('change', () => {
+    if (selectedLinkView != null) {
+        selectedLinkView.model.attributes.attrs['connector'] = connector.value;
+        /* Insert logic to change connector attributes based on type chosen */
+    }
+    else {
+        alert("No selected link")
+    }
+})
+
+subseaIntervention.addEventListener('change', () => {
+    if (selectedLinkView != null) {
+        selectedLinkView.model.attributes.attrs['subseaIntervention'] = subseaIntervention.value;
+    }
+    else {
+        alert("No selected link")
+    }
+})
+installationAndConstructionVessel.addEventListener('change', () => {
+    if (selectedLinkView != null) {
+        selectedLinkView.model.attributes.attrs['installationAndConstructionVessel'] = installationAndConstructionVessel.value;
+    }
+    else {
+        alert("No selected link")
+    }
+})
+
+
 
 //////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
