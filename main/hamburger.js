@@ -185,6 +185,62 @@ customColorInput.addEventListener("input", function () {
     }
 })
 
+/* Element Settings */
+const elementP1 = document.getElementById('ele-p1')
+const elementP2 = document.getElementById('ele-p2')
+const elementP3 = document.getElementById('ele-p3')
+const elementP4 = document.getElementById('ele-p4')
+const elementP5 = document.getElementById('ele-p5')
+const elementP6 = document.getElementById('ele-p6')
+const elementP7 = document.getElementById('ele-p7')
+const elementP8 = document.getElementById('ele-p8')
+const elementP9 = document.getElementById('ele-p9')
+const elementP10 = document.getElementById('ele-p10')
+const elementP11 = document.getElementById('ele-p11')
+const elementP12 = document.getElementById('ele-p12')
+const elementP13 = document.getElementById('ele-p13')
+const elementP14 = document.getElementById('ele-p14')
+const elementP15 = document.getElementById('ele-p15')
+const elementP16 = document.getElementById('ele-p16')
+const elementP17 = document.getElementById('ele-p17')
+const elementP18 = document.getElementById('ele-p18')
+
+
+// possible export to utils?
+let mapping = {
+    'parameter1': elementP1,
+    'parameter2': elementP2,
+    'parameter3': elementP3,
+    'parameter4': elementP4,
+    'parameter5': elementP5,
+    'parameter6': elementP6,
+    'parameter7': elementP7,
+    'parameter8': elementP8,
+    'parameter9': elementP9,
+    'parameter10': elementP10,
+    'parameter11': elementP11,
+    'parameter12': elementP12,
+    'parameter13': elementP13,
+    'parameter14': elementP14,
+    'parameter15': elementP15,
+    'parameter16': elementP16,
+    'parameter17': elementP17,
+    'parameter18': elementP18,
+}
+
+/* function is called when element is clicked on so that the element
+ settings pops up and gets populated with the right values */
+const populateElementSettings = (model) => {
+    console.log(`Populating ${model.attributes.type}`)
+    let modelAttrs = model.attributes.attrs
+    for (let i = 1; i <= 18; i++) {
+        // if (modelAttrs[`parameter${i}`] != null) {
+        // copy to elementsettings
+        mapping[`parameter${i}`].value = modelAttrs[`parameter${i}`]
+        // }
+    }
+}
+
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 /* Render the toolPaper and toolGraph  */
@@ -359,6 +415,10 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     });
 });
 
+
+const elementSettingsName = document.getElementById('elementName')
+const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
+// Element selection & highlighting
 var selectedCellView = null;
 // Adding element highlighting
 var mask = joint.highlighters.mask;
@@ -366,8 +426,10 @@ mainPaper.on("element:pointerclick", function (cellView) {
 
     selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
     // Checking if the attributes are displayed
-    console.log(cellView.model.attributes.attrs)
-
+    // console.log(cellView.model.attributes.attrs)
+    populateElementSettings(cellView.model)
+    elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
+    elementSettingsWrapper.classList.add('is-active')
 });
 
 // Remove element highlighting
@@ -376,7 +438,74 @@ mainPaper.on("blank:pointerclick", function () {
     console.log("remove highlight");
     removeHighlight(mainGraph, mask, mainPaper)
     selectedCellView = null;
+    elementSettingsWrapper.classList.remove('is-active')
 });
+
+/* Adding logic to popup the element settings table and listen to input changes */
+const addElementEventListener = (DOMElement, event) => {
+    // event can be ='input' or 'change' 
+    // 'input' is for number modification. 'change' is for select box change
+    DOMElement.addEventListener(event, () => {
+        // change the attributes of the selected cellview
+        if (selectedCellView != null) {
+            const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
+            selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
+            console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
+        }
+        else {
+            alert("No selected element")
+            if (event == 'change') { DOMElement.value = None }
+            else {
+                DOMElement.value = null
+            }
+        }
+    })
+}
+
+addElementEventListener(elementP1, 'input')
+addElementEventListener(elementP3, 'input')
+addElementEventListener(elementP4, 'input')
+addElementEventListener(elementP7, 'input')
+addElementEventListener(elementP8, 'input')
+addElementEventListener(elementP10, 'input')
+addElementEventListener(elementP11, 'input')
+addElementEventListener(elementP12, 'input')
+addElementEventListener(elementP13, 'input')
+addElementEventListener(elementP14, 'input')
+
+addElementEventListener(elementP2, 'change')
+addElementEventListener(elementP5, 'change')
+addElementEventListener(elementP6, 'change')
+addElementEventListener(elementP9, 'change')
+addElementEventListener(elementP15, 'change')
+addElementEventListener(elementP16, 'change')
+addElementEventListener(elementP17, 'change')
+addElementEventListener(elementP18, 'change')
+
+
+
+// elementP1.addEventListener('input', () => {
+//     // change the attributes of the selected cellview
+//     if (selectedCellView != null) {
+//         selectedCellView.model.attributes.attrs["parameter1"] = elementP1.value;
+//         console.log("Changed P1 for ", selectedCellView.model.attributes.type);
+//     }
+//     else {
+//         alert("No selected element")
+//         elementP1.value = null
+//     }
+// })
+
+// elementP2.addEventListener('change', () => {
+//     if (selectedCellView != null) {
+//         selectedCellView.model.attributes.attrs["parameter2"] = elementP2.value;
+//         console.log("Changed P2 for ", selectedCellView.model.attributes.type);
+//     }
+//     else {
+//         alert("No selected element")
+//         elementP2.value = "None"
+//     }
+// })
 
 //////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
