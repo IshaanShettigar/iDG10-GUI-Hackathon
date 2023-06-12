@@ -1,7 +1,10 @@
 /* This file contains element tool and link tool definitions */
 
 /* ELEMENT TOOLS */
-// Rotate Control Tool
+
+///////////////////////////////////////////////////////////////
+//      Rotate Control Tool         //
+///////////////////////////////////////////////////////////////
 const rotateChildren = [
     {
         tagName: "image",
@@ -133,8 +136,81 @@ const RotateToolManifold = joint.elementTools.Control.extend({
     }
 });
 
+//////////////////////////////////////////////////////////////////////////////
+//        Resize Tool       //
+//////////////////////////////////////////////////////////////////////////////
+const ResizeToolBottomRightST = joint.elementTools.Control.extend({
+    getPosition: function (view) {
+        // console.log("view", view);
+        const model = view.model;
+        const { width, height } = model.size()
+        return { x: width + 0.25 * width + 10, y: height + 0.25 * height + 10 };
+
+    },
+    setPosition: function (view, coordinates) {
+        const model = view.model;
+        const { width, height } = model.size()
+        model.resize(
+            Math.max(coordinates.x - 0.25 * width - 10, 1),
+            Math.max(coordinates.y - 0.25 * height - 10, 1)
+        );
+    },
+});
+
+const ResizeToolBottomLeftST = joint.elementTools.Control.extend({
+    getPosition: function (view) {
+        const model = view.model;
+        const { width, height } = model.size();
+        return { x: 0 - 0.25 * width - 10, y: height + 0.25 * height + 10 };
+    },
+    setPosition: function (view, coordinates) {
+        const model = view.model;
+        const { width, height } = model.size();
+        model.resize(
+            Math.max(width - coordinates.x - 0.25 * width - 10, 1),
+            Math.max(coordinates.y - 0.25 * height - 10, 1),
+            { direction: "bottom-left" }
+        );
+    }
+});
+
+const ResizeToolTopLeftST = joint.elementTools.Control.extend({
+    getPosition: function (view) {
+        const model = view.model;
+        const { width, height } = model.size();
+        return { x: 0 - 0.25 * width - 10, y: 0 - 0.25 * height - 10 };
+    },
+    setPosition: function (view, coordinates) {
+        const model = view.model;
+        const { width, height } = model.size();
+        model.resize(
+            Math.max(width - coordinates.x - 0.25 * width - 10, 1),
+            Math.max(height - coordinates.y - 0.25 * height - 10, 1),
+            { direction: "top-left" }
+        );
+    }
+});
+
+const ResizeToolTopRightST = joint.elementTools.Control.extend({
+    getPosition: function (view) {
+        const model = view.model;
+        const { width, height } = model.size();
+        return { x: width + 0.25 * width + 10, y: 0 - 0.25 * height - 10 };
+    },
+    setPosition: function (view, coordinates) {
+        const model = view.model;
+        const { width, height } = model.size();
+        model.resize(
+            Math.max(coordinates.x - 0.25 * width - 10, 1),
+            Math.max(height - coordinates.y - 0.25 * height - 10, 1),
+            { direction: "top-right" }
+        );
+    }
+});
+
 
 export {
     rotateChildren, getPositionIWST, setPositionAll, RotateToolIWST, RotateToolUTA, RotateToolSubseaPump,
-    RotateToolPlatform, RotateToolSubseaSeparator, RotateToolManifold
+    RotateToolPlatform, RotateToolSubseaSeparator, RotateToolManifold,
+    ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST
 }
