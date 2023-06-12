@@ -281,10 +281,77 @@ const populateConnectorSettings = (model) => {
     subseaIntervention.value = modelAttrs['subseaIntervention']
 }
 
+
+/* Creating the custom rigid pipelinepip - pr link  */
+const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
+    attrs: {
+        line: {
+            connection: true,
+            stroke: 'white',
+            strokeWidth: 11,
+            strokeLinejoin: 'round',
+
+        },
+        outline: {
+            connection: true,
+            stroke: 'black',
+            strokeWidth: 15,
+            strokeLinejoin: 'round'
+        },
+        central: {
+            connection: true,
+            stroke: 'green',
+            strokeWidth: 4,
+            strokeLinejoin: 'round'
+        },
+        connector: "Rigid-Pipeline-PiP PR",
+        installationAndConstructionVessel: null,
+        subseaIntervention: null,
+        parameter1: null,
+        parameter1: null,
+        parameter2: null,
+        parameter3: null,
+        parameter4: null,
+        parameter5: null,
+        parameter6: null,
+        parameter7: null,
+        parameter8: null,
+        parameter9: null,
+        parameter10: null,
+        parameter11: null,
+        parameter12: null,
+        parameter13: null,
+        parameter14: null,
+        parameter15: null,
+        parameter16: null,
+        parameter17: null,
+        parameter18: null,
+    }
+}, {
+    markup: [{
+        tagName: 'path',
+        selector: 'outline',
+        attributes: {
+            'fill': 'none'
+        }
+    }, {
+        tagName: 'path',
+        selector: 'line',
+        attributes: {
+            'fill': 'none'
+        }
+    }, {
+        tagName: 'path',
+        selector: 'central',
+        attributes: {
+            'fill': 'none'
+        }
+    }]
+});
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 /* Render the toolPaper and toolGraph  */
-var namespace = joint.shapes;
+var namespace = { ...joint.shapes, RigidPipelinePiP_PR };
 var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 var toolPaper = new joint.dia.Paper({
     el: document.getElementById('tool-paper-div'),
@@ -373,7 +440,8 @@ var mainPaper = new joint.dia.Paper({
             connector: { name: 'rounded' },
             attrs: {
                 line: {
-                    stroke: '#333333',
+                    stroke: "#cc0202",
+                    strokeDasharray: "9",
                     strokeWidth: 3
                 },
                 connector: "Umbillical",
@@ -705,10 +773,98 @@ addLinkEventListener(connectorP16, 'change')
 addLinkEventListener(connectorP17, 'change')
 addLinkEventListener(connectorP18, 'change')
 
+var CONNECTOR_ATTRS = {
+    "Rigid-Pipeline-PR": {
+        stroke: '#02a31d',
+        strokeWidth: 3
+    },
+    "Rigid-Pipeline-WI": {
+        stroke: '#0247c7',
+        strokeWidth: 3
+    },
+    "Rigid-Pipeline-GL/GI": {
+        stroke: "red",
+        strokeWidth: 3
+    },
+    "Flexible Pipeline-PR": {
+        stroke: '#02a31d',
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Flexible Pipeline-WI": {
+        stroke: '#0247c7',
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Flexible Pipeline-GL/GI": {
+        stroke: "#cc0202",
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Umbillical": {
+        stroke: "#000000",
+        strokeWidth: 3
+    },
+    "Hydr-Flying Lead": {
+        stroke: "#000000",
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Rigid-Spool-PR": {
+        stroke: '#02a31d',
+        strokeWidth: 3
+    },
+    "Rigid-Spool-WI": {
+        stroke: '#0247c7',
+        strokeWidth: 3
+    },
+    "Rigid-Spool-GL/GI": {
+        stroke: "#cc0202",
+        strokeWidth: 3
+    },
+    "Flexible-Jumper-PR": {
+        stroke: '#02a31d',
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Flexible-Jumper-WI": {
+        stroke: '#0247c7',
+        strokeDasharray: "9",
+        strokeWidth: 3
+    },
+    "Flexible-Jumper-GL/GI": {
+        stroke: "#cc0202",
+        strokeDasharray: "9",
+        strokeWidth: 3
+    }
+}
 connector.addEventListener('change', () => {
     if (selectedLinkView != null) {
         selectedLinkView.model.attributes.attrs['connector'] = connector.value;
         /* Insert logic to change connector attributes based on type chosen */
+        let model = selectedLinkView.model
+        console.log(selectedLinkView.model);
+        if (connector.value != 'Rigid-Pipeline-PiP PR') {
+            model.attributes.attrs.line["stroke"] = CONNECTOR_ATTRS[connector.value]["stroke"]
+            model.attributes.attrs.line["strokeWidth"] = CONNECTOR_ATTRS[connector.value]["strokeWidth"]
+            model.attributes.attrs.line["strokeLineJoin"] = null
+
+            if (CONNECTOR_ATTRS[connector.value]["strokeDasharray"]) {
+                model.attributes.attrs.line["strokeDasharray"] = CONNECTOR_ATTRS[connector.value]["strokeDasharray"]
+            }
+            else {
+                model.attributes.attrs.line["strokeDasharray"] = null;
+            }
+        }
+        else {
+            console.log("Add functionality to change link to rigidpipeline pip pr");
+            // const newLink = new RigidPipelinePiP_PR();
+            // model.attributes.attrs['central'] = newLink.attributes.attrs['central']
+            // model.attributes.attrs['line'] = newLink.attributes.attrs['line']
+            // model.attributes.attrs['outline'] = newLink.attributes.attrs['outline']
+            // selectedLinkView.model = newLink;
+        }
+        selectedLinkView.render()
     }
     else {
         alert("No selected link")
@@ -739,12 +895,6 @@ var copiedCoordinates = null;
 // copy
 document.addEventListener("keydown", function (event) {
     if (event.keyCode === 67 && event.ctrlKey) {
-        // console.log("copy");
-        // let ele = copyElement(copiedCoordinates, selectedCellView)
-        // if (ele) {
-        //     copiedCoordinates = ele.copiedCoordinates;
-        // }
-
         if (selectedCellView != null) {
             copiedCoordinates = selectedCellView.getBBox();
         }
@@ -810,6 +960,3 @@ $("#main-paper-div").mousemove(function (event) {
             event.offsetY - dragStartPosition.y);
     }
 });
-
-
-
