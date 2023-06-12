@@ -2,6 +2,7 @@ import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, ma
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement } from "./utils.js"
+import { RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
 
@@ -503,6 +504,19 @@ var mainPaper = new joint.dia.Paper({
     cellViewNamespace: namespace,
 });
 
+/*
+0: RotateControlTool
+1-4: ResizeTool
+*/
+const elementToolsMapping = {
+    "subseaSeparator": [RotateToolSubseaSeparator],
+    "subseaPump": [RotateToolSubseaPump],
+    "UTA": [RotateToolUTA],
+    "productionWellST": [RotateToolIWST],
+    "injectionWellST": [RotateToolIWST],
+    "manifold": [RotateToolManifold],
+    "platform": [RotateToolPlatform]
+}
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
 no matter which place on the element the user starts the drag, the drop on the mainPaper happens in such a way that
@@ -589,6 +603,20 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
             var droppedElement = flyShape.clone();
             droppedElement.position(dropPosition.x, dropPosition.y);
             mainGraph.addCell(droppedElement);
+            // Need to find the view of the element and add its corresponding tools
+            //find the correct tools
+            console.log("HELLO", droppedElement.attributes.type);
+            var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
+            var EletoolsView = new joint.dia.ToolsView({
+                tools: [
+
+                    new RotateTool({ selector: "root" })
+                ],
+            });
+
+            var droppedEleView = droppedElement.findView(mainPaper);
+            droppedEleView.addTools(EletoolsView);
+            droppedEleView.hideTools();
         }
 
         // Cleanup and remove temporary elements
@@ -613,6 +641,8 @@ mainPaper.on("element:pointerclick", function (cellView) {
     elementSettingsWrapper.classList.add('is-active')
     connectorSettingsWrapper.classList.remove('is-active')
 
+    /* Show element tools */
+    cellView.showTools()
 });
 
 // Remove element highlighting
@@ -675,13 +705,13 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
 mainPaper.on('link:mouseenter', (linkView) => {
     if (!linkView.hasTools()) {
         var verticesTool = new joint.linkTools.Vertices();
-        var segmentsTool = new joint.linkTools.Segments();
+        // var segmentsTool = new joint.linkTools.Segments();
         var showConnectorSettings = new joint.linkTools.showLinkSettings();
 
         // var boundaryTool = new joint.linkTools.Boundary();
         console.log((linkView));
         var toolsView = new joint.dia.ToolsView({
-            tools: [verticesTool, segmentsTool, showConnectorSettings]
+            tools: [verticesTool, showConnectorSettings]
         });
         linkView.addTools(toolsView)
     }
