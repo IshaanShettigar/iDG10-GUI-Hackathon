@@ -1,7 +1,10 @@
 
 const removeHighlight = (mainGraph, mask, mainPaper) => {
     mainGraph.getCells().forEach(function (cell) {
-        mask.remove(cell.findView(mainPaper));
+        // Additional functionality to hideTools on each cell
+        let cellView = cell.findView(mainPaper)
+        mask.remove(cellView);
+        cellView.hideTools()
     });
 }
 const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
@@ -52,13 +55,13 @@ const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
 
 // }
 
-const pasteElement = (selectedCellView, copiedCoordinates, mainGraph, mainPaper) => {
-    if (selectedCellView != null) {
-        let createCopy = selectedCellView.model.clone();
-
+const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) => {
+    if (copiedCellView != null) {
+        let createCopy = copiedCellView.model.clone();
+        let coordinates = mainPaper.clientToLocalPoint(copiedCoordinates.x, copiedCoordinates.y);
         createCopy.position(
-            copiedCoordinates.x + 50,
-            copiedCoordinates.y + 50
+            coordinates.x,
+            coordinates.y
         );
 
         // var addLabelButton = new joint.elementTools.AddLabelButton();

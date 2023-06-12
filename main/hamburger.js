@@ -2,7 +2,7 @@ import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, ma
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement } from "./utils.js"
-import { RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
+import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
 
@@ -509,13 +509,13 @@ var mainPaper = new joint.dia.Paper({
 1-4: ResizeTool
 */
 const elementToolsMapping = {
-    "subseaSeparator": [RotateToolSubseaSeparator],
-    "subseaPump": [RotateToolSubseaPump],
-    "UTA": [RotateToolUTA],
-    "productionWellST": [RotateToolIWST],
-    "injectionWellST": [RotateToolIWST],
-    "manifold": [RotateToolManifold],
-    "platform": [RotateToolPlatform]
+    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
 }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
@@ -607,10 +607,20 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
             //find the correct tools
             console.log("HELLO", droppedElement.attributes.type);
             var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
+            var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
+            var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
+            var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
+            var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
+
             var EletoolsView = new joint.dia.ToolsView({
                 tools: [
 
-                    new RotateTool({ selector: "root" })
+                    new RotateTool({ selector: "root" }),
+                    new ResizeToolBottomLeft({ selector: 'outline' }),
+                    new ResizeToolBottomRight({ selector: 'outline' }),
+                    new ResizeToolTopLeft({ selector: 'outline' }),
+                    new ResizeToolTopRight({ selector: 'outline' }),
+
                 ],
             });
 
@@ -650,6 +660,9 @@ mainPaper.on("blank:pointerclick", function () {
     // Remove all Highlighters from all cells
     console.log("remove highlight");
     removeHighlight(mainGraph, mask, mainPaper)
+    if (selectedCellView != null) {
+        selectedCellView.hideTools()
+    }
     selectedCellView = null;
     selectedLinkView = null;
     elementSettingsWrapper.classList.remove('is-active')
@@ -922,11 +935,13 @@ installationAndConstructionVessel.addEventListener('change', () => {
 
 //////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
+var copiedCellView = null;
 // copy
 document.addEventListener("keydown", function (event) {
     if (event.keyCode === 67 && event.ctrlKey) {
         if (selectedCellView != null) {
             copiedCoordinates = selectedCellView.getBBox();
+            copiedCellView = selectedCellView
         }
         else {
             alert("Nothing selected to be copied")
@@ -934,10 +949,19 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+var currentX = null;
+var currentY = null;
+document.addEventListener('mousemove', (event) => {
+    currentX = event.clientX;
+    currentY = event.clientY;
+})
+
 // paste
 document.addEventListener("keydown", function (event) {
+
     if (event.keyCode === 86 && event.ctrlKey) {
-        pasteElement(selectedCellView, copiedCoordinates, mainGraph, mainPaper)
+        console.log(event);
+        pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
         // copiedCoordinates = null;
         // createCopy = null;
     }
