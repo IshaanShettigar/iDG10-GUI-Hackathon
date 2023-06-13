@@ -84,9 +84,15 @@ const closeCustomColorPopUp = function () {
 const selectBox = document.getElementById("grid-type");
 selectBox.addEventListener("change", function () {
     console.log("Change grid type to ", selectBox.value)
-    mainPaper.setGrid(selectBox.value).drawGrid();
+    if (selectBox.value == "None") {
+        mainPaper.clearGrid()
+    }
+    else {
+        mainPaper.setGrid(selectBox.value).drawGrid();
+    }
 })
 
+/* GRID SIZE IS defined below grid */
 
 const clearCanvas = document.getElementById("clear-paper");
 const clearCanvasModal = document.getElementById("clear-background-modal")
@@ -503,6 +509,15 @@ var mainPaper = new joint.dia.Paper({
     cellViewNamespace: namespace,
 });
 
+// changing grid size in the settings modal
+const gridSizeInput = document.getElementById('grid-size')
+gridSizeInput.value = GRID_SIZE
+gridSizeInput.addEventListener("change", function () {
+    mainPaper.setGridSize(gridSizeInput.value)
+    mainPaper.drawGrid() // maybe this line is not needed
+})
+
+
 /*
 0: RotateControlTool
 1-4: ResizeTool
@@ -593,40 +608,40 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
         console.log("Width bounding box", 0 - (mainPaper.translate().tx * scale.sx), mainPaper.$el.width() - (mainPaper.translate().tx * scale.sx), "DropPosition:x:", dropPosition.x)
         //  mainPaper.$el.width() Represents the papers width 
         //  mainPaper.$el.height() Represents the papers height
-        if (
-            dropPosition.x > 0 - (mainPaper.translate().tx * scale.sx) &&
-            dropPosition.x < (mainPaper.$el.width() - mainPaper.translate().tx * scale.sx) &&
-            dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
-            dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
-        ) {
-            var droppedElement = flyShape.clone();
-            droppedElement.position(dropPosition.x, dropPosition.y);
-            mainGraph.addCell(droppedElement);
-            // Need to find the view of the element and add its corresponding tools
-            //find the correct tools
-            console.log("HELLO", droppedElement.attributes.type);
-            var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
-            var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
-            var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
-            var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
-            var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
+        // if (
+        //     dropPosition.x > 0 - (mainPaper.translate().tx * scale.sx) &&
+        //     dropPosition.x < (mainPaper.$el.width() - mainPaper.translate().tx * scale.sx) &&
+        //     dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
+        //     dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
+        // ) {
+        var droppedElement = flyShape.clone();
+        droppedElement.position(dropPosition.x, dropPosition.y);
+        mainGraph.addCell(droppedElement);
+        // Need to find the view of the element and add its corresponding tools
+        //find the correct tools
+        console.log("HELLO", droppedElement.attributes.type);
+        var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
+        var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
+        var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
+        var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
+        var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
 
-            var EletoolsView = new joint.dia.ToolsView({
-                tools: [
+        var EletoolsView = new joint.dia.ToolsView({
+            tools: [
 
-                    new RotateTool({ selector: "root" }),
-                    new ResizeToolBottomLeft({ selector: 'outline' }),
-                    new ResizeToolBottomRight({ selector: 'outline' }),
-                    new ResizeToolTopLeft({ selector: 'outline' }),
-                    new ResizeToolTopRight({ selector: 'outline' }),
+                new RotateTool({ selector: "root" }),
+                new ResizeToolBottomLeft({ selector: 'outline' }),
+                new ResizeToolBottomRight({ selector: 'outline' }),
+                new ResizeToolTopLeft({ selector: 'outline' }),
+                new ResizeToolTopRight({ selector: 'outline' }),
 
-                ],
-            });
+            ],
+        });
 
-            var droppedEleView = droppedElement.findView(mainPaper);
-            droppedEleView.addTools(EletoolsView);
-            droppedEleView.hideTools();
-        }
+        var droppedEleView = droppedElement.findView(mainPaper);
+        droppedEleView.addTools(EletoolsView);
+        droppedEleView.hideTools();
+        // }
 
         // Cleanup and remove temporary elements
         $('body').off('mousemove.fly').off('mouseup.fly');
@@ -724,19 +739,37 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
     },
 });
 
-mainPaper.on('link:mouseenter', (linkView) => {
-    if (!linkView.hasTools()) {
-        var verticesTool = new joint.linkTools.Vertices();
-        // var segmentsTool = new joint.linkTools.Segments();
-        var showConnectorSettings = new joint.linkTools.showLinkSettings();
+mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
+    var verticesTool = new joint.linkTools.Vertices();
+    var removeTool = new joint.linkTools.Remove({
+        action: function (evt, linkView, toolView) {
+            linkView.model.remove({ ui: true, tool: toolView.cid });
+            connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+        }
+    })
+    // var segmentsTool = new joint.linkTools.Segments();
+    var showConnectorSettings = new joint.linkTools.showLinkSettings();
+    // var boundaryTool = new joint.linkTools.Boundary();
+    console.log((linkView));
+    var toolsView = new joint.dia.ToolsView({
+        tools: [verticesTool, removeTool, showConnectorSettings]
+    });
+    linkView.addTools(toolsView)
+})
 
-        // var boundaryTool = new joint.linkTools.Boundary();
-        console.log((linkView));
-        var toolsView = new joint.dia.ToolsView({
-            tools: [verticesTool, showConnectorSettings]
-        });
-        linkView.addTools(toolsView)
-    }
+mainPaper.on('link:mouseenter', (linkView) => {
+    // if (!linkView.hasTools()) {
+    //     var verticesTool = new joint.linkTools.Vertices();
+    //     // var segmentsTool = new joint.linkTools.Segments();
+    //     var showConnectorSettings = new joint.linkTools.showLinkSettings();
+
+    //     // var boundaryTool = new joint.linkTools.Boundary();
+    //     console.log((linkView));
+    //     var toolsView = new joint.dia.ToolsView({
+    //         tools: [verticesTool, showConnectorSettings]
+    //     });
+    //     linkView.addTools(toolsView)
+    // }
     linkView.showTools()
 })
 
@@ -942,6 +975,16 @@ installationAndConstructionVessel.addEventListener('change', () => {
 
 
 
+// mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
+//     let srcPoint = linkView.model.getSourcePoint();
+//     let targetPoint = linkView.model.getTargetPoint();
+//     let sx = srcPoint.x
+//     let sy = srcPoint.y
+//     let tx = targetPoint.x
+//     let ty = targetPoint.y
+// })
+
+
 //////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
 var copiedCellView = null;
@@ -982,6 +1025,7 @@ document.addEventListener("keydown", function (event) {
         if (selectedCellView != null) {
             var theModel = selectedCellView.model;
             theModel.remove();
+            elementSettingsWrapper.classList.remove('is-active')
             // this removes the attached links as well
         } else {
             alert("You have not selected an element, Nothing to delete");

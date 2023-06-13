@@ -189,6 +189,18 @@ nav button:hover {
 }
 
 
+.paper-background-size {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-background-size input {
+    max-width: 80px;
+    padding: 5px 4px;
+    margin-top: 3px;
+}
+
 /* cross button */
 .settings-modal .cross-btn,
 .clear-background-modal .cross-btn {
