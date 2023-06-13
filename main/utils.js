@@ -1,4 +1,5 @@
 
+/* mainGraph.getCells() gets all the links as well as elements on the mainGraph */
 const removeHighlight = (mainGraph, mask, mainPaper) => {
     mainGraph.getCells().forEach(function (cell) {
         // Additional functionality to hideTools on each cell
@@ -7,6 +8,7 @@ const removeHighlight = (mainGraph, mask, mainPaper) => {
         cellView.hideTools()
     });
 }
+
 const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
     // remove highlights for all other elements
     removeHighlight(mainGraph, mask, mainPaper)
@@ -30,6 +32,22 @@ const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
     return selectedCellView
 }
 
+
+const displayLinkHighlight = (linkView, mainGraph, mask, mainPaper) => {
+    removeHighlight(mainGraph, mask, mainPaper)
+    mask.remove(linkView);
+    //add highlight for this link
+    mask.add(linkView, "line", "link-highlight", {
+        deep: true,
+        padding: 2,
+        attrs: {
+            "stroke": "#FF4365",
+            "stroke-width": 2,
+            'stroke-linejoin': 'round',
+            'stroke-linecap': 'round'
+        },
+    });
+}
 // Ctrl + C
 // Function not needed, will remove
 // const copyElement = (copiedCoordinates, selectedCellView) => {
@@ -88,4 +106,4 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
     }
 }
 
-export { displayHighlight, removeHighlight, pasteElement }
+export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement }
