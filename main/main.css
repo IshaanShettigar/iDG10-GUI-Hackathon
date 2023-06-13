@@ -188,7 +188,7 @@ nav button:hover {
 
 }
 
-
+/* grid size */
 .paper-background-size {
     margin-top: 15px;
     display: flex;
@@ -199,7 +199,28 @@ nav button:hover {
     max-width: 80px;
     padding: 5px 4px;
     margin-top: 3px;
+    margin-bottom: 10px;
 }
+
+.advanced-link-settings {
+    margin-top: 20px;
+}
+
+.advanced-link-settings button {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 5px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    padding: 10px 10px;
+}
+
+.advanced-link-settings button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
 
 /* cross button */
 .settings-modal .cross-btn,
