@@ -1,7 +1,7 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
-import { displayHighlight, removeHighlight, pasteElement } from "./utils.js"
+import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement } from "./utils.js"
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
@@ -441,8 +441,7 @@ var mainPaper = new joint.dia.Paper({
             connector: { name: 'rounded' },
             attrs: {
                 line: {
-                    stroke: "#cc0202",
-                    strokeDasharray: "9",
+                    stroke: "#000000",
                     strokeWidth: 3
                 },
                 connector: "Umbillical",
@@ -682,10 +681,19 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
         markup: [
             {
                 tagName: "circle",
+                selector: "outer",
+                attributes: {
+                    r: 9,
+                    fill: "#ffffff",
+                    cursor: "pointer",
+                },
+            },
+            {
+                tagName: "circle",
                 selector: "button",
                 attributes: {
                     r: 7,
-                    fill: "mediumseagreen",
+                    fill: "#000000",
                     cursor: "pointer",
                 },
             },
@@ -693,7 +701,7 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
                 tagName: "path",
                 selector: "icon",
                 attributes: {
-                    d: "M 0 0 0 0 M 0 5 0 0 M -1 -1 1 -1 M 0 0 0 -4.5 M -4 0 0 0 M 4.5 0 0 0 ",
+                    d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
                     fill: "none",
                     stroke: "#FFFFFF",
                     "stroke-width": 2,
@@ -704,13 +712,14 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
         distance: "50%",
         offset: 0,
         action: function (evt, linkView, buttonView) {
-            console.log(linkView.model.attributes.attrs)
-
+            // console.log(linkView.model.attributes.attrs)
             connectorSettingsWrapper.classList.add('is-active')
             populateConnectorSettings(linkView.model)
             elementSettingsWrapper.classList.remove('is-active')
             selectedLinkView = linkView;
             removeHighlight(mainGraph, mask, mainPaper)
+            // highlight the link
+            displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
         },
     },
 });
