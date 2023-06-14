@@ -887,6 +887,9 @@ const subseaSeparator = joint.dia.Element.define("subseaSeparator",
 const PLET = joint.dia.Element.define("PLET",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             innerRect: {
                 d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
                 a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
@@ -928,7 +931,34 @@ const PLET = joint.dia.Element.define("PLET",
                 strokeWidth: 0,
                 fill: 'none',
             },
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: {
+                            magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+                        }
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(0.16*w)',
+                    y: 'calc(h/2)',
 
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(0.87*w)',
+                    y: 'calc(h/ 2)'
+                },
+            }]
         }
     },
     {
@@ -956,6 +986,9 @@ const PLET = joint.dia.Element.define("PLET",
 const UTH = joint.dia.Element.define("UTH",
     {
         attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
             innerRect: {
                 d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
                 a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
@@ -999,6 +1032,34 @@ const UTH = joint.dia.Element.define("UTH",
                 fill: 'none',
             },
 
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: {
+                            magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
+                        }
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(0.13*w)',
+                    y: 'calc(h/2)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(0.84*w)',
+                    y: 'calc(h/ 2)'
+                },
+            }]
         }
     },
     {
