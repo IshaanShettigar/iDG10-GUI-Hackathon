@@ -1,7 +1,7 @@
-import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./elements.js"
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
-import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement } from "./utils.js"
+import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addTools } from "./utils.js"
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
@@ -38,24 +38,8 @@ elementButton.addEventListener("click", () => {
     }
 })
 
-
-const openFileButton = document.getElementById('open-file')
 const saveDiagramButton = document.getElementById('save-file')
 
-// file open
-openFileButton.addEventListener('click', (event) => {
-    // dynamically create 
-    var inputElement = document.createElement('input');
-    inputElement.type = 'file';
-    inputElement.addEventListener('change', function (event) {
-        // Call the openFile function with the selected file and the mainGraph argument
-        openFile(event, mainGraph);
-        // Remove the input element after the file has been selected
-        inputElement.remove();
-    });
-    // Simulate a click event on the input element
-    inputElement.click();
-});
 // save diagram
 saveDiagramButton.addEventListener('click', () => { saveGraph(mainGraph) });
 
@@ -415,7 +399,17 @@ MANIFOLD.resize(70, 35)
 MANIFOLD.addTo(toolGraph)
 assignCustomParams(MANIFOLD)
 
+const uth = new UTH();
+uth.position(15, 765);
+uth.resize(140, 82)
+uth.addTo(toolGraph)
+assignCustomParams(uth)
 
+const plet = new PLET();
+plet.position(10, 850);
+plet.resize(140, 82)
+plet.addTo(toolGraph)
+assignCustomParams(plet)
 
 /* Create the main paper and graph */
 const GRID_SIZE = 5;
@@ -529,7 +523,9 @@ const elementToolsMapping = {
     "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
 }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
@@ -751,10 +747,10 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
     var showConnectorSettings = new joint.linkTools.showLinkSettings();
     // var boundaryTool = new joint.linkTools.Boundary();
     console.log((linkView));
-    var toolsView = new joint.dia.ToolsView({
+    var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings]
     });
-    linkView.addTools(toolsView)
+    linkView.addTools(linkToolsView)
 })
 
 mainPaper.on('link:mouseenter', (linkView) => {
@@ -971,6 +967,48 @@ installationAndConstructionVessel.addEventListener('change', () => {
 //     let tx = targetPoint.x
 //     let ty = targetPoint.y
 // })
+
+
+// open file //
+const openFileButton = document.getElementById('open-file')
+
+// file open
+openFileButton.addEventListener('click', (event) => {
+    // dynamically create 
+    var inputElement = document.createElement('input');
+    inputElement.type = 'file';
+    inputElement.addEventListener('change', async function (event) {
+        // Call the openFile function with the selected file and the mainGraph argument
+        await openFile(event, mainGraph);
+        // Remove the input element after the file has been selected
+        inputElement.remove();
+        addTools(mainPaper, mainGraph)
+        console.log("populated tools");
+    });
+    // Simulate a click event on the input element
+    inputElement.click();
+
+
+    // create a linkToolsView, this is redundant code. consider creating a function to do this
+    // tried to do that but it would require a larger reorganization of the codebase
+    // var verticesTool = new joint.linkTools.Vertices();
+    // var removeTool = new joint.linkTools.Remove({
+    //     action: function (evt, linkView, toolView) {
+    //         linkView.model.remove({ ui: true, tool: toolView.cid });
+    //         connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+    //     }
+    // })
+    // // var segmentsTool = new joint.linkTools.Segments();
+    // var showConnectorSettings = new joint.linkTools.showLinkSettings();
+    // // var boundaryTool = new joint.linkTools.Boundary();
+    // console.log((linkView));
+    // var linkToolsView = new joint.dia.ToolsView({
+    //     tools: [verticesTool, removeTool, showConnectorSettings]
+    // });
+
+    // call the function to add tools to all the elements and links
+
+});
 
 
 //////////////// copy paste delete /////////////////
