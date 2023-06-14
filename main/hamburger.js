@@ -758,18 +758,6 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
 })
 
 mainPaper.on('link:mouseenter', (linkView) => {
-    // if (!linkView.hasTools()) {
-    //     var verticesTool = new joint.linkTools.Vertices();
-    //     // var segmentsTool = new joint.linkTools.Segments();
-    //     var showConnectorSettings = new joint.linkTools.showLinkSettings();
-
-    //     // var boundaryTool = new joint.linkTools.Boundary();
-    //     console.log((linkView));
-    //     var toolsView = new joint.dia.ToolsView({
-    //         tools: [verticesTool, showConnectorSettings]
-    //     });
-    //     linkView.addTools(toolsView)
-    // }
     linkView.showTools()
 })
 
