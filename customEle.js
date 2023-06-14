@@ -1,3 +1,4 @@
+import { displayHighlight } from "./main/utils.js";
 
 var namespace = joint.shapes
 var graph = new joint.dia.Graph({}, { cellNamespace: namespace });
@@ -12,6 +13,8 @@ var paper = new joint.dia.Paper({
     background: {
         color: "rgba(1,89,110,0.3)"
     },
+    defaultLink: () => new joint.shapes.standard.Link(),
+    linkPinning: false,
     cellViewNamespace: namespace,
 
     snapLabels: true,
@@ -26,8 +29,30 @@ var paper = new joint.dia.Paper({
     }
 });
 
+const portMarkUp = [{
+    tagName: 'circle',
+    selector: 'portBody'
+}]
+const portBodyInfo = {
+    magnet: true,
+    r: 10,
+    cx: "calc(1*w)",
+    cy: "calc(*w)",
+    fill: '#03071E'
+}
+
+var port = {
+    id: "portId",
+    attrs: {
+        portBody: portBodyInfo
+    },
+    markup: portMarkUp
+};
 var blueRect = joint.dia.Element.define('blueRect', {
     attrs: {
+        root: {
+            magnet: false // Adding this prevents the ports from linking to the root
+        },
         l1: {
             strokeWidth: 3,
             stroke: 'black',
@@ -79,11 +104,17 @@ var blueRect = joint.dia.Element.define('blueRect', {
         {
             tagName: 'rect',
             selector: 'outline'
-        }]
+        },
+    ]
 });
 
 
 var myElement1 = new blueRect();
+
+////// put in separate function that takes as input the port number
+// myElement1.addPort(port)
+// myElement1.portProp("portId", "attrs/portBody", { cx: "calc(1.25*w)", cy: "calc(h)" })
+/////////////////////////
 myElement1.attr({
     l1: {
         x1: 'calc(w)',
@@ -203,7 +234,10 @@ var yellowRect = joint.dia.Element.define('yellowRect', {
 
 var myElement2 = new yellowRect();
 myElement2.position(400, 200);
-myElement2.resize(100, 50)
+myElement2.resize(100, 50);
+myElement2.addPort(port)
+myElement2.portProp("portId", "attrs/portBody", { cx: "calc(1.25*h)", cy: "calc(5*w)" })
+console.log(myElement2)
 myElement2.addTo(graph)
 myElement2.attr({
     l1: {
@@ -712,43 +746,205 @@ ele7.position(900, 200)
 ele7.size(140, 82);
 ele7.addTo(graph)
 
-const ResizeTool = joint.elementTools.Control.extend({
-    children: [
-        {
-            tagName: "image",
-            selector: "handle",
-            attributes: {
-                cursor: "pointer",
-                width: 20,
-                height: 20,
-                "xlink:href":
-                    "https://assets.codepen.io/7589991/8725981_image_resize_square_icon.svg"
-            }
-        },
-        {
-            tagName: "rect",
-            selector: "extras",
-            attributes: {
+const UTH = joint.dia.Element.define("UTH",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#608bd1',
+            },
+            leftDashLine: {
+                x1: 'calc(0.15*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(0.1*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                strokeDasharray: '8 5',
+                fill: 'none',
+            },
+            I: {
+                d: `Mcalc(0.1*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.07*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.03*w),calc(0.4*h) Hcalc(0.14*w)
+                    Mcalc(0.03*w),calc(0.6*h) Hcalc(0.14*w)
+                    Mcalc(0.03*w),calc(0.6*h) Vcalc(0.56*h)
+                    Mcalc(0.03*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.14*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.14*w),calc(0.6*h) Vcalc(0.56*h)
+                    `,
+                stroke: "#000000",
+                strokeWidth: 1,
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 0,
+                fill: 'none',
+            },
 
-                fill: "none",
-                stroke: "#33334F",
-                "stroke-dasharray": "2,4",
-                rx: 5,
-                ry: 5
-            }
         }
-    ],
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftDashLine'
+            },
+            {
+                tagName: 'path',
+                selector: 'I'
+            }
+        ]
+    }
+)
+
+const ele8 = new UTH();
+ele8.position(1000, 300);
+ele8.resize(140, 82)
+ele8.addTo(graph)
+
+
+const PLET = joint.dia.Element.define("PLET",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#fac905',
+            },
+            rightLine: {
+                x1: 'calc(0.82*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(0.9*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+            I: {
+                d: `Mcalc(0.91*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.94*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.98*w),calc(0.4*h) Hcalc(0.87*w)
+                    Mcalc(0.98*w),calc(0.6*h) Hcalc(0.87*w)
+                    Mcalc(0.98*w),calc(0.6*h) Vcalc(0.56*h)
+                    Mcalc(0.98*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.87*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.87*w),calc(0.6*h) Vcalc(0.56*h)
+                    `,
+                stroke: "#000000",
+                strokeWidth: 1,
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 0,
+                fill: 'none',
+            },
+
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            },
+            {
+                tagName: 'path',
+                selector: 'I'
+            }
+        ]
+    }
+)
+
+const ele9 = new PLET();
+ele9.position(1000, 400);
+ele9.resize(140, 82)
+ele9.addTo(graph)
+
+
+const rotateChildren = [
+    {
+        tagName: "image",
+        selector: "handle",
+        attributes: {
+            cursor: "pointer",
+            x: -10,
+            y: -10,
+            width: 20,
+            height: 20,
+            "xlink:href": "https://assets.codepen.io/7589991/rotate.png"
+        }
+    },
+    {
+        tagName: "rect",
+        selector: "extras",
+        attributes: {
+            "pointer-events": "none",
+            fill: "none",
+            stroke: "#33334F",
+            "stroke-dasharray": "2,4",
+            rx: 5,
+            ry: 5
+        }
+    }
+]
+
+const setPositionAll = (view, coordinates, getPos) => {
+    const { model } = view;
+    const { width, height } = model.size();
+    const center = new g.Point(width / 2, height / 2);
+    const angle = center.angleBetween(coordinates, getPos(view));
+    model.rotate(Math.round(angle));
+}
+
+const getPositionIWST = (view) => {
+    const { model } = view;
+    const { width, height } = model.size()
+    return new g.Point(width / 2, -height / 2);
+}
+
+const RotateTool = joint.elementTools.Control.extend({
+    children: rotateChildren,
     getPosition: function (view) {
-        const model = view.model;
-        const { width, height } = model.size();
-        return { x: width, y: height };
+        return getPositionIWST(view)
     },
     setPosition: function (view, coordinates) {
-        const model = view.model;
-        model.resize(
-            Math.max(coordinates.x - 10, 1),
-            Math.max(coordinates.y - 10, 1)
-        );
+        setPositionAll(view, coordinates, this.getPosition)
     }
 });
 var removeButton = new joint.elementTools.Remove();
@@ -841,26 +1037,37 @@ joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
 
 var addLabelButton = new joint.elementTools.AddLabelButton();
 
+var mask = joint.highlighters.mask;
+var selectedCellView = null;
+paper.on("element:pointerclick", function (cellView) {
 
+    selectedCellView = displayHighlight(cellView, graph, mask, paper)
+    // Checking if the attributes are displayed
+    selectedCellView.showTools()
+    console.log(cellView.model.findView(paper).el.getBBox())
+    // const highlighterView = mainPaper.findViewBySelector(cellView, ".element-highlight");
+});
 
 
 var EletoolsView = new joint.dia.ToolsView({
-    tools: [new ResizeTool({ selector: 'outline' }), removeButton, addLabelButton]
+    tools: [new RotateTool({ selector: 'outline' }), removeButton, addLabelButton]
 });
 
 var element1View = myElement1.findView(paper);
 element1View.addTools(EletoolsView);
+var element2View = ele7.findView(paper);
+element2View.addTools(EletoolsView);
 
 // var element2View = myElement2.findView(paper);
 // element2View.addTools(EletoolsView);
 // // note the stroke width is not relative
 
-const element5View = ele5.findView(paper);
-element5View.addTools(EletoolsView);
+// const element5View = ele5.findView(paper);
+// element5View.addTools(EletoolsView);
 
-paper.on('element:mouseenter', function (elementView) {
-    element5View.showTools();
-})
-paper.on('element:mouseleave', function (elementView) {
-    element5View.hideTools();
-})
+// paper.on('element:mouseenter', function (elementView) {
+//     element5View.showTools();
+// })
+// paper.on('element:mouseleave', function (elementView) {
+//     element5View.hideTools();
+// })

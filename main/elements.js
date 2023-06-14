@@ -884,4 +884,143 @@ const subseaSeparator = joint.dia.Element.define("subseaSeparator",
     }
 )
 
-export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform }
+const PLET = joint.dia.Element.define("PLET",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#fac905',
+            },
+            rightLine: {
+                x1: 'calc(0.82*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(0.9*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                fill: 'none',
+            },
+            I: {
+                d: `Mcalc(0.91*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.94*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.98*w),calc(0.4*h) Hcalc(0.87*w)
+                    Mcalc(0.98*w),calc(0.6*h) Hcalc(0.87*w)
+                    Mcalc(0.98*w),calc(0.6*h) Vcalc(0.56*h)
+                    Mcalc(0.98*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.87*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.87*w),calc(0.6*h) Vcalc(0.56*h)
+                    `,
+                stroke: "#000000",
+                strokeWidth: 1,
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 0,
+                fill: 'none',
+            },
+
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'rightLine'
+            },
+            {
+                tagName: 'path',
+                selector: 'I'
+            }
+        ]
+    }
+)
+
+const UTH = joint.dia.Element.define("UTH",
+    {
+        attrs: {
+            innerRect: {
+                d: `Mcalc(0.8*w),calc(0.78*h) hcalc(-0.6*w) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},-${borderRadiusUTA} vcalc(-0.45*h) 
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},-${borderRadiusUTA} hcalc(0.6*w)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 ${borderRadiusUTA},${borderRadiusUTA} vcalc(0.45*h)
+                a${borderRadiusUTA},${borderRadiusUTA} 0 0 1 -${borderRadiusUTA},${borderRadiusUTA}`,
+                stroke: '#4d71ab',
+                strokeWidth: 2,
+                fill: '#608bd1',
+            },
+            leftDashLine: {
+                x1: 'calc(0.15*w)',
+                y1: 'calc(0.5*h)',
+                x2: 'calc(0.1*w)',
+                y2: 'calc(0.5*h)',
+                stroke: 'black',
+                strokeWidth: 2,
+                strokeDasharray: '8 5',
+                fill: 'none',
+            },
+            I: {
+                d: `Mcalc(0.1*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.07*w),calc(0.4*h) Vcalc(0.6*h)
+                    Mcalc(0.03*w),calc(0.4*h) Hcalc(0.14*w)
+                    Mcalc(0.03*w),calc(0.6*h) Hcalc(0.14*w)
+                    Mcalc(0.03*w),calc(0.6*h) Vcalc(0.56*h)
+                    Mcalc(0.03*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.14*w),calc(0.4*h) Vcalc(0.44*h)
+                    Mcalc(0.14*w),calc(0.6*h) Vcalc(0.56*h)
+                    `,
+                stroke: "#000000",
+                strokeWidth: 1,
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 0,
+                fill: 'none',
+            },
+
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'path',
+                selector: 'innerRect'
+            },
+            {
+                tagName: 'line',
+                selector: 'leftDashLine'
+            },
+            {
+                tagName: 'path',
+                selector: 'I'
+            }
+        ]
+    }
+)
+
+export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET }
