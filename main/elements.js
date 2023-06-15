@@ -598,6 +598,14 @@ const UTA = joint.dia.Element.define("UTA",
                 strokeWidth: 2,
                 fill: '#608bd1',
             },
+            label: {
+                text: "UTA",
+                fontSize: 20,
+                fontFamily: "Arial",
+                x: "calc(0.27*w)",
+                y: "calc(0.6*h)",
+                fill: "#ffffff",
+            },
             rightLine: {
                 x1: 'calc(0.82*w)',
                 y1: 'calc(0.5*h)',
@@ -670,6 +678,10 @@ const UTA = joint.dia.Element.define("UTA",
             {
                 tagName: 'line',
                 selector: 'rightLine'
+            },
+            {
+                tagName: 'text',
+                selector: 'label'
             },
             {
                 tagName: 'line',
@@ -1022,6 +1034,14 @@ const UTH = joint.dia.Element.define("UTH",
                 stroke: "#000000",
                 strokeWidth: 1,
             },
+            label: {
+                text: "UTH",
+                fontSize: 25,
+                fontFamily: "Arial",
+                x: "calc(0.3*w)",
+                y: "calc(0.6*h)",
+                fill: "#ffffff",
+            },
             outline: {
                 x: 0,
                 y: 0,
@@ -1079,6 +1099,10 @@ const UTH = joint.dia.Element.define("UTH",
             {
                 tagName: 'path',
                 selector: 'I'
+            },
+            {
+                tagName: 'text',
+                selector: 'label'
             }
         ]
     }
