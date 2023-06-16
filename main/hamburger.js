@@ -931,6 +931,7 @@ connector.addEventListener('change', () => {
             const newLink = standardLink();
             newLink.source(model.attributes.source)
             newLink.target(model.attributes.target)
+            newLink.attributes.vertices = model.attributes.vertices
             newLink.addTo(mainGraph)
             for (let i = 1; i <= 18; i += 1) {
                 newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
@@ -975,6 +976,7 @@ connector.addEventListener('change', () => {
             const newLink = new RigidPipelinePiP_PR();
             newLink.source(model.attributes.source)
             newLink.target(model.attributes.target)
+            newLink.attributes.vertices = model.attributes.vertices
             newLink.addTo(mainGraph)
             // copy the selectedLinkView.models attributes to the new rigid Pips link
 
