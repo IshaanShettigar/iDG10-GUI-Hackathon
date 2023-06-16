@@ -95,4 +95,4 @@ const openFile = async function (event, mainGraph) {
     // need to iterate over all elements and links and add the linktools and elementtools
 }
 
-export { saveGraph, openFile }
+export { saveGraph, openFile, fixFormat }

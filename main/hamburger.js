@@ -1,10 +1,21 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
-import { saveGraph, openFile } from "./persist.js"
-import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad } from "./utils.js"
+import { saveGraph, openFile, fixFormat } from "./persist.js"
+import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping } from "./utils.js"
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
+
+window.onload = () => {
+    const localStorageGraph = localStorage.getItem('recentGraph')
+    if (localStorageGraph) {
+        console.log(localStorageGraph);
+        mainGraph.fromJSON(JSON.parse(localStorageGraph));
+        /* Need to load all the tools */
+        addToolsOnFileLoad(mainPaper, mainGraph)
+    }
+
+}
 
 /* Left Hamburger Menu */
 let subMenuWrap = document.getElementById("sub-menu-wrap")
@@ -87,6 +98,7 @@ const cancelClearBG = document.getElementById("cancel-clear-bg")
 clearCanvas.addEventListener("click", function () {
     clearCanvasModal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
+    localStorage.removeItem('recentGraph')
 });
 
 
@@ -428,7 +440,7 @@ assignCustomParams(plem)
 const standardLink = () => {
     var stdLink = new joint.shapes.standard.Link({
         router: { name: 'normal' },
-        connector: { name: 'rounded' },
+        connector: { name: 'curve' },
         attrs: {
             line: {
                 stroke: "#000000",
@@ -458,21 +470,6 @@ const standardLink = () => {
             parameter18: null,
         }
     })
-
-    // to access parameters use model.attributes.attrs[`parameter{Number}`]
-
-    // adding link tools, cant add here
-    // var verticesTool = new joint.linkTools.Vertices();
-    // var segmentsTool = new joint.linkTools.Segments();
-    // var toolsView = new joint.dia.ToolsView({
-    //     tools: [
-    //         verticesTool,
-    //         segmentsTool
-    //     ]
-    // });
-    // var stdLinkView = stdLink.findView(mainPaper);
-    // stdLinkView.addTools(toolsView)
-    // newLinkView.hideTools();
     return stdLink
 }
 /* Create the main paper and graph */
@@ -533,19 +530,19 @@ gridSizeInput.addEventListener("change", function () {
 0: RotateControlTool
 1-4: ResizeTool
 */
-const elementToolsMapping = {
-    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
-}
+// const elementToolsMapping = {
+//     "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+//     "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+// }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
 no matter which place on the element the user starts the drag, the drop on the mainPaper happens in such a way that
@@ -968,6 +965,7 @@ connector.addEventListener('change', () => {
             model.attributes.attrs.line["stroke"] = CONNECTOR_ATTRS[connector.value]["stroke"]
             model.attributes.attrs.line["strokeWidth"] = CONNECTOR_ATTRS[connector.value]["strokeWidth"]
             model.attributes.attrs.line["strokeLineJoin"] = null
+            // displayLinkHighlight(selectedLinkView, mainGraph, mask, mainPaper)
 
             if (CONNECTOR_ATTRS[connector.value]["strokeDasharray"]) {
                 model.attributes.attrs.line["strokeDasharray"] = CONNECTOR_ATTRS[connector.value]["strokeDasharray"]
@@ -1090,7 +1088,12 @@ openFileButton.addEventListener('click', (event) => {
 
 });
 
-
+mainGraph.on('change add remove', () => {
+    var graphjson = mainGraph.toJSON();
+    var fixedGraphJson = fixFormat(graphjson)
+    localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
+    console.log("Saved to local storage");
+})
 //////////////// copy paste delete /////////////////
 var copiedCoordinates = null;
 var copiedCellView = null;
