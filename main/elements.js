@@ -453,7 +453,7 @@ const platform = joint.dia.Element.define(
                 x1: "calc(0.79*w)",
                 y1: "calc(1*h)",
                 x2: "calc(0.79*w)",
-                y2: "calc(2.5*h)",
+                y2: "calc(2*h)",
                 strokeWidth: 3,
                 stroke: "red",
             },
@@ -461,7 +461,7 @@ const platform = joint.dia.Element.define(
                 x1: "calc(0.72*w)",
                 y1: "calc(1*h)",
                 x2: "calc(0.72*w)",
-                y2: "calc(2.5*h)",
+                y2: "calc(2*h)",
                 strokeWidth: 3,
                 stroke: "blue",
             },
@@ -469,7 +469,7 @@ const platform = joint.dia.Element.define(
                 x1: "calc(0.245*w)",
                 y1: "calc(1*h)",
                 x2: "calc(0.245*w)",
-                y2: "calc(2.5*h)",
+                y2: "calc(2*h)",
                 strokeWidth: 3,
                 stroke: "green",
             },
@@ -498,7 +498,7 @@ const platform = joint.dia.Element.define(
             bottom_r1: {
                 x: "calc(0.65*w)",
                 y: "calc(h)",
-                width: "calc(0.8*h)", //both w & h are as we need a square, using h as ref here
+                width: "calc(0.2*w)", //both w & h are as we need a square, using h as ref here
                 height: "calc(0.8*h)",
                 strokeWidth: 1,
                 stroke: "black",
@@ -507,7 +507,7 @@ const platform = joint.dia.Element.define(
             bottom_r2: {
                 x: "calc(0.15*w)",
                 y: "calc(h)",
-                width: "calc(0.8*h)", //both w & h are as we need a square, using h as ref here
+                width: "calc(0.2*w)", //both w & h are as we need a square, using h as ref here
                 height: "calc(0.8*h)",
                 strokeWidth: 1,
                 stroke: "black",
