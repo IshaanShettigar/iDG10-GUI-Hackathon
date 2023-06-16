@@ -1,4 +1,4 @@
-import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET } from "./elements.js"
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
 import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad } from "./utils.js"
@@ -350,7 +350,7 @@ var toolPaper = new joint.dia.Paper({
     el: document.getElementById('tool-paper-div'),
     model: toolGraph,
     width: 158,
-    height: 1000,
+    height: 1060,
     background: {
         color: "rgba(255,255,255,0.75)"
     },
@@ -413,6 +413,11 @@ plet.resize(140, 82)
 plet.addTo(toolGraph)
 assignCustomParams(plet)
 
+const fpso = new FPSO()
+fpso.position(32, 1000)
+fpso.resize(100, 35)
+fpso.addTo(toolGraph)
+assignCustomParams(fpso)
 
 const standardLink = () => {
     var stdLink = new joint.shapes.standard.Link({
@@ -531,7 +536,8 @@ const elementToolsMapping = {
     "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
 }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,

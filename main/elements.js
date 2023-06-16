@@ -1108,4 +1108,134 @@ const UTH = joint.dia.Element.define("UTH",
     }
 )
 
-export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET }
+const FPSO = joint.dia.Element.define(
+    "FPSO",
+    {
+        attrs: {
+            root: {
+                magnet: false // Adding this prevents the ports from linking to the root
+            },
+            left_triangle: {
+                points: "0 0 -calc(0.2*w) 0 0 calc(h) ",
+                stroke: "#000000",
+                fill: "#035afc",
+            },
+            right_triangle: {
+                points: "calc(w) 0 calc(1.2*w) 0 calc(w) calc(h) ",
+                stroke: "#000000",
+                fill: "#035afc",
+            },
+            yellow_projection: {
+                points: "-calc(0.06*w) 0  -calc(0.03*w) -calc(h) calc(0.03*w) -calc(h)   calc(0.06*w) 0",
+                stroke: "#000000",
+                fill: "#fac905",
+
+            },
+            yellow_big_rect: {
+                points: "calc(0.1*w) 0 calc(0.1*w) -calc(0.55*h) calc(0.75*w) -calc(0.55*h) calc(0.75*w) 0",
+                stroke: "#000000",
+                fill: "#fac905",
+            },
+            no_fill_polygon: {
+                points: "calc(0.61*w) -calc(0.8*h) calc(0.85*w) -calc(1.70*h) calc(0.9*w) -calc(1.55*h) calc(0.67*w) -calc(0.65*h)",
+                stroke: "#000000",
+                fill: "none"
+            },
+            yellow_small_rect: {
+                points: "calc(0.4*w) -calc(0.55*h) calc(0.4*w) -calc(0.8*h) calc(0.67*w) -calc(0.8*h) calc(0.67*w) -calc(0.55*h)",
+                stroke: "#000000",
+                fill: "#fac905",
+            },
+            vertical_black_line: {
+                stroke: "#000000",
+                x1: "calc(0.86*w)",
+                y1: "-calc(1.55*h)",
+                x2: "calc(0.86*w)",
+                y2: "-calc(0.8*h)",
+                strokeWidth: 2
+            },
+            outline: {
+                x: 0,
+                y: 0,
+                width: "calc(w)",
+                height: "calc(h)",
+                strokeWidth: 1,
+                stroke: "#000000",
+                fill: "#035afc",
+            },
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(0.2*w)',
+                    y: 'calc(h)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(0.7*w)',
+                    y: 'calc(h)'
+                },
+            }, {
+                id: 'p3',
+                group: 'main',
+                args: {
+                    x: 'calc(0.85*w)',
+                    y: 'calc(h)'
+                }
+            }]
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: "rect",
+                selector: "outline",
+            },
+            {
+                tagName: "polygon",
+                selector: "left_triangle"
+            },
+            {
+                tagName: "polygon",
+                selector: "right_triangle"
+            },
+            {
+                tagName: "polygon",
+                selector: "yellow_projection"
+            },
+            {
+                tagName: "polygon",
+                selector: "yellow_big_rect"
+            },
+            {
+                tagName: "polygon",
+                selector: "no_fill_polygon"
+            },
+            {
+                tagName: "polygon",
+                selector: "yellow_small_rect"
+            },
+            {
+                tagName: "line",
+                selector: "vertical_black_line",
+            },
+
+        ],
+    }
+);
+
+
+export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO }
