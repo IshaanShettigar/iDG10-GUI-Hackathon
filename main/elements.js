@@ -1237,5 +1237,114 @@ const FPSO = joint.dia.Element.define(
     }
 );
 
+const PLEM = joint.dia.Element.define("PLEM",
+    {
+        attrs: {
+            root: {
+                magnet: false
+            },
+            horizontal_line: {
+                x1: '-calc(0.15*w)',
+                y1: 'calc(0.7*h)',
+                x2: 'calc(w)',
+                y2: 'calc(0.7*h)',
+                stroke: 'green',
+                strokeWidth: 3,
+            },
+            vertical_line: {
+                x1: 'calc(0.6*w)',
+                y1: '-calc(0.15*h)',
+                x2: 'calc(0.6*w)',
+                y2: 'calc(0.7*h)',
+                stroke: "green",
+                strokeWidth: 3,
+            },
+            I1: {
+                d: `Mcalc(0.45*w),-calc(0.15*h) Hcalc(0.75*w) 
+                    Mcalc(0.45*w),-calc(0.21*h) Hcalc(0.75*w)
+                    Mcalc(0.75*w),-calc(0.3*h) V-calc(0.06*h)
+                    Mcalc(0.45*w),-calc(0.3*h) V-calc(0.06*h)
+                    Mcalc(0.75*w),-calc(0.3*h) Hcalc(0.69*w)
+                    Mcalc(0.75*w),-calc(0.06*h) Hcalc(0.69*w)
+                    Mcalc(0.45*w),-calc(0.06*h) Hcalc(0.51*w)
+                    Mcalc(0.45*w),-calc(0.3*h) Hcalc(0.51*w)`,
+                stroke: 'black',
+                strokeWidth: 1
+            },
+            I2: {
+                d: `M-calc(0.15*w),calc(0.55*h) Vcalc(0.85*h)
+                    M-calc(0.21*w),calc(0.55*h) Vcalc(0.85*h)
+                    M-calc(0.06*w),calc(0.55*h) H-calc(0.3*w)
+                    M-calc(0.06*w),calc(0.85*h) H-calc(0.3*w)
+                    M-calc(0.3*w),calc(0.85*h) Vcalc(0.79*h)
+                    M-calc(0.06*w),calc(0.85*h) Vcalc(0.79*h)
+                    M-calc(0.3*w),calc(0.55*h) Vcalc(0.61*h)
+                    M-calc(0.06*w),calc(0.55*h) Vcalc(0.61*h)
 
-export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO }
+                    `,
+                stroke: 'black',
+                strokeWidth: 1
+            },
+            outline: {
+                height: 'calc(h)',
+                width: 'calc(w)',
+                stroke: 'black',
+                strokeWidth: 1,
+                fill: "#fac905"
+            },
+        },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 0,
+                    y: 'calc(0.7*h)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(0.6*w)',
+                    y: 0
+                },
+            }]
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'rect',
+                selector: 'outline'
+            },
+            {
+                tagName: 'line',
+                selector: 'horizontal_line'
+            },
+            {
+                tagName: 'path',
+                selector: 'I1'
+            },
+            {
+                tagName: 'path',
+                selector: 'I2'
+            },
+            {
+                tagName: 'line',
+                selector: 'vertical_line'
+            }
+        ]
+    }
+)
+
+
+export { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM }

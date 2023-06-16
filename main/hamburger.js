@@ -1,4 +1,4 @@
-import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO } from "./elements.js"
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
 import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad } from "./utils.js"
@@ -350,7 +350,7 @@ var toolPaper = new joint.dia.Paper({
     el: document.getElementById('tool-paper-div'),
     model: toolGraph,
     width: 158,
-    height: 1060,
+    height: 1300,
     background: {
         color: "rgba(255,255,255,0.75)"
     },
@@ -418,6 +418,12 @@ fpso.position(32, 1000)
 fpso.resize(100, 35)
 fpso.addTo(toolGraph)
 assignCustomParams(fpso)
+
+const plem = new PLEM()
+plem.position(50, 1100)
+plem.resize(65, 65)
+plem.addTo(toolGraph)
+assignCustomParams(plem)
 
 const standardLink = () => {
     var stdLink = new joint.shapes.standard.Link({
@@ -537,7 +543,9 @@ const elementToolsMapping = {
     "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+
 }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
@@ -1156,10 +1164,13 @@ var dragStartPosition = null;
 mainPaper.on("blank:pointerdown", function (evt, x, y) {
     var scale = mainPaper.scale()
     dragStartPosition = { x: x * scale.sx, y: y * scale.sy };
+    document.getElementById('main-paper-div').style.cursor = "move"
 })
 
 mainPaper.on("cell:pointerup blank:pointerup", function (cellView, x, y) {
     dragStartPosition = null;
+    document.getElementById('main-paper-div').style.cursor = "auto"
+
     // console.log(mainPaper.translate())
 })
 
