@@ -385,7 +385,7 @@ assignCustomParams(PWST)
 
 const PL = new platform()
 PL.position(30, 480);
-PL.size(80, 20)
+PL.size(100, 25)
 PL.addTo(toolGraph)
 assignCustomParams(PL)
 
@@ -545,7 +545,6 @@ const elementToolsMapping = {
     "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
-
 }
 
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,

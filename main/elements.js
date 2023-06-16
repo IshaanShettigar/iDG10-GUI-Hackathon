@@ -450,17 +450,17 @@ const platform = joint.dia.Element.define(
                 magnet: false // Adding this prevents the ports from linking to the root
             },
             red_line: {
-                x1: "calc(0.79*w)",
+                x1: "calc(0.8*w)",
                 y1: "calc(1*h)",
-                x2: "calc(0.79*w)",
+                x2: "calc(0.8*w)",
                 y2: "calc(2*h)",
                 strokeWidth: 3,
                 stroke: "red",
             },
             blue_line: {
-                x1: "calc(0.72*w)",
+                x1: "calc(0.7*w)",
                 y1: "calc(1*h)",
-                x2: "calc(0.72*w)",
+                x2: "calc(0.7*w)",
                 y2: "calc(2*h)",
                 strokeWidth: 3,
                 stroke: "blue",
@@ -533,6 +533,39 @@ const platform = joint.dia.Element.define(
                 fill: "#035afc",
             },
         },
+        ports: {
+            groups: {
+                main: {
+                    position: 'absolute',
+                    attrs: {
+                        circle: portDetails
+                    }
+                },
+            },
+            items: [{
+                id: 'p1',
+                group: 'main',
+                args: {
+                    x: 'calc(0.245*w)',
+                    y: 'calc(h)',
+
+                },
+            }, {
+                id: 'p2',
+                group: 'main',
+                args: {
+                    x: 'calc(0.7*w)',
+                    y: 'calc(h)'
+                },
+            }, {
+                id: 'p3',
+                group: 'main',
+                args: {
+                    x: 'calc(0.8*w)',
+                    y: 'calc(h)'
+                }
+            }]
+        }
     },
     {
         markup: [
