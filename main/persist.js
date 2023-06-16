@@ -75,22 +75,23 @@ const saveGraph = function (mainGraph) {
     }
 }
 
-const openFile = function (event, mainGraph) {
-    var file = event.target.files[0];
-    // console.log(`file ${file}`);
-    // Create a new FileReader object
-    var reader = new FileReader();
-    // Add an event listener to the FileReader object
-    reader.addEventListener("load", function () {
-        // Parse the file contents as JSON
-        var fileContents = JSON.parse(reader.result);
-        // Log the parsed JSON to the console
-        // console.log(fileContents);
-        mainGraph.fromJSON(fileContents);
-    });
-    // Read the selected file as text
-    reader.readAsText(file);
-
+const openFile = async function (event, mainGraph) {
+    return new Promise((resolve) => {
+        var file = event.target.files[0];
+        // Create a new FileReader object
+        var reader = new FileReader();
+        // Add an event listener to the FileReader object
+        reader.addEventListener("load", async function () {
+            // Parse the file contents as JSON
+            var fileContents = JSON.parse(reader.result);
+            // Log the parsed JSON to the console
+            // console.log(fileContents);
+            mainGraph.fromJSON(fileContents);
+            resolve()
+        });
+        // Read the selected file as text
+        reader.readAsText(file);
+    })
     // need to iterate over all elements and links and add the linktools and elementtools
 }
 

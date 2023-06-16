@@ -1,7 +1,7 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile } from "./persist.js"
-import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addTools } from "./utils.js"
+import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad } from "./utils.js"
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 // window.onload = () => {
@@ -87,7 +87,6 @@ const cancelClearBG = document.getElementById("cancel-clear-bg")
 clearCanvas.addEventListener("click", function () {
     clearCanvasModal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
-
 });
 
 
@@ -111,6 +110,8 @@ cancelClearBG.addEventListener("click", closeModal)
 confirmClearBG.addEventListener("click", function () {
     mainGraph.clear()
     closeModal()
+    connectorSettingsWrapper.classList.remove('is-active')
+    elementSettingsWrapper.classList.remove('is-active')
 })
 
 /* Code to highlight active grid color in settings modals */
@@ -274,6 +275,7 @@ const populateConnectorSettings = (model) => {
 
 
 /* Creating the custom rigid pipelinepip - pr link  */
+/* Didnt have to do this for the other links as their properties are simpler */
 const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
     attrs: {
         line: {
@@ -411,6 +413,57 @@ plet.resize(140, 82)
 plet.addTo(toolGraph)
 assignCustomParams(plet)
 
+
+const standardLink = () => {
+    var stdLink = new joint.shapes.standard.Link({
+        router: { name: 'normal' },
+        connector: { name: 'rounded' },
+        attrs: {
+            line: {
+                stroke: "#000000",
+                strokeWidth: 3
+            },
+            connector: "Umbillical",
+            installationAndConstructionVessel: null,
+            subseaIntervention: null,
+            parameter1: null,
+            parameter1: null,
+            parameter2: null,
+            parameter3: null,
+            parameter4: null,
+            parameter5: null,
+            parameter6: null,
+            parameter7: null,
+            parameter8: null,
+            parameter9: null,
+            parameter10: null,
+            parameter11: null,
+            parameter12: null,
+            parameter13: null,
+            parameter14: null,
+            parameter15: null,
+            parameter16: null,
+            parameter17: null,
+            parameter18: null,
+        }
+    })
+
+    // to access parameters use model.attributes.attrs[`parameter{Number}`]
+
+    // adding link tools, cant add here
+    // var verticesTool = new joint.linkTools.Vertices();
+    // var segmentsTool = new joint.linkTools.Segments();
+    // var toolsView = new joint.dia.ToolsView({
+    //     tools: [
+    //         verticesTool,
+    //         segmentsTool
+    //     ]
+    // });
+    // var stdLinkView = stdLink.findView(mainPaper);
+    // stdLinkView.addTools(toolsView)
+    // newLinkView.hideTools();
+    return stdLink
+}
 /* Create the main paper and graph */
 const GRID_SIZE = 5;
 const GRID_NAME = "fixedDot";
@@ -436,54 +489,7 @@ var mainPaper = new joint.dia.Paper({
     },
     linkPinning: false,
     defaultLink: () => {
-        var stdLink = new joint.shapes.standard.Link({
-            router: { name: 'normal' },
-            connector: { name: 'rounded' },
-            attrs: {
-                line: {
-                    stroke: "#000000",
-                    strokeWidth: 3
-                },
-                connector: "Umbillical",
-                installationAndConstructionVessel: null,
-                subseaIntervention: null,
-                parameter1: null,
-                parameter1: null,
-                parameter2: null,
-                parameter3: null,
-                parameter4: null,
-                parameter5: null,
-                parameter6: null,
-                parameter7: null,
-                parameter8: null,
-                parameter9: null,
-                parameter10: null,
-                parameter11: null,
-                parameter12: null,
-                parameter13: null,
-                parameter14: null,
-                parameter15: null,
-                parameter16: null,
-                parameter17: null,
-                parameter18: null,
-            }
-        })
-
-        // to access parameters use model.attributes.attrs[`parameter{Number}`]
-
-        // adding link tools, cant add here
-        // var verticesTool = new joint.linkTools.Vertices();
-        // var segmentsTool = new joint.linkTools.Segments();
-        // var toolsView = new joint.dia.ToolsView({
-        //     tools: [
-        //         verticesTool,
-        //         segmentsTool
-        //     ]
-        // });
-        // var stdLinkView = stdLink.findView(mainPaper);
-        // stdLinkView.addTools(toolsView)
-        // newLinkView.hideTools();
-        return stdLink
+        return standardLink()
     },
     // options: {
     //     defaultRouter: {
@@ -912,7 +918,38 @@ connector.addEventListener('change', () => {
         selectedLinkView.model.attributes.attrs['connector'] = connector.value;
         /* Insert logic to change connector attributes based on type chosen */
         let model = selectedLinkView.model
-        console.log(selectedLinkView.model);
+        console.log("LINK MODEL", model);
+        if (model.attributes.type == "RigidPipelinePiP_PR") {
+            // create new instacne of std link and remove the old link
+            console.log(`Changing from RigidPipelinePiP_PR to ${connector.value}`);
+            const newLink = standardLink();
+            newLink.source(model.attributes.source)
+            newLink.target(model.attributes.target)
+            newLink.addTo(mainGraph)
+            for (let i = 1; i <= 18; i += 1) {
+                newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+            }
+            newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
+            newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+            model.remove()
+            selectedLinkView = newLink.findView(mainPaper)
+            model = selectedLinkView.model
+            /* Add the Tools to the new link */
+            var verticesTool = new joint.linkTools.Vertices();
+            var removeTool = new joint.linkTools.Remove({
+                action: function (evt, linkView, toolView) {
+                    linkView.model.remove({ ui: true, tool: toolView.cid });
+                    connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+                }
+            })
+            // var segmentsTool = new joint.linkTools.Segments();
+            var showConnectorSettings = new joint.linkTools.showLinkSettings();
+            // var boundaryTool = new joint.linkTools.Boundary();
+            var linkToolsView = new joint.dia.ToolsView({
+                tools: [verticesTool, removeTool, showConnectorSettings]
+            });
+            selectedLinkView.addTools(linkToolsView)
+        }
         if (connector.value != 'Rigid-Pipeline-PiP PR') {
             model.attributes.attrs.line["stroke"] = CONNECTOR_ATTRS[connector.value]["stroke"]
             model.attributes.attrs.line["strokeWidth"] = CONNECTOR_ATTRS[connector.value]["strokeWidth"]
@@ -927,11 +964,39 @@ connector.addEventListener('change', () => {
         }
         else {
             console.log("Add functionality to change link to rigidpipeline pip pr");
-            // const newLink = new RigidPipelinePiP_PR();
-            // model.attributes.attrs['central'] = newLink.attributes.attrs['central']
-            // model.attributes.attrs['line'] = newLink.attributes.attrs['line']
-            // model.attributes.attrs['outline'] = newLink.attributes.attrs['outline']
-            // selectedLinkView.model = newLink;
+            // model.attributes.source
+
+            const newLink = new RigidPipelinePiP_PR();
+            newLink.source(model.attributes.source)
+            newLink.target(model.attributes.target)
+            newLink.addTo(mainGraph)
+            // copy the selectedLinkView.models attributes to the new rigid Pips link
+
+            for (let i = 1; i <= 18; i += 1) {
+                newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+            }
+            newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
+            newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+
+            console.log(newLink);
+            console.log(model);
+            model.remove()
+            selectedLinkView = newLink.findView(mainPaper)
+            /* Add the Tools to the new link */
+            var verticesTool = new joint.linkTools.Vertices();
+            var removeTool = new joint.linkTools.Remove({
+                action: function (evt, linkView, toolView) {
+                    linkView.model.remove({ ui: true, tool: toolView.cid });
+                    connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+                }
+            })
+            // var segmentsTool = new joint.linkTools.Segments();
+            var showConnectorSettings = new joint.linkTools.showLinkSettings();
+            // var boundaryTool = new joint.linkTools.Boundary();
+            var linkToolsView = new joint.dia.ToolsView({
+                tools: [verticesTool, removeTool, showConnectorSettings]
+            });
+            selectedLinkView.addTools(linkToolsView)
         }
         selectedLinkView.render()
     }
@@ -982,7 +1047,7 @@ openFileButton.addEventListener('click', (event) => {
         await openFile(event, mainGraph);
         // Remove the input element after the file has been selected
         inputElement.remove();
-        addTools(mainPaper, mainGraph)
+        addToolsOnFileLoad(mainPaper, mainGraph)
         console.log("populated tools");
     });
     // Simulate a click event on the input element
@@ -1038,7 +1103,7 @@ document.addEventListener('mousemove', (event) => {
 document.addEventListener("keydown", function (event) {
 
     if (event.keyCode === 86 && event.ctrlKey) {
-        console.log(event);
+        // console.log(event);
         pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
         // copiedCoordinates = null;
         // createCopy = null;
@@ -1071,6 +1136,10 @@ $('#zoom-in').click(function () {
 $('#zoom-out').click(function () {
     currentScale -= scaleIncrement
     mainPaper.scale(currentScale, currentScale)
+})
+$('#reset-zoom').click(function () {
+    currentScale = 1
+    mainPaper.scale(1, 1)
 })
 
 

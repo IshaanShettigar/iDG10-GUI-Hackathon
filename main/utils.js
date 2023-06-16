@@ -1,3 +1,4 @@
+import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 /* mainGraph.getCells() gets all the links as well as elements on the mainGraph */
 const removeHighlight = (mainGraph, mask, mainPaper) => {
@@ -106,4 +107,81 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
     }
 }
 
-export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement }
+const elementToolsMapping = {
+    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+}
+
+const addToolsOnFileLoad = (mainPaper, mainGraph) => {
+    console.log("in addTools");
+
+    var verticesTool = new joint.linkTools.Vertices();
+    var removeTool = new joint.linkTools.Remove({
+        action: function (evt, linkView, toolView) {
+            linkView.model.remove({ ui: true, tool: toolView.cid });
+            connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+        }
+    })
+    // var segmentsTool = new joint.linkTools.Segments();
+    var showConnectorSettings = new joint.linkTools.showLinkSettings();
+    // var boundaryTool = new joint.linkTools.Boundary();
+    var linkToolsView = new joint.dia.ToolsView({
+        tools: [verticesTool, removeTool, showConnectorSettings]
+    });
+    console.log("Cells ", mainGraph.getCells())
+    mainGraph.getCells().forEach(function (cell) {
+        console.log("HI");
+        // IF The Cell is a Link
+        if (cell.isLink()) {
+            // load link tools
+            var verticesTool = new joint.linkTools.Vertices();
+            var removeTool = new joint.linkTools.Remove({
+                action: function (evt, linkView, toolView) {
+                    linkView.model.remove({ ui: true, tool: toolView.cid });
+                    connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+                }
+            })
+            var showConnectorSettings = new joint.linkTools.showLinkSettings();
+            var linkToolsView = new joint.dia.ToolsView({
+                tools: [verticesTool, removeTool, showConnectorSettings]
+            });
+            var linkView = cell.findView(mainPaper)
+            linkView.addTools(linkToolsView)
+            console.log(cell);
+        }
+        // If the cell is an element
+        else if (cell.isElement()) {
+            // load element tools
+            var RotateTool = elementToolsMapping[cell.attributes.type][0]
+            var ResizeToolBottomLeft = elementToolsMapping[cell.attributes.type][1]
+            var ResizeToolBottomRight = elementToolsMapping[cell.attributes.type][2]
+            var ResizeToolTopLeft = elementToolsMapping[cell.attributes.type][3]
+            var ResizeToolTopRight = elementToolsMapping[cell.attributes.type][4]
+
+            var EletoolsView = new joint.dia.ToolsView({
+                tools: [
+
+                    new RotateTool({ selector: "root" }),
+                    new ResizeToolBottomLeft({ selector: 'outline' }),
+                    new ResizeToolBottomRight({ selector: 'outline' }),
+                    new ResizeToolTopLeft({ selector: 'outline' }),
+                    new ResizeToolTopRight({ selector: 'outline' }),
+
+                ],
+            });
+
+            var elementView = cell.findView(mainPaper)
+            elementView.addTools(EletoolsView)
+            elementView.hideTools()
+
+        }
+    });
+}
+export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad }
