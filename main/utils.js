@@ -1,5 +1,19 @@
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
+const elementToolsMapping = {
+    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
+}
+
 /* mainGraph.getCells() gets all the links as well as elements on the mainGraph */
 const removeHighlight = (mainGraph, mask, mainPaper) => {
     mainGraph.getCells().forEach(function (cell) {
@@ -49,30 +63,6 @@ const displayLinkHighlight = (linkView, mainGraph, mask, mainPaper) => {
         },
     });
 }
-// Ctrl + C
-// Function not needed, will remove
-// const copyElement = (copiedCoordinates, selectedCellView) => {
-//     if (selectedCellView != null) {
-//         // Ctrl+C was pressed
-//         console.log("Ctrl+C was pressed");
-//         console.log(
-//             `Cellview to be copied is ${JSON.stringify(
-//                 selectedCellView.model
-//             )}`
-//         );
-//         // selectedElementView
-
-
-//         copiedCoordinates = selectedCellView.getBBox();
-//         console.log(
-//             `Coordinates where copy occurred is ${copiedCoordinates}`
-//         );
-//         return { copiedCoordinates }
-//     } else {
-//         alert("You have not selected an element to copy");
-//     }
-
-// }
 
 const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) => {
     if (copiedCellView != null) {
@@ -83,43 +73,36 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
             coordinates.y
         );
 
-        // var addLabelButton = new joint.elementTools.AddLabelButton();
-        // var removeButton = new joint.elementTools.Remove();
-        // var EletoolsView = new joint.dia.ToolsView({
-        //     tools: [
-        //         removeButton,
-        //         new ResizeTool({ selector: "outline" }),
-        //         addLabelButton,
-        //     ],
-        // });
+        var RotateTool = elementToolsMapping[createCopy.attributes.type][0]
+        var ResizeToolBottomLeft = elementToolsMapping[createCopy.attributes.type][1]
+        var ResizeToolBottomRight = elementToolsMapping[createCopy.attributes.type][2]
+        var ResizeToolTopLeft = elementToolsMapping[createCopy.attributes.type][3]
+        var ResizeToolTopRight = elementToolsMapping[createCopy.attributes.type][4]
+
+        var EletoolsView = new joint.dia.ToolsView({
+            tools: [
+
+                new RotateTool({ selector: "root" }),
+                new ResizeToolBottomLeft({ selector: 'outline' }),
+                new ResizeToolBottomRight({ selector: 'outline' }),
+                new ResizeToolTopLeft({ selector: 'outline' }),
+                new ResizeToolTopRight({ selector: 'outline' }),
+
+            ],
+        });
 
         createCopy.addTo(mainGraph);
-        console.log("pasted element to mainGraph");
-        // var copyView = createCopy.findView(mainPaper);
-        // copyView.addTools(EletoolsView);
-        // console.log("Added elementTools to the new element");
-        // copyView.hideTools();
-        // createCopy = null;
-        // copiedCoordinates = null;
-        // console.log("copy == null");
+        // pasted element to mainGraph
+        var pastedEleView = createCopy.findView(mainPaper);
+        pastedEleView.addTools(EletoolsView);
+        pastedEleView.hideTools();
+        // Element Tools loaded for the pasted element
     } else {
         alert("There is nothing to paste, clipboard empty!");
     }
 }
 
-const elementToolsMapping = {
-    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "UTA": [RotateToolUTA, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "platform": [RotateToolPlatform, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "PLET": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "FPSO": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
-    "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST]
-}
+
 
 const addToolsOnFileLoad = (mainPaper, mainGraph) => {
     console.log("in addTools");
