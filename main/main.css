@@ -51,7 +51,7 @@ nav button:hover {
 }
 
 .sub-menu-wrap.open-menu {
-    max-height: 170px;
+    max-height: 200px;
     max-width: 200px;
 }
 
@@ -84,6 +84,7 @@ nav button:hover {
 .save-file,
 .help,
 .clear-paper,
+.save-as-png,
 .settings {
     display: flex;
     flex-direction: row;
@@ -108,6 +109,7 @@ nav button:hover {
 .save-file:hover,
 .help:hover,
 .clear-paper:hover,
+.save-as-png:hover,
 .settings:hover {
     background-color: rgb(240, 240, 240);
     cursor: pointer
@@ -164,7 +166,6 @@ nav button:hover {
 
 .paper-background-color .paper-color-btn:hover {
     box-shadow: rgba(150, 150, 150, 0.5) 0 2px 5px 0;
-
 }
 
 .paper-color-btn.color1 {
@@ -185,7 +186,6 @@ nav button:hover {
 
 .paper-color-btn.active {
     border: 2px solid #b081fc;
-
 }
 
 /* grid size */
