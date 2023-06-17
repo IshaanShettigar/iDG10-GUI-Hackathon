@@ -1158,8 +1158,22 @@ $('#zoom-out').click(function () {
 $('#reset-zoom').click(function () {
     currentScale = 1
     mainPaper.scale(1, 1)
+    mainPaper.scaleContentToFit({
+        "padding": 200
+    })
 })
 
+/* Zoom in Zoom out using mousewheel scroll */
+mainPaper.on('blank:mousewheel', function (evt, x, y, delta) {
+    evt.preventDefault();
+    const oldscale = mainPaper.scale().sx;
+    const newscale = oldscale + 0.05 * delta * oldscale
+
+    if (newscale > 0.2 && newscale < 5) {
+        mainPaper.scale(newscale, newscale, 0, 0);
+        mainPaper.translate(-x * newscale + evt.offsetX, -y * newscale + evt.offsetY);
+    }
+});
 
 /* Paper Panning */
 var dragStartPosition = null;
