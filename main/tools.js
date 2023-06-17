@@ -136,6 +136,40 @@ const RotateToolManifold = joint.elementTools.Control.extend({
     }
 });
 
+
+const getPositionFPSO = (view) => {
+    const { model } = view;
+    const { width, height } = model.size()
+    return new g.Point(width / 2, -height * 2.5);
+}
+
+const RotateToolFPSO = joint.elementTools.Control.extend({
+    children: rotateChildren,
+    getPosition: function (view) {
+        return getPositionFPSO(view)
+    },
+    setPosition: function (view, coordinates) {
+        setPositionAll(view, coordinates, this.getPosition)
+    }
+});
+
+
+const getPositionPLET = (view) => {
+    const { model } = view;
+    const { width, height } = model.size()
+    return new g.Point(width / 2, -height * 0.5);
+}
+
+const RotateToolPLET = joint.elementTools.Control.extend({
+    children: rotateChildren,
+    getPosition: function (view) {
+        return getPositionPLET(view)
+    },
+    setPosition: function (view, coordinates) {
+        setPositionAll(view, coordinates, this.getPosition)
+    }
+});
+
 //////////////////////////////////////////////////////////////////////////////
 //        Resize Tool       //
 //////////////////////////////////////////////////////////////////////////////
@@ -631,7 +665,7 @@ const ResizeToolTopRightFPSO = joint.elementTools.Control.extend({
 });
 export {
     rotateChildren, getPositionIWST, setPositionAll, RotateToolIWST, RotateToolUTA, RotateToolSubseaPump,
-    RotateToolPlatform, RotateToolSubseaSeparator, RotateToolManifold,
+    RotateToolPlatform, RotateToolSubseaSeparator, RotateToolManifold, RotateToolFPSO, RotateToolPLET,
     ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST,
     ResizeToolBottomRightUTA, ResizeToolBottomLeftUTA, ResizeToolTopLeftUTA, ResizeToolTopRightUTA,
     ResizeToolBottomRightSS, ResizeToolBottomLeftSS, ResizeToolTopLeftSS, ResizeToolTopRightSS,
