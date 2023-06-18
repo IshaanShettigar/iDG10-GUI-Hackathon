@@ -5,6 +5,11 @@
 ///////////////////////////////////////////////////////////////
 //      Rotate Control Tool         //
 ///////////////////////////////////////////////////////////////
+
+/**
+ *  
+ * This defines the markup of the Rotate Tool. Basically this control how the tool looks (the symbol used to represent it)
+ */
 const rotateChildren = [
     {
         tagName: "image",
@@ -32,20 +37,40 @@ const rotateChildren = [
     }
 ]
 
+
+/**
+ * This function is used for the Rotate Control Tool
+ * It is used to change the oritentation of the element it belongs to based on how the user interacts with it.
+ * @param {joint.dia.ElementView} view Element View
+ * @param {Object} coordinates Coordinates
+ * @param {function} getPos function that gets position of the rotate control tool
+ */
 const setPositionAll = (view, coordinates, getPos) => {
     const { model } = view;
     const { width, height } = model.size();
+    // Find the center of the element
     const center = new g.Point(width / 2, height / 2);
+    // Find the angle between the current mouse coordinates and position of the rotate control tool, while taking the centre as a reference
     const angle = center.angleBetween(coordinates, getPos(view));
     model.rotate(Math.round(angle));
 }
 
+
+/**
+ * getPos function for Injection Well and Subsea Tree element
+ * @param {joint.dia.ElementView} view Element View
+ * @returns centre of the model
+ */
 const getPositionIWST = (view) => {
     const { model } = view;
     const { width, height } = model.size()
     return new g.Point(width / 2, -height / 1.2);
 }
 
+/**
+ * Rotate Control Tool for Injection Well and Subsea Tree Element
+ * It uses the setPositionAll function and the getPositionIWST function
+ */
 const RotateToolIWST = joint.elementTools.Control.extend({
     children: rotateChildren,
     getPosition: function (view) {
@@ -56,12 +81,21 @@ const RotateToolIWST = joint.elementTools.Control.extend({
     }
 });
 
+/**
+ * getPos function for UTA element
+ * @param {joint.dia.ElementView} view Element View
+ * @returns centre of the model
+ */
 const getPositionUTA = (view) => {
     const { model } = view;
     const { width, height } = model.size()
     return new g.Point(width / 2, -height / 1.8);
 }
 
+/**
+ * Rotate Control Tool for UTA
+ * It uses the setPositionAll function and the getPositionUTA function
+ */
 const RotateToolUTA = joint.elementTools.Control.extend({
     children: rotateChildren,
     getPosition: function (view) {
@@ -72,12 +106,22 @@ const RotateToolUTA = joint.elementTools.Control.extend({
     }
 });
 
+
+/**
+ * getPos function for Subsea Pump element
+ * @param {joint.dia.ElementView} view Element View
+ * @returns center of the element
+ */
 const getPositionSubseaPump = (view) => {
     const { model } = view;
     const { width, height } = model.size()
     return new g.Point(width / 2, -height / 2);
 }
 
+/**
+ * Rotate Control Tool for Subsea Pump Element
+ * It uses the setPositionAll function and the getPositionSubseaPump function
+ */
 const RotateToolSubseaPump = joint.elementTools.Control.extend({
     children: rotateChildren,
     getPosition: function (view) {
