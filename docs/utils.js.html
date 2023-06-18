@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
+
+/**
+ * This is a mapping that exists to map each element with their corresponding tools.
+ * The tools are the same, but the position of the tools varies for every element therefore we made separate tool objects for every element
+ */
+const elementToolsMapping = {
+    "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftSS, ResizeToolBottomRightSS, ResizeToolTopLeftSS, ResizeToolTopRightSS],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "UTA": [RotateToolUTA, ResizeToolBottomLeftUTA, ResizeToolBottomRightUTA, ResizeToolTopLeftUTA, ResizeToolTopRightUTA],
+    "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "manifold": [RotateToolManifold, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "platform": [RotateToolPlatform, ResizeToolBottomLeftPLATFORM, ResizeToolBottomRightPLATFORM, ResizeToolTopLeftPLATFORM, ResizeToolTopRightPLATFORM],
+    "UTH": [RotateToolSubseaSeparator, ResizeToolBottomLeftUTH, ResizeToolBottomRightUTH, ResizeToolTopLeftUTH, ResizeToolTopRightUTH],
+    "PLET": [RotateToolPLET, ResizeToolBottomLeftUTH, ResizeToolBottomRightUTH, ResizeToolTopLeftUTH, ResizeToolTopRightUTH],
+    "FPSO": [RotateToolFPSO, ResizeToolBottomLeftFPSO, ResizeToolBottomRightFPSO, ResizeToolTopLeftFPSO, ResizeToolTopRightFPSO],
+    "PLEM": [RotateToolSubseaSeparator, ResizeToolBottomLeftPLEM, ResizeToolBottomRightPLEM, ResizeToolTopLeftPLEM, ResizeToolTopRightPLEM]
+}
+
+/* mainGraph.getCells() gets all the links as well as elements on the mainGraph */
+/**
+ * This function removes the highlights from all elements and links.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ */
+const removeHighlight = (mainGraph, mask, mainPaper) => {
+    mainGraph.getCells().forEach(function (cell) {
+        // Additional functionality to hideTools on each cell
+        let cellView = cell.findView(mainPaper)
+        mask.remove(cellView);
+        cellView.hideTools()
+    });
+}
+
+
+/**
+ * This functions takes as input a cell view and then adds a highlight to it.
+ * @param {joint.dia.CellView} cellView the cell view on which to render the highlight (element)
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @returns {joint.dia.CellView} The Highlighted cell view (element)
+ */
+const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
+    // remove highlights for all other elements
+    removeHighlight(mainGraph, mask, mainPaper)
+
+    let selectedCellView = cellView;
+
+    mask.remove(cellView);
+    // console.log(selectedCellView);
+    //add highlight for this element
+    mask.add(cellView, "root", "element-highlight", {
+        deep: false,
+        padding: 10,
+        attrs: {
+            "stroke": "#FF4365",
+            "stroke-width": 2,
+            // "stroke-dasharray": "2",
+            "stroke-linecap": "square"
+        },
+    });
+    // cellView.showTools() UNCOMMENT LATER
+    return selectedCellView
+}
+
+/**
+ * This functions takes as input a link view and then adds a highlight to it.
+ * @param {joint.dia.CellView} linkView the link view on which to render the highlight.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @returns {joint.dia.CellView} The Highlighted link view
+ */
+const displayLinkHighlight = (linkView, mainGraph, mask, mainPaper) => {
+    removeHighlight(mainGraph, mask, mainPaper)
+    mask.remove(linkView);
+    //add highlight for this link
+    mask.add(linkView, "line", "link-highlight", {
+        deep: true,
+        padding: 2,
+        attrs: {
+            "stroke": "#FF4365",
+            "stroke-width": 2,
+            'stroke-linejoin': 'round',
+            'stroke-linecap': 'round'
+        },
+    });
+}
+
+
+/**
+ * This function is responsible for pasting the copied element wherever your mouse hovers over the paper.
+ * If no element has been copied then it gives an error via an alert message
+ * @param {joint.dia.CellView} copiedCellView this is the cellView of the copied element. It will be cloned and pasted wherever the mouse hovers over the paper.
+ * @param {Object} copiedCoordinates the mouse hover position.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ */
+const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) => {
+    if (copiedCellView != null) {
+        let createCopy = copiedCellView.model.clone();
+        let coordinates = mainPaper.clientToLocalPoint(copiedCoordinates.x, copiedCoordinates.y);
+        createCopy.position(
+            coordinates.x,
+            coordinates.y
+        );
+
+        var RotateTool = elementToolsMapping[createCopy.attributes.type][0]
+        var ResizeToolBottomLeft = elementToolsMapping[createCopy.attributes.type][1]
+        var ResizeToolBottomRight = elementToolsMapping[createCopy.attributes.type][2]
+        var ResizeToolTopLeft = elementToolsMapping[createCopy.attributes.type][3]
+        var ResizeToolTopRight = elementToolsMapping[createCopy.attributes.type][4]
+
+        var EletoolsView = new joint.dia.ToolsView({
+            tools: [
+
+                new RotateTool({ selector: "root" }),
+                new ResizeToolBottomLeft({ selector: 'outline' }),
+                new ResizeToolBottomRight({ selector: 'outline' }),
+                new ResizeToolTopLeft({ selector: 'outline' }),
+                new ResizeToolTopRight({ selector: 'outline' }),
+
+            ],
+        });
+
+        createCopy.addTo(mainGraph);
+        // pasted element to mainGraph
+        var pastedEleView = createCopy.findView(mainPaper);
+        pastedEleView.addTools(EletoolsView);
+        pastedEleView.hideTools();
+        // Element Tools loaded for the pasted element
+    } else {
+        alert("There is nothing to paste, clipboard empty!");
+    }
+}
+
+
+/**
+ * This function loads the element tools and link tools when a user just uploads the file
+ * or when a autosaved file is retrieved from browser local storage.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ */
+const addToolsOnFileLoad = (mainPaper, mainGraph) => {
+    console.log("in addTools");
+
+    console.log("Cells ", mainGraph.getCells())
+    mainGraph.getCells().forEach(function (cell) {
+        console.log("HI");
+        // IF The Cell is a Link
+        if (cell.isLink()) {
+            // load link tools
+            var verticesTool = new joint.linkTools.Vertices();
+            var removeTool = new joint.linkTools.Remove({
+                action: function (evt, linkView, toolView) {
+                    linkView.model.remove({ ui: true, tool: toolView.cid });
+                    connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+                }
+            })
+            var showConnectorSettings = new joint.linkTools.showLinkSettings();
+            var linkToolsView = new joint.dia.ToolsView({
+                tools: [verticesTool, removeTool, showConnectorSettings]
+            });
+            var linkView = cell.findView(mainPaper)
+            linkView.addTools(linkToolsView)
+            console.log(cell);
+        }
+        // If the cell is an element
+        else if (cell.isElement()) {
+            // load element tools
+            var RotateTool = elementToolsMapping[cell.attributes.type][0]
+            var ResizeToolBottomLeft = elementToolsMapping[cell.attributes.type][1]
+            var ResizeToolBottomRight = elementToolsMapping[cell.attributes.type][2]
+            var ResizeToolTopLeft = elementToolsMapping[cell.attributes.type][3]
+            var ResizeToolTopRight = elementToolsMapping[cell.attributes.type][4]
+
+            var EletoolsView = new joint.dia.ToolsView({
+                tools: [
+
+                    new RotateTool({ selector: "root" }),
+                    new ResizeToolBottomLeft({ selector: 'outline' }),
+                    new ResizeToolBottomRight({ selector: 'outline' }),
+                    new ResizeToolTopLeft({ selector: 'outline' }),
+                    new ResizeToolTopRight({ selector: 'outline' }),
+
+                ],
+            });
+
+            var elementView = cell.findView(mainPaper)
+            elementView.addTools(EletoolsView)
+            elementView.hideTools()
+
+        }
+    });
+}
+export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CONNECTOR_ATTRS">CONNECTOR_ATTRS</a></li><li><a href="global.html#FPSO">FPSO</a></li><li><a href="global.html#PLEM">PLEM</a></li><li><a href="global.html#PLET">PLET</a></li><li><a href="global.html#RigidPipelinePiP_PR">RigidPipelinePiP_PR</a></li><li><a href="global.html#RotateToolIWST">RotateToolIWST</a></li><li><a href="global.html#RotateToolSubseaPump">RotateToolSubseaPump</a></li><li><a href="global.html#RotateToolUTA">RotateToolUTA</a></li><li><a href="global.html#UTA">UTA</a></li><li><a href="global.html#UTH">UTH</a></li><li><a href="global.html#addElementEventListener">addElementEventListener</a></li><li><a href="global.html#addLinkEventListener">addLinkEventListener</a></li><li><a href="global.html#addToolsOnFileLoad">addToolsOnFileLoad</a></li><li><a href="global.html#assignCustomParams">assignCustomParams</a></li><li><a href="global.html#deleteElement">deleteElement</a></li><li><a href="global.html#displayHighlight">displayHighlight</a></li><li><a href="global.html#displayLinkHighlight">displayLinkHighlight</a></li><li><a href="global.html#downloadObjectAsJson">downloadObjectAsJson</a></li><li><a href="global.html#dragStartPosition">dragStartPosition</a></li><li><a href="global.html#elementToolsMapping">elementToolsMapping</a></li><li><a href="global.html#fixFormat">fixFormat</a></li><li><a href="global.html#generateLink">generateLink</a></li><li><a href="global.html#getPositionIWST">getPositionIWST</a></li><li><a href="global.html#getPositionSubseaPump">getPositionSubseaPump</a></li><li><a href="global.html#getPositionUTA">getPositionUTA</a></li><li><a href="global.html#injectionWellST">injectionWellST</a></li><li><a href="global.html#mainGraph">mainGraph</a></li><li><a href="global.html#mainPaper">mainPaper</a></li><li><a href="global.html#manifold">manifold</a></li><li><a href="global.html#onConnectorChange">onConnectorChange</a></li><li><a href="global.html#openFile">openFile</a></li><li><a href="global.html#pan">pan</a></li><li><a href="global.html#panStart">panStart</a></li><li><a href="global.html#panStop">panStop</a></li><li><a href="global.html#pasteElement">pasteElement</a></li><li><a href="global.html#platform">platform</a></li><li><a href="global.html#populateConnectorSettings">populateConnectorSettings</a></li><li><a href="global.html#populateElementSettings">populateElementSettings</a></li><li><a href="global.html#portDetails">portDetails</a></li><li><a href="global.html#productionWellST">productionWellST</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#rotateChildren">rotateChildren</a></li><li><a href="global.html#saveGraph">saveGraph</a></li><li><a href="global.html#setPositionAll">setPositionAll</a></li><li><a href="global.html#showLinkSettings">showLinkSettings</a></li><li><a href="global.html#standardLink">standardLink</a></li><li><a href="global.html#subseaPump">subseaPump</a></li><li><a href="global.html#subseaSeparator">subseaSeparator</a></li><li><a href="global.html#toolGraph">toolGraph</a></li><li><a href="global.html#toolPaper">toolPaper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Jun 18 2023 16:14:54 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
