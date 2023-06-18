@@ -1,4 +1,8 @@
 /* To create the 18 parameters and assign them to an element */
+/**
+ * Initializes the 18 custom parameters as null.
+ * @param {joint.dia.Element} element Element to which to assign the 18 parameters
+ */
 function assignCustomParams(element) {
     element.attr({
         parameter1: null,

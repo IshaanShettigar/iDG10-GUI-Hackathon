@@ -6,10 +6,13 @@ import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, R
 
 // window.onload = () => {
 
+/**
+ * Restores progress from the previous session by making use of browser local storage
+ */
 window.onload = () => {
     const localStorageGraph = localStorage.getItem('recentGraph')
     if (localStorageGraph) {
-        console.log(localStorageGraph);
+        // console.log(localStorageGraph);
         mainGraph.fromJSON(JSON.parse(localStorageGraph));
         /* Need to load all the tools */
         addToolsOnFileLoad(mainPaper, mainGraph)
@@ -49,12 +52,12 @@ elementButton.addEventListener("click", () => {
 })
 
 const saveDiagramButton = document.getElementById('save-file')
-
 // save diagram
 saveDiagramButton.addEventListener('click', () => { saveGraph(mainGraph) });
 
 const saveAsPNGButton = document.getElementById('save-as-png')
-saveAsPNGButton.addEventListener('click', saveAsPNG)
+saveAsPNGButton.addEventListener('click', saveAsPNG) // not working as of 18th June
+
 /* Settings Modal  */
 const settingsBtn = document.getElementById("settings-button");
 const settingsModal = document.getElementById("settings-modal");
@@ -65,7 +68,6 @@ const customColorPopUp = document.getElementById("custom-bg-color-modal")
 settingsBtn.addEventListener("click", function () {
     settingsModal.classList.remove("hidden");
     modalOverlay.classList.remove("hidden");
-
 })
 
 const closeCustomColorPopUp = function () {
@@ -255,8 +257,12 @@ let mapping = {
     'parameter18': [elementP18, connectorP18]
 }
 
-/* function is called when element is clicked on so that the element
- settings pops up and gets populated with the right values */
+/**
+ * function is called when element is clicked on so that the pop up that appears on the left hand side of the screen displays the
+ * correct values for its parameters. It fetches the parameters from the model object and displays it on the menu on the left hand side
+ * of the screen
+ * @param {joint.dia.Element} model 
+ */
 const populateElementSettings = (model) => {
     console.log(`Populating ${model.attributes.type}`)
     let modelAttrs = model.attributes.attrs
@@ -270,7 +276,10 @@ const populateElementSettings = (model) => {
 
 
 /* Connector Settings */
-
+/**
+ * Analogous to the populateElementSettings function, except it populates all link parameters
+ * @param {joint.dia.Link} model 
+ */
 const populateConnectorSettings = (model) => {
     // console.log(`Populating ${model.attributes.}`)
     let modelAttrs = model.attributes.attrs
@@ -288,6 +297,9 @@ const populateConnectorSettings = (model) => {
 
 /* Creating the custom rigid pipelinepip - pr link  */
 /* Didnt have to do this for the other links as their properties are simpler */
+/**
+ * Link definition for RigidPipeline PiP PR
+ */
 const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
     attrs: {
         line: {
@@ -357,7 +369,13 @@ const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
 ////////////////////////////////////////////////////////
 /* Render the toolPaper and toolGraph  */
 var namespace = { ...joint.shapes, RigidPipelinePiP_PR };
+/**
+ * Graph object for the element tool bar on the right hand side
+ */
 var toolGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+/**
+ * Paper object for the element tool bar on the right hand side
+ */
 var toolPaper = new joint.dia.Paper({
     el: document.getElementById('tool-paper-div'),
     model: toolGraph,
@@ -437,6 +455,10 @@ plem.resize(65, 65)
 plem.addTo(toolGraph)
 assignCustomParams(plem)
 
+/**
+ * Function that defines the standard link and its associated properties
+ * @returns {joint.dia.Link} Standard Link 
+ */
 const standardLink = () => {
     var stdLink = new joint.shapes.standard.Link({
         router: { name: 'normal' },
@@ -475,7 +497,15 @@ const standardLink = () => {
 /* Create the main paper and graph */
 const GRID_SIZE = 5;
 const GRID_NAME = "fixedDot";
+
+/**
+ * renders the main graph object for the main infinite diagramming space.
+ */
 var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+
+/**
+ * renders the main paper object for the main infinite diagramming space.
+ */
 var mainPaper = new joint.dia.Paper({
     el: document.getElementById('main-paper-div'),
     model: mainGraph,
@@ -547,11 +577,18 @@ gridSizeInput.addEventListener("change", function () {
 /* POSSIBLE BUG: What is currently happening is, when the user tries to drop the element onto the mainPaper,
 no matter which place on the element the user starts the drag, the drop on the mainPaper happens in such a way that
 The centre of the element is dropped where your mouse is, even if you started the mouse drag on the edge of the element */
+
 /* Drag and Drop */
+/**
+ * Event listener for element drag and drop from the tool paper onto the main paper
+ */
 toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     // console.log(cellView.model.getBBox("deep"))
     $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
     var flyGraph = new joint.dia.Graph
+    /**
+     * Create a flyPaper, this represents the paper that the element will reside in while it is being dragged
+     */
     var flyPaper = new joint.dia.Paper({
         el: $('#flyPaper'),
         model: flyGraph,
@@ -582,33 +619,7 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
             top: e.pageY - offset.y - 35
         });
     });
-    /* This was the previously working solution doesnt work for pan or zoom */
-    // $('body').on('mouseup.fly', function (e) {
-    //     var x = e.pageX;
-    //     var y = e.pageY;
-    //     var target = mainPaper.$el.offset();
 
-    //     // Check if dropped over the paper
-    //     if (
-    //         x > target.left &&
-    //         x < target.left + mainPaper.$el.width() &&
-    //         y > target.top &&
-    //         y < target.top + mainPaper.$el.height()
-    //     ) {
-    //         var droppedElement = flyShape.clone();
-    //         droppedElement.position(
-    //             x - target.left - offset.x,
-    //             y - target.top - offset.y
-    //         );
-    //         mainGraph.addCell(droppedElement);
-    //     }
-    //     $('body').off('mousemove.fly').off('mouseup.fly');
-    //     flyShape.remove();
-    //     $('#flyPaper').remove();
-    // });
-
-    /* This works for pan */
-    /* ISSUE: Need to figure out how to make the drag and drop work for zoom also */
     $('body').on('mouseup.fly', function (e) {
         var x = e.pageX;
         var y = e.pageY;
@@ -631,7 +642,7 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
         mainGraph.addCell(droppedElement);
         // Need to find the view of the element and add its corresponding tools
         //find the correct tools
-        console.log("HELLO", droppedElement.attributes.type);
+        // console.log("HELLO", droppedElement.attributes.type);
         var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
         var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
         var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
@@ -702,6 +713,11 @@ mainPaper.on("blank:pointerclick", function () {
 // creating a custom button
 var selectedLinkView = null;
 const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
+
+/**
+ * @constant {joint.dia.linkTools} showLinkSettings
+ * Defines the button that will trigger the connector settings popup on the left hand side when clicked
+ */
 joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
     name: "show-link-settings",
     options: {
@@ -778,6 +794,12 @@ mainPaper.on('link:mouseleave', (linkView) => {
 })
 
 /* Adding logic to popup the element settings table and listen to input changes */
+/**
+ * Adds event listeners to all the inputs on the element pop-up on the left hand side of the screen
+ * event can either be an 'input' (for the numbered parameters) or 'change' (for the select box parameters)
+ * @param {DOM} DOMElement 
+ * @param {String} event 
+ */
 const addElementEventListener = (DOMElement, event) => {
     // event can be ='input' or 'change' 
     // 'input' is for number modification. 'change' is for select box change
@@ -819,6 +841,12 @@ addElementEventListener(elementP17, 'change')
 addElementEventListener(elementP18, 'change')
 
 
+/**
+ * Adds event listeners to all the inputs on the Link pop-up on the left hand side of the screen
+ * event can either be an 'input' (for the numbered parameters) or 'change' (for the select box parameters)
+ * @param {DOM} DOMElement 
+ * @param {String} event 
+ */
 const addLinkEventListener = (DOMElement, event) => {
     // event can be ='input' or 'change' 
     // 'input' is for number modification. 'change' is for select box change
@@ -858,6 +886,10 @@ addLinkEventListener(connectorP16, 'change')
 addLinkEventListener(connectorP17, 'change')
 addLinkEventListener(connectorP18, 'change')
 
+/**
+ * Specifies the attributes for each connector. 
+ * Example: Rigid-Pipeline-PR is a green line with a strokeWidth of 3
+ */
 var CONNECTOR_ATTRS = {
     "Rigid-Pipeline-PR": {
         stroke: '#02a31d',
@@ -923,7 +955,12 @@ var CONNECTOR_ATTRS = {
         strokeWidth: 3
     }
 }
-connector.addEventListener('change', () => {
+
+/**
+ * It uses the global variable selectedLinkView and CONNECTOR_ATTRS as well as the RigidPipeline Pip PR if it is required. 
+ * It handles all the logic necessary to change the link attributes based on the value specified by the user
+ */
+function onConnectorChange() {
     if (selectedLinkView != null) {
         selectedLinkView.model.attributes.attrs['connector'] = connector.value;
         /* Insert logic to change connector attributes based on type chosen */
@@ -1016,7 +1053,11 @@ connector.addEventListener('change', () => {
     else {
         alert("No selected link")
     }
-})
+}
+
+// Adds an event listener to the connector input on the link parameters pop-up on the left hand side of the screen
+connector.addEventListener('change', onConnectorChange)
+
 
 subseaIntervention.addEventListener('change', () => {
     if (selectedLinkView != null) {
@@ -1060,32 +1101,12 @@ openFileButton.addEventListener('click', (event) => {
         await openFile(event, mainGraph);
         // Remove the input element after the file has been selected
         inputElement.remove();
+        // Add the tools to all the elements and links
         addToolsOnFileLoad(mainPaper, mainGraph)
         console.log("populated tools");
     });
     // Simulate a click event on the input element
     inputElement.click();
-
-
-    // create a linkToolsView, this is redundant code. consider creating a function to do this
-    // tried to do that but it would require a larger reorganization of the codebase
-    // var verticesTool = new joint.linkTools.Vertices();
-    // var removeTool = new joint.linkTools.Remove({
-    //     action: function (evt, linkView, toolView) {
-    //         linkView.model.remove({ ui: true, tool: toolView.cid });
-    //         connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
-    //     }
-    // })
-    // // var segmentsTool = new joint.linkTools.Segments();
-    // var showConnectorSettings = new joint.linkTools.showLinkSettings();
-    // // var boundaryTool = new joint.linkTools.Boundary();
-    // console.log((linkView));
-    // var linkToolsView = new joint.dia.ToolsView({
-    //     tools: [verticesTool, removeTool, showConnectorSettings]
-    // });
-
-    // call the function to add tools to all the elements and links
-
 });
 
 mainGraph.on('change add remove', () => {
@@ -1094,14 +1115,18 @@ mainGraph.on('change add remove', () => {
     localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
     console.log("Saved to local storage");
 })
+
+
 //////////////// copy paste delete /////////////////
-var copiedCoordinates = null;
+
+
+// var copiedCoordinates = null;
 var copiedCellView = null;
 // copy
 document.addEventListener("keydown", function (event) {
     if (event.keyCode === 67 && event.ctrlKey) {
         if (selectedCellView != null) {
-            copiedCoordinates = selectedCellView.getBBox();
+            // copiedCoordinates = selectedCellView.getBBox();
             copiedCellView = selectedCellView
         }
         else {
@@ -1129,7 +1154,12 @@ document.addEventListener("keydown", function (event) {
 });
 
 // delete
-document.addEventListener("keydown", function (event) {
+/**
+ * Function to delete the element that is in the selectedCellView variable.
+ * Function is triggered when the user presses the del button on the keyboard.
+ * @param {event} event keydown event
+ */
+function deleteElement(event) {
     if (event.keyCode === 46 && event.key === "Delete") {
         if (selectedCellView != null) {
             var theModel = selectedCellView.model;
@@ -1140,7 +1170,8 @@ document.addEventListener("keydown", function (event) {
             alert("You have not selected an element, Nothing to delete");
         }
     }
-});
+}
+document.addEventListener("keydown", deleteElement);
 
 
 /* Zoom in zoom out */
@@ -1177,24 +1208,49 @@ mainPaper.on('blank:mousewheel', function (evt, x, y, delta) {
 });
 
 /* Paper Panning */
+/**
+ * Variable used to store the paper panning initial position. 
+ */
 var dragStartPosition = null;
-mainPaper.on("blank:pointerdown", function (evt, x, y) {
+
+/**
+ * Function to start the paper panning. It records the dragStartPosition.
+ * Executed when the event "blank:pointerdown" event is fired on the mainPaper
+ * @param {event} evt 
+ * @param {Number} x 
+ * @param {Number} y 
+ */
+function panStart(evt, x, y) {
     var scale = mainPaper.scale()
     dragStartPosition = { x: x * scale.sx, y: y * scale.sy };
     document.getElementById('main-paper-div').style.cursor = "move"
-})
+}
 
-mainPaper.on("cell:pointerup blank:pointerup", function (cellView, x, y) {
+/**
+ * Paper to stop the panning and set the dragStartPosition to NULL.
+ * Executed when the event "blank:pointerup"or "cell:pointerup" is fired on the mainPaper
+ * @param {joint.dia.CellView} cellView 
+ * @param {Number} x 
+ * @param {Number} y 
+ */
+function panStop(cellView, x, y) {
     dragStartPosition = null;
     document.getElementById('main-paper-div').style.cursor = "auto"
-
     // console.log(mainPaper.translate())
-})
+}
 
-$("#main-paper-div").mousemove(function (event) {
+/**
+ * Function to execute the paper panning while the mouse is being moved throughout the screen.
+ * @param {event} event event returned on mousemove
+ */
+function pan(event) {
     if (dragStartPosition != null) {
         mainPaper.translate(
             event.offsetX - dragStartPosition.x,
             event.offsetY - dragStartPosition.y);
     }
-});
+}
+
+mainPaper.on("blank:pointerdown", panStart)
+mainPaper.on("cell:pointerup blank:pointerup", panStop)
+$("#main-paper-div").mousemove(pan);

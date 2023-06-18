@@ -9,10 +9,18 @@ This file contains only element definitions
 */
 
 // Port definitions
+/**
+ * 
+ * This controls how the port looks.
+ */
 const portDetails = {
     magnet: true, r: 4, fill: 'rgba(255,255,255,1)'
 }
 
+
+/**
+ * Element definition of the Manifold component
+ */
 const manifold = joint.dia.Element.define(
     "manifold",
     {
@@ -197,7 +205,9 @@ const manifold = joint.dia.Element.define(
     }
 );
 
-
+/**
+ * Element definition of the Injection Well and Subsea Tree component
+ */
 const injectionWellST = joint.dia.Element.define(
     "injectionWellST",
     {
@@ -319,7 +329,9 @@ const injectionWellST = joint.dia.Element.define(
     }
 );
 
-
+/**
+ * Element definition of the Production Well and Subsea Tree component
+ */
 const productionWellST = joint.dia.Element.define(
     "productionWellST",
     {
@@ -441,7 +453,9 @@ const productionWellST = joint.dia.Element.define(
     }
 );
 
-
+/**
+ * Element definition of the Platform component
+ */
 const platform = joint.dia.Element.define(
     "platform",
     {
@@ -613,8 +627,10 @@ const platform = joint.dia.Element.define(
     }
 );
 
-/* Might not work since we aint exporting borderRadiusUTA */
 const borderRadiusUTA = 5;
+/**
+ * Element definition of the UTA component
+ */
 const UTA = joint.dia.Element.define("UTA",
     {
         attrs: {
@@ -724,7 +740,9 @@ const UTA = joint.dia.Element.define("UTA",
     }
 );
 
-
+/**
+ * Element definition of the Subsea Pump component
+ */
 const subseaPump = joint.dia.Element.define('subseaPump', {
     attrs: {
         root: {
@@ -819,6 +837,9 @@ const subseaPump = joint.dia.Element.define('subseaPump', {
 
 /* We arent exporting borderRadiusSS */
 const borderRadiusSS = 7;
+/**
+ * Element definition of the Subsea Separator component
+ */
 const subseaSeparator = joint.dia.Element.define("subseaSeparator",
     {
         attrs: {
@@ -929,6 +950,9 @@ const subseaSeparator = joint.dia.Element.define("subseaSeparator",
     }
 )
 
+/**
+ * Element definition of the PLET component
+ */
 const PLET = joint.dia.Element.define("PLET",
     {
         attrs: {
@@ -1028,6 +1052,10 @@ const PLET = joint.dia.Element.define("PLET",
     }
 )
 
+
+/**
+ * Element definition of the UTH component
+ */
 const UTH = joint.dia.Element.define("UTH",
     {
         attrs: {
@@ -1141,6 +1169,10 @@ const UTH = joint.dia.Element.define("UTH",
     }
 )
 
+
+/**
+ * Element definition of the FPSO component
+ */
 const FPSO = joint.dia.Element.define(
     "FPSO",
     {
@@ -1270,6 +1302,9 @@ const FPSO = joint.dia.Element.define(
     }
 );
 
+/**
+ * Element definition of the PLEM component
+ */
 const PLEM = joint.dia.Element.define("PLEM",
     {
         attrs: {

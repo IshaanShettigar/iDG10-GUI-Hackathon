@@ -1,5 +1,9 @@
 import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
+/**
+ * This is a mapping that exists to map each element with their corresponding tools.
+ * The tools are the same, but the position of the tools varies for every element therefore we made separate tool objects for every element
+ */
 const elementToolsMapping = {
     "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftSS, ResizeToolBottomRightSS, ResizeToolTopLeftSS, ResizeToolTopRightSS],
     "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
@@ -15,6 +19,12 @@ const elementToolsMapping = {
 }
 
 /* mainGraph.getCells() gets all the links as well as elements on the mainGraph */
+/**
+ * This function removes the highlights from all elements and links.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ */
 const removeHighlight = (mainGraph, mask, mainPaper) => {
     mainGraph.getCells().forEach(function (cell) {
         // Additional functionality to hideTools on each cell
@@ -24,6 +34,15 @@ const removeHighlight = (mainGraph, mask, mainPaper) => {
     });
 }
 
+
+/**
+ * This functions takes as input a cell view and then adds a highlight to it.
+ * @param {joint.dia.CellView} cellView the cell view on which to render the highlight (element)
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @returns {joint.dia.CellView} The Highlighted cell view (element)
+ */
 const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
     // remove highlights for all other elements
     removeHighlight(mainGraph, mask, mainPaper)
@@ -47,7 +66,14 @@ const displayHighlight = (cellView, mainGraph, mask, mainPaper) => {
     return selectedCellView
 }
 
-
+/**
+ * This functions takes as input a link view and then adds a highlight to it.
+ * @param {joint.dia.CellView} linkView the link view on which to render the highlight.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.highlighters} mask responsible for a stroke around an arbitrary cell view's SVG node.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @returns {joint.dia.CellView} The Highlighted link view
+ */
 const displayLinkHighlight = (linkView, mainGraph, mask, mainPaper) => {
     removeHighlight(mainGraph, mask, mainPaper)
     mask.remove(linkView);
@@ -64,6 +90,15 @@ const displayLinkHighlight = (linkView, mainGraph, mask, mainPaper) => {
     });
 }
 
+
+/**
+ * This function is responsible for pasting the copied element wherever your mouse hovers over the paper.
+ * If no element has been copied then it gives an error via an alert message
+ * @param {joint.dia.CellView} copiedCellView this is the cellView of the copied element. It will be cloned and pasted wherever the mouse hovers over the paper.
+ * @param {Object} copiedCoordinates the mouse hover position.
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ */
 const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) => {
     if (copiedCellView != null) {
         let createCopy = copiedCellView.model.clone();
@@ -103,23 +138,15 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
 }
 
 
-
+/**
+ * This function loads the element tools and link tools when a user just uploads the file
+ * or when a autosaved file is retrieved from browser local storage.
+ * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
+ * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
+ */
 const addToolsOnFileLoad = (mainPaper, mainGraph) => {
     console.log("in addTools");
 
-    var verticesTool = new joint.linkTools.Vertices();
-    var removeTool = new joint.linkTools.Remove({
-        action: function (evt, linkView, toolView) {
-            linkView.model.remove({ ui: true, tool: toolView.cid });
-            connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
-        }
-    })
-    // var segmentsTool = new joint.linkTools.Segments();
-    var showConnectorSettings = new joint.linkTools.showLinkSettings();
-    // var boundaryTool = new joint.linkTools.Boundary();
-    var linkToolsView = new joint.dia.ToolsView({
-        tools: [verticesTool, removeTool, showConnectorSettings]
-    });
     console.log("Cells ", mainGraph.getCells())
     mainGraph.getCells().forEach(function (cell) {
         console.log("HI");

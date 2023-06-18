@@ -1,4 +1,4 @@
-/*
+import canvg from 'https://cdn.jsdelivr.net/npm/canvg@4.0.1/+esm'/*
 This file contains all the logic necessary to 
 1. Save and Load diagrams
 2. Store the settings etc
@@ -6,6 +6,14 @@ This file contains all the logic necessary to
 
 // This function downloads the object with the specified extension of .idg
 // used in saveGraph method
+/**
+ * This function downloads the JSON object. It attaches a .idg extension to the file.
+ * It dynamically creates an anchor tag attaches the exportObj to the href part of the anchor tag.
+ * Programatically clicks the anchor tag, which triggers the download.
+ * Removes the anchor tag.
+ * @param {JSON} exportObj comes from the fixFormat function
+ * @param {String} exportName name of the file it should create 
+ */
 function downloadObjectAsJson(exportObj, exportName) {
     var dataStr =
         "data:text/json;charset=utf-8," +
@@ -21,6 +29,12 @@ function downloadObjectAsJson(exportObj, exportName) {
 /*  function to modify the JSON while saving it.
     the .toJSON() saved the parameters in the wrong format. This function corrects it
 */
+/**
+ * This function is responsible for fixing some of the formatting errors that were given by the default 
+ * mainGraph.toJSON() function
+ * @param {JSON} graphjson Represents the contents of the diagram in a JSON format
+ * @returns {JSON} returns the fixed JSON object
+ */
 const fixFormat = function (graphjson) {
     const cellArray = graphjson['cells']
     for (let i = 0; i < cellArray.length; i += 1) {
@@ -57,11 +71,24 @@ const fixFormat = function (graphjson) {
     console.log(`Fixed formatting`)
     return graphjson
 }
+
+/**
+ * This function is used to save the current state of the diagram in JSON format.
+ * It makes a call to fixFormat. The output of the fixFormat function is finally downloaded.
+ * @param {joint.dia.Graph} mainGraph 
+ */
 const saveGraph = function (mainGraph) {
+
+    /**
+     * @type {JSON}
+     */
     var graphjson = mainGraph.toJSON();
     // console.log(
     //     `Saving the following JSON \n\n${JSON.stringify(graphjson)}`
     // );
+    /**
+     * @type {JSON}
+     */
     var fixedGraphJson = fixFormat(graphjson)
 
     // mainGraph.fromJSON(sampleJSON)
@@ -75,6 +102,14 @@ const saveGraph = function (mainGraph) {
     }
 }
 
+/**
+ * This function waits for the mainGraph.fromJSON() function to resolve before completing its execution and
+ * passing off control.
+ * @async
+ * @param {Event} event event object that holds the target file being uploaded
+ * @param {joint.dia.Graph} mainGraph 
+ * @return {Promise}
+ */
 const openFile = async function (event, mainGraph) {
     return new Promise((resolve) => {
         var file = event.target.files[0];
@@ -95,4 +130,30 @@ const openFile = async function (event, mainGraph) {
     // need to iterate over all elements and links and add the linktools and elementtools
 }
 
-export { saveGraph, openFile, fixFormat }
+
+/** Save as PNG */
+function generateLink(fileName, data) {
+    var link = document.createElement('a');
+    link.download = fileName;
+    link.href = data;
+    return link;
+}
+
+function SVG2PNG(svg, callback) {
+    var canvas = document.createElement('canvas'); // Create a Canvas element.
+    var ctx = canvas.getContext('2d'); // For Canvas returns 2D graphic.
+    var data = svg.outerHTML; // Get SVG element as HTML code.
+    canvg(canvas, data); // Render SVG on Canvas.
+    callback(canvas); // Execute callback function.
+}
+
+const saveAsPNG = () => { // Bind click event on download button.
+    var element = document.getElementById("v-166"); // Get SVG element.
+    SVG2PNG(element, function (canvas) {
+        // Arguments: SVG element, callback function.
+        var base64 = canvas.toDataURL("image/png"); // toDataURL return DataURI as Base64 format.
+        generateLink("SVG2PNG-01.png", base64).click(); // Trigger the Link is made by Link Generator and download.
+    });
+}
+
+export { saveGraph, openFile, fixFormat, saveAsPNG }
