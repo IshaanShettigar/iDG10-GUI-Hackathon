@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: build
+    restart: always
+    container_name: web-server-idg
+    ports:
+      - '6723:8080'
+
+networks:
+  default:
+    name: web
+    external: true
