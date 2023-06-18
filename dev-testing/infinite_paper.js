@@ -1,4 +1,4 @@
-import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "./main/elements.js"
+import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform } from "../main/elements.js"
 
 
 var namespace = joint.shapes;
@@ -72,7 +72,7 @@ MANIFOLD.addTo(toolGraph)
 
 toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     // console.log(cellView.model.getBBox("deep"))
-    $('body').append('<div id="flyPaper" style="position:fixed;z-index:100;opacity:.7;pointer-event:none;"></div>')
+    $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.7;pointer-event:none;"></div>')
     var flyGraph = new joint.dia.Graph,
         flyPaper = new joint.dia.Paper({
             el: $('#flyPaper'),
@@ -125,31 +125,31 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
 const paperDiv = document.getElementById('paper-div')
 // console.log(paperDiv.childNodes[2])
 
-var paperPanAndZoom = svgPanZoom("#paper-div svg", {
-    viewport: document.getElementById('paper-div').childNodes[2].childNodes[1],
-    fit: false,
-    center: false,
-    zoomScaleSensitivity: 0.1,
-    panEnabled: false,
-    controlIconsEnabled: true,
-    onZoom: (newZoom) => {
-        console.log(newZoom)
-        paper.setGridSize(paper.options.gridSize + newZoom)
-        // paper.drawGrid()
-    },
+// var paperPanAndZoom = svgPanZoom("#paper-div svg", {
+//     viewport: document.getElementById('paper-div').childNodes[2].childNodes[1],
+//     fit: false,
+//     center: false,
+//     zoomScaleSensitivity: 0.1,
+//     panEnabled: false,
+//     controlIconsEnabled: true,
+//     onZoom: (newZoom) => {
+//         console.log(newZoom)
+//         paper.setGridSize(paper.options.gridSize + newZoom)
+//         // paper.drawGrid()
+//     },
 
-})
+// })
 
-// paper.fitToContent()
-// console.log(paper.getFitToContentArea())
-paper.on('blank:pointerdown', function (evt, x, y) {
-    paperPanAndZoom.enablePan();
-    document.getElementById('paper-div').style.cursor = "move";
-});
-paper.on('cell:pointerup blank:pointerup', function (cellView, event) {
-    paperPanAndZoom.disablePan();
-    document.getElementById('paper-div').style.cursor = "auto";
-})
+// // paper.fitToContent()
+// // console.log(paper.getFitToContentArea())
+// paper.on('blank:pointerdown', function (evt, x, y) {
+//     paperPanAndZoom.enablePan();
+//     document.getElementById('paper-div').style.cursor = "move";
+// });
+// paper.on('cell:pointerup blank:pointerup', function (cellView, event) {
+//     paperPanAndZoom.disablePan();
+//     document.getElementById('paper-div').style.cursor = "auto";
+// })
 
 
 // graph.on('change:position', function (cell) {
