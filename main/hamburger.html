@@ -54,6 +54,17 @@
             </div>
         </div>
 
+        <div id="bom-modal" class="bom-modal">
+            <div class="bom-modal-content">
+                <span id="X" style="float: right; cursor: pointer;">&times;</span>
+                <h2>Table</h2>`
+                <table id="bom-table"></table>
+                <div>
+                    <button onclick="downloadCSV()" id="download-csv">Download as CSV</button>
+                    <button onclick="printTable()" id="print-bom">Print as PDF</button>
+                </div>
+            </div>
+        </div>
         <!--Element Settings-->
         <div class="element-settings-wrapper" id="element-settings-wrapper">
             <div class="element-settings">

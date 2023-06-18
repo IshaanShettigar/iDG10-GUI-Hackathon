@@ -206,26 +206,156 @@ function redirectToDocumentation() {
 }
 helpButton.addEventListener('click', redirectToDocumentation)
 
+/////////// Bill Of Material //////////////////
+function openBOMModal() {
+    const BOMModal = document.getElementById('bom-modal');
+    BOMModal.style.display = 'block';
+    createTable();
+}
 
-const generateBOMButton = document.getElementById('generate-bom')
-generateBOMButton.addEventListener('click', function () {
+function closeBOMModal() {
+    const BOMModal = document.getElementById('bom-modal');
+    BOMModal.style.display = 'none';
+}
+document.getElementById('X').addEventListener('click', closeBOMModal)
+
+function downloadCSV() {
+    const table = document.getElementById('bom-table');
+    const rows = table.getElementsByTagName('tr');
+    let csvContent = '';
+
+    // Iterate over the rows and cells to create the CSV content
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        let row = '';
+
+        for (let j = 0; j < cells.length; j++) {
+            row += cells[j].textContent + ',';
+        }
+
+        // Remove the trailing comma from the row
+        row = row.slice(0, -1);
+
+        // Add the row to the CSV content
+        csvContent += row + '\n';
+    }
+
+    // Create a Blob with the CSV content
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+
+    // Create a temporary link element and trigger the download
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'table.csv';
+    link.click();
+}
+
+function printTable() {
+    const table = document.getElementById('bom-table').outerHTML;
+
+    // Create a new window for the printable content
+    const printWindow = window.open('', '_blank');
+    printWindow.document.open();
+
+    // Generate the printable HTML content
+    const htmlContent = `
+<html>
+<head>
+  <title>Printable Table</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  ${table}
+</body>
+</html>
+`;
+
+    // Write the HTML content to the print window and close it
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+
+    // Print the window
+    printWindow.print();
+}
+
+function createTable() {
+    const table = document.getElementById('bom-table');
+
+    // Create table header row
+    const headerRow = document.createElement('tr');
+    const headerFields = ['Type', 'Attributes'];
+
+    headerFields.forEach(field => {
+        const th = document.createElement('th');
+        th.textContent = field;
+        headerRow.appendChild(th);
+    });
+
+    // Append the header row to the table
+    table.appendChild(headerRow);
+
+    /* Now lets work with the body of the table */
     mainGraph.getCells().forEach(function (cell) {
+        const row = document.createElement('tr');
+        const typeCell = document.createElement('td');
         if (cell.isLink()) {
             console.log("Connector Type:", cell.attributes.attrs.connector);
-            for (let i = 1; i <= 18; i += 1) {
-                console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            }
-            console.log("Subsea Intervention: ", cell.attributes.attrs['subseaIntervention']);
-            console.log("Installation & Contruction Vessel: ", cell.attributes.attrs['installationAndConstructionVessel']);
+            typeCell.textContent = cell.attributes.attrs.connector
+            row.appendChild(typeCell);
+            // for (let i = 1; i <= 18; i += 1) {
+            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            // }
+            // console.log("Subsea Intervention: ", cell.attributes.attrs['subseaIntervention']);
+            // console.log("Installation & Contruction Vessel: ", cell.attributes.attrs['installationAndConstructionVessel']);
         }
         else {
             console.log("Component Type:", cell.attributes.type);
-            for (let i = 1; i <= 18; i += 1) {
-                console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            }
+            typeCell.textContent = cell.attributes.type
+            row.appendChild(typeCell);
+            // for (let i = 1; i <= 18; i += 1) {
+            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            // }
         }
+        // Add the Attributes field
+        const attrsCell = document.createElement('td');
+        const attrs = cell.attributes.attrs;
+
+        // Iterate over the attributes and add them to a string
+        let attrsString = '';
+        for (const key in attrs) {
+            attrsString += `${key}: ${attrs[key]}<br>`;
+        }
+
+        attrsCell.innerHTML = attrsString;
+        row.appendChild(attrsCell);
+
+        // Append the row to the table
+        table.appendChild(row);
     })
-})
+}
+
+const generateBOMButton = document.getElementById('generate-bom')
+const downloadCSVButton = document.getElementById('download-csv')
+const printBOMButton = document.getElementById('print-bom')
+
+generateBOMButton.addEventListener('click', openBOMModal)
+downloadCSVButton.addEventListener('click', downloadCSV)
+printBOMButton.addEventListener('click', printTable)
+
+
 
 /* Element Settings */
 const elementP1 = document.getElementById('ele-p1')
