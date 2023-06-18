@@ -1,7 +1,8 @@
-import { injectionWellST, manifold, platform } from './elements.js'
-import { assignCustomParams } from './element-attrs.js'
-import { openFile, saveGraph } from './persist.js';
-import { displayHighlight, pasteElement, removeHighlight } from './utils.js'
+import { injectionWellST, manifold, platform } from '../main/elements.js'
+import { assignCustomParams } from '../main/element-attrs.js'
+import { openFile, saveGraph } from '../main/persist.js';
+import { displayHighlight, pasteElement, removeHighlight } from '../main/utils.js'
+import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST } from '../main/tools.js';
 
 
 var namespace = joint.shapes;
@@ -286,44 +287,12 @@ assignCustomParams(myElement2)
 assignCustomParams(myElement3)
 
 
-const ResizeTool = joint.elementTools.Control.extend({
-    children: [
-        {
-            tagName: "image",
-            selector: "handle",
-            attributes: {
-                cursor: "pointer",
-                width: 20,
-                height: 20,
-                "xlink:href":
-                    "https://assets.codepen.io/7589991/8725981_image_resize_square_icon.svg",
-            },
-        },
-        {
-            tagName: "rect",
-            selector: "extras",
-            attributes: {
-                fill: "none",
-                stroke: "#33334F",
-                "stroke-dasharray": "2,4",
-                rx: 5,
-                ry: 5,
-            },
-        },
-    ],
-    getPosition: function (view) {
-        const model = view.model;
-        const { width, height } = model.size();
-        return { x: width, y: height };
-    },
-    setPosition: function (view, coordinates) {
-        const model = view.model;
-        model.resize(
-            Math.max(coordinates.x - 10, 1),
-            Math.max(coordinates.y - 10, 1)
-        );
-    },
-});
+
+
+
+
+
+
 
 var linkBlackList = [];
 joint.elementTools.AddLabelButton = joint.elementTools.Button.extend({
@@ -434,9 +403,12 @@ toolPaper.on("element:pointerdblclick", function (elementView) {
     var addLabelButton = new joint.elementTools.AddLabelButton();
     var EletoolsView = new joint.dia.ToolsView({
         tools: [
-            removeButton,
-            new ResizeTool({ selector: "outline" }),
-            addLabelButton,
+            // removeButton,
+            new ResizeToolBottomRightST({ selector: "outline" }),
+            new ResizeToolBottomLeftST({ selector: "outline" }),
+            new ResizeToolTopLeftST({ selector: "outline" }),
+            new ResizeToolTopRightST({ selector: "outline" }),
+            // addLabelButton,
         ],
     });
 
@@ -466,8 +438,9 @@ mainPaper.on("element:pointerclick", function (cellView) {
 
     selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
     // Checking if the attributes are displayed
-    console.log(cellView.model.attributes.attrs)
-
+    selectedCellView.showTools()
+    console.log(cellView.model.findView(mainPaper).el.getBBox())
+    // const highlighterView = mainPaper.findViewBySelector(cellView, ".element-highlight");
 });
 
 // var createCopy = null;

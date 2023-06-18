@@ -1,4 +1,4 @@
-The main file is called "mainDemo.html" 
+The main file is called "hamburger.html" 
 
 #### Tech stack:
 
@@ -26,7 +26,7 @@ We have used HTML,CSS and JS along with a JavaScript library called JointJS that
 
 
 #### File Structure:
-mainDemo.html and mainDemo.js are the final products.
+hamburger.html and hamburger.js are the final products.
 
 
 #### How to Contribute to this project?
