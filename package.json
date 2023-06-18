@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "docs": "jsdoc -d docs --configure jsdocConf.json"
+  },
   "dependencies": {
+    "canvg": "^4.0.1",
     "express": "^4.18.2",
     "jointjs": "^3.6.5"
   }
