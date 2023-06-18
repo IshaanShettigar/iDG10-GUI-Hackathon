@@ -1,6 +1,6 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
-import { saveGraph, openFile, fixFormat } from "./persist.js"
+import { saveGraph, openFile, fixFormat, saveAsPNG } from "./persist.js"
 import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping } from "./utils.js"
 import { ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST, RotateToolIWST, RotateToolManifold, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
@@ -14,7 +14,6 @@ window.onload = () => {
         /* Need to load all the tools */
         addToolsOnFileLoad(mainPaper, mainGraph)
     }
-
 }
 
 /* Left Hamburger Menu */
@@ -54,7 +53,8 @@ const saveDiagramButton = document.getElementById('save-file')
 // save diagram
 saveDiagramButton.addEventListener('click', () => { saveGraph(mainGraph) });
 
-
+const saveAsPNGButton = document.getElementById('save-as-png')
+saveAsPNGButton.addEventListener('click', saveAsPNG)
 /* Settings Modal  */
 const settingsBtn = document.getElementById("settings-button");
 const settingsModal = document.getElementById("settings-modal");
@@ -1170,6 +1170,7 @@ mainPaper.on('blank:mousewheel', function (evt, x, y, delta) {
     const newscale = oldscale + 0.05 * delta * oldscale
 
     if (newscale > 0.2 && newscale < 5) {
+        currentScale = newscale
         mainPaper.scale(newscale, newscale, 0, 0);
         mainPaper.translate(-x * newscale + evt.offsetX, -y * newscale + evt.offsetY);
     }

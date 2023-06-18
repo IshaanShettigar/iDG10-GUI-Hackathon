@@ -51,7 +51,7 @@ nav button:hover {
 }
 
 .sub-menu-wrap.open-menu {
-    max-height: 200px;
+    max-height: 230px;
     max-width: 200px;
 }
 
@@ -84,6 +84,7 @@ nav button:hover {
 .save-file,
 .help,
 .clear-paper,
+.generate-bom,
 .save-as-png,
 .settings {
     display: flex;
@@ -109,6 +110,7 @@ nav button:hover {
 .save-file:hover,
 .help:hover,
 .clear-paper:hover,
+.generate-bom:hover,
 .save-as-png:hover,
 .settings:hover {
     background-color: rgb(240, 240, 240);
