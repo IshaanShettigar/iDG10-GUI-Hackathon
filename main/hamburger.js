@@ -246,7 +246,8 @@ const connectorP18 = document.getElementById('conn-p18')
 const connector = document.getElementById('connector')
 const installationAndConstructionVessel = document.getElementById('install-vessel')
 const subseaIntervention = document.getElementById('subsea-intervention')
-
+const connectionShape = document.getElementById('connection-shape')
+const connectorRouter = document.getElementById('connector-router')
 
 // possible export to utils?
 let mapping = {
@@ -294,7 +295,7 @@ const populateElementSettings = (model) => {
  * @param {joint.dia.Link} model 
  */
 const populateConnectorSettings = (model) => {
-    // console.log(`Populating ${model.attributes.}`)
+    console.log(model)
     let modelAttrs = model.attributes.attrs
     for (let i = 1; i <= 18; i++) {
         // if (modelAttrs[`parameter${i}`] != null) {
@@ -305,6 +306,8 @@ const populateConnectorSettings = (model) => {
     connector.value = modelAttrs['connector']
     installationAndConstructionVessel.value = modelAttrs['installationAndConstructionVessel']
     subseaIntervention.value = modelAttrs['subseaIntervention']
+    connectionShape.value = model.attributes.connector["name"]
+    connectorRouter.value = model.attributes.router["name"]
 }
 
 
@@ -314,6 +317,8 @@ const populateConnectorSettings = (model) => {
  * Link definition for RigidPipeline PiP PR
  */
 const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
+    router: { name: 'normal' },
+    connector: { name: 'curve' },
     attrs: {
         line: {
             connection: true,
@@ -992,6 +997,9 @@ function onConnectorChange() {
             }
             newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
             newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+            newLink.attributes.connector["name"] = model.attributes.connector["name"]
+            newLink.attributes.router["name"] = model.attributes.router["name"]
+
             model.remove()
             selectedLinkView = newLink.findView(mainPaper)
             model = selectedLinkView.model
@@ -1040,6 +1048,8 @@ function onConnectorChange() {
             }
             newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
             newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+            newLink.attributes.connector["name"] = model.attributes.connector["name"]
+            newLink.attributes.router["name"] = model.attributes.router["name"]
 
             console.log(newLink);
             console.log(model);
@@ -1089,7 +1099,25 @@ installationAndConstructionVessel.addEventListener('change', () => {
     }
 })
 
+connectionShape.addEventListener('change', function () {
+    if (selectedLinkView != null) {
+        selectedLinkView.model.attributes.connector["name"] = connectionShape.value
+        selectedLinkView.render()
+    }
+    else {
+        alert("No selected link")
+    }
+})
 
+connectorRouter.addEventListener('change', function () {
+    if (selectedLinkView != null) {
+        selectedLinkView.model.attributes.router["name"] = connectorRouter.value
+        selectedLinkView.render()
+    }
+    else {
+        alert("No selected link")
+    }
+})
 
 // mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
 //     let srcPoint = linkView.model.getSourcePoint();
@@ -1125,8 +1153,9 @@ openFileButton.addEventListener('click', (event) => {
 mainGraph.on('change add remove', () => {
     var graphjson = mainGraph.toJSON();
     var fixedGraphJson = fixFormat(graphjson)
+
     localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
-    console.log("Saved to local storage");
+    console.log("Saved to local storage", fixedGraphJson);
 })
 
 

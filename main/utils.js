@@ -145,11 +145,7 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
  * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
  */
 const addToolsOnFileLoad = (mainPaper, mainGraph) => {
-    console.log("in addTools");
-
-    console.log("Cells ", mainGraph.getCells())
     mainGraph.getCells().forEach(function (cell) {
-        console.log("HI");
         // IF The Cell is a Link
         if (cell.isLink()) {
             // load link tools
@@ -166,7 +162,6 @@ const addToolsOnFileLoad = (mainPaper, mainGraph) => {
             });
             var linkView = cell.findView(mainPaper)
             linkView.addTools(linkToolsView)
-            console.log(cell);
         }
         // If the cell is an element
         else if (cell.isElement()) {
