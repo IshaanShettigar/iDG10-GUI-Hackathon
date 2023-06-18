@@ -2,8 +2,10 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-COPY . ./
+COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install
+RUN npm install --production
 
-CMD ["npx", "http-server", "-p", "8080", "./main"]
+COPY . .
+
+CMD ["npx", "http-server", "-p", "8080", "./main/"]
