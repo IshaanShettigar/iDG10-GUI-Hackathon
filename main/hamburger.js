@@ -205,6 +205,28 @@ function redirectToDocumentation() {
     newA.remove()
 }
 helpButton.addEventListener('click', redirectToDocumentation)
+
+
+const generateBOMButton = document.getElementById('generate-bom')
+generateBOMButton.addEventListener('click', function () {
+    mainGraph.getCells().forEach(function (cell) {
+        if (cell.isLink()) {
+            console.log("Connector Type:", cell.attributes.attrs.connector);
+            for (let i = 1; i <= 18; i += 1) {
+                console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+            console.log("Subsea Intervention: ", cell.attributes.attrs['subseaIntervention']);
+            console.log("Installation & Contruction Vessel: ", cell.attributes.attrs['installationAndConstructionVessel']);
+        }
+        else {
+            console.log("Component Type:", cell.attributes.type);
+            for (let i = 1; i <= 18; i += 1) {
+                console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+        }
+    })
+})
+
 /* Element Settings */
 const elementP1 = document.getElementById('ele-p1')
 const elementP2 = document.getElementById('ele-p2')
