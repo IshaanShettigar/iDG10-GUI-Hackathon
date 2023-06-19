@@ -282,7 +282,7 @@ function printTable() {
   
   th,
   td {
-      padding: 8px;
+      padding: 3px;
       text-align: left;
       border-bottom: 1px solid #ddd;
   }
