@@ -111,11 +111,18 @@ nav button:hover {
 .help:hover,
 .clear-paper:hover,
 .generate-bom:hover,
-.save-as-png:hover,
+/* .save-as-png:hover, */
 .settings:hover {
     background-color: rgb(240, 240, 240);
     cursor: pointer
 }
+
+/* Disabling save as png for now */
+.save-as-png span {
+    color: #cacaca;
+}
+
+
 
 /* Settings modal */
 .settings-modal {
@@ -596,6 +603,10 @@ hr {
     /* margin: 5px 5px 5px 0px; */
 }
 
+#connector-bom-table {
+    margin-bottom: 15px;
+}
+
 th,
 td {
     padding: 5px;
@@ -621,4 +632,94 @@ th {
     font-size: 25px;
     text-align: center;
     font-weight: 600;
+}
+
+/* styling the print pdf and print csv buttons*/
+#download-csv {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 12px 14px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-right: 20px;
+}
+
+#download-csv:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+}
+
+#download-csv:hover {
+    background-color: #2c974b;
+}
+
+#download-csv:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+}
+
+#download-csv:disabled {
+    background-color: #94d3a2;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+}
+
+#download-csv:active {
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+
+
+/* CSS */
+#print-bom {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+#print-bom:hover,
+#print-bom:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+#print-bom:active {
+    opacity: .5;
 }

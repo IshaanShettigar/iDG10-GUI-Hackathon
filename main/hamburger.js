@@ -219,6 +219,10 @@ function closeBOMModal() {
 }
 document.getElementById('X').addEventListener('click', closeBOMModal)
 
+
+/**
+ * Function called when user tries to print bill of material as CSV
+ */
 function downloadCSV() {
     const table = document.getElementById('component-bom-table');
     const rows = table.getElementsByTagName('tr');
@@ -250,6 +254,9 @@ function downloadCSV() {
     link.click();
 }
 
+/**
+ * Function called when user clicks on print bill of material
+ */
 function printTable() {
     const componentTable = document.getElementById('component-bom-table').outerHTML;
     const connectorTable = document.getElementById('connector-bom-table').outerHTML;
@@ -318,6 +325,9 @@ ${connectorTable}
     printWindow.print();
 }
 
+/**
+ * Function to create the bill of material table based on the contents of the mainGraph
+ */
 function createTable() {
     const componentTable = document.getElementById('component-bom-table');
     const connectorTable = document.getElementById('connector-bom-table')
@@ -410,20 +420,6 @@ function createTable() {
             row.appendChild(tdSubTable)
             componentTable.appendChild(row);
         }
-        // // Add the Attributes field
-        // const attrsCell = document.createElement('td');
-        // const attrs = cell.attributes.attrs;
-
-        // // Iterate over the attributes and add them to a string
-        // let attrsString = '';
-        // for (const key in attrs) {
-        //     attrsString += `${key}: ${attrs[key]}<br>`;
-        // }
-
-        // attrsCell.innerHTML = attrsString;
-        // row.appendChild(attrsCell);
-
-        // Append the row to the table
     })
 }
 
