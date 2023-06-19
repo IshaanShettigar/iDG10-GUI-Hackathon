@@ -1,507 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.2/joint.css"
-    />
-    <link rel="stylesheet" href="main.css" />
-  </head>
 
-  <body>
-    <nav>
-      <!--Top menu, with HamburgerButton and ElementButton`-->
-      <div class="top-buttons-menu">
-        <button class="burger-button" id="burger-button">
-          <img src="./icons/menu-burger.png" class="menu-icon" />
-        </button>
-        <button class="element-button" id="element-button">Element</button>
-      </div>
-      <div id="main-paper-wrapper">
-        <div id="main-paper-div"></div>
-      </div>
-      <!--Hamburger Menu-->
-      <div class="sub-menu-wrap" id="sub-menu-wrap">
-        <div class="sub-menu">
-          <div class="open-file" id="open-file">
-            <img src="./icons/open-file-24.png" />
-            <span>Open</span>
-          </div>
-          <div class="save-file" id="save-file">
-            <img src="./icons/download-32.png" />
-            <span>Save to...</span>
-          </div>
-          <div class="save-as-png" id="save-as-png">
-            <img src="./icons/png-50.png" />
-            <span>Save as PNG</span>
-          </div>
-          <div class="generate-bom" id="generate-bom">
-            <img src="./icons/bill-50.png" />
-            <span>Generate BoM</span>
-          </div>
-          <div class="clear-paper" id="clear-paper">
-            <img src="./icons/delete.png" />
-            <span>Reset the canvas</span>
-          </div>
-          <div class="settings" id="settings-button">
-            <img src="./icons/settings-50.png" />
-            <span>Settings</span>
-          </div>
-          <div class="help" id="help">
-            <img src="./icons/help-32.png" />
-            <span>Help</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.2/joint.css" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+  <nav>
+    <!--Top menu, with HamburgerButton and ElementButton`-->
+    <div class="top-buttons-menu">
+      <button class="burger-button" id="burger-button">
+        <img src="./icons/menu-burger.png" class="menu-icon" />
+      </button>
+      <button class="element-button" id="element-button">Element</button>
+    </div>
+    <div id="main-paper-wrapper">
+      <div id="main-paper-div"></div>
+    </div>
+    <!--Hamburger Menu-->
+    <div class="sub-menu-wrap" id="sub-menu-wrap">
+      <div class="sub-menu">
+        <div class="open-file" id="open-file">
+          <img src="./icons/open-file-24.png" />
+          <span>Open</span>
+        </div>
+        <div class="save-file" id="save-file">
+          <img src="./icons/download-32.png" />
+          <span>Save to...</span>
+        </div>
+        <div class="save-as-png" id="save-as-png">
+          <img src="./icons/png-50.png" />
+          <span>Save as PNG</span>
+        </div>
+        <div class="generate-bom" id="generate-bom">
+          <img src="./icons/bill-50.png" />
+          <span>Generate BoM</span>
+        </div>
+        <div class="clear-paper" id="clear-paper">
+          <img src="./icons/delete.png" />
+          <span>Reset the canvas</span>
+        </div>
+        <div class="settings" id="settings-button">
+          <img src="./icons/settings-50.png" />
+          <span>Settings</span>
+        </div>
+        <div class="help" id="help">
+          <img src="./icons/help-32.png" />
+          <span>Help</span>
         </div>
       </div>
+    </div>
 
-      <div id="bom-modal" class="bom-modal">
-        <div class="bom-modal-content">
-          <span id="X" style="float: right; cursor: pointer">&times;</span>
-          <h2>Table</h2>
-          `
-          <table id="bom-table"></table>
-          <div>
-            <button onclick="downloadCSV()" id="download-csv">
-              Download as CSV
-            </button>
-            <button onclick="printTable()" id="print-bom">Print as PDF</button>
-          </div>
-        </div>
-      </div>
-      <!--Element Settings-->
-      <div class="element-settings-wrapper" id="element-settings-wrapper">
-        <div class="element-settings">
-          <div class="parameter element-name">
-            <span id="elementName"></span>
-          </div>
-          <div id="para1" class="parameter double">
-            <span>Parameter 1</span>
-            <input type="number" step="any" class="input-number" id="ele-p1" />
-          </div>
-          <div id="para2" class="parameter string">
-            <span>Parameter 2</span>
-            <select id="ele-p2">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para3" class="parameter double">
-            <span>Parameter 3</span>
-            <input type="number" step="any" class="input-number" id="ele-p3" />
-          </div>
-          <div id="para4" class="parameter double">
-            <span>Parameter 4</span>
-            <input type="number" step="any" class="input-number" id="ele-p4" />
-          </div>
-          <div id="para5" class="parameter string">
-            <span>Parameter 5</span>
-            <select id="ele-p5">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para6" class="parameter string">
-            <span>Parameter 6</span>
-            <select id="ele-p6">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para7" class="parameter double">
-            <span>Parameter 7</span>
-            <input type="number" step="any" class="input-number" id="ele-p7" />
-          </div>
-          <div id="para8" class="parameter double">
-            <span>Parameter 8</span>
-            <input type="number" step="any" class="input-number" id="ele-p8" />
-          </div>
-          <div id="para9" class="parameter string">
-            <span>Parameter 9</span>
-            <select id="ele-p9">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para10" class="parameter double">
-            <span>Parameter 10</span>
-            <input type="number" step="any" class="input-number" id="ele-p10" />
-          </div>
-          <div id="para11" class="parameter double">
-            <span>Parameter 11</span>
-            <input type="number" step="any" class="input-number" id="ele-p11" />
-          </div>
-          <div id="para12" class="parameter double">
-            <span>Parameter 12</span>
-            <input type="number" step="any" class="input-number" id="ele-p12" />
-          </div>
-          <div id="para13" class="parameter double">
-            <span>Parameter 13</span>
-            <input type="number" step="any" class="input-number" id="ele-p13" />
-          </div>
-          <div id="para14" class="parameter double">
-            <span>Parameter 14</span>
-            <input type="number" step="any" class="input-number" id="ele-p14" />
-          </div>
-          <div id="para15" class="parameter string">
-            <span>Parameter 15</span>
-            <select id="ele-p15">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para16" class="parameter string">
-            <span>Parameter 16</span>
-            <select id="ele-p16">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para17" class="parameter string">
-            <span>Parameter 17</span>
-            <select id="ele-p17">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para18" class="parameter string">
-            <span>Parameter 18</span>
-            <select id="ele-p18">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!--Connector Settings-->
-      <div class="connector-settings-wrapper" id="connector-settings-wrapper">
-        <div class="connector-settings">
-          <div class="parameter link-settings">
-            <span>Connector Router</span>
-            <select id="connector-router">
-              <option value="normal">Normal</option>
-              <option value="orthogonal">Orthogonal</option>
-              <option value="manhattan">Manhattan</option>
-              <option value="metro">Metro</option>
-            </select>
-          </div>
-          <div class="parameter link-settings">
-            <span>Connection Shape</span>
-            <select id="connection-shape">
-              <option value="curve">Curve</option>
-              <option value="normal">Normal</option>
-              <option value="rounded">Rounded</option>
-              <option value="jumpover">Jumpover</option>
-              <option value="smooth">Smooth</option>
-            </select>
-          </div>
-          <div id="link-type" class="parameter link-type">
-            <span>Connector</span>
-            <select id="connector">
-              <option value="Umbillical">Umbillical</option>
-              <option value="Rigid-Pipeline-PR">Rigid-Pipeline-PR</option>
-              <option value="Rigid-Pipeline-WI">Rigid-Pipeline-WI</option>
-              <option value="Rigid-Pipeline-GL/GI">Rigid-Pipeline-GL/GI</option>
-              <option value="Flexible Pipeline-PR">Flexible Pipeline-PR</option>
-              <option value="Flexible Pipeline-WI">Flexible Pipeline-WI</option>
-              <option value="Flexible Pipeline-GL/GI">
-                Flexible Pipeline-GL/GI
-              </option>
-              <option value="Hydr-Flying Lead">Hydr-Flying Lead</option>
-              <option value="Rigid-Pipeline-PiP PR">
-                Rigid-Pipeline-PiP PR
-              </option>
-              <option value="Rigid-Spool-PR">Rigid-Spool-PR</option>
-              <option value="Rigid-Spool-WI">Rigid-Spool-WI</option>
-              <option value="Rigid-Spool-GL/GI">Rigid-Spool-GL/GI</option>
-              <option value="Flexible-Jumper-PR">Flexible-Jumper-PR</option>
-              <option value="Flexible-Jumper-WI">Flexible-Jumper-WI</option>
-              <option value="Flexible-Jumper-GL/GI">
-                Flexible-Jumper-GL/GI
-              </option>
-            </select>
-          </div>
-          <div class="parameter subsea-intervention">
-            <span>Subsea Intervention</span>
-            <select id="subsea-intervention">
-              <option>Rock Dumping</option>
-              <option>Concrete Mattress</option>
-              <option>Trenching/back filling</option>
-              <option>Sleepers</option>
-              <option>Rock-Removal</option>
-              <option>GRP covers</option>
-            </select>
-          </div>
-          <div class="parameter install-vessel">
-            <span>Installation & Construction Vessel</span>
-            <select id="install-vessel">
-              <option>S-Lay</option>
-              <option>J-Lay</option>
-              <option>Reel-Lay</option>
-              <option>Rock-Lay Vessel</option>
-              <option>Survey Vessel</option>
-              <option>Flex/Umb-Lay Vessel</option>
-              <option>Construction Vessel</option>
-            </select>
-          </div>
-          <div id="para1" class="parameter double">
-            <span>Parameter 1</span>
-            <input type="number" step="any" class="input-number" id="conn-p1" />
-          </div>
-          <div id="para2" class="parameter string">
-            <span>Parameter 2</span>
-            <select id="conn-p2">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para3" class="parameter double">
-            <span>Parameter 3</span>
-            <input type="number" step="any" class="input-number" id="conn-p3" />
-          </div>
-          <div id="para4" class="parameter double">
-            <span>Parameter 4</span>
-            <input type="number" step="any" class="input-number" id="conn-p4" />
-          </div>
-          <div id="para5" class="parameter string">
-            <span>Parameter 5</span>
-            <select id="conn-p5">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para6" class="parameter string">
-            <span>Parameter 6</span>
-            <select id="conn-p6">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para7" class="parameter double">
-            <span>Parameter 7</span>
-            <input type="number" step="any" class="input-number" id="conn-p7" />
-          </div>
-          <div id="para8" class="parameter double">
-            <span>Parameter 8</span>
-            <input type="number" step="any" class="input-number" id="conn-p8" />
-          </div>
-          <div id="para9" class="parameter string">
-            <span>Parameter 9</span>
-            <select id="conn-p9">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para10" class="parameter double">
-            <span>Parameter 10</span>
-            <input
-              type="number"
-              step="any"
-              class="input-number"
-              id="conn-p10"
-            />
-          </div>
-          <div id="para11" class="parameter double">
-            <span>Parameter 11</span>
-            <input
-              type="number"
-              step="any"
-              class="input-number"
-              id="conn-p11"
-            />
-          </div>
-          <div id="para12" class="parameter double">
-            <span>Parameter 12</span>
-            <input
-              type="number"
-              step="any"
-              class="input-number"
-              id="conn-p12"
-            />
-          </div>
-          <div id="para13" class="parameter double">
-            <span>Parameter 13</span>
-            <input
-              type="number"
-              step="any"
-              class="input-number"
-              id="conn-p13"
-            />
-          </div>
-          <div id="para14" class="parameter double">
-            <span>Parameter 14</span>
-            <input
-              type="number"
-              step="any"
-              class="input-number"
-              id="conn-p14"
-            />
-          </div>
-          <div id="para15" class="parameter string">
-            <span>Parameter 15</span>
-            <select id="conn-p15">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para16" class="parameter string">
-            <span>Parameter 16</span>
-            <select id="conn-p16">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para17" class="parameter string">
-            <span>Parameter 17</span>
-            <select id="conn-p17">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-          <div id="para18" class="parameter string">
-            <span>Parameter 18</span>
-            <select id="conn-p18">
-              <option>None</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!--Settings Pop-Up, when Settings icon is clicked in the hamburger menu-->
-      <section class="settings-modal hidden" id="settings-modal">
-        <button class="cross-btn" id="close-modal">
-          <img src="./icons/cross-50.png" class="" />
-        </button>
-        <div class="within-modal">
-          <div class="paper-background-color">
-            <span>Canvas background color</span>
-            <div class="paper-colors">
-              <button
-                class="paper-color-btn color1 active"
-                id="color1"
-              ></button>
-              <button class="paper-color-btn color2" id="color2"></button>
-              <button class="paper-color-btn color3" id="color3"></button>
-              <button class="paper-color-btn color4" id="color4"></button>
-              <button class="paper-color-btn color5" id="color5"></button>
-              <div style="border-left: 1px solid #e8e6e6; height: 33px"></div>
-              <button class="paper-color-btn" id="color-custom"></button>
-            </div>
-          </div>
-          <hr />
-          <div class="paper-background-type">
-            <label for="grid-type" style="margin-bottom: 5px"
-              >Canvas grid type</label
-            >
-            <select class="grid-type" id="grid-type">
-              <option value="None">None</option>
-              <option value="mesh">Mesh</option>
-              <option value="doubleMesh">Double-Mesh</option>
-              <option value="dot">Dot</option>
-              <option value="fixedDot">Fixed Dot</option>
-            </select>
-          </div>
-          <hr />
-          <div class="paper-background-size">
-            <label for="grid-size" style="margin-bottom: 5px"
-              >Canvas grid size</label
-            >
-            <input type="number" step="1" class="grid-size" id="grid-size" />
-          </div>
-          <hr />
-          <div class="advanced-link-settings">
-            <button id="adv-link-settings-button">
-              Advanced Link Settings
-            </button>
-          </div>
-        </div>
-        <section class="custom-color-pop-up hidden" id="custom-bg-color-modal">
-          <span>Hex code</span>
-          <input type="text" id="custom-color-input" placeholder="#ffffff" />
-        </section>
-      </section>
-
-      <!-- To be displayed on click of the clear background option in the hamburger menu-->
-      <div class="clear-background-modal hidden" id="clear-background-modal">
-        <button class="cross-btn" id="close-modal-bg">
-          <img src="./icons/cross-50.png" class="" />
-        </button>
-        <label>Are you sure you want to clear the entire canvas?</label>
-        <div class="buttons-div">
-          <button class="normal" id="cancel-clear-bg">Cancel</button>
-          <button class="alert-button" id="confirm-clear-bg">Confirm</button>
-        </div>
-      </div>
-
-      <div class="settings-overlay hidden" id="settings-overlay"></div>
-
-      <!-- The Zoom-in Zoom-out and Reset-Zoom buttons in the bottom right -->
-      <div class="footer-tools">
-        <button class="zoom-in" id="zoom-in">
-          <img src="./icons/zoom-in-50.png" />
-        </button>
-        <button class="reset-zoom" id="reset-zoom">Reset Zoom</button>
-        <button class="zoom-out" id="zoom-out">
-          <img src="./icons/zoom-out-50.png" />
-        </button>
-      </div>
-
-      <!--Element Display, for drag and drop onto main paper-->
-      <div class="element-menu-wrap" id="element-menu-wrap">
-        <div class="element-menu">
-          <button class="pin-button" id="pin-button">
-            <img src="./icons/vertical-pin.png" alt="pin" />
+    <div id="bom-modal" class="bom-modal">
+      <div class="bom-modal-content">
+        <span id="X" style="float: right; cursor: pointer">&times;</span>
+        <h2>Table</h2>
+        `
+        <table id="bom-table"></table>
+        <div>
+          <button id="download-csv">
+            Download as CSV
           </button>
-          <span>Component Library</span>
+          <button id="print-bom">Print as PDF</button>
+        </div>
+      </div>
+    </div>
+    <!--Element Settings-->
+    <div class="element-settings-wrapper" id="element-settings-wrapper">
+      <div class="element-settings">
+        <div class="parameter element-name">
+          <span id="elementName"></span>
+        </div>
+        <div id="para1" class="parameter double">
+          <span>Parameter 1</span>
+          <input type="number" step="any" class="input-number" id="ele-p1" />
+        </div>
+        <div id="para2" class="parameter string">
+          <span>Parameter 2</span>
+          <select id="ele-p2">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para3" class="parameter double">
+          <span>Parameter 3</span>
+          <input type="number" step="any" class="input-number" id="ele-p3" />
+        </div>
+        <div id="para4" class="parameter double">
+          <span>Parameter 4</span>
+          <input type="number" step="any" class="input-number" id="ele-p4" />
+        </div>
+        <div id="para5" class="parameter string">
+          <span>Parameter 5</span>
+          <select id="ele-p5">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para6" class="parameter string">
+          <span>Parameter 6</span>
+          <select id="ele-p6">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para7" class="parameter double">
+          <span>Parameter 7</span>
+          <input type="number" step="any" class="input-number" id="ele-p7" />
+        </div>
+        <div id="para8" class="parameter double">
+          <span>Parameter 8</span>
+          <input type="number" step="any" class="input-number" id="ele-p8" />
+        </div>
+        <div id="para9" class="parameter string">
+          <span>Parameter 9</span>
+          <select id="ele-p9">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para10" class="parameter double">
+          <span>Parameter 10</span>
+          <input type="number" step="any" class="input-number" id="ele-p10" />
+        </div>
+        <div id="para11" class="parameter double">
+          <span>Parameter 11</span>
+          <input type="number" step="any" class="input-number" id="ele-p11" />
+        </div>
+        <div id="para12" class="parameter double">
+          <span>Parameter 12</span>
+          <input type="number" step="any" class="input-number" id="ele-p12" />
+        </div>
+        <div id="para13" class="parameter double">
+          <span>Parameter 13</span>
+          <input type="number" step="any" class="input-number" id="ele-p13" />
+        </div>
+        <div id="para14" class="parameter double">
+          <span>Parameter 14</span>
+          <input type="number" step="any" class="input-number" id="ele-p14" />
+        </div>
+        <div id="para15" class="parameter string">
+          <span>Parameter 15</span>
+          <select id="ele-p15">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para16" class="parameter string">
+          <span>Parameter 16</span>
+          <select id="ele-p16">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para17" class="parameter string">
+          <span>Parameter 17</span>
+          <select id="ele-p17">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para18" class="parameter string">
+          <span>Parameter 18</span>
+          <select id="ele-p18">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--Connector Settings-->
+    <div class="connector-settings-wrapper" id="connector-settings-wrapper">
+      <div class="connector-settings">
+        <div class="parameter link-settings">
+          <span>Connector Router</span>
+          <select id="connector-router">
+            <option value="normal">Normal</option>
+            <option value="orthogonal">Orthogonal</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="metro">Metro</option>
+          </select>
+        </div>
+        <div class="parameter link-settings">
+          <span>Connection Shape</span>
+          <select id="connection-shape">
+            <option value="curve">Curve</option>
+            <option value="normal">Normal</option>
+            <option value="rounded">Rounded</option>
+            <option value="jumpover">Jumpover</option>
+            <option value="smooth">Smooth</option>
+          </select>
+        </div>
+        <div id="link-type" class="parameter link-type">
+          <span>Connector</span>
+          <select id="connector">
+            <option value="Umbillical">Umbillical</option>
+            <option value="Rigid-Pipeline-PR">Rigid-Pipeline-PR</option>
+            <option value="Rigid-Pipeline-WI">Rigid-Pipeline-WI</option>
+            <option value="Rigid-Pipeline-GL/GI">Rigid-Pipeline-GL/GI</option>
+            <option value="Flexible Pipeline-PR">Flexible Pipeline-PR</option>
+            <option value="Flexible Pipeline-WI">Flexible Pipeline-WI</option>
+            <option value="Flexible Pipeline-GL/GI">
+              Flexible Pipeline-GL/GI
+            </option>
+            <option value="Hydr-Flying Lead">Hydr-Flying Lead</option>
+            <option value="Rigid-Pipeline-PiP PR">
+              Rigid-Pipeline-PiP PR
+            </option>
+            <option value="Rigid-Spool-PR">Rigid-Spool-PR</option>
+            <option value="Rigid-Spool-WI">Rigid-Spool-WI</option>
+            <option value="Rigid-Spool-GL/GI">Rigid-Spool-GL/GI</option>
+            <option value="Flexible-Jumper-PR">Flexible-Jumper-PR</option>
+            <option value="Flexible-Jumper-WI">Flexible-Jumper-WI</option>
+            <option value="Flexible-Jumper-GL/GI">
+              Flexible-Jumper-GL/GI
+            </option>
+          </select>
+        </div>
+        <div class="parameter subsea-intervention">
+          <span>Subsea Intervention</span>
+          <select id="subsea-intervention">
+            <option>Rock Dumping</option>
+            <option>Concrete Mattress</option>
+            <option>Trenching/back filling</option>
+            <option>Sleepers</option>
+            <option>Rock-Removal</option>
+            <option>GRP covers</option>
+          </select>
+        </div>
+        <div class="parameter install-vessel">
+          <span>Installation & Construction Vessel</span>
+          <select id="install-vessel">
+            <option>S-Lay</option>
+            <option>J-Lay</option>
+            <option>Reel-Lay</option>
+            <option>Rock-Lay Vessel</option>
+            <option>Survey Vessel</option>
+            <option>Flex/Umb-Lay Vessel</option>
+            <option>Construction Vessel</option>
+          </select>
+        </div>
+        <div id="para1" class="parameter double">
+          <span>Parameter 1</span>
+          <input type="number" step="any" class="input-number" id="conn-p1" />
+        </div>
+        <div id="para2" class="parameter string">
+          <span>Parameter 2</span>
+          <select id="conn-p2">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para3" class="parameter double">
+          <span>Parameter 3</span>
+          <input type="number" step="any" class="input-number" id="conn-p3" />
+        </div>
+        <div id="para4" class="parameter double">
+          <span>Parameter 4</span>
+          <input type="number" step="any" class="input-number" id="conn-p4" />
+        </div>
+        <div id="para5" class="parameter string">
+          <span>Parameter 5</span>
+          <select id="conn-p5">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para6" class="parameter string">
+          <span>Parameter 6</span>
+          <select id="conn-p6">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para7" class="parameter double">
+          <span>Parameter 7</span>
+          <input type="number" step="any" class="input-number" id="conn-p7" />
+        </div>
+        <div id="para8" class="parameter double">
+          <span>Parameter 8</span>
+          <input type="number" step="any" class="input-number" id="conn-p8" />
+        </div>
+        <div id="para9" class="parameter string">
+          <span>Parameter 9</span>
+          <select id="conn-p9">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para10" class="parameter double">
+          <span>Parameter 10</span>
+          <input type="number" step="any" class="input-number" id="conn-p10" />
+        </div>
+        <div id="para11" class="parameter double">
+          <span>Parameter 11</span>
+          <input type="number" step="any" class="input-number" id="conn-p11" />
+        </div>
+        <div id="para12" class="parameter double">
+          <span>Parameter 12</span>
+          <input type="number" step="any" class="input-number" id="conn-p12" />
+        </div>
+        <div id="para13" class="parameter double">
+          <span>Parameter 13</span>
+          <input type="number" step="any" class="input-number" id="conn-p13" />
+        </div>
+        <div id="para14" class="parameter double">
+          <span>Parameter 14</span>
+          <input type="number" step="any" class="input-number" id="conn-p14" />
+        </div>
+        <div id="para15" class="parameter string">
+          <span>Parameter 15</span>
+          <select id="conn-p15">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para16" class="parameter string">
+          <span>Parameter 16</span>
+          <select id="conn-p16">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para17" class="parameter string">
+          <span>Parameter 17</span>
+          <select id="conn-p17">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+        <div id="para18" class="parameter string">
+          <span>Parameter 18</span>
+          <select id="conn-p18">
+            <option>None</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--Settings Pop-Up, when Settings icon is clicked in the hamburger menu-->
+    <section class="settings-modal hidden" id="settings-modal">
+      <button class="cross-btn" id="close-modal">
+        <img src="./icons/cross-50.png" class="" />
+      </button>
+      <div class="within-modal">
+        <div class="paper-background-color">
+          <span>Canvas background color</span>
+          <div class="paper-colors">
+            <button class="paper-color-btn color1 active" id="color1"></button>
+            <button class="paper-color-btn color2" id="color2"></button>
+            <button class="paper-color-btn color3" id="color3"></button>
+            <button class="paper-color-btn color4" id="color4"></button>
+            <button class="paper-color-btn color5" id="color5"></button>
+            <div style="border-left: 1px solid #e8e6e6; height: 33px"></div>
+            <button class="paper-color-btn" id="color-custom"></button>
+          </div>
         </div>
         <hr />
-        <div class="paper-wrapper">
-          <!-- <button class="scroll-up"><i class="fa-regular fa-angle-up"></i></button> -->
-          <div id="tool-paper-div"></div>
-          <!-- <button class="scroll-down">DOWN</button> -->
+        <div class="paper-background-type">
+          <label for="grid-type" style="margin-bottom: 5px">Canvas grid type</label>
+          <select class="grid-type" id="grid-type">
+            <option value="None">None</option>
+            <option value="mesh">Mesh</option>
+            <option value="doubleMesh">Double-Mesh</option>
+            <option value="dot">Dot</option>
+            <option value="fixedDot">Fixed Dot</option>
+          </select>
+        </div>
+        <hr />
+        <div class="paper-background-size">
+          <label for="grid-size" style="margin-bottom: 5px">Canvas grid size</label>
+          <input type="number" step="1" class="grid-size" id="grid-size" />
+        </div>
+        <hr />
+        <div class="advanced-link-settings">
+          <button id="adv-link-settings-button">
+            Advanced Link Settings
+          </button>
         </div>
       </div>
-    </nav>
+      <section class="custom-color-pop-up hidden" id="custom-bg-color-modal">
+        <span>Hex code</span>
+        <input type="text" id="custom-color-input" placeholder="#ffffff" />
+      </section>
+    </section>
 
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../node_modules/lodash/lodash.js"></script>
-    <script src="../node_modules/backbone/backbone.js"></script>
-    <script src="../node_modules/jointjs/dist/joint.js"></script>
-    <script type="module" src="hamburger.js"></script>
-  </body>
+    <!-- To be displayed on click of the clear background option in the hamburger menu-->
+    <div class="clear-background-modal hidden" id="clear-background-modal">
+      <button class="cross-btn" id="close-modal-bg">
+        <img src="./icons/cross-50.png" class="" />
+      </button>
+      <label>Are you sure you want to clear the entire canvas?</label>
+      <div class="buttons-div">
+        <button class="normal" id="cancel-clear-bg">Cancel</button>
+        <button class="alert-button" id="confirm-clear-bg">Confirm</button>
+      </div>
+    </div>
+
+    <div class="settings-overlay hidden" id="settings-overlay"></div>
+
+    <!-- The Zoom-in Zoom-out and Reset-Zoom buttons in the bottom right -->
+    <div class="footer-tools">
+      <button class="zoom-in" id="zoom-in">
+        <img src="./icons/zoom-in-50.png" />
+      </button>
+      <button class="reset-zoom" id="reset-zoom">Reset Zoom</button>
+      <button class="zoom-out" id="zoom-out">
+        <img src="./icons/zoom-out-50.png" />
+      </button>
+    </div>
+
+    <!--Element Display, for drag and drop onto main paper-->
+    <div class="element-menu-wrap" id="element-menu-wrap">
+      <div class="element-menu">
+        <button class="pin-button" id="pin-button">
+          <img src="./icons/vertical-pin.png" alt="pin" />
+        </button>
+        <span>Component Library</span>
+      </div>
+      <hr />
+      <div class="paper-wrapper">
+        <!-- <button class="scroll-up"><i class="fa-regular fa-angle-up"></i></button> -->
+        <div id="tool-paper-div"></div>
+        <!-- <button class="scroll-down">DOWN</button> -->
+      </div>
+    </div>
+  </nav>
+
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/lodash/lodash.js"></script>
+  <script src="../node_modules/backbone/backbone.js"></script>
+  <script src="../node_modules/jointjs/dist/joint.js"></script>
+  <script type="module" src="hamburger.js"></script>
+</body>
+
 </html>
