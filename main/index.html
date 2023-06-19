@@ -54,13 +54,15 @@
     </div>
 
     <div id="bom-modal" class="bom-modal">
-      <div class="bom-modal-content">
+      <div class="bom-modal-content" id="bom-modal-content">
         <span id="X" style="float: right; cursor: pointer">&times;</span>
-        <h2>Table</h2>
-        `
-        <table id="bom-table"></table>
+        <h3>Component - Bill of Material</h3>
+        <table id="component-bom-table"></table>
+        <h3>Connector - Bill of Material</h3>
+        <table id="connector-bom-table"></table>
+
         <div>
-          <button id="download-csv">
+          <button id="download-csv" class="">
             Download as CSV
           </button>
           <button id="print-bom">Print as PDF</button>

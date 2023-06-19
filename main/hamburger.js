@@ -220,7 +220,7 @@ function closeBOMModal() {
 document.getElementById('X').addEventListener('click', closeBOMModal)
 
 function downloadCSV() {
-    const table = document.getElementById('bom-table');
+    const table = document.getElementById('component-bom-table');
     const rows = table.getElementsByTagName('tr');
     let csvContent = '';
 
@@ -251,8 +251,9 @@ function downloadCSV() {
 }
 
 function printTable() {
-    const table = document.getElementById('bom-table').outerHTML;
-
+    const componentTable = document.getElementById('component-bom-table').outerHTML;
+    const connectorTable = document.getElementById('connector-bom-table').outerHTML;
+    // const bomModalContentDIV = document.getElementById('bom-modal-content')
     // Create a new window for the printable content
     const printWindow = window.open('', '_blank');
     printWindow.document.open();
@@ -263,22 +264,48 @@ function printTable() {
 <head>
   <title>Printable Table</title>
   <style>
-    table {
+  #component-bom-table,
+  #connector-bom-table {
       width: 100%;
       border-collapse: collapse;
-    }
-    th, td {
+      font-family: Arial;
+      border: 4px solid black;
+      /* margin: 5px 5px 5px 0px; */
+  }
+  
+  th,
+  td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-    }
-    th {
+  }
+  
+  th {
       font-weight: bold;
-    }
+  }
+  
+  .typeRow {
+      border: 4px solid #000000;
+  }
+  
+  .inner-table {
+      width: 97.5%;
+      margin: 10px;
+      border: 2px solid black;
+  }
+  
+  .type-td {
+      font-size: 25px;
+      text-align: center;
+      font-weight: 600;
+  }
   </style>
 </head>
 <body>
-  ${table}
+<h3>Component - Bill of Material</h3>
+${componentTable}
+<h3>Connector - Bill of Material</h3>
+${connectorTable}
 </body>
 </html>
 `;
@@ -292,58 +319,111 @@ function printTable() {
 }
 
 function createTable() {
-    const table = document.getElementById('bom-table');
-
+    const componentTable = document.getElementById('component-bom-table');
+    const connectorTable = document.getElementById('connector-bom-table')
     // Create table header row
     const headerRow = document.createElement('tr');
+    const headerRow2 = document.createElement('tr')
     const headerFields = ['Type', 'Attributes'];
 
     headerFields.forEach(field => {
         const th = document.createElement('th');
         th.textContent = field;
         headerRow.appendChild(th);
+        headerRow2.appendChild(th)
     });
 
     // Append the header row to the table
-    table.appendChild(headerRow);
+    componentTable.appendChild(headerRow2);
+    connectorTable.appendChild(headerRow)
 
     /* Now lets work with the body of the table */
     mainGraph.getCells().forEach(function (cell) {
         const row = document.createElement('tr');
-        const typeCell = document.createElement('td');
+        row.classList.add('typeRow')
         if (cell.isLink()) {
-            console.log("Connector Type:", cell.attributes.attrs.connector);
+            const typeCell = document.createElement('td');
+            typeCell.classList.add('type-td')
+            // console.log("Connector Type:", cell.attributes.attrs.connector);
             typeCell.textContent = cell.attributes.attrs.connector
             row.appendChild(typeCell);
-            // for (let i = 1; i <= 18; i += 1) {
-            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            // }
+            const tdSubTable = document.createElement('td')
+            const subTable = document.createElement('table')
+            subTable.classList.add('inner-table')
+            for (let i = 1; i <= 18; i += 1) {
+                const subRow = document.createElement('tr')
+                const parameterName = document.createElement('td')
+                const parameterValue = document.createElement('td');
+                parameterName.textContent = `Parameter${i}`
+                parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+                subRow.appendChild(parameterName)
+                subRow.appendChild(parameterValue)
+                subTable.appendChild(subRow)
+                // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+            // Adding subsea internvetion
+            const si = document.createElement('tr')
+            const siKey = document.createElement('td')
+            siKey.textContent = 'Subsea Intervention'
+            const siValue = document.createElement('td')
+            siValue.textContent = cell.attributes.attrs['subseaIntervention']
+            si.appendChild(siKey)
+            si.appendChild(siValue)
+            subTable.appendChild(si)
+
+            // adding installation and construction vessel
+            const icv = document.createElement('tr')
+            const icvKey = document.createElement('td')
+            icvKey.textContent = 'Installation & Construction Vessel'
+            const icvValue = document.createElement('td')
+            icvValue.textContent = cell.attributes.attrs['installationAndConstructionVessel']
+            icv.appendChild(icvKey)
+            icv.appendChild(icvValue)
+            subTable.appendChild(icv)
+            tdSubTable.appendChild(subTable)
+            row.appendChild(tdSubTable)
+            connectorTable.appendChild(row);
             // console.log("Subsea Intervention: ", cell.attributes.attrs['subseaIntervention']);
             // console.log("Installation & Contruction Vessel: ", cell.attributes.attrs['installationAndConstructionVessel']);
         }
         else {
-            console.log("Component Type:", cell.attributes.type);
+            const typeCell = document.createElement('td');
+            typeCell.classList.add('type-td')
+            // console.log("Component Type:", cell.attributes.type);
             typeCell.textContent = cell.attributes.type
             row.appendChild(typeCell);
-            // for (let i = 1; i <= 18; i += 1) {
-            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            // }
+            const tdSubTable = document.createElement('td')
+            const subTable = document.createElement('table')
+            subTable.classList.add('inner-table')
+            for (let i = 1; i <= 18; i += 1) {
+                const subRow = document.createElement('tr')
+                const parameterName = document.createElement('td')
+                const parameterValue = document.createElement('td');
+                parameterName.textContent = `Parameter${i}`
+                parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+                subRow.appendChild(parameterName)
+                subRow.appendChild(parameterValue)
+                subTable.appendChild(subRow)
+                // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+            tdSubTable.appendChild(subTable)
+            row.appendChild(tdSubTable)
+            componentTable.appendChild(row);
         }
-        // Add the Attributes field
-        const attrsCell = document.createElement('td');
-        const attrs = cell.attributes.attrs;
+        // // Add the Attributes field
+        // const attrsCell = document.createElement('td');
+        // const attrs = cell.attributes.attrs;
 
-        // Iterate over the attributes and add them to a string
-        let attrsString = '';
-        for (const key in attrs) {
-            attrsString += `${key}: ${attrs[key]}<br>`;
-        }
+        // // Iterate over the attributes and add them to a string
+        // let attrsString = '';
+        // for (const key in attrs) {
+        //     attrsString += `${key}: ${attrs[key]}<br>`;
+        // }
 
-        attrsCell.innerHTML = attrsString;
-        row.appendChild(attrsCell);
+        // attrsCell.innerHTML = attrsString;
+        // row.appendChild(attrsCell);
 
         // Append the row to the table
-        table.appendChild(row);
     })
 }
 
