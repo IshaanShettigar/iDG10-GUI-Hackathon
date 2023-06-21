@@ -247,8 +247,12 @@ function closeBOMModal() {
 }
 document.getElementById('X').addEventListener('click', closeBOMModal)
 
+
+/**
+ * Function called when user tries to print bill of material as CSV
+ */
 function downloadCSV() {
-    const table = document.getElementById('bom-table');
+    const table = document.getElementById('component-bom-table');
     const rows = table.getElementsByTagName('tr');
     let csvContent = '';
 
@@ -278,9 +282,13 @@ function downloadCSV() {
     link.click();
 }
 
+/**
+ * Function called when user clicks on print bill of material
+ */
 function printTable() {
-    const table = document.getElementById('bom-table').outerHTML;
-
+    const componentTable = document.getElementById('component-bom-table').outerHTML;
+    const connectorTable = document.getElementById('connector-bom-table').outerHTML;
+    // const bomModalContentDIV = document.getElementById('bom-modal-content')
     // Create a new window for the printable content
     const printWindow = window.open('', '_blank');
     printWindow.document.open();
@@ -291,22 +299,48 @@ function printTable() {
 &lt;head>
   &lt;title>Printable Table&lt;/title>
   &lt;style>
-    table {
+  #component-bom-table,
+  #connector-bom-table {
       width: 100%;
       border-collapse: collapse;
-    }
-    th, td {
+      font-family: Arial;
+      border: 4px solid black;
+      /* margin: 5px 5px 5px 0px; */
+  }
+  
+  th,
+  td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-    }
-    th {
+  }
+  
+  th {
       font-weight: bold;
-    }
+  }
+  
+  .typeRow {
+      border: 4px solid #000000;
+  }
+  
+  .inner-table {
+      width: 97.5%;
+      margin: 10px;
+      border: 2px solid black;
+  }
+  
+  .type-td {
+      font-size: 25px;
+      text-align: center;
+      font-weight: 600;
+  }
   &lt;/style>
 &lt;/head>
 &lt;body>
-  ${table}
+&lt;h3>Component - Bill of Material&lt;/h3>
+${componentTable}
+&lt;h3>Connector - Bill of Material&lt;/h3>
+${connectorTable}
 &lt;/body>
 &lt;/html>
 `;
@@ -319,59 +353,101 @@ function printTable() {
     printWindow.print();
 }
 
+/**
+ * Function to create the bill of material table based on the contents of the mainGraph
+ */
 function createTable() {
-    const table = document.getElementById('bom-table');
-
+    const componentTable = document.getElementById('component-bom-table');
+    const connectorTable = document.getElementById('connector-bom-table')
     // Create table header row
     const headerRow = document.createElement('tr');
+    const headerRow2 = document.createElement('tr')
     const headerFields = ['Type', 'Attributes'];
 
     headerFields.forEach(field => {
         const th = document.createElement('th');
         th.textContent = field;
         headerRow.appendChild(th);
+        headerRow2.appendChild(th)
     });
 
     // Append the header row to the table
-    table.appendChild(headerRow);
+    componentTable.appendChild(headerRow2);
+    connectorTable.appendChild(headerRow)
 
     /* Now lets work with the body of the table */
     mainGraph.getCells().forEach(function (cell) {
         const row = document.createElement('tr');
-        const typeCell = document.createElement('td');
+        row.classList.add('typeRow')
         if (cell.isLink()) {
-            console.log("Connector Type:", cell.attributes.attrs.connector);
+            const typeCell = document.createElement('td');
+            typeCell.classList.add('type-td')
+            // console.log("Connector Type:", cell.attributes.attrs.connector);
             typeCell.textContent = cell.attributes.attrs.connector
             row.appendChild(typeCell);
-            // for (let i = 1; i &lt;= 18; i += 1) {
-            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            // }
+            const tdSubTable = document.createElement('td')
+            const subTable = document.createElement('table')
+            subTable.classList.add('inner-table')
+            for (let i = 1; i &lt;= 18; i += 1) {
+                const subRow = document.createElement('tr')
+                const parameterName = document.createElement('td')
+                const parameterValue = document.createElement('td');
+                parameterName.textContent = `Parameter${i}`
+                parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+                subRow.appendChild(parameterName)
+                subRow.appendChild(parameterValue)
+                subTable.appendChild(subRow)
+                // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+            // Adding subsea internvetion
+            const si = document.createElement('tr')
+            const siKey = document.createElement('td')
+            siKey.textContent = 'Subsea Intervention'
+            const siValue = document.createElement('td')
+            siValue.textContent = cell.attributes.attrs['subseaIntervention']
+            si.appendChild(siKey)
+            si.appendChild(siValue)
+            subTable.appendChild(si)
+
+            // adding installation and construction vessel
+            const icv = document.createElement('tr')
+            const icvKey = document.createElement('td')
+            icvKey.textContent = 'Installation &amp; Construction Vessel'
+            const icvValue = document.createElement('td')
+            icvValue.textContent = cell.attributes.attrs['installationAndConstructionVessel']
+            icv.appendChild(icvKey)
+            icv.appendChild(icvValue)
+            subTable.appendChild(icv)
+            tdSubTable.appendChild(subTable)
+            row.appendChild(tdSubTable)
+            connectorTable.appendChild(row);
             // console.log("Subsea Intervention: ", cell.attributes.attrs['subseaIntervention']);
             // console.log("Installation &amp; Contruction Vessel: ", cell.attributes.attrs['installationAndConstructionVessel']);
         }
         else {
-            console.log("Component Type:", cell.attributes.type);
+            const typeCell = document.createElement('td');
+            typeCell.classList.add('type-td')
+            // console.log("Component Type:", cell.attributes.type);
             typeCell.textContent = cell.attributes.type
             row.appendChild(typeCell);
-            // for (let i = 1; i &lt;= 18; i += 1) {
-            //     console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-            // }
+            const tdSubTable = document.createElement('td')
+            const subTable = document.createElement('table')
+            subTable.classList.add('inner-table')
+            for (let i = 1; i &lt;= 18; i += 1) {
+                const subRow = document.createElement('tr')
+                const parameterName = document.createElement('td')
+                const parameterValue = document.createElement('td');
+                parameterName.textContent = `Parameter${i}`
+                parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+                subRow.appendChild(parameterName)
+                subRow.appendChild(parameterValue)
+                subTable.appendChild(subRow)
+                // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+            }
+            tdSubTable.appendChild(subTable)
+            row.appendChild(tdSubTable)
+            componentTable.appendChild(row);
         }
-        // Add the Attributes field
-        const attrsCell = document.createElement('td');
-        const attrs = cell.attributes.attrs;
-
-        // Iterate over the attributes and add them to a string
-        let attrsString = '';
-        for (const key in attrs) {
-            attrsString += `${key}: ${attrs[key]}&lt;br>`;
-        }
-
-        attrsCell.innerHTML = attrsString;
-        row.appendChild(attrsCell);
-
-        // Append the row to the table
-        table.appendChild(row);
     })
 }
 
@@ -1486,13 +1562,13 @@ $("#main-paper-div").mousemove(pan);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CONNECTOR_ATTRS">CONNECTOR_ATTRS</a></li><li><a href="global.html#FPSO">FPSO</a></li><li><a href="global.html#PLEM">PLEM</a></li><li><a href="global.html#PLET">PLET</a></li><li><a href="global.html#RigidPipelinePiP_PR">RigidPipelinePiP_PR</a></li><li><a href="global.html#RotateToolIWST">RotateToolIWST</a></li><li><a href="global.html#RotateToolSubseaPump">RotateToolSubseaPump</a></li><li><a href="global.html#RotateToolUTA">RotateToolUTA</a></li><li><a href="global.html#UTA">UTA</a></li><li><a href="global.html#UTH">UTH</a></li><li><a href="global.html#addElementEventListener">addElementEventListener</a></li><li><a href="global.html#addLinkEventListener">addLinkEventListener</a></li><li><a href="global.html#addToolsOnFileLoad">addToolsOnFileLoad</a></li><li><a href="global.html#assignCustomParams">assignCustomParams</a></li><li><a href="global.html#deleteElement">deleteElement</a></li><li><a href="global.html#displayHighlight">displayHighlight</a></li><li><a href="global.html#displayLinkHighlight">displayLinkHighlight</a></li><li><a href="global.html#downloadObjectAsJson">downloadObjectAsJson</a></li><li><a href="global.html#dragStartPosition">dragStartPosition</a></li><li><a href="global.html#elementToolsMapping">elementToolsMapping</a></li><li><a href="global.html#fixFormat">fixFormat</a></li><li><a href="global.html#generateLink">generateLink</a></li><li><a href="global.html#getPositionIWST">getPositionIWST</a></li><li><a href="global.html#getPositionSubseaPump">getPositionSubseaPump</a></li><li><a href="global.html#getPositionUTA">getPositionUTA</a></li><li><a href="global.html#injectionWellST">injectionWellST</a></li><li><a href="global.html#mainGraph">mainGraph</a></li><li><a href="global.html#mainPaper">mainPaper</a></li><li><a href="global.html#manifold">manifold</a></li><li><a href="global.html#onConnectorChange">onConnectorChange</a></li><li><a href="global.html#openFile">openFile</a></li><li><a href="global.html#pan">pan</a></li><li><a href="global.html#panStart">panStart</a></li><li><a href="global.html#panStop">panStop</a></li><li><a href="global.html#pasteElement">pasteElement</a></li><li><a href="global.html#platform">platform</a></li><li><a href="global.html#populateConnectorSettings">populateConnectorSettings</a></li><li><a href="global.html#populateElementSettings">populateElementSettings</a></li><li><a href="global.html#portDetails">portDetails</a></li><li><a href="global.html#productionWellST">productionWellST</a></li><li><a href="global.html#redirectToDocumentation">redirectToDocumentation</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#rotateChildren">rotateChildren</a></li><li><a href="global.html#saveGraph">saveGraph</a></li><li><a href="global.html#setPositionAll">setPositionAll</a></li><li><a href="global.html#showLinkSettings">showLinkSettings</a></li><li><a href="global.html#standardLink">standardLink</a></li><li><a href="global.html#subseaPump">subseaPump</a></li><li><a href="global.html#subseaSeparator">subseaSeparator</a></li><li><a href="global.html#toolGraph">toolGraph</a></li><li><a href="global.html#toolPaper">toolPaper</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CONNECTOR_ATTRS">CONNECTOR_ATTRS</a></li><li><a href="global.html#FPSO">FPSO</a></li><li><a href="global.html#PLEM">PLEM</a></li><li><a href="global.html#PLET">PLET</a></li><li><a href="global.html#RigidPipelinePiP_PR">RigidPipelinePiP_PR</a></li><li><a href="global.html#RotateToolIWST">RotateToolIWST</a></li><li><a href="global.html#RotateToolSubseaPump">RotateToolSubseaPump</a></li><li><a href="global.html#RotateToolUTA">RotateToolUTA</a></li><li><a href="global.html#UTA">UTA</a></li><li><a href="global.html#UTH">UTH</a></li><li><a href="global.html#addElementEventListener">addElementEventListener</a></li><li><a href="global.html#addLinkEventListener">addLinkEventListener</a></li><li><a href="global.html#addToolsOnFileLoad">addToolsOnFileLoad</a></li><li><a href="global.html#assignCustomParams">assignCustomParams</a></li><li><a href="global.html#createTable">createTable</a></li><li><a href="global.html#deleteElement">deleteElement</a></li><li><a href="global.html#displayHighlight">displayHighlight</a></li><li><a href="global.html#displayLinkHighlight">displayLinkHighlight</a></li><li><a href="global.html#downloadCSV">downloadCSV</a></li><li><a href="global.html#downloadObjectAsJson">downloadObjectAsJson</a></li><li><a href="global.html#dragStartPosition">dragStartPosition</a></li><li><a href="global.html#elementToolsMapping">elementToolsMapping</a></li><li><a href="global.html#fixFormat">fixFormat</a></li><li><a href="global.html#generateLink">generateLink</a></li><li><a href="global.html#getPositionIWST">getPositionIWST</a></li><li><a href="global.html#getPositionSubseaPump">getPositionSubseaPump</a></li><li><a href="global.html#getPositionUTA">getPositionUTA</a></li><li><a href="global.html#injectionWellST">injectionWellST</a></li><li><a href="global.html#mainGraph">mainGraph</a></li><li><a href="global.html#mainPaper">mainPaper</a></li><li><a href="global.html#manifold">manifold</a></li><li><a href="global.html#onConnectorChange">onConnectorChange</a></li><li><a href="global.html#openFile">openFile</a></li><li><a href="global.html#pan">pan</a></li><li><a href="global.html#panStart">panStart</a></li><li><a href="global.html#panStop">panStop</a></li><li><a href="global.html#pasteElement">pasteElement</a></li><li><a href="global.html#platform">platform</a></li><li><a href="global.html#populateConnectorSettings">populateConnectorSettings</a></li><li><a href="global.html#populateElementSettings">populateElementSettings</a></li><li><a href="global.html#portDetails">portDetails</a></li><li><a href="global.html#printTable">printTable</a></li><li><a href="global.html#productionWellST">productionWellST</a></li><li><a href="global.html#redirectToDocumentation">redirectToDocumentation</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#rotateChildren">rotateChildren</a></li><li><a href="global.html#saveGraph">saveGraph</a></li><li><a href="global.html#setPositionAll">setPositionAll</a></li><li><a href="global.html#showLinkSettings">showLinkSettings</a></li><li><a href="global.html#standardLink">standardLink</a></li><li><a href="global.html#subseaPump">subseaPump</a></li><li><a href="global.html#subseaSeparator">subseaSeparator</a></li><li><a href="global.html#toolGraph">toolGraph</a></li><li><a href="global.html#toolPaper">toolPaper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 00:34:21 GMT+0530 (India Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 13:50:23 GMT+0530 (India Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
