@@ -2,7 +2,7 @@
     "plugins": [],
     "recurseDepth": 10,
     "opts": {
-        "destination": "./main/docs/",
+        "destination": "./docs/",
         "recurse": true
     },
     "source": {

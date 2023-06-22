@@ -201,7 +201,7 @@ const helpButton = document.getElementById('help')
  */
 function redirectToDocumentation() {
     const newA = document.createElement('a')
-    newA.href = window.location.protocol + "//" + window.location.host + "/" + "main/docs/index.html"
+    newA.href = "/docs";
     newA.target = '_blank';
     newA.click()
     newA.remove()
