@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "docs": "jsdoc -d ./main/docs --configure jsdocConf.json"
+    "docs": "jsdoc -d ./docs --configure jsdocConf.json"
   },
   "dependencies": {
     "canvg": "^4.0.1",
