@@ -226,9 +226,18 @@ document.getElementById('X').addEventListener('click', closeBOMModal)
  * Function called when user tries to print bill of material as CSV
  */
 function downloadCSV() {
-    const table = document.getElementById('component-bom-table');
-    const rows = table.getElementsByTagName('tr');
+    const componentTable = document.getElementById('component-bom-table');
+    const rows = componentTable.getElementsByTagName('tr');
     let csvContent = '';
+    // const headerCells = rows.getElementById('header-row').getElementsByTagName('td')
+    // let row = ''
+    // for (let j = 0; j < headerCells.length; j++) {
+    //     row += headerCells[j].textContent + ','
+    // }
+    // // Remove the trailing comma from the row
+    // row = row.slice(0, -1);
+    // // Add the row to the CSV content
+    // csvContent += row + '\n';
 
     // Iterate over the rows and cells to create the CSV content
     for (let i = 0; i < rows.length; i++) {
@@ -252,7 +261,7 @@ function downloadCSV() {
     // Create a temporary link element and trigger the download
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = 'table.csv';
+    link.download = 'componentBOM.csv';
     link.click();
 }
 
@@ -336,6 +345,8 @@ function createTable() {
     // Create table header row
     const headerRow = document.createElement('tr');
     const headerRow2 = document.createElement('tr')
+    headerRow.setAttribute('id', 'header-row')
+    headerRow2.setAttribute('id', 'header-row')
     const headerFields = ['Type', 'Attributes'];
 
     headerFields.forEach(field => {
@@ -1178,30 +1189,36 @@ var CONNECTOR_ATTRS = {
     },
     "Rigid-Spool-PR": {
         stroke: '#02a31d',
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Rigid-Spool-WI": {
         stroke: '#0247c7',
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Rigid-Spool-GL/GI": {
         stroke: "#cc0202",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-PR": {
         stroke: '#02a31d',
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-WI": {
         stroke: '#0247c7',
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-GL/GI": {
         stroke: "#cc0202",
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     }
 }
 
@@ -1215,7 +1232,7 @@ function onConnectorChange() {
         /* Insert logic to change connector attributes based on type chosen */
         let model = selectedLinkView.model
         console.log("LINK MODEL", model);
-        if (model.attributes.type == "RigidPipelinePiP_PR") {
+        if (model.attributes.type == "RigidPipelinePiP_PR") { // changing from rigidpipeline pip to normal std.link
             // create new instacne of std link and remove the old link
             console.log(`Changing from RigidPipelinePiP_PR to ${connector.value}`);
             const newLink = standardLink();
@@ -1261,6 +1278,16 @@ function onConnectorChange() {
             }
             else {
                 model.attributes.attrs.line["strokeDasharray"] = null;
+            }
+
+            if (CONNECTOR_ATTRS[connector.value]["router"]) {
+                model.router(CONNECTOR_ATTRS[connector.value]["router"])
+                populateConnectorSettings(model)
+            }
+            else {
+                model.router("normal")
+                populateConnectorSettings(model)
+
             }
         }
         else {
@@ -1581,7 +1608,12 @@ $('#reset-zoom').click(function () {
     currentScale = 1
     mainPaper.scale(1, 1)
     mainPaper.scaleContentToFit({
-        "padding": 200
+        "padding": {
+            "top": 100,
+            "left": 300,
+            "right": 0,
+            "bottom": 200
+        }
     })
 })
 

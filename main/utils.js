@@ -188,6 +188,7 @@ function addLinkTools(cell, mainPaper, connectorSettingsWrapper) {
     });
     var linkView = cell.findView(mainPaper)
     linkView.addTools(linkToolsView)
+    linkView.hideTools()
 }
 /**
  * This function loads the element tools and link tools when a user just uploads the file
@@ -203,7 +204,6 @@ const addToolsOnFileLoad = (mainPaper, mainGraph, connectorSettingsWrapper) => {
         }
         // If the cell is an element
         else if (cell.isElement()) {
-            // load element tools
             addElementTools(cell, mainPaper)
         }
     });
