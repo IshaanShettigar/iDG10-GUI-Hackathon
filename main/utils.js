@@ -1,4 +1,4 @@
-import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
+import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSP, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSP, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSP, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSP, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 /**
  * This is a mapping that exists to map each element with their corresponding tools.
@@ -6,7 +6,7 @@ import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBotto
  */
 const elementToolsMapping = {
     "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftSS, ResizeToolBottomRightSS, ResizeToolTopLeftSS, ResizeToolTopRightSS],
-    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftSP, ResizeToolBottomRightSP, ResizeToolTopLeftSP, ResizeToolTopRightSP],
     "UTA": [RotateToolUTA, ResizeToolBottomLeftUTA, ResizeToolBottomRightUTA, ResizeToolTopLeftUTA, ResizeToolTopRightUTA],
     "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
@@ -132,6 +132,7 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
         pastedEleView.addTools(EletoolsView);
         pastedEleView.hideTools();
         // Element Tools loaded for the pasted element
+        return createCopy
     } else {
         alert("There is nothing to paste, clipboard empty!");
     }

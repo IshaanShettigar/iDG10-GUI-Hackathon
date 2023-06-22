@@ -963,7 +963,7 @@ mainPaper.on("blank:pointerclick", function () {
     selectedLinkView = null;
     elementSettingsWrapper.classList.remove('is-active')
     connectorSettingsWrapper.classList.remove('is-active')
-
+    subMenuWrap.classList.remove('open-menu')
 });
 
 // mainGraph.on('change:source change:target', function (link) {
@@ -1282,12 +1282,12 @@ function onConnectorChange() {
 
             if (CONNECTOR_ATTRS[connector.value]["router"]) {
                 model.router(CONNECTOR_ATTRS[connector.value]["router"])
+                model.connector("rounded")
                 populateConnectorSettings(model)
             }
             else {
                 model.router("normal")
                 populateConnectorSettings(model)
-
             }
         }
         else {
@@ -1426,12 +1426,13 @@ mainGraph.on('change', (cell) => {
 mainGraph.on('add', (cell) => {
     saveToBrowserLocalStorage()
 
-    // undo record
-    undoJSON = {
-        "type": "cell:add",
-        "cell": cell
-    }
-    undoStack.push(Object.assign({}, undoJSON))
+    // WILL DELETE
+    // undo record 
+    // undoJSON = {
+    //     "type": "cell:add",
+    //     "cell": cell
+    // }
+    // undoStack.push(Object.assign({}, undoJSON))
 
 })
 
@@ -1459,8 +1460,8 @@ var undoJSON = {
  *      newPosition : ------,
  *  }
     {   
- *      type: "cell:add",
- *      cell : ------,
+ *      type: "element:add",
+ *      element : ------,
  *  }
  */
 
@@ -1514,12 +1515,12 @@ function undo() {
                 addElementTools(tempModel, mainPaper)
             }
             else if (tempModel.isLink()) {
-                addLinkTools(tempModel, mainPaper)
+                addLinkTools(tempModel, mainPaper, connectorSettingsWrapper)
             }
         }
         // undoing an add link or add element
-        else if (tempJSON["type"] == "cell:add") {
-            let tempModel = tempJSON["cell"]
+        else if (tempJSON["type"] == "element:add") {
+            let tempModel = tempJSON["element"]
             tempModel.remove()
         }
     }
@@ -1562,12 +1563,15 @@ document.addEventListener('mousemove', (event) => {
 
 // paste
 document.addEventListener("keydown", function (event) {
-
     if (event.keyCode === 86 && event.ctrlKey) {
-        // console.log(event);
-        pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
-        // copiedCoordinates = null;
-        // createCopy = null;
+        const pastedElement = pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
+
+        // support to undo paste
+        undoJSON = {
+            "type": "element:add",
+            "element": pastedElement
+        }
+        undoStack.push(Object.assign({}, undoJSON))
     }
 });
 
@@ -1610,8 +1614,8 @@ $('#reset-zoom').click(function () {
     mainPaper.scaleContentToFit({
         "padding": {
             "top": 100,
-            "left": 300,
-            "right": 0,
+            "left": 200,
+            "right": 200,
             "bottom": 200
         }
     })
