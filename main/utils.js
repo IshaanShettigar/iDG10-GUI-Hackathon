@@ -1,4 +1,4 @@
-import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
+import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSP, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSP, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSP, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSP, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
 
 /**
  * This is a mapping that exists to map each element with their corresponding tools.
@@ -6,7 +6,7 @@ import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftPLATFORM, ResizeToolBotto
  */
 const elementToolsMapping = {
     "subseaSeparator": [RotateToolSubseaSeparator, ResizeToolBottomLeftSS, ResizeToolBottomRightSS, ResizeToolTopLeftSS, ResizeToolTopRightSS],
-    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
+    "subseaPump": [RotateToolSubseaPump, ResizeToolBottomLeftSP, ResizeToolBottomRightSP, ResizeToolTopLeftSP, ResizeToolTopRightSP],
     "UTA": [RotateToolUTA, ResizeToolBottomLeftUTA, ResizeToolBottomRightUTA, ResizeToolTopLeftUTA, ResizeToolTopRightUTA],
     "productionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
     "injectionWellST": [RotateToolIWST, ResizeToolBottomLeftST, ResizeToolBottomRightST, ResizeToolTopLeftST, ResizeToolTopRightST],
@@ -132,63 +132,81 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
         pastedEleView.addTools(EletoolsView);
         pastedEleView.hideTools();
         // Element Tools loaded for the pasted element
+        return createCopy
     } else {
         alert("There is nothing to paste, clipboard empty!");
     }
 }
 
+/**
+ * Function is responsible for adding element tools defined within the function to the element passed in as a parameter
+ * @param {joint.dia.Cell} cell element to which tools will be added
+ * @param {joint.dia.Paper} mainPaper main paper
+ */
+function addElementTools(cell, mainPaper) {
+    var RotateTool = elementToolsMapping[cell.attributes.type][0]
+    var ResizeToolBottomLeft = elementToolsMapping[cell.attributes.type][1]
+    var ResizeToolBottomRight = elementToolsMapping[cell.attributes.type][2]
+    var ResizeToolTopLeft = elementToolsMapping[cell.attributes.type][3]
+    var ResizeToolTopRight = elementToolsMapping[cell.attributes.type][4]
 
+    var EletoolsView = new joint.dia.ToolsView({
+        tools: [
+
+            new RotateTool({ selector: "root" }),
+            new ResizeToolBottomLeft({ selector: 'outline' }),
+            new ResizeToolBottomRight({ selector: 'outline' }),
+            new ResizeToolTopLeft({ selector: 'outline' }),
+            new ResizeToolTopRight({ selector: 'outline' }),
+
+        ],
+    });
+
+    var elementView = cell.findView(mainPaper)
+    elementView.addTools(EletoolsView)
+    elementView.hideTools()
+}
+
+/**
+ * function responsible for adding link tools to the link passed in as a cell
+ * @param {joint.dia.Cell} cell link
+ * @param {joint.dia.Paper} mainPaper main paper 
+ * @param {DOM} connectorSettingsWrapper dom element, used in removeTool
+ */
+function addLinkTools(cell, mainPaper, connectorSettingsWrapper) {
+    // load link tools
+    var verticesTool = new joint.linkTools.Vertices();
+    var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+    var removeTool = new joint.linkTools.Remove({
+        action: function (evt, linkView, toolView) {
+            linkView.model.remove({ ui: true, tool: toolView.cid });
+            connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+        }
+    })
+    var showConnectorSettings = new joint.linkTools.showLinkSettings();
+    var linkToolsView = new joint.dia.ToolsView({
+        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+    });
+    var linkView = cell.findView(mainPaper)
+    linkView.addTools(linkToolsView)
+    linkView.hideTools()
+}
 /**
  * This function loads the element tools and link tools when a user just uploads the file
  * or when a autosaved file is retrieved from browser local storage.
  * @param {joint.dia.Paper} mainPaper main paper object on which the main graph is rendered
  * @param {joint.dia.Graph} mainGraph main graph object on which all elements and links reside
  */
-const addToolsOnFileLoad = (mainPaper, mainGraph) => {
+const addToolsOnFileLoad = (mainPaper, mainGraph, connectorSettingsWrapper) => {
     mainGraph.getCells().forEach(function (cell) {
         // IF The Cell is a Link
         if (cell.isLink()) {
-            // load link tools
-            var verticesTool = new joint.linkTools.Vertices();
-            var removeTool = new joint.linkTools.Remove({
-                action: function (evt, linkView, toolView) {
-                    linkView.model.remove({ ui: true, tool: toolView.cid });
-                    connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
-                }
-            })
-            var showConnectorSettings = new joint.linkTools.showLinkSettings();
-            var linkToolsView = new joint.dia.ToolsView({
-                tools: [verticesTool, removeTool, showConnectorSettings]
-            });
-            var linkView = cell.findView(mainPaper)
-            linkView.addTools(linkToolsView)
+            addLinkTools(cell, mainPaper, connectorSettingsWrapper)
         }
         // If the cell is an element
         else if (cell.isElement()) {
-            // load element tools
-            var RotateTool = elementToolsMapping[cell.attributes.type][0]
-            var ResizeToolBottomLeft = elementToolsMapping[cell.attributes.type][1]
-            var ResizeToolBottomRight = elementToolsMapping[cell.attributes.type][2]
-            var ResizeToolTopLeft = elementToolsMapping[cell.attributes.type][3]
-            var ResizeToolTopRight = elementToolsMapping[cell.attributes.type][4]
-
-            var EletoolsView = new joint.dia.ToolsView({
-                tools: [
-
-                    new RotateTool({ selector: "root" }),
-                    new ResizeToolBottomLeft({ selector: 'outline' }),
-                    new ResizeToolBottomRight({ selector: 'outline' }),
-                    new ResizeToolTopLeft({ selector: 'outline' }),
-                    new ResizeToolTopRight({ selector: 'outline' }),
-
-                ],
-            });
-
-            var elementView = cell.findView(mainPaper)
-            elementView.addTools(EletoolsView)
-            elementView.hideTools()
-
+            addElementTools(cell, mainPaper)
         }
     });
 }
-export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping }
+export { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, addElementTools, addLinkTools, elementToolsMapping }

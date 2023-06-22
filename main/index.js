@@ -1,9 +1,11 @@
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveAsPNG } from "./persist.js"
-import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping } from "./utils.js"
+import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addLinkTools } from "./utils.js"
 
-// window.onload = () => {
+
+/** Defining fsm global variable for element undo redo */
+let STATE = 0;
 
 /**
  * Restores progress from the previous session by making use of browser local storage
@@ -14,7 +16,7 @@ window.onload = () => {
         // console.log(localStorageGraph);
         mainGraph.fromJSON(JSON.parse(localStorageGraph));
         /* Need to load all the tools */
-        addToolsOnFileLoad(mainPaper, mainGraph)
+        addToolsOnFileLoad(mainPaper, mainGraph, connectorSettingsWrapper)
     }
 }
 
@@ -406,6 +408,8 @@ function createTable() {
     // Create table header row
     const headerRow = document.createElement('tr');
     const headerRow2 = document.createElement('tr')
+    headerRow.setAttribute('id', 'header-row')
+    headerRow2.setAttribute('id', 'header-row')
     const headerFields = ['Type', 'Attributes'];
 
     headerFields.forEach(field => {
@@ -1024,7 +1028,7 @@ mainPaper.on("blank:pointerclick", function () {
     selectedLinkView = null;
     elementSettingsWrapper.classList.remove('is-active')
     connectorSettingsWrapper.classList.remove('is-active')
-
+    subMenuWrap.classList.remove('open-menu')
 });
 
 // mainGraph.on('change:source change:target', function (link) {
@@ -1089,6 +1093,7 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
 
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
     var verticesTool = new joint.linkTools.Vertices();
+    var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
     var removeTool = new joint.linkTools.Remove({
         action: function (evt, linkView, toolView) {
             linkView.model.remove({ ui: true, tool: toolView.cid });
@@ -1100,7 +1105,7 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
     // var boundaryTool = new joint.linkTools.Boundary();
     console.log((linkView));
     var linkToolsView = new joint.dia.ToolsView({
-        tools: [verticesTool, removeTool, showConnectorSettings]
+        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
     });
     linkView.addTools(linkToolsView)
 })
@@ -1249,30 +1254,36 @@ var CONNECTOR_ATTRS = {
     },
     "Rigid-Spool-PR": {
         stroke: '#02a31d',
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Rigid-Spool-WI": {
         stroke: '#0247c7',
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Rigid-Spool-GL/GI": {
         stroke: "#cc0202",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-PR": {
         stroke: '#02a31d',
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-WI": {
         stroke: '#0247c7',
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     },
     "Flexible-Jumper-GL/GI": {
         stroke: "#cc0202",
         strokeDasharray: "9",
-        strokeWidth: 3
+        strokeWidth: 3,
+        router: 'manhattan'
     }
 }
 
@@ -1286,7 +1297,7 @@ function onConnectorChange() {
         /* Insert logic to change connector attributes based on type chosen */
         let model = selectedLinkView.model
         console.log("LINK MODEL", model);
-        if (model.attributes.type == "RigidPipelinePiP_PR") {
+        if (model.attributes.type == "RigidPipelinePiP_PR") { // changing from rigidpipeline pip to normal std.link
             // create new instacne of std link and remove the old link
             console.log(`Changing from RigidPipelinePiP_PR to ${connector.value}`);
             const newLink = standardLink();
@@ -1332,6 +1343,16 @@ function onConnectorChange() {
             }
             else {
                 model.attributes.attrs.line["strokeDasharray"] = null;
+            }
+
+            if (CONNECTOR_ATTRS[connector.value]["router"]) {
+                model.router(CONNECTOR_ATTRS[connector.value]["router"])
+                model.connector("rounded")
+                populateConnectorSettings(model)
+            }
+            else {
+                model.router("normal")
+                populateConnectorSettings(model)
             }
         }
         else {
@@ -1445,22 +1466,141 @@ openFileButton.addEventListener('click', (event) => {
         // Remove the input element after the file has been selected
         inputElement.remove();
         // Add the tools to all the elements and links
-        addToolsOnFileLoad(mainPaper, mainGraph)
+        addToolsOnFileLoad(mainPaper, mainGraph, connectorSettingsWrapper)
         console.log("populated tools");
     });
     // Simulate a click event on the input element
     inputElement.click();
 });
 
-mainGraph.on('change add remove', () => {
+/**
+ * Saves the diagram to browser local storage in case the user doesnt want to lose progress
+ * after accidentally closing the tab etc.
+ */
+function saveToBrowserLocalStorage() {
     var graphjson = mainGraph.toJSON();
     var fixedGraphJson = fixFormat(graphjson)
-
     localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
-    console.log("Saved to local storage", fixedGraphJson);
+}
+
+mainGraph.on('change', (cell) => {
+    saveToBrowserLocalStorage()
+    // console.log("Saved to local storage", fixedGraphJson);
 })
 
+mainGraph.on('add', (cell) => {
+    saveToBrowserLocalStorage()
 
+    // WILL DELETE
+    // undo record 
+    // undoJSON = {
+    //     "type": "cell:add",
+    //     "cell": cell
+    // }
+    // undoStack.push(Object.assign({}, undoJSON))
+
+})
+
+mainGraph.on('remove', (cell) => {
+    // adding some logic for undo redo
+    saveToBrowserLocalStorage()
+    undoJSON = {
+        "type": "cell:remove",
+        "cell": cell
+    }
+    undoStack.push(Object.assign({}, undoJSON))
+    console.log("Pushed onto stack ", undoJSON["type"]);
+    console.log("The Stack", undoStack)
+})
+
+var undoStack = []
+var undoJSON = {
+    type: "",
+}
+/**
+ *  let us define custom JSON to deal w undoredo
+ *  {   
+ *      type: "element:move",
+ *      oldPosition : ------,
+ *      newPosition : ------,
+ *  }
+    {   
+ *      type: "element:add",
+ *      element : ------,
+ *  }
+ */
+
+mainPaper.on('element:pointerdown', (cellView) => {
+    if (STATE == 0) {
+        STATE = 1;
+        undoJSON["oldPosition"] = cellView.model.position()
+    }
+})
+
+mainGraph.on('change:position', (element, newPos) => {
+    if (STATE == 1) {
+        STATE = 2;
+    }
+})
+
+mainPaper.on('element:pointerup', (cellView, evt, x, y) => {
+    if (STATE == 2) {
+        STATE = 3; // not needed but lets keep it for FSM clarity.
+        // add it to the undo stack
+        undoJSON["type"] = 'element:move'
+        undoJSON["newPosition"] = cellView.model.position()
+        undoJSON["element"] = cellView.model;
+
+        // creating a copy so we push the copy and not a pointer
+        undoStack.push(Object.assign({}, undoJSON))
+        console.log("Pushed onto stack ", undoJSON["type"]);
+        console.log("The Stack", undoStack)
+        STATE = 0
+    }
+    else {
+        STATE = 0;
+    }
+})
+
+function undo() {
+    if (undoStack.length > 0) {
+        let tempJSON = undoStack.pop()
+        console.log("tempJSON used to UNDO", tempJSON);
+        // check type of event 
+        // undoing an element move
+        if (tempJSON["type"] == "element:move") {
+            let tempModel = tempJSON["element"]
+            tempModel.position(tempJSON["oldPosition"].x, tempJSON["oldPosition"].y)
+        }
+        // undoing a remove element or remove link
+        else if (tempJSON["type"] == "cell:remove") {
+            let tempModel = tempJSON["cell"]
+            tempModel.addTo(mainGraph)
+            if (tempModel.isElement()) {
+                addElementTools(tempModel, mainPaper)
+            }
+            else if (tempModel.isLink()) {
+                addLinkTools(tempModel, mainPaper, connectorSettingsWrapper)
+            }
+        }
+        // undoing an add link or add element
+        else if (tempJSON["type"] == "element:add") {
+            let tempModel = tempJSON["element"]
+            tempModel.remove()
+        }
+    }
+    else {
+        alert("Undo Stack Empty")
+    }
+}
+// UNDO HANDLER
+document.addEventListener('keydown', function (event) {
+    // Check if Control key (ctrlKey) and 'Z' key (keyCode 90) are pressed simultaneously
+    if (event.ctrlKey && event.keyCode === 90) {
+        // Control + Z combination detected
+        undo()
+    }
+});
 //////////////// copy paste delete /////////////////
 
 
@@ -1488,12 +1628,15 @@ document.addEventListener('mousemove', (event) => {
 
 // paste
 document.addEventListener("keydown", function (event) {
-
     if (event.keyCode === 86 && event.ctrlKey) {
-        // console.log(event);
-        pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
-        // copiedCoordinates = null;
-        // createCopy = null;
+        const pastedElement = pasteElement(copiedCellView, { x: currentX, y: currentY }, mainGraph, mainPaper)
+
+        // support to undo paste
+        undoJSON = {
+            "type": "element:add",
+            "element": pastedElement
+        }
+        undoStack.push(Object.assign({}, undoJSON))
     }
 });
 
@@ -1534,7 +1677,12 @@ $('#reset-zoom').click(function () {
     currentScale = 1
     mainPaper.scale(1, 1)
     mainPaper.scaleContentToFit({
-        "padding": 200
+        "padding": {
+            "top": 100,
+            "left": 200,
+            "right": 200,
+            "bottom": 200
+        }
     })
 })
 

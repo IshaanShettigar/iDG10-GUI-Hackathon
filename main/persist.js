@@ -1,4 +1,4 @@
-import canvg from 'https://cdn.jsdelivr.net/npm/canvg@4.0.1/+esm'/*
+/*
 This file contains all the logic necessary to 
 1. Save and Load diagrams
 2. Store the settings etc
@@ -68,7 +68,7 @@ const fixFormat = function (graphjson) {
             cellAttrs["installationAndConstructionVessel"] = value4;
         }
     }
-    console.log(`Fixed formatting`)
+    // console.log(`Fixed formatting`)
     return graphjson
 }
 
@@ -143,7 +143,7 @@ function SVG2PNG(svg, callback) {
     var canvas = document.createElement('canvas'); // Create a Canvas element.
     var ctx = canvas.getContext('2d'); // For Canvas returns 2D graphic.
     var data = svg.outerHTML; // Get SVG element as HTML code.
-    canvg(canvas, data); // Render SVG on Canvas.
+    Canvg(canvas, data); // Render SVG on Canvas.
     callback(canvas); // Execute callback function.
 }
 
