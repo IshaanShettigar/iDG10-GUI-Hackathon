@@ -221,38 +221,110 @@ document.getElementById('X').addEventListener('click', closeBOMModal)
 
 
 /**
- * Function called when user tries to print bill of material as CSV
+ * Function called when user tries to print bill of material of components as CSV
  */
-function downloadCSV() {
-    const table = document.getElementById('component-bom-table');
-    const rows = table.getElementsByTagName('tr');
-    let csvContent = '';
+function downloadComponentCSV() {
+    const componentTable = document.getElementById('component-bom-table');
 
-    // Iterate over the rows and cells to create the CSV content
-    for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName('td');
-        let row = '';
+    const tables = [
+        { table: componentTable, filename: 'componentTable.csv', headers: ['Type', 'Parameter1', 'Parameter2', 'Parameter3', 'Parameter4', 'Parameter5', 'Parameter6', 'Parameter7', 'Parameter8', 'Parameter9', 'Parameter10', 'Parameter11', 'Parameter12', 'Parameter13', 'Parameter14', 'Parameter15', 'Parameter16', 'Parameter17', 'Parameter18'] },
+    ];
 
-        for (let j = 0; j < cells.length; j++) {
-            row += cells[j].textContent + ',';
+    for (const { table, filename, headers } of tables) {
+        console.log(({ table, filename, headers }));
+        const typeRows = table.getElementsByClassName('typeRow');
+        let csvContent = '';
+
+        // Add the headers to the CSV content
+        csvContent += headers.join(',') + '\n';
+
+        // Iterate over the type rows and extract the data
+        for (let i = 0; i < typeRows.length; i++) {
+            const cells = typeRows[i].getElementsByTagName('td');
+            const type = cells[0].textContent.trim(); // Get the 'Type' from the first td
+            const nestedTable = cells[1].getElementsByTagName('table')[0]; // Get the nested table from the second td
+            const nestedRows = nestedTable.getElementsByTagName('tr');
+            let row = type + ','; // Start the row with the 'Type'
+
+            // Iterate over the nested rows and cells to extract the data
+            for (let j = 0; j < nestedRows.length; j++) {
+                const nestedCells = nestedRows[j].getElementsByTagName('td');
+                const data = nestedCells[1].textContent.trim(); // Get the data from the second td
+                row += data + ','; // Add the data to the row
+            }
+
+            // Remove the trailing comma from the row
+            row = row.slice(0, -1);
+
+            // Add the row to the CSV content
+            csvContent += row + '\n';
         }
 
-        // Remove the trailing comma from the row
-        row = row.slice(0, -1);
 
-        // Add the row to the CSV content
-        csvContent += row + '\n';
+        // Create a Blob with the CSV content
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+
+        // Create a temporary link element and trigger the download
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
     }
-
-    // Create a Blob with the CSV content
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-
-    // Create a temporary link element and trigger the download
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = 'table.csv';
-    link.click();
 }
+
+
+/**
+ * Function called when user tries to print bill of material of connectors as CSV
+ */
+function downloadConnectorCSV() {
+    const connectorTable = document.getElementById('connector-bom-table');
+
+    const tables = [
+        { table: connectorTable, filename: 'connectorTable.csv', headers: ['Type', 'Parameter1', 'Parameter2', 'Parameter3', 'Parameter4', 'Parameter5', 'Parameter6', 'Parameter7', 'Parameter8', 'Parameter9', 'Parameter10', 'Parameter11', 'Parameter12', 'Parameter13', 'Parameter14', 'Parameter15', 'Parameter16', 'Parameter17', 'Parameter18', 'Subsea Intervention', 'Installation & Construction Vessel'] }
+    ];
+
+    for (const { table, filename, headers } of tables) {
+        console.log(({ table, filename, headers }));
+        const typeRows = table.getElementsByClassName('typeRow');
+        let csvContent = '';
+
+        // Add the headers to the CSV content
+        csvContent += headers.join(',') + '\n';
+
+        // Iterate over the type rows and extract the data
+        for (let i = 0; i < typeRows.length; i++) {
+            const cells = typeRows[i].getElementsByTagName('td');
+            const type = cells[0].textContent.trim(); // Get the 'Type' from the first td
+            const nestedTable = cells[1].getElementsByTagName('table')[0]; // Get the nested table from the second td
+            const nestedRows = nestedTable.getElementsByTagName('tr');
+            let row = type + ','; // Start the row with the 'Type'
+
+            // Iterate over the nested rows and cells to extract the data
+            for (let j = 0; j < nestedRows.length; j++) {
+                const nestedCells = nestedRows[j].getElementsByTagName('td');
+                const data = nestedCells[1].textContent.trim(); // Get the data from the second td
+                row += data + ','; // Add the data to the row
+            }
+
+            // Remove the trailing comma from the row
+            row = row.slice(0, -1);
+
+            // Add the row to the CSV content
+            csvContent += row + '\n';
+        }
+
+
+        // Create a Blob with the CSV content
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+
+        // Create a temporary link element and trigger the download
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+    }
+}
+
 
 /**
  * Function called when user clicks on print bill of material
@@ -424,11 +496,13 @@ function createTable() {
 }
 
 const generateBOMButton = document.getElementById('generate-bom')
-const downloadCSVButton = document.getElementById('download-csv')
+const downloadComponentCSVButton = document.getElementById('download-component-csv')
+const downloadConnectorCSVButton = document.getElementById('download-connector-csv')
 const printBOMButton = document.getElementById('print-bom')
 
 generateBOMButton.addEventListener('click', openBOMModal)
-downloadCSVButton.addEventListener('click', downloadCSV)
+downloadComponentCSVButton.addEventListener('click', downloadComponentCSV)
+downloadConnectorCSVButton.addEventListener('click', downloadConnectorCSV)
 printBOMButton.addEventListener('click', printTable)
 
 
