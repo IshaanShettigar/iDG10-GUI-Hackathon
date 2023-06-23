@@ -11,7 +11,7 @@ services:
     ports:
       - '6723:8080'
 
-# networks:
-#   default:
-#     name: web
-#     external: true
+networks:
+  default:
+    name: web
+    external: true
