@@ -1091,6 +1091,88 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
     },
 });
 
+
+const appendDefaultLabels = function (linkView) {
+    const linkModel = linkView.model
+    linkModel.appendLabel({
+        markup: [
+            {
+                tagName: 'image',
+                selector: 'label'
+            },
+            {
+                tagName: 'rect',
+                selector: 'body'
+            },
+        ],
+        // no `size` object provided = calc() operations need `ref` property
+        attrs: {
+            label: {
+                yAlignment: 'middle',
+                pointerEvents: 'none',
+                width: '5%',
+                height: '5%',
+                "href": "./icons/S-Lay.png",
+            },
+            body: {
+                // calc() is responsive to size of 'label':
+                // ref: 'label',
+                fill: 'rgba(0,0,0,0)',
+                stroke: 'none',
+                height: '20px',
+                width: '30px'
+            }
+        },
+        position: {
+            distance: 0.50,
+            offset: -20,
+            args: {
+                keepGradient: true,
+                ensureLegibility: true
+            }
+        }
+    });
+
+    // subsea intervention
+    linkModel.appendLabel({
+        markup: [
+            {
+                tagName: 'image',
+                selector: 'label'
+            },
+            {
+                tagName: 'rect',
+                selector: 'body'
+            },
+        ],
+        // no `size` object provided = calc() operations need `ref` property
+        attrs: {
+            label: {
+                yAlignment: 'middle',
+                pointerEvents: 'none',
+                height: '6%',
+                width: '6%',
+                "href": "./icons/GRP-covers.png"
+            },
+            body: {
+                // calc() is responsive to size of 'label':
+                // ref: 'label',
+                fill: 'rgba(0,0,0,0)',
+                stroke: 'none',
+                height: '20px',
+                width: '30px'
+            }
+        },
+        position: {
+            distance: 0.30,
+            offset: 20,
+            args: {
+                keepGradient: true,
+                ensureLegibility: true
+            }
+        }
+    });
+}
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
     var verticesTool = new joint.linkTools.Vertices();
     var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
@@ -1108,6 +1190,8 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
         tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
     });
     linkView.addTools(linkToolsView)
+
+    appendDefaultLabels(linkView)
 })
 
 mainPaper.on('link:mouseenter', (linkView) => {
@@ -1315,6 +1399,27 @@ function onConnectorChange() {
 
             model.remove()
             selectedLinkView = newLink.findView(mainPaper)
+            /* Add the default labels to the link */
+            appendDefaultLabels(selectedLinkView)
+            /* To add the same labels as before */
+            selectedLinkView.model.label(0, {
+                attrs: {
+                    label: {
+                        height: '5%',
+                        width: '5%',
+                        "href": `./icons/${installationAndConstructionVessel.value}.png`
+                    },
+                }
+            })
+            selectedLinkView.model.label(1, {
+                attrs: {
+                    label: {
+                        height: '5%',
+                        width: '5%',
+                        "href": `./icons/${subseaIntervention.value}.png`
+                    },
+                }
+            })
             model = selectedLinkView.model
             /* Add the Tools to the new link */
             var verticesTool = new joint.linkTools.Vertices();
@@ -1356,7 +1461,7 @@ function onConnectorChange() {
             }
         }
         else {
-            console.log("Add functionality to change link to rigidpipeline pip pr");
+            //Add functionality to change link to rigidpipeline pip pr
             // model.attributes.source
 
             const newLink = new RigidPipelinePiP_PR();
@@ -1374,10 +1479,30 @@ function onConnectorChange() {
             newLink.attributes.connector["name"] = model.attributes.connector["name"]
             newLink.attributes.router["name"] = model.attributes.router["name"]
 
-            console.log(newLink);
-            console.log(model);
+            // console.log(newLink);
+            // console.log(model);
             model.remove()
             selectedLinkView = newLink.findView(mainPaper)
+            appendDefaultLabels(selectedLinkView)
+            /* To add the same labels as before */
+            selectedLinkView.model.label(0, {
+                attrs: {
+                    label: {
+                        height: '5%',
+                        width: '5%',
+                        "href": `./icons/${installationAndConstructionVessel.value}.png`
+                    },
+                }
+            })
+            selectedLinkView.model.label(1, {
+                attrs: {
+                    label: {
+                        height: '5%',
+                        width: '5%',
+                        "href": `./icons/${subseaIntervention.value}.png`
+                    },
+                }
+            })
             /* Add the Tools to the new link */
             var verticesTool = new joint.linkTools.Vertices();
             var removeTool = new joint.linkTools.Remove({
@@ -1408,6 +1533,15 @@ connector.addEventListener('change', onConnectorChange)
 subseaIntervention.addEventListener('change', () => {
     if (selectedLinkView != null) {
         selectedLinkView.model.attributes.attrs['subseaIntervention'] = subseaIntervention.value;
+        selectedLinkView.model.label(1, {
+            attrs: {
+                label: {
+                    height: '5%',
+                    width: '5%',
+                    "href": `./icons/${subseaIntervention.value}.png`
+                },
+            }
+        })
     }
     else {
         alert("No selected link")
@@ -1416,6 +1550,15 @@ subseaIntervention.addEventListener('change', () => {
 installationAndConstructionVessel.addEventListener('change', () => {
     if (selectedLinkView != null) {
         selectedLinkView.model.attributes.attrs['installationAndConstructionVessel'] = installationAndConstructionVessel.value;
+        selectedLinkView.model.label(0, {
+            attrs: {
+                label: {
+                    height: '5%',
+                    width: '5%',
+                    "href": `./icons/${installationAndConstructionVessel.value}.png`
+                },
+            }
+        })
     }
     else {
         alert("No selected link")
