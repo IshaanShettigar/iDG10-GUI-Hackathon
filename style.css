@@ -1,0 +1,705 @@
+nav {
+  /* margin-left: 10px; */
+  margin-top: 15px;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+img[class="menu-icon"] {
+  height: 12px;
+  width: 12px;
+}
+
+.top-buttons-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.element-button {
+  margin-right: 10px;
+}
+
+.element-button.is-active {
+  border: 0;
+  box-shadow: none;
+}
+
+.top-buttons-menu button {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  padding: 10px 10px;
+  z-index: 90;
+  margin-top: 5px;
+}
+
+nav button:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.sub-menu img {
+  height: 18px;
+  width: 18px;
+}
+
+.sub-menu-wrap.open-menu {
+  max-height: 230px;
+  max-width: 200px;
+}
+
+.sub-menu-wrap {
+  margin-top: 10px;
+  width: 200px;
+  background: #ffffff;
+  padding: 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: absolute;
+  max-height: 0px;
+  max-width: 0px;
+  transition: max-height 0.1s ease-in-out;
+  z-index: 50;
+  /* should be 120px, will change it in js*/
+}
+
+.sub-menu-wrap,
+.top-buttons-menu {
+  margin-left: 10px;
+}
+
+.open-file,
+.save-file,
+.help,
+.clear-paper,
+.generate-bom,
+.save-as-png,
+.settings {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 5px;
+  padding: 7px 0;
+  gap: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  align-items: center;
+  /* The above line fixed the vertical alignment of the icons and text*/
+}
+
+/* .sub-menu-wrap div:last-of-type {
+    margin-bottom: 0px;
+}
+
+.sub-menu-wrap div:first-of-type {
+    margin-top: 0px;
+} */
+
+.open-file:hover,
+.save-file:hover,
+.help:hover,
+.clear-paper:hover,
+.generate-bom:hover,
+/* .save-as-png:hover, */
+.settings:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
+/* Disabling save as png for now */
+.save-as-png span {
+  color: #cacaca;
+}
+
+/* Settings modal */
+.settings-modal {
+  width: 500px;
+  height: 500px;
+  background: #ffffff;
+  padding: 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #4d4d4d;
+  position: relative;
+  margin: auto auto;
+}
+
+.within-modal {
+  width: 25rem;
+}
+
+.paper-background-color {
+  margin: 10px auto 20px auto;
+}
+
+.paper-colors {
+  display: flex;
+  /* justify-content: center; */
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.paper-background-color .paper-color-btn {
+  padding: 15px 15px;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.settings-modal span {
+  margin: 5px 0;
+}
+
+.paper-background-color .paper-color-btn:hover {
+  box-shadow: rgba(150, 150, 150, 0.5) 0 2px 5px 0;
+}
+
+.paper-color-btn.color1 {
+  background-color: #ffffff;
+}
+
+.paper-color-btn.color2 {
+  background-color: #f5faff;
+}
+
+.paper-color-btn.color3 {
+  background-color: #fcfbed;
+}
+
+.paper-color-btn.color4 {
+  background-color: #fcf5f2;
+}
+
+.paper-color-btn.active {
+  border: 2px solid #b081fc;
+}
+
+/* grid size */
+.paper-background-size {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.paper-background-size input {
+  max-width: 80px;
+  padding: 5px 4px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+.advanced-link-settings {
+  margin-top: 20px;
+}
+
+.advanced-link-settings button {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 5px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+
+.advanced-link-settings button:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+/* cross button */
+.settings-modal .cross-btn,
+.clear-background-modal .cross-btn {
+  padding: 3px 5px 0 5px;
+  /* border: 1px solid #d5d9d9; */
+  border: none;
+  margin: 5px 10px 0 auto;
+  border-radius: 5px;
+  /* box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; */
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.settings-modal .cross-btn:hover,
+.clear-background-modal .cross-btn:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.settings-modal .cross-btn img {
+  height: 18px;
+  width: 18px;
+}
+
+.paper-background-type {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto 20px auto;
+}
+
+.paper-background-type .grid-type {
+  width: 200px;
+  padding: 5px 4px;
+  margin-top: 4px;
+}
+
+/* Overlay for the modal, to blur the background */
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+}
+
+.settings-modal {
+  z-index: 100;
+}
+
+/* Custom color pop up within settings modal */
+.custom-color-pop-up {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 10px 10px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  margin: 45px 0 0 400px;
+}
+
+.custom-color-pop-up input {
+  padding: 6px 10px;
+  border-radius: 5px;
+  width: 80px;
+  margin: 5px 0px 0px 5px;
+  border: 1px solid #d5d9d9;
+}
+
+.custom-color-pop-up span {
+  margin: 5px 5px 0 5px;
+}
+
+/* Right hand side element menu*/
+.element-menu-wrap {
+  position: fixed;
+  top: 0;
+  background-color: #f7f7f7;
+  left: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  width: 200px;
+  height: 98vh;
+  /* border-radius: 8px; */
+  padding: 10px 5px 10px 5px;
+  margin-top: 0px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.element-menu-wrap.is-active {
+  left: calc(100% - 215px);
+  /*The FCC Responsive Design Course has helped me a lot LOL*/
+}
+
+.element-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 5px 5px 5px;
+}
+
+.element-menu img {
+  height: 14px;
+  width: 14px;
+}
+
+.element-menu span {
+  margin-right: 5px;
+  cursor: default;
+}
+
+.element-menu button {
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 8px 10px 4px 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.element-menu button:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.pin-button.is-active {
+  background-color: rgb(240, 240, 240);
+  border: 1px solid #e8e6e6;
+  box-shadow: rgba(150, 150, 150, 0.5) 0 2px 5px 0;
+}
+
+hr {
+  width: 92%;
+  margin: 7px auto;
+  border: none;
+  border-bottom: 2px solid #e8e6e6;
+  position: relative;
+}
+
+/* Element settings panel */
+.element-settings-wrapper,
+.connector-settings-wrapper {
+  position: fixed;
+  width: 210px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  background: #ffffff;
+  padding: 5px 0;
+  padding: 10px 10px;
+  border-radius: 8px;
+  margin: 15px 0 15px 10px;
+  overflow: scroll;
+  max-height: 80vh;
+  display: none;
+}
+
+/*for testing*/
+/* .element-settings-wrapper {
+    display: block;
+} */
+
+.element-settings-wrapper.is-active,
+.connector-settings-wrapper.is-active {
+  display: block;
+}
+
+.element-settings-wrapper::-webkit-scrollbar,
+.connector-settings-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.element-settings,
+.connector-settings {
+  margin-left: 5px;
+}
+
+.element-settings .parameter,
+.connector-settings .parameter {
+  margin: 16px 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.element-settings .parameter input,
+.connector-settings .parameter input {
+  width: 175px;
+  padding: 3px 2px;
+  margin-top: 4px;
+}
+
+.element-settings .parameter select,
+.connector-settings .parameter select {
+  width: 185px;
+  padding: 5px 2px;
+  margin-top: 4px;
+}
+
+/* Clear Background Modal */
+.clear-background-modal {
+  width: 450px;
+  height: 200px;
+  background: #ffffff;
+  padding: 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #4d4d4d;
+  position: relative;
+  margin: 100px auto;
+  z-index: 100;
+}
+
+.clear-background-modal .clear-background-modal .buttons-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+
+.clear-background-modal button {
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  padding: 10px 10px;
+  background-color: #ffffff;
+}
+
+.clear-background-modal .alert-button {
+  background-color: #fc5549;
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.clear-background-modal .cross-btn {
+  box-shadow: none;
+}
+
+.clear-background-modal label {
+  margin: 20px 0 20px 0;
+}
+
+.clear-background-modal .cross-btn img {
+  height: 18px;
+  width: 18px;
+}
+
+/* The footer elements */
+.footer-tools {
+  position: absolute;
+  display: flex;
+  margin-left: 10px;
+  bottom: 10px;
+}
+
+.footer-tools img {
+  height: 18px;
+  width: 18px;
+}
+
+.footer-tools button {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  /* border-radius: 8px; */
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+
+.zoom-in,
+.zoom-out {
+  padding: 5px 5px !important;
+}
+
+.zoom-in {
+  border-radius: 5px 0 0 5px;
+}
+
+.zoom-out {
+  border-radius: 0 5px 5px 0;
+}
+
+/* The paper related stuff */
+.paper-wrapper {
+  background: rgba(198, 198, 198, 0.5);
+  width: 180px;
+  height: 89%;
+  margin: 10px auto 0 auto;
+  border-radius: 7px;
+  border: 1px solid white;
+  overflow: scroll;
+}
+
+.paper-wrapper #tool-paper-div {
+  margin: 10px 10px;
+}
+
+.paper-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.paper-wrapper #tool-paper-div {
+  border-radius: 7px;
+}
+
+/* Main paper */
+#main-paper-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Styles for BOM */
+.bom-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bom-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.bom-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+#component-bom-table,
+#connector-bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial;
+  border: 4px solid black;
+  /* margin: 5px 5px 5px 0px; */
+}
+
+#connector-bom-table {
+  margin-bottom: 15px;
+}
+
+th,
+td {
+  padding: 3px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+}
+
+.typeRow {
+  border: 4px solid #000000;
+}
+
+.inner-table {
+  width: 97.5%;
+  margin: 10px;
+  border: 2px solid black;
+}
+
+.type-td {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* styling the print pdf and print csv buttons*/
+.download-csv {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 14px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.download-csv:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.download-csv:hover {
+  background-color: #2c974b;
+}
+
+.download-csv:focus {
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+  outline: none;
+}
+
+.download-csv:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+}
+
+.download-csv:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}
+
+/* CSS */
+#print-bom {
+  background: #ff4742;
+  border: 1px solid #ff4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+#print-bom:hover,
+#print-bom:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4742;
+}
+
+#print-bom:active {
+  opacity: 0.5;
+}

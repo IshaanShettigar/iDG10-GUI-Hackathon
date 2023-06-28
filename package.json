@@ -1,13 +1,24 @@
 {
+  "name": "id",
+  "private": true,
+  "version": "0.0.0",
+  "main": "electron.js",
   "scripts": {
-    "docs": "jsdoc -d ./docs --configure jsdocConf.json"
-  },
-  "dependencies": {
-    "canvg": "^4.0.1",
-    "express": "^4.18.2",
-    "jointjs": "^3.6.5"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "electron ./dist/",
+    "docs": "jsdoc -d ./dist/docs --configure jsdocConf.json"
   },
   "devDependencies": {
-    "jsdoc": "^4.0.2"
+    "electron": "^25.2.0",
+    "jsdoc": "^4.0.2",
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "backbone": "^1.4.1",
+    "jointjs": "^3.7.4",
+    "jquery": "^3.7.0",
+    "lodash": "^4.17.21"
   }
 }
