@@ -5,7 +5,8 @@ import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, ma
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveAsPNG } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
-
+import { showLinkSettings } from "./showLinkSettings.js"
+import { selectedLinkView, setSelectedLinkView } from './selectedLinkView.js';
 
 /** Defining fsm global variable for element undo redo */
 let STATE = 0;
@@ -603,7 +604,7 @@ const populateElementSettings = (model) => {
  * Analogous to the populateElementSettings function, except it populates all link parameters
  * @param {joint.dia.Link} model 
  */
-const populateConnectorSettings = (model) => {
+export const populateConnectorSettings = (model) => {
   console.log(model)
   let modelAttrs = model.attributes.attrs
   for (let i = 1; i <= 18; i++) {
@@ -830,12 +831,12 @@ const GRID_NAME = "fixedDot";
 /**
  * renders the main graph object for the main infinite diagramming space.
  */
-var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+export var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
 /**
  * renders the main paper object for the main infinite diagramming space.
  */
-var mainPaper = new joint.dia.Paper({
+export var mainPaper = new joint.dia.Paper({
   el: document.getElementById('main-paper-div'),
   model: mainGraph,
   width: window.innerWidth,
@@ -1030,71 +1031,66 @@ mainPaper.on("blank:pointerclick", function () {
     selectedCellView.hideTools()
   }
   selectedCellView = null;
-  selectedLinkView = null;
+  setSelectedLinkView(null)
   elementSettingsWrapper.classList.remove('is-active')
   connectorSettingsWrapper.classList.remove('is-active')
   subMenuWrap.classList.remove('open-menu')
 });
 
-// mainGraph.on('change:source change:target', function (link) {
-//     console.log(link);
-// })
-// creating a custom button
-var selectedLinkView = null;
 const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
 
 /**
  * @constant {joint.dia.linkTools} showLinkSettings
  * Defines the button that will trigger the connector settings popup on the left hand side when clicked
  */
-var showLinkSettings = joint.linkTools.Button.extend({
-  name: "show-link-settings",
-  options: {
-    markup: [
-      {
-        tagName: "circle",
-        selector: "outer",
-        attributes: {
-          r: 9,
-          fill: "#ffffff",
-          cursor: "pointer",
-        },
-      },
-      {
-        tagName: "circle",
-        selector: "button",
-        attributes: {
-          r: 7,
-          fill: "#000000",
-          cursor: "pointer",
-        },
-      },
-      {
-        tagName: "path",
-        selector: "icon",
-        attributes: {
-          d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
-          fill: "none",
-          stroke: "#FFFFFF",
-          "stroke-width": 2,
-          "pointer-events": "none",
-        },
-      },
-    ],
-    distance: "50%",
-    offset: 0,
-    action: function (evt, linkView, buttonView) {
-      // console.log(linkView.model.attributes.attrs)
-      connectorSettingsWrapper.classList.add('is-active')
-      populateConnectorSettings(linkView.model)
-      elementSettingsWrapper.classList.remove('is-active')
-      selectedLinkView = linkView;
-      removeHighlight(mainGraph, mask, mainPaper)
-      // highlight the link
-      displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
-    },
-  },
-});
+// var showLinkSettings = joint.linkTools.Button.extend({
+//   name: "show-link-settings",
+//   options: {
+//     markup: [
+//       {
+//         tagName: "circle",
+//         selector: "outer",
+//         attributes: {
+//           r: 9,
+//           fill: "#ffffff",
+//           cursor: "pointer",
+//         },
+//       },
+//       {
+//         tagName: "circle",
+//         selector: "button",
+//         attributes: {
+//           r: 7,
+//           fill: "#000000",
+//           cursor: "pointer",
+//         },
+//       },
+//       {
+//         tagName: "path",
+//         selector: "icon",
+//         attributes: {
+//           d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
+//           fill: "none",
+//           stroke: "#FFFFFF",
+//           "stroke-width": 2,
+//           "pointer-events": "none",
+//         },
+//       },
+//     ],
+//     distance: "50%",
+//     offset: 0,
+//     action: function (evt, linkView, buttonView) {
+//       // console.log(linkView.model.attributes.attrs)
+//       connectorSettingsWrapper.classList.add('is-active')
+//       populateConnectorSettings(linkView.model)
+//       elementSettingsWrapper.classList.remove('is-active')
+//       selectedLinkView = linkView;
+//       removeHighlight(mainGraph, mask, mainPaper)
+//       // highlight the link
+//       displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
+//     },
+//   },
+// });
 
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
   var verticesTool = new joint.linkTools.Vertices();
@@ -1319,7 +1315,7 @@ function onConnectorChange() {
       newLink.attributes.router["name"] = model.attributes.router["name"]
 
       model.remove()
-      selectedLinkView = newLink.findView(mainPaper)
+      setSelectedLinkView(newLink.findView(mainPaper))
       model = selectedLinkView.model
       /* Add the Tools to the new link */
       var verticesTool = new joint.linkTools.Vertices();
@@ -1382,7 +1378,7 @@ function onConnectorChange() {
       console.log(newLink);
       console.log(model);
       model.remove()
-      selectedLinkView = newLink.findView(mainPaper)
+      setSelectedLinkView(newLink.findView(mainPaper))
       /* Add the Tools to the new link */
       var verticesTool = new joint.linkTools.Vertices();
       var removeTool = new joint.linkTools.Remove({

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import * as joint from 'jointjs';
 import { linkTools } from 'jointjs';
 import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftM, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSP, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightM, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSP, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftM, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSP, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightM, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSP, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
-
+import { showLinkSettings } from "./showLinkSettings.js"
 /**
  * This is a mapping that exists to map each element with their corresponding tools.
  * The tools are the same, but the position of the tools varies for every element therefore we made separate tool objects for every element
@@ -220,54 +220,54 @@ function addlinkTools(cell, mainPaper, connectorSettingsWrapper) {
  * @constant {joint.dia.linkTools} showLinkSettings
  * Defines the button that will trigger the connector settings popup on the left hand side when clicked
  */
-    var showLinkSettings = joint.linkTools.Button.extend({
-        name: "show-link-settings",
-        options: {
-            markup: [
-                {
-                    tagName: "circle",
-                    selector: "outer",
-                    attributes: {
-                        r: 9,
-                        fill: "#ffffff",
-                        cursor: "pointer",
-                    },
-                },
-                {
-                    tagName: "circle",
-                    selector: "button",
-                    attributes: {
-                        r: 7,
-                        fill: "#000000",
-                        cursor: "pointer",
-                    },
-                },
-                {
-                    tagName: "path",
-                    selector: "icon",
-                    attributes: {
-                        d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
-                        fill: "none",
-                        stroke: "#FFFFFF",
-                        "stroke-width": 2,
-                        "pointer-events": "none",
-                    },
-                },
-            ],
-            distance: "50%",
-            offset: 0,
-            action: function (evt, linkView, buttonView) {
-                // console.log(linkView.model.attributes.attrs)
-                connectorSettingsWrapper.classList.add('is-active')
-                populateConnectorSettings(linkView.model)
-                elementSettingsWrapper.classList.remove('is-active')
-                selectedLinkView = linkView;
-                removeHighlight(mainGraph, mask, mainPaper)
-                // highlight the link
-                displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
-            },
-        },
-    });
+    // var showLinkSettings = joint.linkTools.Button.extend({
+    //     name: "show-link-settings",
+    //     options: {
+    //         markup: [
+    //             {
+    //                 tagName: "circle",
+    //                 selector: "outer",
+    //                 attributes: {
+    //                     r: 9,
+    //                     fill: "#ffffff",
+    //                     cursor: "pointer",
+    //                 },
+    //             },
+    //             {
+    //                 tagName: "circle",
+    //                 selector: "button",
+    //                 attributes: {
+    //                     r: 7,
+    //                     fill: "#000000",
+    //                     cursor: "pointer",
+    //                 },
+    //             },
+    //             {
+    //                 tagName: "path",
+    //                 selector: "icon",
+    //                 attributes: {
+    //                     d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
+    //                     fill: "none",
+    //                     stroke: "#FFFFFF",
+    //                     "stroke-width": 2,
+    //                     "pointer-events": "none",
+    //                 },
+    //             },
+    //         ],
+    //         distance: "50%",
+    //         offset: 0,
+    //         action: function (evt, linkView, buttonView) {
+    //             // console.log(linkView.model.attributes.attrs)
+    //             connectorSettingsWrapper.classList.add('is-active')
+    //             populateConnectorSettings(linkView.model)
+    //             elementSettingsWrapper.classList.remove('is-active')
+    //             selectedLinkView = linkView;
+    //             removeHighlight(mainGraph, mask, mainPaper)
+    //             // highlight the link
+    //             displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
+    //         },
+    //     },
+    // });
     var showConnectorSettings = new showLinkSettings();
     var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]

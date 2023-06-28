@@ -1,6 +1,13 @@
 import * as joint from 'jointjs';
 import { displayLinkHighlight, removeHighlight } from "./utils.js";
-import { connectorSettingsWrapper, populateConnectorSettings, elementSettingsWrapper, selectedLinkView, mainGraph, mask, mainPaper } from './main.js';
+import { populateConnectorSettings, mainGraph, mainPaper } from './main.js';
+import { setSelectedLinkView } from './selectedLinkView.js';
+
+
+const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
+const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
+var mask = joint.highlighters.mask;
+
 
 /**
  * @constant {joint.dia.linkTools} showLinkSettings
@@ -47,7 +54,7 @@ export var showLinkSettings = joint.linkTools.Button.extend({
             connectorSettingsWrapper.classList.add('is-active');
             populateConnectorSettings(linkView.model);
             elementSettingsWrapper.classList.remove('is-active');
-            selectedLinkView = linkView;
+            setSelectedLinkView(linkView);
             removeHighlight(mainGraph, mask, mainPaper);
             // highlight the link
             displayLinkHighlight(linkView, mainGraph, mask, mainPaper);
