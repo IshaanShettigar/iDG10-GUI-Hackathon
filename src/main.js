@@ -4,7 +4,8 @@ import * as joint from 'jointjs';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveAsPNG } from "./persist.js"
-import { displayHighlight, displayLinkHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
+import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
+import { showLinkSettings } from './showLinkSettings.js';
 
 
 /** Defining fsm global variable for element undo redo */
@@ -603,7 +604,7 @@ const populateElementSettings = (model) => {
  * Analogous to the populateElementSettings function, except it populates all link parameters
  * @param {joint.dia.Link} model 
  */
-const populateConnectorSettings = (model) => {
+export const populateConnectorSettings = (model) => {
   console.log(model)
   let modelAttrs = model.attributes.attrs
   for (let i = 1; i <= 18; i++) {
@@ -830,12 +831,12 @@ const GRID_NAME = "fixedDot";
 /**
  * renders the main graph object for the main infinite diagramming space.
  */
-var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+export var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
 /**
  * renders the main paper object for the main infinite diagramming space.
  */
-var mainPaper = new joint.dia.Paper({
+export var mainPaper = new joint.dia.Paper({
   el: document.getElementById('main-paper-div'),
   model: mainGraph,
   width: window.innerWidth,
@@ -1004,11 +1005,11 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
 
 
 const elementSettingsName = document.getElementById('elementName')
-const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
+export const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
 // Element selection & highlighting
 var selectedCellView = null;
 // Adding element highlighting
-var mask = joint.highlighters.mask;
+export var mask = joint.highlighters.mask;
 mainPaper.on("element:pointerclick", function (cellView) {
 
   selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
@@ -1040,61 +1041,8 @@ mainPaper.on("blank:pointerclick", function () {
 //     console.log(link);
 // })
 // creating a custom button
-var selectedLinkView = null;
-const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
-
-/**
- * @constant {joint.dia.linkTools} showLinkSettings
- * Defines the button that will trigger the connector settings popup on the left hand side when clicked
- */
-joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
-  name: "show-link-settings",
-  options: {
-    markup: [
-      {
-        tagName: "circle",
-        selector: "outer",
-        attributes: {
-          r: 9,
-          fill: "#ffffff",
-          cursor: "pointer",
-        },
-      },
-      {
-        tagName: "circle",
-        selector: "button",
-        attributes: {
-          r: 7,
-          fill: "#000000",
-          cursor: "pointer",
-        },
-      },
-      {
-        tagName: "path",
-        selector: "icon",
-        attributes: {
-          d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
-          fill: "none",
-          stroke: "#FFFFFF",
-          "stroke-width": 2,
-          "pointer-events": "none",
-        },
-      },
-    ],
-    distance: "50%",
-    offset: 0,
-    action: function (evt, linkView, buttonView) {
-      // console.log(linkView.model.attributes.attrs)
-      connectorSettingsWrapper.classList.add('is-active')
-      populateConnectorSettings(linkView.model)
-      elementSettingsWrapper.classList.remove('is-active')
-      selectedLinkView = linkView;
-      removeHighlight(mainGraph, mask, mainPaper)
-      // highlight the link
-      displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
-    },
-  },
-});
+export var selectedLinkView = null;
+export const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
 
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
   var verticesTool = new joint.linkTools.Vertices();
@@ -1106,7 +1054,7 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
     }
   })
   // var segmentsTool = new joint.linkTools.Segments();
-  var showConnectorSettings = new joint.linkTools.showLinkSettings();
+  var showConnectorSettings = new showLinkSettings();
   // var boundaryTool = new joint.linkTools.Boundary();
   console.log((linkView));
   var linkToolsView = new joint.dia.ToolsView({
@@ -1330,7 +1278,7 @@ function onConnectorChange() {
         }
       })
       // var segmentsTool = new joint.linkTools.Segments();
-      var showConnectorSettings = new joint.linkTools.showLinkSettings();
+      var showConnectorSettings = new showLinkSettings();
       // var boundaryTool = new joint.linkTools.Boundary();
       var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings]
@@ -1392,7 +1340,7 @@ function onConnectorChange() {
         }
       })
       // var segmentsTool = new joint.linkTools.Segments();
-      var showConnectorSettings = new joint.linkTools.showLinkSettings();
+      var showConnectorSettings = new showLinkSettings();
       // var boundaryTool = new joint.linkTools.Boundary();
       var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings]

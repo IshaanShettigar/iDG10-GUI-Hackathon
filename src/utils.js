@@ -2,6 +2,7 @@ import _ from 'lodash';
 import * as joint from 'jointjs';
 import { linkTools } from 'jointjs';
 import { ResizeToolBottomLeftFPSO, ResizeToolBottomLeftM, ResizeToolBottomLeftPLATFORM, ResizeToolBottomLeftPLEM, ResizeToolBottomLeftSP, ResizeToolBottomLeftSS, ResizeToolBottomLeftST, ResizeToolBottomLeftUTA, ResizeToolBottomLeftUTH, ResizeToolBottomRightFPSO, ResizeToolBottomRightM, ResizeToolBottomRightPLATFORM, ResizeToolBottomRightPLEM, ResizeToolBottomRightSP, ResizeToolBottomRightSS, ResizeToolBottomRightST, ResizeToolBottomRightUTA, ResizeToolBottomRightUTH, ResizeToolTopLeftFPSO, ResizeToolTopLeftM, ResizeToolTopLeftPLATFORM, ResizeToolTopLeftPLEM, ResizeToolTopLeftSP, ResizeToolTopLeftSS, ResizeToolTopLeftST, ResizeToolTopLeftUTA, ResizeToolTopLeftUTH, ResizeToolTopRightFPSO, ResizeToolTopRightM, ResizeToolTopRightPLATFORM, ResizeToolTopRightPLEM, ResizeToolTopRightSP, ResizeToolTopRightSS, ResizeToolTopRightST, ResizeToolTopRightUTA, ResizeToolTopRightUTH, RotateToolFPSO, RotateToolIWST, RotateToolManifold, RotateToolPLET, RotateToolPlatform, RotateToolSubseaPump, RotateToolSubseaSeparator, RotateToolUTA, getPositionIWST, rotateChildren, setPositionAll } from "./tools.js"
+import { showLinkSettings } from './showLinkSettings.js';
 
 /**
  * This is a mapping that exists to map each element with their corresponding tools.
@@ -186,7 +187,7 @@ function addlinkTools(cell, mainPaper, connectorSettingsWrapper) {
             connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
         }
     })
-    var showConnectorSettings = new linkTools.showLinkSettings();
+    var showConnectorSettings = new showLinkSettings();
     var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
     });
