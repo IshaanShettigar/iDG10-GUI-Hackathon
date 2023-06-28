@@ -2,14 +2,14 @@ FROM node:18-alpine
 
 ENV NODE_ENV=production
 
-WORKDIR /usr/src/app/main
+WORKDIR /usr/src/app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json .
 
 RUN npm install --production
 
-WORKDIR /usr/src/app
-
 COPY . .
 
-CMD ["npx", "http-server", "-p", "8080", "./main/"]
+RUN npm run build
+
+CMD ["npm", "run", "preview"]
