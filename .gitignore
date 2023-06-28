@@ -25,3 +25,6 @@ dist-ssr
 
 # Docs
 docs
+
+# Make
+out
