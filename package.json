@@ -3,7 +3,7 @@
   "private": true,
   "author": "Team Bro-Code",
   "description": "idg10 hackathon",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "main": "electron.js",
   "scripts": {
     "dev": "vite",
