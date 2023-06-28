@@ -5,8 +5,10 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1920,
         height: 1080,
+        icon: './public/icons/icon.ico'
     })
 
+    win.setMenu(null)
     win.loadFile('./dist/index.html')
 
     // in dev mode, open dev tools
