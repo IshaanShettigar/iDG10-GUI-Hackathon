@@ -3,16 +3,15 @@ const path = require('path')
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1920,
+        height: 1080,
     })
 
     win.loadFile('./dist/index.html')
 
     // in dev mode, open dev tools
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 }
-
 app.whenReady().then(() => {
     createWindow()
 
