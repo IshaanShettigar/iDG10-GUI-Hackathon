@@ -1,6 +1,4 @@
-import $ from 'jquery';
 import _ from 'lodash';
-import Backbone from 'backbone';
 import * as joint from 'jointjs';
 /*
 Injection Well and Subsea Tree = InjectionWellST

@@ -1,6 +1,4 @@
-import $ from 'jquery';
 import _ from 'lodash';
-import Backbone from 'backbone';
 import * as joint from 'jointjs';
 
 /* To create the 18 parameters and assign them to an element */

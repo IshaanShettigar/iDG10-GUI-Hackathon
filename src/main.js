@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _ from 'lodash';
-import Backbone from 'backbone';
 import * as joint from 'jointjs';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
