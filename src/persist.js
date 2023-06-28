@@ -18,7 +18,7 @@ This file contains all the logic necessary to
  * @param {JSON} exportObj comes from the fixFormat function
  * @param {String} exportName name of the file it should create 
  */
-function downloadObjectAsJson(exportObj, exportName) {
+function downloadObjectAsJson(exportObj, exportName = "diagram") {
     var dataStr =
         "data:text/json;charset=utf-8," +
         encodeURIComponent(JSON.stringify(exportObj));
@@ -97,7 +97,7 @@ const saveGraph = function (mainGraph) {
 
     // mainGraph.fromJSON(sampleJSON)
 
-    const name = prompt("Enter filename");
+    const name = "diagram"  //prompt("Enter filename");
     if (name != null) {
         downloadObjectAsJson(fixedGraphJson, name);
         console.log("Saved it");
