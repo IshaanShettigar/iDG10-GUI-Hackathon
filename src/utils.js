@@ -170,6 +170,36 @@ function addElementTools(cell, mainPaper) {
     elementView.hideTools()
 }
 
+
+/* To resolve errors */
+import { mapping } from './main.js';
+const connector = document.getElementById('connector')
+const installationAndConstructionVessel = document.getElementById('install-vessel')
+const subseaIntervention = document.getElementById('subsea-intervention')
+const connectionShape = document.getElementById('connection-shape')
+const connectorRouter = document.getElementById('connector-router')
+const populateConnectorSettings = (model) => {
+    console.log(model)
+    let modelAttrs = model.attributes.attrs
+    for (let i = 1; i <= 18; i++) {
+        // if (modelAttrs[`parameter${i}`] != null) {
+        // copy to elementsettings
+        mapping[`parameter${i}`][1].value = modelAttrs[`parameter${i}`]
+        // }
+    }
+
+    connector.value = modelAttrs['connector']
+    installationAndConstructionVessel.value = modelAttrs['installationAndConstructionVessel']
+    subseaIntervention.value = modelAttrs['subseaIntervention']
+    connectionShape.value = model.attributes.connector["name"]
+    connectorRouter.value = model.attributes.router["name"]
+}
+
+
+
+/* some more errors */
+const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
+
 /**
  * function responsible for adding link tools to the link passed in as a cell
  * @param {joint.dia.Cell} cell link

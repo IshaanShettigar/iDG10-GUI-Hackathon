@@ -579,7 +579,7 @@ let mapping = {
   'parameter17': [elementP17, connectorP17],
   'parameter18': [elementP18, connectorP18]
 }
-
+export { mapping }
 /**
  * function is called when element is clicked on so that the pop up that appears on the left hand side of the screen displays the
  * correct values for its parameters. It fetches the parameters from the model object and displays it on the menu on the left hand side
@@ -603,7 +603,7 @@ const populateElementSettings = (model) => {
  * Analogous to the populateElementSettings function, except it populates all link parameters
  * @param {joint.dia.Link} model 
  */
-export const populateConnectorSettings = (model) => {
+const populateConnectorSettings = (model) => {
   console.log(model)
   let modelAttrs = model.attributes.attrs
   for (let i = 1; i <= 18; i++) {
@@ -830,12 +830,12 @@ const GRID_NAME = "fixedDot";
 /**
  * renders the main graph object for the main infinite diagramming space.
  */
-export var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
+var mainGraph = new joint.dia.Graph({}, { cellNamespace: namespace });
 
 /**
  * renders the main paper object for the main infinite diagramming space.
  */
-export var mainPaper = new joint.dia.Paper({
+var mainPaper = new joint.dia.Paper({
   el: document.getElementById('main-paper-div'),
   model: mainGraph,
   width: window.innerWidth,
@@ -1004,11 +1004,11 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
 
 
 const elementSettingsName = document.getElementById('elementName')
-export const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
+const elementSettingsWrapper = document.getElementById('element-settings-wrapper')
 // Element selection & highlighting
 var selectedCellView = null;
 // Adding element highlighting
-export var mask = joint.highlighters.mask;
+var mask = joint.highlighters.mask;
 mainPaper.on("element:pointerclick", function (cellView) {
 
   selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
@@ -1040,8 +1040,8 @@ mainPaper.on("blank:pointerclick", function () {
 //     console.log(link);
 // })
 // creating a custom button
-export var selectedLinkView = null;
-export const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
+var selectedLinkView = null;
+const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')
 
 /**
  * @constant {joint.dia.linkTools} showLinkSettings
