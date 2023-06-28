@@ -1098,19 +1098,19 @@ joint.linkTools.showLinkSettings = joint.linkTools.Button.extend({
 });
 
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
-  var verticesTool = newjoint.linkTools.Vertices();
-  var targetArrowheadTool = newjoint.linkTools.TargetArrowhead({ scale: 0.8 });
-  var removeTool = newjoint.linkTools.Remove({
+  var verticesTool = new joint.linkTools.Vertices();
+  var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+  var removeTool = new joint.linkTools.Remove({
     action: function (evt, linkView, toolView) {
       linkView.model.remove({ ui: true, tool: toolView.cid });
       connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
     }
   })
-  // var segmentsTool = newjoint.linkTools.Segments();
-  var showConnectorSettings = newjoint.linkTools.showLinkSettings();
-  // var boundaryTool = newjoint.linkTools.Boundary();
+  // var segmentsTool = new joint.linkTools.Segments();
+  var showConnectorSettings = new joint.linkTools.showLinkSettings();
+  // var boundaryTool = new joint.linkTools.Boundary();
   console.log((linkView));
-  varjoint.linkToolsView = new joint.dia.ToolsView({
+  var linkToolsView = new joint.dia.ToolsView({
     tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
   });
   linkView.addTools(linkToolsView)
@@ -1323,16 +1323,16 @@ function onConnectorChange() {
       selectedLinkView = newLink.findView(mainPaper)
       model = selectedLinkView.model
       /* Add the Tools to the new link */
-      var verticesTool = newjoint.linkTools.Vertices();
-      var removeTool = newjoint.linkTools.Remove({
+      var verticesTool = new joint.linkTools.Vertices();
+      var removeTool = new joint.linkTools.Remove({
         action: function (evt, linkView, toolView) {
           linkView.model.remove({ ui: true, tool: toolView.cid });
           connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
         }
       })
-      // var segmentsTool = newjoint.linkTools.Segments();
-      var showConnectorSettings = newjoint.linkTools.showLinkSettings();
-      // var boundaryTool = newjoint.linkTools.Boundary();
+      // var segmentsTool = new joint.linkTools.Segments();
+      var showConnectorSettings = new joint.linkTools.showLinkSettings();
+      // var boundaryTool = new joint.linkTools.Boundary();
       var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings]
       });
@@ -1385,16 +1385,16 @@ function onConnectorChange() {
       model.remove()
       selectedLinkView = newLink.findView(mainPaper)
       /* Add the Tools to the new link */
-      var verticesTool = newjoint.linkTools.Vertices();
-      var removeTool = newjoint.linkTools.Remove({
+      var verticesTool = new joint.linkTools.Vertices();
+      var removeTool = new joint.linkTools.Remove({
         action: function (evt, linkView, toolView) {
           linkView.model.remove({ ui: true, tool: toolView.cid });
           connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
         }
       })
-      // var segmentsTool = newjoint.linkTools.Segments();
-      var showConnectorSettings = newjoint.linkTools.showLinkSettings();
-      // var boundaryTool = newjoint.linkTools.Boundary();
+      // var segmentsTool = new joint.linkTools.Segments();
+      var showConnectorSettings = new joint.linkTools.showLinkSettings();
+      // var boundaryTool = new joint.linkTools.Boundary();
       var linkToolsView = new joint.dia.ToolsView({
         tools: [verticesTool, removeTool, showConnectorSettings]
       });
