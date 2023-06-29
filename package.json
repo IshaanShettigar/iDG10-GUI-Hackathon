@@ -13,7 +13,9 @@
     "electron": "electron .",
     "docs": "jsdoc -d ./dist/docs --configure jsdocConf.json",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "env": "sed 's/=.*/=/' .env.local > .env.example"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.2.1",
@@ -23,6 +25,7 @@
     "@electron-forge/maker-squirrel": "^6.2.1",
     "@electron-forge/maker-zip": "^6.2.1",
     "@electron-forge/plugin-vite": "^6.2.1",
+    "@electron-forge/publisher-github": "^6.2.1",
     "electron": "^25.2.0",
     "jsdoc": "^4.0.2",
     "vite": "^4.3.9"
