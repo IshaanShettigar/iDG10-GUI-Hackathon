@@ -19,6 +19,10 @@ To use the iDG10 Subsea Diagramming Tool, follow these steps:
    git clone https://github.com/IshaanShettigar/iDG10-GUI-Hackathon.git
    ```
 
+   Or, download the repository as a ZIP file and extract it.
+
+   [Download ZIP](https://github.com/IshaanShettigar/iDG10-GUI-Hackathon/archive/refs/heads/vite.zip)
+
 2. Change to the "vite" branch:
 
    ```shell
