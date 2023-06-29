@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import * as joint from 'jointjs';
-import { Canvg } from 'canvg';
 /*
 This file contains all the logic necessary to 
 1. Save and Load diagrams
@@ -133,66 +132,6 @@ const openFile = async function (event, mainGraph) {
     })
     // need to iterate over all elements and links and add the linkTools and elementtools
 }
-
-
-/** Save as PNG */
-function generateLink(fileName, data) {
-    var link = document.createElement('a');
-    link.download = fileName;
-    link.href = data;
-    return link;
-}
-
-function SVG2PNG(svg, callback) {
-    var canvas = document.createElement('canvas'); // Create a Canvas element.
-    var ctx = canvas.getContext('2d'); // For Canvas returns 2D graphic.
-    var data = svg.outerHTML; // Get SVG element as HTML code.
-    Canvg(canvas, data); // Render SVG on Canvas.
-    callback(canvas); // Execute callback function.
-}
-
-const saveAsPNG = () => { // Bind click event on download button.
-    var element = document.getElementById("v-166"); // Get SVG element.
-    SVG2PNG(element, function (canvas) {
-        // Arguments: SVG element, callback function.
-        var base64 = canvas.toDataURL("image/png"); // toDataURL return DataURI as Base64 format.
-        generateLink("SVG2PNG-01.png", base64).click(); // Trigger the Link is made by Link Generator and download.
-    });
-}
-
-/**
- * 
- * @param {SVG} svgEl SVG element 
- * @param {String} name name of the file 
- */
-function saveSvg(svgEl, name) {
-    /*
-    Download the diagram as a SVG file
-    */
-    // Serialize the SVG HTML data
-    let svgData = new XMLSerializer().serializeToString(svgEl)
-    // Clean the HTML tootltips out of the SVG data
-    svgData = svgData.replace(/data-bs-title=".*?"/gm, '')
-    // Build the base64 SVG image data
-    const image64 = 'data:image/svg+xml;base64,' + window.btoa(svgData)
-    // Create a download URL for the SVG file
-    const img = document.createElement('img')
-    // Set the source for the image to the base64 image data
-    img.src = image64
-    // Create a link for the download
-    const downloadLink = document.createElement('a')
-    // Set the URL for the download link
-    downloadLink.href = image64
-    // Set the file name
-    downloadLink.download = name
-    // Add the download link to the document
-    document.body.appendChild(downloadLink)
-    // Simulate a click on the link
-    downloadLink.click()
-    // Remove the link from the document
-    document.body.removeChild(downloadLink)
-}
-
 
 
 function saveImage(svgEl, name, format = "png", backgroundColor = null) {
@@ -356,4 +295,4 @@ function saveImage(svgEl, name, format = "png", backgroundColor = null) {
 //     };
 // }
 
-export { saveGraph, openFile, fixFormat, saveAsPNG, saveImage, saveSvg }
+export { saveGraph, openFile, fixFormat, saveImage, saveSvg }

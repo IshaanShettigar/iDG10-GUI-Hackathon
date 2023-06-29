@@ -3,7 +3,7 @@ import _ from 'lodash';
 import * as joint from 'jointjs';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { assignCustomParams } from "./element-attrs.js"
-import { saveGraph, openFile, fixFormat, saveAsPNG, saveSvg, saveImage } from "./persist.js"
+import { saveGraph, openFile, fixFormat, saveImage } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
 import { showLinkSettings } from "./showLinkSettings.js"
 import { selectedLinkView, setSelectedLinkView } from './selectedLinkView.js';
