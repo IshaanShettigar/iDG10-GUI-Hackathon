@@ -295,4 +295,4 @@ function saveImage(svgEl, name, format = "png", backgroundColor = null) {
 //     };
 // }
 
-export { saveGraph, openFile, fixFormat, saveImage, saveSvg }
+export { saveGraph, openFile, fixFormat, saveImage }
