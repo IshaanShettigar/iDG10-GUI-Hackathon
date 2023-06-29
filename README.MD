@@ -1,6 +1,6 @@
 # iDG10 Subsea Diagramming Tool
 
-Welcome to the iDG10 Subsea Diagramming Tool! This tool allows you to create and manipulate subsea diagrams easily. Follow the instructions below to get started.
+Welcome to the iDG10 Subsea Diagramming Tool! This tool allows you to create and manipulate subsea diagrams easily. Please note that the iDG10 Subsea Diagramming Tool is a proprietary software, and its usage is subject to a valid license.
 
 ## Prerequisites
 
@@ -93,24 +93,14 @@ Choose one of the following methods to use the iDG10 Subsea Diagramming Tool:
 
 ## Contributing
 
-If you would like to contribute to the iDG10 Subsea Diagramming Tool, please follow these guidelines:
-
-1. Fork the repository on GitHub.
-2. Create a new branch from the "vite" branch for your contributions.
-3. Make your changes, adding new features, fixing bugs, or improving existing functionality.
-4. Ensure that your code is well-documented and follows the project's coding style.
-5. Test your changes thoroughly to ensure they work as expected.
-6. Commit your changes and push them to your forked repository.
-7. Submit a pull request to the original repository, describing your changes in detail.
+If you would like to contribute to the iDG10 Subsea Diagramming Tool, please contact the authorized distributor or the respective owner for information on contributing guidelines.
 
 ## License
 
-The iDG10 Subsea Diagramming Tool is released
-
- under the [MIT License](LICENSE). Feel free to use, modify, and distribute the tool as per the terms of the license.
+The iDG10 Subsea Diagramming Tool is a proprietary software. Proper licensing is required to use the tool. Please contact the authorized distributor or the respective owner for licensing details and terms of use.
 
 ## Contact
 
-If you have any questions, feedback, or suggestions regarding the iDG10 Subsea Diagramming Tool, please contact us at [email protected]
+If you have any questions or need assistance regarding the iDG10 Subsea Diagramming Tool, please contact the authorized distributor or the respective owner.
 
-Thank you for using the iDG10 Subsea Diagramming Tool!
+Thank you for your interest in the iDG10 Subsea Diagramming Tool!
