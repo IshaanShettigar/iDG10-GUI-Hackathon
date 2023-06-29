@@ -28,6 +28,7 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
+    "canvg": "^4.0.1",
     "jointjs": "^3.7.4",
     "jquery": "^3.7.0",
     "lodash": "^4.17.21"

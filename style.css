@@ -106,16 +106,16 @@ nav button:hover {
 .help:hover,
 .clear-paper:hover,
 .generate-bom:hover,
-/* .save-as-png:hover, */
+.save-as-png:hover,
 .settings:hover {
   background-color: rgb(240, 240, 240);
   cursor: pointer;
 }
 
 /* Disabling save as png for now */
-.save-as-png span {
+/* .save-as-png span {
   color: #cacaca;
-}
+} */
 
 /* Settings modal */
 .settings-modal {

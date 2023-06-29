@@ -62,7 +62,7 @@ saveDiagramButton.addEventListener('click', () => { saveGraph(mainGraph) });
 
 const saveAsPNGButton = document.getElementById('save-as-png')
 saveAsPNGButton.addEventListener('click', () => {
-  saveImage(mainPaper.svg, 'Diagram', "svg", "#ffffff")
+  saveImage(mainPaper.svg, 'Diagram', "png", "#ffffff")
 }) // not working as of 18th June
 
 /* Settings Modal  */
@@ -855,6 +855,7 @@ export var mainPaper = new joint.dia.Paper({
   background: {
     color: "rgba(255,255,255,1)"
   },
+  snapLabels: true,
   interactive: {
     linkMove: true,
     labelMove: true,
@@ -1128,13 +1129,14 @@ const appendDefaultLabels = function (linkView) {
         // ref: 'label',
         fill: 'rgba(0,0,0,0)',
         stroke: 'none',
-        height: '20px',
-        width: '30px'
+        height: '25px',
+        width: '70px',
+        y: '-11px'
       }
     },
     position: {
       distance: 0.50,
-      offset: -20,
+      offset: -25,
       args: {
         keepGradient: true,
         ensureLegibility: true
@@ -1168,13 +1170,14 @@ const appendDefaultLabels = function (linkView) {
         // ref: 'label',
         fill: 'rgba(0,0,0,0)',
         stroke: 'none',
-        height: '20px',
-        width: '30px'
+        height: '25px',
+        width: '70px',
+        y: '-11px'
       }
     },
     position: {
       distance: 0.30,
-      offset: 20,
+      offset: 25,
       args: {
         keepGradient: true,
         ensureLegibility: true
