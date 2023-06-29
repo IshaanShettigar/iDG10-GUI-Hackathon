@@ -418,6 +418,11 @@ ${connectorTable}
 function createTable() {
   const componentTable = document.getElementById('component-bom-table');
   const connectorTable = document.getElementById('connector-bom-table')
+
+  // Clear the table
+  componentTable.innerHTML = '';
+  connectorTable.innerHTML = '';
+
   // Create table header row
   const headerRow = document.createElement('tr');
   const headerRow2 = document.createElement('tr')
