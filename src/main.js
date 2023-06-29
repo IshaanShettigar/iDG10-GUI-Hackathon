@@ -35,25 +35,25 @@ menuButton.addEventListener("click", () => {
 /* Right hand side element toolbar menu */
 let elementButton = document.getElementById('element-button')
 let elementMenuWrap = document.getElementById('element-menu-wrap')
-let pinButton = document.getElementById('pin-button');
+// Got rid of pinning functionality
+// let pinButton = document.getElementById('pin-button');
 
-var isPinned = false;
-pinButton.addEventListener("click", () => {
-  if (isPinned == false) {
-    pinButton.classList.add("is-active");
-    isPinned = true;
-  }
-  else {
-    pinButton.classList.remove("is-active");
-    isPinned = false;
-  }
-})
+// var isPinned = false;
+// pinButton.addEventListener("click", () => {
+//   if (isPinned == false) {
+//     pinButton.classList.add("is-active");
+//     isPinned = true;
+//   }
+//   else {
+//     pinButton.classList.remove("is-active");
+//     isPinned = false;
+//   }
+// })
 
 elementButton.addEventListener("click", () => {
-  if (isPinned == false) {
-    elementMenuWrap.classList.toggle("is-active");
-    elementButton.classList.toggle("is-active");
-  }
+  elementMenuWrap.classList.toggle("is-active");
+  elementButton.classList.toggle("is-active");
+
 })
 
 const saveDiagramButton = document.getElementById('save-file')

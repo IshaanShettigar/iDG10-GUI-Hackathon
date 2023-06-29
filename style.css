@@ -351,10 +351,14 @@ nav button:hover {
   background-color: rgb(240, 240, 240);
 }
 
-.pin-button.is-active {
+/* .pin-button.is-active {
   background-color: rgb(240, 240, 240);
   border: 1px solid #e8e6e6;
   box-shadow: rgba(150, 150, 150, 0.5) 0 2px 5px 0;
+} */
+
+#comp-lib-span {
+  margin-top: 13px;
 }
 
 hr {
