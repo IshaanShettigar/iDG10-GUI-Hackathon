@@ -1181,7 +1181,7 @@ const appendDefaultLabels = function (linkView) {
       }
     },
     position: {
-      distance: 0.30,
+      distance: 0.65,
       offset: 25,
       args: {
         keepGradient: true,
