@@ -619,7 +619,7 @@ const populateElementSettings = (model) => {
  * @param {joint.dia.Link} model 
  */
 export const populateConnectorSettings = (model) => {
-  console.log(model)
+  // console.log(model)
   let modelAttrs = model.attributes.attrs
   for (let i = 1; i <= 18; i++) {
     // if (modelAttrs[`parameter${i}`] != null) {
@@ -813,8 +813,8 @@ const standardLink = () => {
         strokeWidth: 3
       },
       connector: "Umbillical",
-      installationAndConstructionVessel: null,
-      subseaIntervention: null,
+      installationAndConstructionVessel: 'S-Lay',
+      subseaIntervention: 'GRP-covers',
       parameter1: null,
       parameter1: null,
       parameter2: null,
