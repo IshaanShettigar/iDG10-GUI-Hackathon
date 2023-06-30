@@ -1239,8 +1239,8 @@ const addElementEventListener = (DOMElement, event) => {
       console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
     }
     else {
-      alert("No selected element")
-      if (event == 'change') { DOMElement.value = None }
+      // alert("No selected element")
+      if (event == 'change') { DOMElement.value = "None" }
       else {
         DOMElement.value = null
       }
