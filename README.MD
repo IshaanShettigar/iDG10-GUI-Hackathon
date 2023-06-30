@@ -89,7 +89,7 @@ Choose one of the following methods to use the iDG10 Subsea Diagramming Tool:
    npm run make
    ```
 
-   The package for your system will be generated in the `out` folder, specifically in the `make` subfolder.
+   The package for your system will be generated in the `out` folder, specifically in the `make` subfolder (Mac OS), and `draw.idg' subfolder (Windows).
 
 3. Locate the generated package for your system and execute the application according to your operating system's conventions.
 
