@@ -2,12 +2,12 @@
     "plugins": [],
     "recurseDepth": 10,
     "opts": {
-        "destination": "./docs/",
+        "destination": "./src/docs/",
         "recurse": true
     },
     "source": {
         "include": [
-            "./main/"
+            "./src/"
         ],
         "exclude": [
             "./node_modules"
