@@ -2015,15 +2015,15 @@ mainPaper.on("element:pointermove", (cellView, evt, x, y) => {
   let previousCenter = mainPaper.translate()
   let tx = previousCenter['tx']
   let ty = previousCenter['ty']
-  if (pageX < 10) {
+  if (pageX < 50) {
     mainPaper.translate(tx + 10, ty)
   }
   else if (pageY < 10) {
     mainPaper.translate(tx, ty + 10)
   }
-  else if (pageX > 1525) {
+  else if (pageX > 1500) {
     mainPaper.translate(tx - 10, ty)
-  } else if (pageY > 776) {
+  } else if (pageY > 740) {
     mainPaper.translate(tx, ty - 10)
   }
 })
