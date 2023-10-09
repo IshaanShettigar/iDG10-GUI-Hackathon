@@ -1,110 +1,81 @@
-# iDG10 Subsea Diagramming Tool
+# Turborepo starter
 
-Welcome to the iDG10 Subsea Diagramming Tool! This tool allows you to create and manipulate subsea diagrams easily. Please note that the iDG10 Subsea Diagramming Tool is a proprietary software, and its usage is subject to a valid license.
+This is an official starter Turborepo.
 
-## Prerequisites
+## Using this example
 
-Before installing and using the iDG10 Subsea Diagramming Tool, please ensure that you have the following prerequisites:
+Run the following command:
 
-- [Node.js](https://nodejs.org) (version 12 or higher) installed on your machine. You can download Node.js from the official website and follow the installation instructions specific to your operating system.
-- (Optional) [Docker](https://www.docker.com/) installed and running. Docker is required only for the Docker deployment method.
+```sh
+npx create-turbo@latest
+```
 
-## Installation
+## What's inside?
 
-To use the iDG10 Subsea Diagramming Tool, follow these steps:
+This Turborepo includes the following packages/apps:
 
-1. Clone the repository using Git:
+### Apps and Packages
 
-   ```shell
-   git clone https://github.com/IshaanShettigar/iDG10-GUI-Hackathon.git
-   ```
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-   Or, download the repository as a ZIP file and extract it.
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-   [Download ZIP](https://github.com/IshaanShettigar/iDG10-GUI-Hackathon/archive/refs/heads/vite.zip)
+### Utilities
 
-2. Change to the "vite" branch:
+This Turborepo has some additional tools already setup for you:
 
-   ```shell
-   git checkout vite
-   ```
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
 
-3. Install the project dependencies:
+### Build
 
-   ```shell
-   npm install
-   ```
+To build all apps and packages, run the following command:
 
-## Usage
+```
+cd my-turborepo
+pnpm build
+```
 
-Choose one of the following methods to use the iDG10 Subsea Diagramming Tool:
+### Develop
 
-### Web Application
+To develop all apps and packages, run the following command:
 
-1. Build the project:
+```
+cd my-turborepo
+pnpm dev
+```
 
-   ```shell
-   npm run build
-   ```
+### Remote Caching
 
-2. Preview the application on your local machine:
+Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-   ```shell
-   npm run preview
-   ```
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
 
-   The application will be exposed on port 8080. Open your web browser and navigate to the following address: `http://localhost:8080`.
+```
+cd my-turborepo
+npx turbo login
+```
 
-3. Use the various tools and options provided in the interface to create and manipulate subsea diagrams according to your requirements.
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-### Docker Deployment
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-1. If you choose to use the Docker deployment method, make sure you have Docker installed and running on your machine. You can follow the official [Docker installation instructions](https://docs.docker.com/get-docker/) to install Docker.
+```
+npx turbo link
+```
 
-2. Customize the `docker-compose.yml` file according to your deployment setup.
+## Useful Links
 
-3. Build and run the Docker containers:
+Learn more about the power of Turborepo:
 
-   ```shell
-   docker-compose up -d
-   ```
-
-   Ensure that the Docker engine is running in the background.
-
-4. The iDG10 Subsea Diagramming Tool will be accessible through your specified configuration.
-
-5. Use the various tools and options provided in the interface to create and manipulate subsea diagrams according to your requirements.
-
-### Desktop Application
-
-1. Build the project:
-
-   ```shell
-   npm run build
-   ```
-
-2. Create the desktop application package using Electron Forge:
-
-   ```shell
-   npm run make
-   ```
-
-   The package for your system will be generated in the `out` folder, specifically in the `make` subfolder (Mac OS), and `draw.idg' subfolder (Windows).
-
-3. Locate the generated package for your system and execute the application according to your operating system's conventions.
-
-4. Use the various tools and options provided in the interface to create and manipulate subsea diagrams according to your requirements.
-
-## Contributing
-
-If you would like to contribute to the iDG10 Subsea Diagramming Tool, please contact the authorized distributor or the respective owner for information on contributing guidelines.
-
-## License
-
-The iDG10 Subsea Diagramming Tool is a proprietary software. Proper licensing is required to use the tool. Please contact the authorized distributor or the respective owner for licensing details and terms of use.
-
-## Contact
-
-If you have any questions or need assistance regarding the iDG10 Subsea Diagramming Tool, please contact the authorized distributor or the respective owner.
-
-Thank you for your interest in the iDG10 Subsea Diagramming Tool!
+- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

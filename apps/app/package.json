@@ -1,0 +1,66 @@
+{
+  "name": "draw.idg",
+  "private": true,
+  "author": "Team Bro-Code",
+  "description": "idg10 hackathon",
+  "version": "1.0.0",
+  "main": "electron.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "electron-forge start",
+    "electron": "electron .",
+    "docs": "jsdoc -d ./dist/docs --configure jsdocConf.json",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "env": "sed 's/=.*/=/' .env.local > .env.example"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.2.1",
+    "@electron-forge/maker-deb": "^6.2.1",
+    "@electron-forge/maker-dmg": "^6.2.1",
+    "@electron-forge/maker-rpm": "^6.2.1",
+    "@electron-forge/maker-squirrel": "^6.2.1",
+    "@electron-forge/maker-zip": "^6.2.1",
+    "@electron-forge/plugin-vite": "^6.2.1",
+    "@electron-forge/publisher-github": "^6.2.1",
+    "electron": "^25.2.0",
+    "jsdoc": "^4.0.2",
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "canvg": "^4.0.1",
+    "jointjs": "^3.7.4",
+    "jquery": "^3.7.0",
+    "lodash": "^4.17.21"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
