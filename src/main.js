@@ -1974,7 +1974,7 @@ mainPaper.on("element:mouseenter", (cellView, evt) => {
       let modelSize = cellView.model.attributes.size;
       // The below if conditions handle the edges of having to display the modal when on the edges of the screen so that the modal is still visible
       if (hoverY + 160 > window.innerHeight) {
-        hoverContainer.style.top = `${hoverY - 4 * modelSize.height}px`
+        hoverContainer.style.top = `${hoverY - 3.5 * modelSize.height}px`
         hoverContainer.style.left = `${hoverX}px`
         console.log("on hover hieght exceeded");
       }
@@ -2001,4 +2001,29 @@ mainPaper.on("element:pointerdblclick", (cellView, evt) => {
   hoverContainer.classList.add('hidden')
   isHovering = false;
   /* -------------------------------- */
+})
+
+
+/* New Feature: When the user drags an element out of bounds then translate the paper in that direction */
+mainPaper.on("element:pointermove", (cellView, evt, x, y) => {
+  let pageX = evt["originalEvent"]["pageX"]
+  let pageY = evt["originalEvent"]["pageY"]
+  console.log(pageX, pageY, mainPaper.translate());
+
+  // out of bounds on left side
+
+  let previousCenter = mainPaper.translate()
+  let tx = previousCenter['tx']
+  let ty = previousCenter['ty']
+  if (pageX < 10) {
+    mainPaper.translate(tx + 10, ty)
+  }
+  else if (pageY < 10) {
+    mainPaper.translate(tx, ty + 10)
+  }
+  else if (pageX > 1525) {
+    mainPaper.translate(tx - 10, ty)
+  } else if (pageY > 776) {
+    mainPaper.translate(tx, ty - 10)
+  }
 })
