@@ -40,6 +40,8 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
+    "jointjs": "^3.7.4",
+    "jquery": "^3.7.0",
     "lucide-react": "^0.284.0",
     "next": "13.5.4",
     "react": "^18.2.0",
@@ -51,6 +53,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/jointjs": "^2.0.0",
+    "@types/jquery": "^3.5.22",
     "@types/node": "^20.8.4",
     "@types/react": "^18.2.27",
     "@types/react-dom": "^18.2.12",

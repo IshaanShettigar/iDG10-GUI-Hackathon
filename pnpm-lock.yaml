@@ -116,6 +116,12 @@ importers:
       date-fns:
         specifier: ^2.30.0
         version: 2.30.0
+      jointjs:
+        specifier: ^3.7.4
+        version: 3.7.4
+      jquery:
+        specifier: ^3.7.0
+        version: 3.7.0
       lucide-react:
         specifier: ^0.284.0
         version: 0.284.0(react@18.2.0)
@@ -144,6 +150,12 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@types/jointjs':
+        specifier: ^2.0.0
+        version: 2.0.0
+      '@types/jquery':
+        specifier: ^3.5.22
+        version: 3.5.22
       '@types/node':
         specifier: ^20.8.4
         version: 20.8.4
@@ -4672,6 +4684,19 @@ packages:
       rxjs: 6.6.7
     dev: true
 
+  /@types/jointjs@2.0.0:
+    resolution: {integrity: sha512-gfoplzosVPxtNCTxmVsjk7VaFpnEhaqAs1Ceo+hTtmroQW5bKwPDhyKHwPg6H1uHFKFQzAfPO3rVqQtmRyIB9Q==}
+    deprecated: This is a stub types definition for JointJS (http://www.jointjs.com/). JointJS provides its own type definitions, so you don't need @types/jointjs installed!
+    dependencies:
+      jointjs: 3.7.4
+    dev: true
+
+  /@types/jquery@3.5.22:
+    resolution: {integrity: sha512-ISQFeUK5GwRftLK4PVvKTWEVCxZ2BpaqBz0TWkIq5w4vGojxZP9+XkqgcPjxoqmPeew+HLyWthCBvK7GdF5NYA==}
+    dependencies:
+      '@types/sizzle': 2.3.4
+    dev: true
+
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
     dev: true
@@ -4782,6 +4807,10 @@ packages:
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
+    dev: true
+
+  /@types/sizzle@2.3.4:
+    resolution: {integrity: sha512-jA2llq2zNkg8HrALI7DtWzhALcVH0l7i89yhY3iBdOz6cBPeACoFq+fkQrjHA39t1hnSFOboZ7A/AY5MMZSlag==}
     dev: true
 
   /@types/through@0.0.30:
@@ -5608,7 +5637,6 @@ packages:
     resolution: {integrity: sha512-ADy1ztN074YkWbHi8ojJVFe3vAanO/lrzMGZWUClIP7oDD/Pjy2vrASraUP+2EVCfIiTtCW4FChVow01XneivA==}
     dependencies:
       underscore: 1.13.6
-    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -6211,7 +6239,6 @@ packages:
     dependencies:
       graphlib: 2.1.8
       lodash: 4.17.21
-    dev: false
 
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -8456,7 +8483,6 @@ packages:
     resolution: {integrity: sha512-jcLLfkpoVGmH7/InMC/1hIvOPSUh38oJtGhvrOFGzioE1DZ+0YW16RgmOJhHiuWTvGiJQ9Z1Ik43JvkRPRvE+A==}
     dependencies:
       lodash: 4.17.21
-    dev: false
 
   /handlebars@4.7.8:
     resolution: {integrity: sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==}
@@ -9107,11 +9133,9 @@ packages:
       graphlib: 2.1.8
       jquery: 3.6.4
       lodash: 4.17.21
-    dev: false
 
   /jquery@3.6.4:
     resolution: {integrity: sha512-v28EW9DWDFpzcD9O5iyJXg3R3+q+mET5JhnjJzQUZMHOv67bpSIHq81GEYpPNZHG+XXHsfSme3nxp/hndKEcsQ==}
-    dev: false
 
   /jquery@3.7.0:
     resolution: {integrity: sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==}
