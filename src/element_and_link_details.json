@@ -1,0 +1,199 @@
+[
+    {
+        "main-type": "component",
+        "sub-type": "subseaSeparator",
+        "name": "Subsea Separator",
+        "description": "Subsea Separator",
+        "fields": [
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pipe Design Code",
+                "label": "Pipe Design Code",
+                "description": "Pipe Design Code",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Foundation Type",
+                "label": "Foundation Type",
+                "description": "Foundation Type",
+                "type": "string",
+                "default-value": "With wings",
+                "values": [
+                    "With wings",
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Max Temperature",
+                "label": "Max Temperature",
+                "description": "Max Temperature",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 0.1,
+                "min": -273,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature",
+                "label": "Min Temperature",
+                "description": "Min Temperature",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 0.1,
+                "min": -273,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Fluid Type",
+                "label": "Fluid Type",
+                "description": "Fluid Type",
+                "type": "string",
+                "default-value": "Corrosive",
+                "values": [
+                    "Corrosive",
+                    "Non Corrosive"
+                ],
+                "required": true
+            },
+            {
+                "name": "Insulation Required",
+                "label": "Insulation Required",
+                "description": "Insulation Required",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Estimated Weight",
+                "label": "Estimated Weight",
+                "description": "Estimated Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life ",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Required Units of Subsea Separator",
+                "label": "Required Units of Subsea Separator",
+                "description": "Required Units of Subsea Separator",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-PR",
+        "name": "Rigid Pipeline PR",
+        "description": "Rigid Pipeline PR",
+        "fields": [
+            {
+                "name": "charpy",
+                "label": "Charpy Impact Test",
+                "description": "Charpy Impact Test",
+                "type": "number",
+                "default-unit": "J",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-WI",
+        "name": "Rigid Pipeline WI",
+        "description": "Rigid Pipeline PR",
+        "fields": [
+            {
+                "name": "charpy",
+                "label": "Charpy Impact Test",
+                "description": "Charpy Impact Test",
+                "type": "number",
+                "default-unit": "J",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "charpy",
+                "label": "Charpy Impact Test",
+                "description": "Charpy Impact Test",
+                "type": "number",
+                "default-unit": "J",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            }
+        ]
+    }
+]
