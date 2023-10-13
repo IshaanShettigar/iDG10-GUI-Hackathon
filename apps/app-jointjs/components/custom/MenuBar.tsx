@@ -16,7 +16,7 @@ import {
 
 export function MenuBar() {
   return (
-    <Menubar>
+    <Menubar className="w-fit">
       <MenubarMenu>
         <MenubarTrigger>File</MenubarTrigger>
         <MenubarContent>

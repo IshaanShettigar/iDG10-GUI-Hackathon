@@ -27,6 +27,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Field = {
   name: string;
@@ -77,7 +78,6 @@ const DynamicSidebar: React.FC<DynamicSidebarProps> = ({ data, ...props }) => {
     field: string,
     value: string | number | boolean
   ) => {
-    console.log(field, value);
     setFormData({
       ...formData,
       [field]: value,
@@ -264,7 +264,7 @@ const DynamicSidebar: React.FC<DynamicSidebarProps> = ({ data, ...props }) => {
         <CardDescription>{data[0].description}</CardDescription>
       </CardHeader>
 
-      <CardContent className="grid gap-4">
+      <CardContent className="grid gap-4 overflow-y-auto">
         {data[0].fields.map((field, fieldIndex) => (
           <div
             key={fieldIndex}
