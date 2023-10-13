@@ -1,0 +1,158 @@
+[
+    {
+        "main-type": "connector",
+        "sub-type": "rigid-pipeline-pr",
+        "name": "Rigid Pipeline PR",
+        "description": "Rigid Pipeline PR",
+        "fields": [
+            {
+                "name": "text",
+                "label": "Text",
+                "description": "Text",
+                "type": "text",
+                "defaultValue": "Hello World",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "number",
+                "label": "Number",
+                "description": "Number",
+                "type": "number",
+                "defaultValue": 20,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "combobox",
+                "label": "Combobox",
+                "description": "Combobox",
+                "type": "combo",
+                "options": [
+                    {
+                        "label": "J",
+                        "value": "J"
+                    },
+                    {
+                        "label": "KJ",
+                        "value": "KJ"
+                    },
+                    {
+                        "label": "MJ",
+                        "value": "MJ"
+                    }
+                ],
+                "defaultValue": "KJ",
+                "required": true
+            },
+            {
+                "name": "select",
+                "label": "Select",
+                "description": "Select",
+                "type": "select",
+                "options": [
+                    {
+                        "label": "J",
+                        "value": "J"
+                    },
+                    {
+                        "label": "KJ",
+                        "value": "KJ"
+                    }
+                ],
+                "defaultValue": "KJ",
+                "required": true
+            },
+            {
+                "name": "checkbox",
+                "label": "Checkbox",
+                "description": "Checkbox",
+                "type": "checkbox",
+                "defaultValue": false,
+                "required": true
+            },
+            {
+                "name": "radio",
+                "label": "Radio",
+                "description": "Radio",
+                "type": "radio",
+                "defaultUnit": "J",
+                "defaultValue": "J",
+                "options": [
+                    {
+                        "label": "J",
+                        "value": "J"
+                    },
+                    {
+                        "label": "KJ",
+                        "value": "KJ"
+                    }
+                ],
+                "required": true
+            },
+            {
+                "name": "range",
+                "label": "Range",
+                "description": "Range",
+                "type": "range",
+                "defaultValue": 20,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "date",
+                "label": "Date",
+                "description": "Date",
+                "type": "date",
+                "defaultValue": 0,
+                "required": true
+            },
+            {
+                "name": "switch",
+                "label": "Switch",
+                "description": "Switch",
+                "defaultValue": true,
+                "type": "switch",
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "rigid-pipeline-pr",
+        "name": "Rigid Pipeline PR",
+        "description": "Rigid Pipeline PR",
+        "fields": [
+            {
+                "name": "charpy",
+                "label": "Charpy Impact Test",
+                "description": "Charpy Impact Test",
+                "type": "number",
+                "defaultUnit": "J",
+                "defaultValue": 0,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "charpy",
+                "label": "Charpy Impact Test",
+                "description": "Charpy Impact Test",
+                "type": "range",
+                "defaultUnit": "J",
+                "defaultValue": 0,
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            }
+        ]
+    }
+]
