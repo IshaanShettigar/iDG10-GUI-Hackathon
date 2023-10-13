@@ -1236,6 +1236,24 @@ mainPaper.on('link:mouseleave', (linkView) => {
   linkView.hideTools()
 })
 
+
+/**
+ * Function makes use of the selectedCellView global parameter
+ * This is a Stub, it will later be replaced by the actual function that reads the real values from the JSON
+ */
+let validateParameter = function (value) {
+  // Insert logic here to make sure that the values entered are amongst the fixed values of the select box
+  if (value == "Option 1" || value == "Option 2" || value == "Option 3" || value == "Option 4") {
+    console.log(value, "INSIDE VALIDATE PARAMETER")
+    return true
+  }
+  else {
+    console.log(value, "Not saving cuz not correct")
+    return false;
+  }
+}
+
+
 /* Adding logic to popup the element settings table and listen to input changes */
 /**
  * Adds event listeners to all the inputs on the element pop-up on the left hand side of the screen
@@ -1245,22 +1263,47 @@ mainPaper.on('link:mouseleave', (linkView) => {
  */
 const addElementEventListener = (DOMElement, event) => {
   // event can be ='input' or 'change' 
-  // 'input' is for number modification. 'change' is for select box change
-  DOMElement.addEventListener(event, () => {
-    // change the attributes of the selected cellview
-    if (selectedCellView != null) {
-      const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
-      selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
-      console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
-    }
-    else {
-      // alert("No selected element")
-      if (event == 'change') { DOMElement.value = "None" }
-      else {
-        DOMElement.value = null
+  // 'input' is for number modification. 'change' is for select box change soon to be smart drop down
+  if (event == "input") {
+    DOMElement.addEventListener("input", () => {
+      // change the attributes of the selected cellview
+      if (selectedCellView != null) {
+        const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
+        selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
+        console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
       }
-    }
-  })
+      else {
+        // alert("No selected element")
+        if (event == 'change') { DOMElement.value = "None" }
+        else {
+          DOMElement.value = null
+        }
+      }
+    })
+  }
+  else if (event == "change") {
+    // code for the smart drop down
+    DOMElement.addEventListener("input", () => {
+      // change the attributes of the selected cellview
+      if (selectedCellView != null) {
+        const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
+
+        // is the entered Value valid?
+        if (validateParameter(DOMElement.value)) {
+          selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
+          console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
+        }
+
+      }
+      else {
+        // alert("No selected element")
+        if (event == 'change') { DOMElement.value = "None" }
+        else {
+          DOMElement.value = null
+        }
+      }
+    })
+  }
 }
 
 addElementEventListener(elementP1, 'input')
@@ -1287,6 +1330,7 @@ addElementEventListener(elementP18, 'change')
 /**
  * Adds event listeners to all the inputs on the Link pop-up on the left hand side of the screen
  * event can either be an 'input' (for the numbered parameters) or 'change' (for the select box parameters)
+ * All parameter input validation is to be done here.
  * @param {DOM} DOMElement 
  * @param {String} event 
  */
@@ -2027,3 +2071,125 @@ mainPaper.on("element:pointermove", (cellView, evt, x, y) => {
     mainPaper.translate(tx, ty - 10)
   }
 })
+
+
+
+/*  Smart Tooltip, will move it somewhere else later */
+function createComboInput(inputElement, options) {
+  const dropdown = inputElement.nextElementSibling;
+  const input = inputElement;
+  const items = options.map(option => {
+    const item = document.createElement('div');
+    item.className = 'dropdown-item';
+    item.textContent = option;
+    dropdown.appendChild(item);
+    return item;
+  });
+
+  let highlightedIndex = -1;
+
+  function highlightItem(index) {
+    items.forEach(item => item.classList.remove('highlight'));
+    if (index >= 0 && index < items.length) {
+      items[index].classList.add('highlight');
+      items[index].scrollIntoView({ behavior: 'auto', block: 'nearest' });
+    }
+  }
+
+  function selectHighlightedItem() {
+    if (highlightedIndex >= 0 && highlightedIndex < items.length) {
+      input.value = items[highlightedIndex].textContent;
+      dropdown.classList.remove('open');
+    }
+  }
+
+  input.addEventListener('input', () => {
+    const query = input.value.toLowerCase();
+
+    items.forEach((item, index) => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(query)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    dropdown.classList.add('open');
+    highlightedIndex = -1;
+    highlightItem(highlightedIndex);
+  });
+
+  input.addEventListener('click', () => {
+    dropdown.classList.add('open');
+  });
+
+  input.addEventListener('blur', () => {
+    setTimeout(() => {
+      dropdown.classList.remove('open');
+    }, 200);
+  });
+
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+      highlightItem(highlightedIndex);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      highlightedIndex = Math.max(highlightedIndex - 1, -1);
+      highlightItem(highlightedIndex);
+    } else if (e.key === 'Enter') {
+      selectHighlightedItem();
+    }
+  });
+
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      input.value = item.textContent;
+      dropdown.classList.remove('open');
+    });
+
+    item.addEventListener('mouseover', () => {
+      highlightedIndex = index;
+      highlightItem(highlightedIndex);
+    });
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      selectHighlightedItem();
+    }
+  });
+  // Highlight the closest match by default
+  input.addEventListener('input', () => {
+    const query = input.value.toLowerCase();
+
+    let closestMatchIndex = -1;
+    let closestMatchDistance = Number.MAX_VALUE;
+
+    items.forEach((item, index) => {
+      const text = item.textContent.toLowerCase();
+      const distance = text.indexOf(query);
+      if (distance >= 0 && distance < closestMatchDistance) {
+        closestMatchIndex = index;
+        closestMatchDistance = distance;
+      }
+    });
+
+    highlightedIndex = closestMatchIndex;
+    highlightItem(highlightedIndex);
+  });
+}
+
+
+const InputOptions = ["None", "Option 1", "Option 2", "Option 3", "Option 4"];
+
+createComboInput(elementP18, InputOptions);
+createComboInput(elementP15, InputOptions);
+createComboInput(elementP16, InputOptions);
+createComboInput(elementP17, InputOptions);
+
+

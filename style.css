@@ -413,8 +413,8 @@ hr {
   flex-direction: column;
 }
 
-.element-settings .parameter input,
-.connector-settings .parameter input {
+.element-settings .parameter .input-number,
+.connector-settings .parameter .input-number {
   width: 175px;
   padding: 3px 2px;
   margin-top: 4px;
@@ -723,4 +723,53 @@ th {
 .tooltip-container span {
   display: inline-block;
   padding: 3px 5px;
+}
+
+/* Smart ToolTip */
+
+.combo-input {
+  position: relative;
+  display: inline-block;
+}
+
+.combo-input input {
+  width: 180px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.combo-input .dropdown {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+  z-index: 2;
+}
+
+.combo-input .dropdown.open {
+  display: block;
+}
+
+.combo-input .dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.combo-input .dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.combo-input .highlight {
+  background-color: #007bff;
+  color: #fff;
 }
