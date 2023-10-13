@@ -1,3 +1,4 @@
+import { Graph } from "@/app/page";
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -13,8 +14,17 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { dia, util } from "jointjs";
+import { toast } from "../ui/use-toast";
+import { downloadJSON } from "@/lib/downloadJSON";
 
-export function MenuBar() {
+export function MenuBar({
+  graph,
+  paper,
+}: {
+  graph: Graph | null;
+  paper: dia.Paper | null;
+}) {
   return (
     <Menubar className="w-fit">
       <MenubarMenu>
@@ -39,6 +49,10 @@ export function MenuBar() {
           <MenubarSeparator />
           <MenubarItem>
             Print... <MenubarShortcut>⌘P</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem onClick={() => downloadJSON(graph)}>
+            Save <MenubarShortcut>⌘S</MenubarShortcut>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>

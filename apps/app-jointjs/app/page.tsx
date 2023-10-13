@@ -4,6 +4,7 @@ import { dia, shapes, util } from "jointjs";
 import { useEffect, useRef, useState } from "react";
 import { createInitalNodes } from "@/lib/jointjs/createInitialNodes";
 import { Overlay } from "../components/custom/Overlay";
+import { toast } from "@/components/ui/use-toast";
 
 type Graph = dia.Graph<dia.Graph.Attributes, dia.ModelSetOptions>;
 
@@ -35,10 +36,14 @@ export default function Home() {
     paper.unfreeze();
   }, []);
 
+  // Inside the GraphEditor component, add the following code to handle panning and zooming.
+
   return (
     <div className="relative 100vh 100vw">
-      <Overlay />
+      <Overlay graph={graph} paper={paper} />
       <div style={{ height: "100vh" }} ref={canvas}></div>
     </div>
   );
 }
+
+export type { Graph };

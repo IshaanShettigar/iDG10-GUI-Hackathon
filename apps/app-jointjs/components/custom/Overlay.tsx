@@ -1,20 +1,28 @@
 "use client";
 import data from "../../app/data.json";
 import DynamicSidebar from "@/components/custom/Sidebar";
-import { MenuBar } from "@/components/custom/MenuBar";
+import { MenuBar } from "./MenuBar";
 import { ToolBar } from "@/components/custom/ToolBar";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Menu, MenuSquare, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { Graph } from "@/app/page";
+import { dia } from "jointjs";
 
-export function Overlay() {
+export function Overlay({
+  graph,
+  paper,
+}: {
+  graph: Graph | null;
+  paper: dia.Paper | null;
+}) {
   const [openLibrary, setOpenLibrary] = useState(false);
   return (
     <>
       <div className="absolute top-0 left-0 z-20 grid h-full max-h-screen gap-4 p-6">
-        <MenuBar />
+        <MenuBar graph={graph} paper={paper} />
         {/* @ts-ignore */}
         <DynamicSidebar data={data} className="" />
         <ToolBar className="self-end " />
