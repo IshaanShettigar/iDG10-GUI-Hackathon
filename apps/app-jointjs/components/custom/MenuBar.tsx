@@ -1,4 +1,4 @@
-import { Graph } from "@/app/page";
+import { Graph, Paper } from "@/app/page";
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -17,13 +17,14 @@ import {
 import { dia, util } from "jointjs";
 import { toast } from "../ui/use-toast";
 import { downloadJSON } from "@/lib/downloadJSON";
+import { RefObject } from "react";
 
 export function MenuBar({
   graph,
   paper,
 }: {
   graph: Graph | null;
-  paper: dia.Paper | null;
+  paper: Paper | null;
 }) {
   return (
     <Menubar className="w-fit">

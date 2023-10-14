@@ -140,6 +140,9 @@ importers:
       react-hook-form:
         specifier: ^7.47.0
         version: 7.47.0(react@18.2.0)
+      react-zoom-pan-pinch:
+        specifier: ^3.2.0
+        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
       tailwind-merge:
         specifier: ^1.14.0
         version: 1.14.0
@@ -10903,6 +10906,17 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.5.0
+    dev: false
+
+  /react-zoom-pan-pinch@3.2.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-7MS0wYWoXjr6PrmpgHOVpVyNQr9gj7LEr4xIvq6lBy62nuNwjdI1r+XxahQ0SDHhWrLuSF11e2PTL/YLengYyg==}
+    engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@18.2.0:

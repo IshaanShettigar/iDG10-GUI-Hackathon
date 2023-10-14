@@ -26,12 +26,17 @@ import { Button } from "../ui/button";
 import { HTMLAttributes, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Toggle } from "../ui/toggle";
+import { Graph, Paper } from "@/app/page";
 
 export function ToolBar({
   className,
+  graph,
+  paper,
   ...props
 }: {
   className?: string;
+  graph: Graph | null;
+  paper: Paper | null;
   props?: HTMLAttributes<HTMLDivElement>;
 }) {
   const [lock, setLock] = useState(false);
@@ -63,7 +68,11 @@ export function ToolBar({
       <Button variant="ghost" size="icon">
         <ZoomOut size={20} />
       </Button>
-      <Button variant="ghost" size="icon">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => paper?.transformToFitContent({ padding: 250 })}
+      >
         <AppWindow size={20} />
       </Button>
     </div>

@@ -5,13 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import { createInitalNodes } from "@/lib/jointjs/createInitialNodes";
 import { Overlay } from "../components/custom/Overlay";
 import { toast } from "@/components/ui/use-toast";
+import { usePaperPanning, useZoom } from "@/lib/usePaperPanning";
 
 type Graph = dia.Graph<dia.Graph.Attributes, dia.ModelSetOptions>;
+type Paper = dia.Paper;
 
 export default function Home() {
   const canvas = useRef(null);
   const [graph, setGraph] = useState<Graph | null>(null);
-  const [paper, setPaper] = useState<dia.Paper | null>(null);
+  const [paper, setPaper] = useState<Paper | null>(null);
+  const paperRef = useRef<Paper | null>(null);
 
   useEffect(() => {
     const graph = new dia.Graph({}, { cellNamespace: shapes });
@@ -29,6 +32,8 @@ export default function Home() {
     });
     setPaper(paper);
 
+    paperRef.current = paper;
+
     // Create a new instance of a graph, add cells, and add the graph to the paper.
     const intialNodes = createInitalNodes();
 
@@ -37,6 +42,10 @@ export default function Home() {
   }, []);
 
   // Inside the GraphEditor component, add the following code to handle panning and zooming.
+  usePaperPanning(paperRef);
+  useZoom(paperRef);
+
+  // paper?.transformToFitContent({ padding: 250 });
 
   return (
     <div className="relative 100vh 100vw">
@@ -46,4 +55,4 @@ export default function Home() {
   );
 }
 
-export type { Graph };
+export type { Graph, Paper };

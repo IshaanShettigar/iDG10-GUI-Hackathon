@@ -5,10 +5,10 @@ import { MenuBar } from "./MenuBar";
 import { ToolBar } from "@/components/custom/ToolBar";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Menu, MenuSquare, X } from "lucide-react";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { Graph } from "@/app/page";
+import { Graph, Paper } from "@/app/page";
 import { dia } from "jointjs";
 
 export function Overlay({
@@ -16,7 +16,7 @@ export function Overlay({
   paper,
 }: {
   graph: Graph | null;
-  paper: dia.Paper | null;
+  paper: Paper | null;
 }) {
   const [openLibrary, setOpenLibrary] = useState(false);
   return (
@@ -25,7 +25,7 @@ export function Overlay({
         <MenuBar graph={graph} paper={paper} />
         {/* @ts-ignore */}
         <DynamicSidebar data={data} className="" />
-        <ToolBar className="self-end " />
+        <ToolBar className="self-end " graph={graph} paper={paper} />
       </div>
       {!openLibrary ? (
         <Button
