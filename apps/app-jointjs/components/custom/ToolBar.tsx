@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/menubar";
 import {
   AppWindow,
+  Fullscreen,
   LockIcon,
+  Maximize,
   Redo,
   Undo,
   UnlockIcon,
@@ -71,9 +73,11 @@ export function ToolBar({
       <Button
         variant="ghost"
         size="icon"
-        onClick={() => paper?.transformToFitContent({ padding: 250 })}
+        onClick={() => {
+          paper?.transformToFitContent({ padding: 250 });
+        }}
       >
-        <AppWindow size={20} />
+        <Maximize size={20} />
       </Button>
     </div>
   );
