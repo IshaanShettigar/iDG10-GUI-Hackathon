@@ -141,6 +141,1273 @@
                 "min": 1,
                 "max": 100,
                 "required": true
+            },
+            {
+                "name": "Subsea Separator Unit Cost ($/unit)",
+                "label": "Subsea Separator Unit Cost ($/unit)",
+                "description": "Subsea Separator Unit Cost ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Subsea Separator Total Cost ($)",
+                "label": "Subsea Separator Total Cost ($)",
+                "description": "Subsea Separator Total Cost ($)",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "subseaPump",
+        "name": "subseaPump",
+        "description": "subseaPump",
+        "fields": [
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pipe Design Code",
+                "label": "Pipe Design Code",
+                "description": "Pipe Design Code",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Foundation Type",
+                "label": "Foundation Type",
+                "description": "Foundation Type",
+                "type": "string",
+                "default-value": "With wings",
+                "values": [
+                    "With wings",
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Max Temperature",
+                "label": "Max Temperature",
+                "description": "Max Temperature",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 0.1,
+                "min": -273,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature",
+                "label": "Min Temperature",
+                "description": "Min Temperature",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 0.1,
+                "min": -273,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Fluid Type",
+                "label": "Fluid Type",
+                "description": "Fluid Type",
+                "type": "string",
+                "default-value": "Corrosive",
+                "values": [
+                    "Corrosive",
+                    "Non Corrosive"
+                ],
+                "required": true
+            },
+            {
+                "name": "Insulation Required",
+                "label": "Insulation Required",
+                "description": "Insulation Required",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Estimated Weight",
+                "label": "Estimated Weight",
+                "description": "Estimated Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life ",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Required Units of Subsea Pump",
+                "label": "Required Units of Subsea Pump",
+                "description": "Required Units of Subsea Pump",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Subsea Pump Unit Cost ($/unit)",
+                "label": "Subsea Pump Unit Cost ($/unit)",
+                "description": "Subsea Pump Unit Cost ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Subsea Pump Total Cost ($)",
+                "label": "Subsea Pump Total Cost ($)",
+                "description": "Subsea Pump Total Cost ($)",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "productionWellST",
+        "name": "Production Well & Subsea Tree",
+        "description": "Production Well & Subsea Tree",
+        "fields": [
+            {
+                "name": "Structure",
+                "label": "Structure",
+                "description": "Structure",
+                "type": "string",
+                "default-value": "Horizontal (EXHT)",
+                "values": [
+                    "Horizontal (EXHT)",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "API product specification level",
+                "label": "API product specification level",
+                "description": "API product specification level",
+                "type": "string",
+                "default-value": "PSL3 (tubing hanger PSL 3G)",
+                "values": [
+                    "PSL3 (tubing hanger PSL 3G)",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Material",
+                "label": "Material",
+                "description": "Material",
+                "type": "string",
+                "default-value": "AISI4130 Forged",
+                "values": [
+                    "AISI4130 Forged",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Upstream Min-Max Temperature rating (◦C)",
+                "label": "Upstream Min-Max Temperature rating (◦C)",
+                "description": "Upstream Min-Max Temperature rating (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Downstream Min-Max Temperature rating (◦C)",
+                "label": "Downstream Min-Max Temperature rating (◦C)",
+                "description": "Downstream Min-Max Temperature rating (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pressure Rating",
+                "label": "Pressure Rating",
+                "description": "Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control Line Pressure ",
+                "label": "Control Line Pressure ",
+                "description": "Control Line Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control fluid and cleaniness",
+                "label": "Control fluid and cleaniness",
+                "description": "Control fluid and cleaniness",
+                "type": "string",
+                "default-value": "Water Based Fluid",
+                "values": [
+                    "Water Based Fluid",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Production Nominal Bore",
+                "label": "Production Nominal Bore",
+                "description": "Production Nominal Bore",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 0,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Annulus nominal bore",
+                "label": "Annulus nominal bore",
+                "description": "Annulus nominal bore",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea Choke",
+                "label": "Subsea Choke",
+                "description": "Subsea Choke",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "SubSea Control Module",
+                "label": "SubSea Control Module",
+                "description": "SubSea Control Module",
+                "type": "string",
+                "default-value": "Electric Hydraulic Control",
+                "values": [
+                    "Electric Hydraulic Control",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Wellhead Connector",
+                "label": "Wellhead Connector",
+                "description": "Wellhead Connector",
+                "type": "string",
+                "default-value": "Hydraulic Control",
+                "values": [
+                    "Hydraulic Control",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life ",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Dimension",
+                "label": "Dimension",
+                "description": "Dimension",
+                "type": "TBD",
+                "default-unit": "mm"
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of units",
+                "label": "No. of units",
+                "description": "No. of units",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Cost per unit ($/unit)",
+                "label": "Cost per unit ($/unit)",
+                "description": "Cost per unit ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Total Cost",
+                "label": "Total Cost",
+                "description": "Total Cost",
+                "type": "number",
+                "default-unit": "$",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 100000000000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "injectionWellST",
+        "name": "Injection Well & Subsea Tree",
+        "description": "Injection Well & Subsea Tree",
+        "fields": [
+            {
+                "name": "Structure",
+                "label": "Structure",
+                "description": "Structure",
+                "type": "string",
+                "default-value": "Horizontal (EXHT)",
+                "values": [
+                    "Horizontal (EXHT)",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "API product specification level",
+                "label": "API product specification level",
+                "description": "API product specification level",
+                "type": "string",
+                "default-value": "PSL3 (tubing hanger PSL 3G)",
+                "values": [
+                    "PSL3 (tubing hanger PSL 3G)",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Material",
+                "label": "Material",
+                "description": "Material",
+                "type": "string",
+                "default-value": "AISI4130 Forged",
+                "values": [
+                    "AISI4130 Forged",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Upstream Min-Max Temperature rating (◦C)",
+                "label": "Upstream Min-Max Temperature rating (◦C)",
+                "description": "Upstream Min-Max Temperature rating (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Downstream Min-Max Temperature rating (◦C)",
+                "label": "Downstream Min-Max Temperature rating (◦C)",
+                "description": "Downstream Min-Max Temperature rating (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pressure Rating",
+                "label": "Pressure Rating",
+                "description": "Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control Line Pressure ",
+                "label": "Control Line Pressure ",
+                "description": "Control Line Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control fluid and cleaniness",
+                "label": "Control fluid and cleaniness",
+                "description": "Control fluid and cleaniness",
+                "type": "string",
+                "default-value": "Water Based Fluid",
+                "values": [
+                    "Water Based Fluid",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Production Nominal Bore",
+                "label": "Production Nominal Bore",
+                "description": "Production Nominal Bore",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 0,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Annulus nominal bore",
+                "label": "Annulus nominal bore",
+                "description": "Annulus nominal bore",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea Choke",
+                "label": "Subsea Choke",
+                "description": "Subsea Choke",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "SubSea Control Module",
+                "label": "SubSea Control Module",
+                "description": "SubSea Control Module",
+                "type": "string",
+                "default-value": "Electric Hydraulic Control",
+                "values": [
+                    "Electric Hydraulic Control",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Wellhead Connector",
+                "label": "Wellhead Connector",
+                "description": "Wellhead Connector",
+                "type": "string",
+                "default-value": "Hydraulic Control",
+                "values": [
+                    "Hydraulic Control",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life ",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Dimension",
+                "label": "Dimension",
+                "description": "Dimension",
+                "type": "TBD",
+                "default-unit": "mm"
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of units",
+                "label": "No. of units",
+                "description": "No. of units",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Cost per unit ($/unit)",
+                "label": "Cost per unit ($/unit)",
+                "description": "Cost per unit ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Total Cost",
+                "label": "Total Cost",
+                "description": "Total Cost",
+                "type": "number",
+                "default-unit": "$",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 100000000000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "manifold",
+        "name": "Manifold",
+        "description": "Tie in Manifold",
+        "fields": [
+            {
+                "name": "Pipe Design Code",
+                "label": "Pipe Design Code",
+                "description": "Pipe Design Code",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Foundation Type",
+                "label": "Foundation Type",
+                "description": "Foundation Type",
+                "type": "string",
+                "default-value": "With wings",
+                "values": [
+                    "With wings",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Max Temperature (◦C)",
+                "label": "Max Temperature (◦C)",
+                "description": "Max Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature (◦C)",
+                "label": "Min Temperature rating (◦C)",
+                "description": "Min Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Insulation Required",
+                "label": "Insulation Required",
+                "description": "Insulation Required",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Header Piping",
+                "label": "Header Piping",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Branch Piping",
+                "label": "Branch Piping",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Header Valves",
+                "label": "Header Valves",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Branch Valves",
+                "label": "Branch Valves",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Hub Connection",
+                "label": "Hub Connection",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Load Bearing Structure",
+                "label": "Load Bearing Structure",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Secondary Structural Steel",
+                "label": "Secondary Structural Steel",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Insulating Material",
+                "label": "Insulating Material",
+                "description": "$Material$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "No. of Branches",
+                "label": "No. of Branches ",
+                "description": "$Branches$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Size (mm)",
+                "label": "Size (mm)",
+                "description": "$Branches$",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Valve Style",
+                "label": "Valve Style",
+                "description": "$Branches$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "No. of Valves Branch",
+                "label": "No. of Valves Branch",
+                "description": "$Branches$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of Header",
+                "label": "No. of Header",
+                "description": "$Header$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Size (mm)",
+                "label": "Size (mm)",
+                "description": "$Header$",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of Hubs",
+                "label": "No. of Hubs",
+                "description": "$Header$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Piggable",
+                "label": "Piggable",
+                "description": "$Header$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Pig Isolation Valve (Qty)",
+                "label": "Pig Isolation Valve (Qty)",
+                "description": "$Pigging$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pig Isolation Valve Style",
+                "label": "Pig Isolation Valve Style",
+                "description": "$Pigging$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Pig Isolation Valve Actuator",
+                "label": "Pig Isolation Valve Actuator",
+                "description": "$Pigging$",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Required",
+                "label": "Required",
+                "description": "$Pigging$",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Removable Pigging Loop",
+                "label": "Removable Pigging Loop",
+                "description": "$Pigging$",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius",
+                "label": "Minimum Bend Radius",
+                "description": "$Pigging$",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Type",
+                "label": "Type",
+                "description": "$Control System$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "No. of SOMs",
+                "label": "No. of SOMs",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Low Pressure Operating Pressure",
+                "label": "Low Pressure Operating Pressure",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "High Pressure Operating Pressure",
+                "label": "High Pressure Operating Pressure",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control System",
+                "label": "Control System",
+                "description": "$Control System$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Tubing Size (mm)",
+                "label": "Tubing Size (mm)",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 0.1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Tubing Material",
+                "label": "Tubing Material",
+                "description": "$Control System$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connection Type",
+                "label": "Connection Type",
+                "description": "$Control System$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Tie-in Manifold Installation Vessel",
+                "label": "Tie-in Manifold Installation Vessel",
+                "description": "$Control System$",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Tie-in Manifold Quantity",
+                "label": "Tie-in Manifold Quantity",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Tie-in Manifold Cost ($/unit)",
+                "label": "Tie-in Manifold Cost ($/unit)",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Tie-in Manifold Total Cost ($)",
+                "label": "Tie-in Manifold Total Cost ($)",
+                "description": "$Control System$",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
             }
         ]
     },
@@ -160,6 +1427,774 @@
                 "step": 1,
                 "min": 0,
                 "max": 1000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "PLET",
+        "name": "PLET",
+        "description": "PLET",
+        "fields": [
+            {
+                "name": "Pipe Design Code",
+                "label": "Pipe Design Code",
+                "description": "Pipe Design Code",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Foundation Type",
+                "label": "Foundation Type",
+                "description": "Foundation Type",
+                "type": "string",
+                "default-value": "With wings",
+                "values": [
+                    "With wings",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Max Temperature (◦C)",
+                "label": "Max Temperature (◦C)",
+                "description": "Max Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature (◦C)",
+                "label": "Min Temperature rating (◦C)",
+                "description": "Min Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Insulation Required",
+                "label": "Insulation Required",
+                "description": "Insulation Required",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Installation Vessel",
+                "label": "Installation Vessel",
+                "description": "Installation Vessel",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Piping Type",
+                "label": "Piping Type",
+                "description": "Piping Type",
+                "type": "string",
+                "default-value": "Pip",
+                "values": [
+                    "Pip",
+                    "Single",
+                    "Flexible",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Inner Piping Size (mm)",
+                "label": "Inner Piping Size (mm)",
+                "description": "Inner Piping Size (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Outer Piping Size (mm)",
+                "label": "Outer Inner Piping Size (mm)",
+                "description": "Outer Inner Piping Size (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of Flushing Points",
+                "label": "No. of Flushing Points",
+                "description": "No. of Flushing Points",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea PLR installation required",
+                "label": "Subsea PLR installation required",
+                "description": "Subsea PLR installation required (Yes/No)",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Rovcon hub ID (mm)",
+                "label": "Rovcon hub ID (mm)",
+                "description": "Rovcon hub ID (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "PLET Quantity",
+                "label": "PLET Quantity",
+                "description": "PLET Quantity",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "PLET cost ($/unit)",
+                "label": "PLET cost ($/unit)",
+                "description": "PLET cost ($/unit)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "PLET Total Cost",
+                "label": "PLET Total Cost",
+                "description": "PLET Total Cost",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "PLEM",
+        "name": "PLEM",
+        "description": "PLEM",
+        "fields": [
+            {
+                "name": "Pipe Design Code",
+                "label": "Pipe Design Code",
+                "description": "Pipe Design Code",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Foundation Type",
+                "label": "Foundation Type",
+                "description": "Foundation Type",
+                "type": "string",
+                "default-value": "With wings",
+                "values": [
+                    "With wings",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Max Temperature (◦C)",
+                "label": "Max Temperature (◦C)",
+                "description": "Max Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature (◦C)",
+                "label": "Min Temperature rating (◦C)",
+                "description": "Min Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Insulation Required",
+                "label": "Insulation Required",
+                "description": "Insulation Required",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Installation Vessel",
+                "label": "Installation Vessel",
+                "description": "Installation Vessel",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Piping Type",
+                "label": "Piping Type",
+                "description": "Piping Type",
+                "type": "string",
+                "default-value": "Pip",
+                "values": [
+                    "Pip",
+                    "Single",
+                    "Flexible",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Inner Piping Size (mm)",
+                "label": "Inner Piping Size (mm)",
+                "description": "Inner Piping Size (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Outer Piping Size (mm)",
+                "label": "Outer Inner Piping Size (mm)",
+                "description": "Outer Inner Piping Size (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of Flushing Points",
+                "label": "No. of Flushing Points",
+                "description": "No. of Flushing Points",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea PLR installation required",
+                "label": "Subsea PLR installation required",
+                "description": "Subsea PLR installation required (Yes/No)",
+                "type": "string",
+                "default-value": "Yes",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Rovcon hub ID (mm)",
+                "label": "Rovcon hub ID (mm)",
+                "description": "Rovcon hub ID (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Ball valve with Gooseneck size (for future pipeline connection/high pressure cap) (inches)",
+                "label": "Ball valve with Gooseneck size (for future pipeline connection/high pressure cap) (inches)",
+                "description": "Ball valve with Gooseneck size (for future pipeline connection/high pressure cap) (inches)",
+                "type": "number",
+                "default-unit": "inches",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Ball valve size(for branch connection to satellite) (inches)",
+                "label": "Ball valve size(for branch connection to satellite) (inches)",
+                "description": "Ball valve size(for branch connection to satellite) (inches)",
+                "type": "number",
+                "default-unit": "inches",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "No. of subsea electrical actuators",
+                "label": "No. of subsea electrical actuators",
+                "description": "No. of subsea electrical actuators",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea electrical actuator type",
+                "label": "Subsea electrical actuator type",
+                "description": "Subsea electrical actuator type",
+                "type": "string",
+                "default-value": "G2i-HT",
+                "values": [
+                    "G2i-HT",
+                    "G2i-HT"
+                ],
+                "required": true
+            },
+            {
+                "name": "PLEM Quantity",
+                "label": "PLEM Quantity",
+                "description": "PLEM Quantity",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "PLEM cost ($/unit)",
+                "label": "PLEM cost ($/unit)",
+                "description": "PLEM cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "PLEM Total Cost",
+                "label": "PLEM Total Cost",
+                "description": "PLEM Total Cost",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "UTA",
+        "name": "UTA",
+        "description": "UTA",
+        "fields": [
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Max Temperature (◦C)",
+                "label": "Max Temperature (◦C)",
+                "description": "Max Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature (◦C)",
+                "label": "Min Temperature rating (◦C)",
+                "description": "Min Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Required no. of UTA ",
+                "label": "Required no. of UTA ",
+                "description": "Required no. of UTA ",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "UTA cost ($/unit)",
+                "label": "UTA cost ($/unit)",
+                "description": "UTA cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "UTA Total Cost",
+                "label": "UTA Total Cost",
+                "description": "UTA Total Cost",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "UTH",
+        "name": "UTH",
+        "description": "UTH",
+        "fields": [
+            {
+                "name": "Design Pressure",
+                "label": "Design Pressure",
+                "description": "Design Pressure",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water Depth",
+                "label": "Water Depth",
+                "description": "Water Depth",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Max Temperature (◦C)",
+                "label": "Max Temperature (◦C)",
+                "description": "Max Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min Temperature (◦C)",
+                "label": "Min Temperature rating (◦C)",
+                "description": "Min Temperature (◦C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "year",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Required no. of UTH",
+                "label": "Required no. of UTH",
+                "description": "Required no. of UTH",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "UTH cost ($/unit)",
+                "label": "UTH cost ($/unit)",
+                "description": "UTH cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "UTH Total Cost",
+                "label": "UTH Total Cost",
+                "description": "UTH Total Cost",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
                 "required": true
             }
         ]
