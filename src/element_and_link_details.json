@@ -11334,5 +11334,5360 @@
                 "required": true
             }
         ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Flowline-PR",
+        "name": "Flexible Flowline PR",
+        "description": "Flexible Flowline PR",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Flowline-WI",
+        "name": "Flexible Flowline WI",
+        "description": "Flexible Flowline WI",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Flowline-GL",
+        "name": "Flexible Flowline GL",
+        "description": "Flexible Flowline GL",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-PR",
+        "name": "Flexible Jumper PR",
+        "description": "Flexible Jumper PR",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-WI",
+        "name": "Flexible Jumper WI",
+        "description": "Flexible Jumper WI",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-GL",
+        "name": "Flexible Jumper GL",
+        "description": "Flexible Jumper GL",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Riser-PR",
+        "name": "Flexible Riser PR",
+        "description": "Flexible Riser PR",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Riser-WI",
+        "name": "Flexible Riser WI",
+        "description": "Flexible Riser WI",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Riser-GL",
+        "name": "Flexible Riser GL",
+        "description": "Flexible Riser GL",
+        "fields": [
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating Temperature Rating (°C)",
+                "label": "Operating Temperature Rating (°C)",
+                "description": "Operating Temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Maximum Operating Depth (m)",
+                "label": "Maximum Operating Depth (m)",
+                "description": "Maximum Operating Depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1000,
+                "required": true
+            },
+            {
+                "name": "Tube Inner Diameter",
+                "label": "Tube Inner Diameter",
+                "description": "Tube Inner Diameter",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Strength Member",
+                "label": "Strength Member",
+                "description": "Strength Member",
+                "type": "string",
+                "default-value": "Steel",
+                "values": [
+                    "Steel",
+                    "Helically wound",
+                    "Galvanized steel armour wire"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outlet option available",
+                "label": " Outlet option available",
+                "description": "Outlet option available",
+                "type": "string",
+                "default-value": "threaded",
+                "values": [
+                    "threaded",
+                    "studded",
+                    "flanged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Connecting Option",
+                "label": " Connecting Option",
+                "description": "Connecting Option",
+                "type": "string",
+                "default-value": "2 Lockscrews",
+                "values": [
+                    "2 Lockscrews",
+                    "No Lockscrews",
+                    "Full-set of Lockscrews"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of trims",
+                "label": " Type of trims",
+                "description": "Type of trims",
+                "type": "string",
+                "default-value": "DD-NL",
+                "values": [
+                    "DD-NL",
+                    "EE-NL",
+                    "FF-NL",
+                    "HH-NL"
+                ],
+                "required": true
+            },
+            {
+                "name": "Type of seals",
+                "label": " Type of seals",
+                "description": "Type of seals",
+                "type": "string",
+                "default-value": "Integral Double FS-Seal",
+                "values": [
+                    "Integral Double FS-Seal",
+                    "P-Seal",
+                    "Metal to Metal Seal"
+                ],
+                "required": true
+            },
+            {
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
+                "type": "string",
+                "default-value": "Static",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
+                "required": true
+            },
+            {
+                "name": "Weight",
+                "label": "Weight",
+                "description": "Weight",
+                "type": "number",
+                "default-unit": "kg",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "End Fitting Internal Coating Material",
+                "label": "End Fitting Internal Coating Material",
+                "description": "End Fitting Internal Coating Material",
+                "type": "string",
+                "default-value": "Inconel 625 Inlay",
+                "values": [
+                    "Inconel 625 Inlay",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "End Fitting External Coating Material",
+                "label": "End Fitting External Coating Material",
+                "description": "End Fitting External Coating Material",
+                "type": "string",
+                "default-value": "Nikaflex treatment",
+                "values": [
+                    "Nikaflex treatment",
+                    "..."
+                ],
+                "required": true
+            },
+            {
+                "name": "Installation Methods",
+                "label": "Installation Methods",
+                "description": "Installation Methods",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance ",
+                "label": "Industry Specification Compliance ",
+                "description": "Industry Specification Compliance ",
+                "type": "string",
+                "default-value": "API 6A",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass Material",
+                "label": "Carcass Material ",
+                "description": "Carcass Material ",
+                "type": "string",
+                "default-value": "316L",
+                "values": [
+                    "316L",
+                    "Inconel 615",
+                    "Inconel 825"
+                ],
+                "required": true
+            },
+            {
+                "name": "Carcass OD",
+                "label": "Carcass OD",
+                "description": "Carcass OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Carcass ID",
+                "label": "Carcass ID",
+                "description": "Carcass ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath Material",
+                "label": "Internal Pressure Sheath Material",
+                "description": "Internal Pressure Sheath Material",
+                "type": "string",
+                "values": [
+                    "HDPE",
+                    "Polyamide",
+                    "PVDF",
+                    "PP"
+                ],
+                "required": true,
+                "default-value": "HDPE"
+            },
+            {
+                "name": "Internal Pressure Sheath OD",
+                "label": "Internal Pressure Sheath OD",
+                "description": "Internal Pressure Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Internal Pressure Sheath ID",
+                "label": "Internal Pressure Sheath ID",
+                "description": "Internal Pressure Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour Material",
+                "label": "PRessure Armour Material",
+                "description": "Pressure Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Pressure Armour OD",
+                "label": "Pressure Armour OD",
+                "description": "Pressure Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pressure Armour ID",
+                "label": "Pressure Armour ID",
+                "description": "Pressure Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour Material",
+                "label": "Tensile Armour Material",
+                "description": "Tensile Armour Material",
+                "type": "string",
+                "values": [
+                    "Carbon Steel Wire",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Tensile Armour OD",
+                "label": "Tensile Armour OD",
+                "description": "Tensile Armour OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Tensile Armour ID",
+                "label": "Tensile Armour ID",
+                "description": "Tensile Armour ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath Material",
+                "label": "Outer Sheath Material",
+                "description": "Outer Sheath Material",
+                "type": "string",
+                "values": [
+                    "PE100",
+                    "..."
+                ],
+                "required": true,
+                "default-value": "Carbon Steel Wire"
+            },
+            {
+                "name": "Outer Sheath OD",
+                "label": "Outer Sheath OD",
+                "description": "Outer Sheath OD",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer Sheath ID",
+                "label": "Outer Sheath ID",
+                "description": "Outer Sheath ID",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Storage)",
+                "label": "Minimum Bend Radius (Storage)",
+                "description": "Minimum Bend Radius (Storage)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 1,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Minimum Bend Radius (Operating)",
+                "label": "Minimum Bend Radius (Operating)",
+                "description": "Minimum Bend Radius (Operating)",
+                "type": "number",
+                "default-unit": "mm",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Bending Stiffness",
+                "label": "Pipe Bending Stiffness",
+                "description": "Pipe Bending Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Spooling Tensionn (N)",
+                "label": "Spooling Tension (N)",
+                "type": "number",
+                "description": "Spooling Tension (N)",
+                "default-unit": "N",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Conductivity (K)",
+                "label": "Thermal Conductivity (K)",
+                "description": "Thermal Conductivity (K)",
+                "default-unit": "K",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OHTC (W/m2 –K)",
+                "label": "OHTC (W/m2 –K)",
+                "description": "OHTC (W/m2 –K)",
+                "default-unit": "",
+                "step": 1,
+                "type": "number",
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Torsion Stiffness",
+                "label": "Pipe Torsion Stiffness",
+                "description": "Pipe Torsion Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Limp Direction",
+                "label": "Limp Direction",
+                "description": "Limp Direction",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Axial Stiffness",
+                "label": "Axial Stiffness",
+                "description": "Axial Stiffness",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Burst Pressure",
+                "label": "Burst Pressure",
+                "description": "Burst Pressure",
+                "default-unit": "Pa",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true,
+                "type": "number"
+            },
+            {
+                "name": "Collapse Pressure",
+                "label": "Collapse Pressure",
+                "description": "Collapse Pressure",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Failure tension",
+                "label": "Failure tension",
+                "description": "Failure tension",
+                "type": "string",
+                "default-value": "Option 1",
+                "values": [
+                    "Option 1",
+                    "Option 2"
+                ],
+                "required": true
+            },
+            {
+                "name": "Flexible pipe cost, $/m",
+                "label": "Flexible pipe cost, $/m",
+                "description": "Flexible pipe cost, $/m",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting  structure - quantity",
+                "label": "End Fitting  structure - quantity",
+                "description": "End Fitting Structure quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Fitting Structure cost- $/unit",
+                "label": "End Fitting Structure cost- $/unit",
+                "description": "End Fitting Structure cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Flexible pipe total cost $",
+                "label": "Flexible pipe total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End fitting structure total cost $",
+                "label": "End fitting structure total cost $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
     }
 ]
