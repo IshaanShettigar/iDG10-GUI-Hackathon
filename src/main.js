@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import * as joint from 'jointjs';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
-import { assignCustomParams } from "./element-attrs.js"
+import { assignCustomParams, createParameterHTML, resetParameterHTML } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveImage } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
 import { showLinkSettings } from "./showLinkSettings.js"
@@ -613,6 +613,8 @@ const populateElementSettings = (model) => {
 }
 
 
+
+
 /* Connector Settings */
 /**
  * Analogous to the populateElementSettings function, except it populates all link parameters
@@ -738,6 +740,7 @@ SS.position(30, 50)
 SS.size(85, 50)
 SS.addTo(toolGraph);
 assignCustomParams(SS)
+// console.log(SS);
 
 const SP = new subseaPump();
 SP.position(40, 130)
@@ -1029,14 +1032,16 @@ var mask = joint.highlighters.mask;
 let isHighlighted = false;
 
 mainPaper.on("element:pointerclick", function (cellView) {
+  console.log(cellView.model)
   isHighlighted = true;
   /* To deal with the on hover MODAL */
   hoverContainer.classList.add('hidden')
   isHovering = false;
   /* -------------------------------- */
-
+  resetParameterHTML()
   selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
-  populateElementSettings(cellView.model)
+  createParameterHTML(cellView.model)
+  // populateElementSettings(cellView.model)
   elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
   elementSettingsWrapper.classList.add('is-active')
   connectorSettingsWrapper.classList.remove('is-active')
@@ -1053,7 +1058,8 @@ mainPaper.on("blank:pointerclick", function () {
   /* -------------------------------- */
 
   isHighlighted = false;
-
+  // Reset the Element Parameter Settings
+  resetParameterHTML()
   // Remove all Highlighters from all cells
   console.log("remove highlight");
   removeHighlight(mainGraph, mask, mainPaper)

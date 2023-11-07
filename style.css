@@ -427,6 +427,12 @@ hr {
   margin-top: 4px;
 }
 
+#elementName {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 /* Clear Background Modal */
 .clear-background-modal {
   width: 450px;

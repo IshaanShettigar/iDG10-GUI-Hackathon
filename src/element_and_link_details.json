@@ -120,7 +120,7 @@
             },
             {
                 "name": "Design Life",
-                "label": "Design Life ",
+                "label": "Design Life",
                 "description": "Design Life",
                 "type": "number",
                 "default-unit": "year",
@@ -171,7 +171,7 @@
     {
         "main-type": "component",
         "sub-type": "subseaPump",
-        "name": "subseaPump",
+        "name": "Subsea Pump",
         "description": "subseaPump",
         "fields": [
             {
@@ -289,7 +289,7 @@
             },
             {
                 "name": "Design Life",
-                "label": "Design Life ",
+                "label": "Design Life",
                 "description": "Design Life",
                 "type": "number",
                 "default-unit": "year",
@@ -434,8 +434,8 @@
                 "required": true
             },
             {
-                "name": "Control Line Pressure ",
-                "label": "Control Line Pressure ",
+                "name": "Control Line Pressure",
+                "label": "Control Line Pressure",
                 "description": "Control Line Pressure",
                 "type": "number",
                 "default-unit": "bar",
@@ -691,8 +691,8 @@
                 "required": true
             },
             {
-                "name": "Control Line Pressure ",
-                "label": "Control Line Pressure ",
+                "name": "Control Line Pressure",
+                "label": "Control Line Pressure",
                 "description": "Control Line Pressure",
                 "type": "number",
                 "default-unit": "bar",
@@ -730,7 +730,7 @@
             },
             {
                 "name": "Annulus nominal bore",
-                "label": "Annulus nominal bore",
+                "label": "Annulus nominal bore (mm)",
                 "description": "Annulus nominal bore",
                 "type": "number",
                 "default-unit": "mm",
@@ -784,7 +784,7 @@
             },
             {
                 "name": "Design Life",
-                "label": "Design Life ",
+                "label": "Design Life",
                 "description": "Design Life",
                 "type": "number",
                 "default-unit": "year",
@@ -803,7 +803,7 @@
             },
             {
                 "name": "Weight",
-                "label": "Weight",
+                "label": "Weight (kg)",
                 "description": "Weight",
                 "type": "number",
                 "default-unit": "kg",
@@ -1083,7 +1083,7 @@
             },
             {
                 "name": "No. of Branches",
-                "label": "No. of Branches ",
+                "label": "No. of Branches",
                 "description": "$Branches$",
                 "type": "number",
                 "default-unit": "",
@@ -2026,9 +2026,9 @@
                 "required": true
             },
             {
-                "name": "Required no. of UTA ",
-                "label": "Required no. of UTA ",
-                "description": "Required no. of UTA ",
+                "name": "Required no. of UTA",
+                "label": "Required no. of UTA",
+                "description": "Required no. of UTA",
                 "type": "number",
                 "default-unit": "",
                 "default-value": 1,
