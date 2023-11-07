@@ -42,19 +42,22 @@ const fixFormat = function (graphjson) {
     const cellArray = graphjson['cells']
     for (let i = 0; i < cellArray.length; i += 1) {
         let cellAttrs = cellArray[i]['attrs']
+        // console.log("CELL ATTRS", cellAttrs, cellAttrs.length); //fix this length is undefined
         // console.log(`${i} ${JSON.stringify(cellAttrs)}`);
-        for (let paraNo = 1; paraNo <= 18; paraNo += 1) {
-            if (!cellAttrs[`parameter${paraNo}`]) {
-                graphjson['cells'][i]['attrs'][`parameter${paraNo}`] = null;
+        let keys = Object.keys(cellAttrs)
+        keys.forEach((key) => {
+            // console.log(key);
+            if (!cellAttrs[key]) {
+                graphjson['cells'][i]['attrs'][key] = null;
             }
             else {
                 // console.log(cellAttrs[`parameter${paraNo}`])
-                var valueObj = cellAttrs[`parameter${paraNo}`];
+                var valueObj = cellAttrs[key];
                 var value = Object.values(valueObj).join('');
-                cellAttrs[`parameter${paraNo}`] = value;
-                graphjson['cells'][i]['attrs'][`parameter${paraNo}`] = cellAttrs[`parameter${paraNo}`];
+                cellAttrs[key] = value;
+                graphjson['cells'][i]['attrs'][key] = cellAttrs[key];
             }
-        }
+        })
         if (cellAttrs.hasOwnProperty("connector")) {
             var valueObj2 = cellAttrs["connector"];
             var value2 = Object.values(valueObj2).join('');

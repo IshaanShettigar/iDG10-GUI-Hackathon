@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import * as joint from 'jointjs';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
-import { assignCustomParams, createParameterHTML, resetParameterHTML } from "./element-attrs.js"
+import { addElementEventListener2, assignCustomParams, createParameterHTML, resetParameterHTML } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveImage } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
 import { showLinkSettings } from "./showLinkSettings.js"
@@ -595,6 +595,25 @@ let mapping = {
   'parameter18': [elementP18, connectorP18]
 }
 export { mapping }
+
+const getDOMInputNodes = () => {
+  let childrenArr = document.getElementById('element-settings').childNodes
+  // This array will hold all the input elements that I need to populate (i.e the inputs and select)
+  let inputArray = []
+  for (let i = 0; i < childrenArr.length; i++) {
+    if (childrenArr[i].querySelector('input')) {
+      inputArray.push(childrenArr[i].querySelector('input'))
+    }
+
+    if (childrenArr[i].querySelector('select')) {
+      inputArray.push(childrenArr[i].querySelector('select'))
+    }
+
+  }
+  return inputArray;
+}
+
+
 /**
  * function is called when element is clicked on so that the pop up that appears on the left hand side of the screen displays the
  * correct values for its parameters. It fetches the parameters from the model object and displays it on the menu on the left hand side
@@ -602,14 +621,23 @@ export { mapping }
  * @param {joint.dia.Element} model 
  */
 const populateElementSettings = (model) => {
+
   console.log(`Populating ${model.attributes.type}`)
   let modelAttrs = model.attributes.attrs
-  for (let i = 1; i <= 18; i++) {
-    // if (modelAttrs[`parameter${i}`] != null) {
-    // copy to elementsettings
-    mapping[`parameter${i}`][0].value = modelAttrs[`parameter${i}`]
-    // }
-  }
+
+  let inputArray = getDOMInputNodes();
+
+  // Now that we have the required DOMElements in the inputArray let us traverse the array and attach event listeners.
+  inputArray.forEach((DOMinput) => {
+    DOMinput.value = modelAttrs[DOMinput.id]
+  })
+  // for (let i = 1; i <= 18; i++) {
+  //   // if (modelAttrs[`parameter${i}`] != null) {
+  //   // copy to elementsettings
+  //   mapping[`parameter${i}`][0].value = modelAttrs[`parameter${i}`]
+  //   // }
+  // }
+
 }
 
 
@@ -985,7 +1013,7 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
     //     dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
     //     dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
     // ) {
-    var droppedElement = flyShape.clone();
+    var droppedElement = flyShape.clone(); console.log(droppedElement)
     droppedElement.position(dropPosition.x, dropPosition.y);
     mainGraph.addCell(droppedElement);
     // Need to find the view of the element and add its corresponding tools
@@ -1041,7 +1069,7 @@ mainPaper.on("element:pointerclick", function (cellView) {
   resetParameterHTML()
   selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
   createParameterHTML(cellView.model)
-  // populateElementSettings(cellView.model)
+  populateElementSettings(cellView.model)
   elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
   elementSettingsWrapper.classList.add('is-active')
   connectorSettingsWrapper.classList.remove('is-active')
@@ -1249,45 +1277,45 @@ mainPaper.on('link:mouseleave', (linkView) => {
  * @param {DOM} DOMElement 
  * @param {String} event 
  */
-const addElementEventListener = (DOMElement, event) => {
-  // event can be ='input' or 'change' 
-  // 'input' is for number modification. 'change' is for select box change
-  DOMElement.addEventListener(event, () => {
-    // change the attributes of the selected cellview
-    if (selectedCellView != null) {
-      const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
-      selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
-      console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
-    }
-    else {
-      // alert("No selected element")
-      if (event == 'change') { DOMElement.value = "None" }
-      else {
-        DOMElement.value = null
-      }
-    }
-  })
-}
+// const addElementEventListener = (DOMElement, event) => {
+//   // event can be ='input' or 'change' 
+//   // 'input' is for number modification. 'change' is for select box change
+//   DOMElement.addEventListener(event, () => {
+//     // change the attributes of the selected cellview
+//     if (selectedCellView != null) {
+//       const parameterNumber = DOMElement.id.match(/\d+/g).map(Number)[0];
+//       selectedCellView.model.attributes.attrs[`parameter${parameterNumber}`] = DOMElement.value;
+//       console.log(`Changed P${parameterNumber} for ${selectedCellView.model.attributes.type}`);
+//     }
+//     else {
+//       // alert("No selected element")
+//       if (event == 'change') { DOMElement.value = "None" }
+//       else {
+//         DOMElement.value = null
+//       }
+//     }
+//   })
+// }
 
-addElementEventListener(elementP1, 'input')
-addElementEventListener(elementP3, 'input')
-addElementEventListener(elementP4, 'input')
-addElementEventListener(elementP7, 'input')
-addElementEventListener(elementP8, 'input')
-addElementEventListener(elementP10, 'input')
-addElementEventListener(elementP11, 'input')
-addElementEventListener(elementP12, 'input')
-addElementEventListener(elementP13, 'input')
-addElementEventListener(elementP14, 'input')
+// addElementEventListener(elementP1, 'input')
+// addElementEventListener(elementP3, 'input')
+// addElementEventListener(elementP4, 'input')
+// addElementEventListener(elementP7, 'input')
+// addElementEventListener(elementP8, 'input')
+// addElementEventListener(elementP10, 'input')
+// addElementEventListener(elementP11, 'input')
+// addElementEventListener(elementP12, 'input')
+// addElementEventListener(elementP13, 'input')
+// addElementEventListener(elementP14, 'input')
 
-addElementEventListener(elementP2, 'change')
-addElementEventListener(elementP5, 'change')
-addElementEventListener(elementP6, 'change')
-addElementEventListener(elementP9, 'change')
-addElementEventListener(elementP15, 'change')
-addElementEventListener(elementP16, 'change')
-addElementEventListener(elementP17, 'change')
-addElementEventListener(elementP18, 'change')
+// addElementEventListener(elementP2, 'change')
+// addElementEventListener(elementP5, 'change')
+// addElementEventListener(elementP6, 'change')
+// addElementEventListener(elementP9, 'change')
+// addElementEventListener(elementP15, 'change')
+// addElementEventListener(elementP16, 'change')
+// addElementEventListener(elementP17, 'change')
+// addElementEventListener(elementP18, 'change')
 
 
 /**
@@ -1664,6 +1692,7 @@ openFileButton.addEventListener('click', (event) => {
  */
 function saveToBrowserLocalStorage() {
   var graphjson = mainGraph.toJSON();
+  console.log(graphjson);
   var fixedGraphJson = fixFormat(graphjson)
   localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
 }
@@ -1964,11 +1993,16 @@ mainPaper.on("element:mouseenter", (cellView, evt) => {
   setTimeout(() => {
     if (isHovering == true) {
       let modelAttrs = cellView.model.attributes.attrs /* There are multiple declarations of modelAttrs will that affect? maybe based on the diff between let and var maybe some problem in the future */
-      hoverV1.textContent = modelAttrs["parameter1"]
-      hoverV2.textContent = modelAttrs["parameter2"]
-      hoverV3.textContent = modelAttrs["parameter3"]
-      hoverV4.textContent = modelAttrs["parameter4"]
-      hoverV5.textContent = modelAttrs["parameter5"]
+
+
+
+
+
+      hoverV1.textContent = modelAttrs["Water Depth"]
+      hoverV2.textContent = modelAttrs["Design Life"]
+      // hoverV3.textContent =
+      //   hoverV4.textContent =
+      //   hoverV5.textContent =
 
       modalCompName.textContent = cellView.model.attributes.type;
 

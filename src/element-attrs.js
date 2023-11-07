@@ -19,28 +19,8 @@ function assignCustomParams(element) {
             }
         }
     }
-    console.log(element.attributes);
     element.attr(componentParameters)
-    // element.attr({
-    //     parameter1: null,
-    //     parameter2: null,
-    //     parameter3: null,
-    //     parameter4: null,
-    //     parameter5: null,
-    //     parameter6: null,
-    //     parameter7: null,
-    //     parameter8: null,
-    //     parameter9: null,
-    //     parameter10: null,
-    //     parameter11: null,
-    //     parameter12: null,
-    //     parameter13: null,
-    //     parameter14: null,
-    //     parameter15: null,
-    //     parameter16: null,
-    //     parameter17: null,
-    //     parameter18: null,
-    // })
+
 }
 
 /**
@@ -103,16 +83,15 @@ const resetParameterHTML = (element) => {
 }
 
 
-const addElementEventListener = (DOMElement, event, element) => {
+const addElementEventListener2 = (DOMElement, event, element) => {
     // event can be ='input' or 'change' 
     // 'input' is for number modification. 'change' is for select box change
     DOMElement.addEventListener(event, () => {
         // change the attributes of the selected cellview
 
         const parameterLabel = DOMElement.id
-        console.log(parameterLabel);
         element.attributes.attrs[parameterLabel] = DOMElement.value;
-        console.log(`Changed ${parameterLabel} for ${element.attributes.type}`);
+        console.log(`Changed ${parameterLabel} for ${element.attributes.type} to ${DOMElement.value}`);
 
     })
 }
@@ -143,7 +122,7 @@ const createSelectBox = (i, title, options, element) => {
     }
 
     // add the necessary event listener to this selectbox
-    addElementEventListener(select1, "change", element)
+    addElementEventListener2(select1, "change", element)
 
     div1.appendChild(span1);
     div1.appendChild(select1);
@@ -166,7 +145,7 @@ const createInputBox = (i, title, element) => {
     input2.id = title;
 
     // Add the necessary event listener to this input box
-    addElementEventListener(input2, "change", element)
+    addElementEventListener2(input2, "change", element)
 
 
     div2.appendChild(span2);
@@ -176,4 +155,4 @@ const createInputBox = (i, title, element) => {
 }
 
 
-export { assignCustomParams, createParameterHTML, resetParameterHTML }
+export { assignCustomParams, createParameterHTML, resetParameterHTML, addElementEventListener2 }
