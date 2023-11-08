@@ -15,7 +15,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { dia, util } from "jointjs";
-import { toast } from "../ui/use-toast";
+import { toast } from "../../ui/use-toast";
 import { downloadJSON } from "@/lib/downloadJSON";
 import { RefObject } from "react";
 

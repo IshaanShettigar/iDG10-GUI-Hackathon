@@ -24,10 +24,10 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { HTMLAttributes, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Toggle } from "../ui/toggle";
+import { Toggle } from "../../ui/toggle";
 import { Graph, Paper } from "@/app/page";
 
 export function ToolBar({

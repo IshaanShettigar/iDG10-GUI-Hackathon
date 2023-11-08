@@ -3,9 +3,10 @@
 import { dia, shapes, util } from "jointjs";
 import { useEffect, useRef, useState } from "react";
 import { createInitalNodes } from "@/lib/jointjs/createInitialNodes";
-import { Overlay } from "../components/custom/Overlay";
+import { Overlay } from "@/components/custom/Overlay";
 import { toast } from "@/components/ui/use-toast";
 import { usePaperPanning, useZoom } from "@/lib/usePaperPanning";
+import { customNamespace } from "@/lib/jointjs/customNamespace";
 
 type Graph = dia.Graph<dia.Graph.Attributes, dia.ModelSetOptions>;
 type Paper = dia.Paper;
@@ -17,7 +18,7 @@ export default function Home() {
   const paperRef = useRef<Paper | null>(null);
 
   useEffect(() => {
-    const graph = new dia.Graph({}, { cellNamespace: shapes });
+    const graph = new dia.Graph({}, { cellNamespace: customNamespace });
     setGraph(graph);
     const paper = new dia.Paper({
       el: canvas.current,
@@ -28,7 +29,8 @@ export default function Home() {
       drawGrid: true,
       async: true,
       snapLinks: { radius: 70 },
-      cellViewNamespace: shapes,
+      cellViewNamespace: customNamespace,
+      interactive: true,
     });
     setPaper(paper);
 
