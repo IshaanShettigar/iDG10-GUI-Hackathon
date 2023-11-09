@@ -7,6 +7,7 @@ import { saveGraph, openFile, fixFormat, saveImage } from "./persist.js"
 import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, elementToolsMapping, addElementTools, addlinkTools } from "./utils.js"
 import { showLinkSettings } from "./showLinkSettings.js"
 import { selectedLinkView, setSelectedLinkView } from './selectedLinkView.js';
+import JSONData from './element_and_link_details.json' assert { type: 'json' };
 
 /** Defining fsm global variable for element undo redo */
 let STATE = 0;
@@ -499,17 +500,42 @@ function createTable() {
       const tdSubTable = document.createElement('td')
       const subTable = document.createElement('table')
       subTable.classList.add('inner-table')
-      for (let i = 1; i <= 18; i += 1) {
-        const subRow = document.createElement('tr')
-        const parameterName = document.createElement('td')
-        const parameterValue = document.createElement('td');
-        parameterName.textContent = `Parameter${i}`
-        parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
-        subRow.appendChild(parameterName)
-        subRow.appendChild(parameterValue)
-        subTable.appendChild(subRow)
-        // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-      }
+
+      // New Parameter Info
+      /* Get the cell type, match it with the element_and_link_details.json Get all the parameters 
+      from there and match to the element object, then print accordingly */
+
+      JSONData.forEach((data) => {
+        if (data['sub-type'] === cell.attributes.type) {
+
+          data['fields'].forEach((field) => {
+            const subRow = document.createElement('tr')
+            const parameterName = document.createElement('td')
+            const parameterValue = document.createElement('td');
+
+            parameterName.textContent = field['label']
+            parameterValue.textContent = cell.attributes.attrs[field['label']]
+
+            subRow.appendChild(parameterName)
+            subRow.appendChild(parameterValue)
+            subTable.appendChild(subRow)
+          })
+
+        }
+      })
+
+      // PHASE 2 CODE
+      // for (let i = 1; i <= 18; i += 1) {
+      //   const subRow = document.createElement('tr')
+      //   const parameterName = document.createElement('td')
+      //   const parameterValue = document.createElement('td');
+      //   parameterName.textContent = `Parameter${i}`
+      //   parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+      //   subRow.appendChild(parameterName)
+      //   subRow.appendChild(parameterValue)
+      //   subTable.appendChild(subRow)
+      //   // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+      // }
       tdSubTable.appendChild(subTable)
       row.appendChild(tdSubTable)
       componentTable.appendChild(row);
