@@ -16840,9 +16840,9 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Bouyancy-Module",
-        "name": "Bouyancy Module",
-        "description": "Bouyancy Module",
+        "sub-type": "Umbilical",
+        "name": "Umbilical",
+        "description": "Umbilical",
         "fields": [
             {
                 "name": "Umbilical Outer Diameter(mm)",
@@ -17252,6 +17252,126 @@
                 "type": "number",
                 "default-value": 0,
                 "required": true
+            },
+            {
+                "name": "Bend stiffener quantity",
+                "label": "Bend stiffener quantity",
+                "description": "Bend stiffener quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Bend stiffener cost ($/m)",
+                "label": "Bend stiffener cost ($/m)",
+                "description": "Bend stiffener cost ($/m)",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Bend restrictor quantity",
+                "label": "Bend restrictor quantity",
+                "description": "Bend restrictor quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Bend restrictor cost($/m)",
+                "label": "Bend restrictor cost($/m)",
+                "description": "Bend restrictor cost($/m)",
+                "type": "number",
+                "default-unit": "$/m",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Umbilical End termination Assembly-Quantity",
+                "label": "Umbilical End termination Assembly-Quantity",
+                "description": "Umbilical End termination Assembly-Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Umbilical End termination Assembly cost($/unit)",
+                "label": "Umbilical End termination Assembly cost($/unit)",
+                "description": "Umbilical End termination Assembly cost($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Umbilical total cost, $",
+                "label": "Umbilical total cost, $",
+                "description": "Umbilical total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Bend stiffener total cost, $",
+                "label": "Bend stiffener total cost, $",
+                "description": "Bend stiffener total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Bend restrictor total cost, $",
+                "label": "Bend restrictor total cost, $",
+                "description": "Bend restrictor total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Umbilical end termination assembly total cost, $",
+                "label": "Umbilical end termination assembly total cost, $",
+                "description": "Umbilical end termination assembly total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
             }
         ]
     },
@@ -17561,301 +17681,2392 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Production Well Subsea Tree",
-        "name": "Production Well Subsea Tree",
-        "description": "Production Well Subsea Tree",
+        "sub-type": "Rigid Pipeline-PiP PR",
+        "name": "Rigid Pipeline-PiP PR",
+        "description": "Rigid Pipeline-PiP PR",
         "fields": [
             {
-                "name": "Structure",
-                "label": "Structure",
-                "description": "Structure",
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
                 "type": "string",
-                "default-value": "Horizontal (EHXT)",
-                "required": true
-            },
-            {
-                "name": "API product specification level",
-                "label": "API product specification level",
-                "description": "API product specification level",
-                "type": "string",
-                "default-value": "PSL3 (tubing hanger PSL 3G)",
-                "required": true
-            },
-            {
-                "name": "Material",
-                "label": "Material",
-                "description": "Material",
-                "type": "string",
-                "default-value": "AISI4130 Forged",
+                "default-value": "",
                 "values": [
-                    "AISI4130 Forged"
+                    "Static",
+                    "Dynamic"
                 ],
                 "required": true
             },
             {
-                "name": "Upstream Min-Max Temperature rating (°C)",
-                "label": "Upstream Min-Max Temperature rating (°C)",
-                "description": "Upstream Min-Max Temperature rating (°C)",
-                "type": "string",
-                "default-value": "140",
-                "required": true
-            },
-            {
-                "name": "Downstream Min-Max temperature rating (°C)",
-                "label": "Downstream Min-Max temperature rating (°C)",
-                "description": "Downstream Min-Max temperature rating (°C)",
-                "type": "string",
-                "default-value": "120",
-                "required": true
-            },
-            {
-                "name": "Pressure rating (bar)",
-                "label": "Pressure rating (bar)",
-                "description": "Pressure rating (bar)",
-                "type": "number",
-                "default-unit": "bar",
-                "default-value": 690,
-                "step": 1,
-                "min": 0,
-                "max": 10000,
-                "required": true
-            },
-            {
-                "name": "Water depth rating (m)",
-                "label": "Water depth rating (m)",
-                "description": "Water depth rating (m)",
-                "type": "number",
-                "default-unit": "m",
-                "default-value": 3000,
-                "step": 1,
-                "min": 0,
-                "max": 10000,
-                "required": true
-            },
-            {
-                "name": "Control line pressure (bar)",
-                "label": "Control line pressure (bar)",
-                "description": "Control line pressure (bar)",
-                "type": "number",
-                "default-unit": "bar",
-                "default-value": 690,
-                "step": 1,
-                "min": 0,
-                "max": 10000,
-                "required": true
-            },
-            {
-                "name": "Control fluid and cleanliness",
-                "label": "Control fluid and cleanliness",
-                "description": "Control fluid and cleanliness",
-                "type": "string",
-                "default-value": "Water based Fluid",
-                "values": [
-                    "Water based Fluid"
-                ],
-                "required": true
-            },
-            {
-                "name": "Production nominal bore (mm)",
-                "label": "Production nominal bore (mm)",
-                "description": "Production nominal bore (mm)",
-                "type": "number",
-                "default-unit": "mm",
-                "default-value": 120,
-                "step": 1,
-                "min": 0,
-                "max": 10000,
-                "required": true
-            },
-            {
-                "name": "Annulus nominal bore (mm)",
-                "label": "Annulus nominal bore (mm)",
-                "description": "Annulus nominal bore (mm)",
-                "type": "number",
-                "default-unit": "mm",
-                "default-value": 60,
-                "step": 1,
-                "min": 0,
-                "max": 10000,
-                "required": true
-            },
-            {
-                "name": "Subsea choke",
-                "label": "Subsea choke",
-                "description": "Subsea choke",
-                "type": "string",
-                "required": true
-            },
-            {
-                "name": "Subsea control module",
-                "label": "Subsea control module",
-                "description": "Subsea control module",
-                "type": "string",
-                "default-value": "Electric hydraulic control",
-                "required": true
-            },
-            {
-                "name": "Wellhead connector",
-                "label": "Wellhead connector",
-                "description": "Wellhead connector",
-                "type": "string",
-                "default-value": "Hydraulic control",
-                "required": true
-            },
-            {
-                "name": "Design life (years)",
-                "label": "Design life (years)",
-                "description": "Design life (years)",
+                "name": "Operating Pressure Rating (bar)",
+                "label": "Operating Pressure Rating (bar)",
+                "description": "Operating Pressure Rating (bar)",
                 "type": "number",
                 "default-unit": "",
-                "default-value": 25,
-                "step": 1,
-                "min": 0,
-                "max": 100,
-                "required": true
-            },
-            {
-                "name": "Dimension (mm)",
-                "label": "Dimension (mm)",
-                "description": "Dimension (mm)",
-                "type": "string",
-                "default-value": "5000x5000x4500",
-                "required": true
-            },
-            {
-                "name": "Weight (Te)",
-                "label": "Weight (Te)",
-                "description": "Weight (Te)",
-                "type": "number",
-                "default-unit": "Te",
-                "default-value": 50,
                 "step": 0.1,
                 "min": 0,
                 "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Number of units",
-                "label": "Number of units",
-                "description": "Number of units",
+                "name": "Operating temperature Rating (◦C)",
+                "label": "Operating temperature Rating (◦C)",
+                "description": "Operating temperature Rating (◦C)",
                 "type": "number",
                 "default-unit": "",
-                "default-value": 2,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Maximum operating depth",
+                "label": "Maximum operating depth",
+                "description": "Maximum operating depth",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 25,
+                "required": true
+            },
+            {
+                "name": "Pipe Designation as per code",
+                "label": "Pipe Designation as per code",
+                "description": "Pipe Designation as per code",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "DNV/API"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance",
+                "label": "Industry Specification Compliance",
+                "description": "Industry Specification Compliance",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Inner Pipe (IP) Material",
+                "label": "Inner Pipe (IP) Material",
+                "description": "Inner Pipe (IP) Material",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "CS-X52",
+                    "CS-X60",
+                    "CS-X65",
+                    "CSX70",
+                    "MLP-625",
+                    "MLP-825",
+                    "MLP-316",
+                    "25%Cr",
+                    "22%Cr",
+                    "13%Cr",
+                    "HRB-625",
+                    "HRB-825",
+                    "HRB-316"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outer Pipe (OP) Material",
+                "label": "Outer Pipe (OP) Material",
+                "description": "Outer Pipe (OP) Material",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "X60",
+                    "X65",
+                    "X70"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Minimum Yield Strength (MPa)",
+                "label": "IP-Minimum Yield Strength (MPa)",
+                "description": "IP-Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-unit": "",
                 "step": 1,
                 "min": 0,
                 "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Cost per unit ($/unit)",
-                "label": "Cost per unit ($/unit)",
-                "description": "Cost per unit ($/unit)",
+                "name": "IP-Minimum Tensile Strength (Mpa)",
+                "label": "IP-Minimum Tensile Strength (Mpa)",
+                "description": "IP-Minimum Tensile Strength (Mpa)",
                 "type": "number",
-                "default-unit": "$/unit",
+                "default-unit": "",
                 "step": 1,
                 "min": 0,
-                "max": 10000000,
+                "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Total cost, $",
-                "label": "Total cost, $",
-                "description": "Total cost, $",
+                "name": "OP-Minimum Yield Strength (MPa)",
+                "label": "OP-Minimum Yield Strength (MPa)",
+                "description": "OP-Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OP-Minimum Tensile Strength (Mpa)",
+                "label": "OP-Minimum Tensile Strength (Mpa)",
+                "description": "OP-Minimum Tensile Strength (Mpa)",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-Material density, kg/m^3",
+                "label": "IP-Material density, kg/m^3",
+                "description": "IP-Material density, kg/m^3",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 7700,
+                "required": true
+            },
+            {
+                "name": "OP-Material density, kg/m^3",
+                "label": "OP-Material density, kg/m^3",
+                "description": "OP-Material density, kg/m^3",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 7850,
+                "required": true
+            },
+            {
+                "name": "IP-Charpy Impact Test",
+                "label": "IP-Charpy Impact Test",
+                "description": "IP-Charpy Impact Test",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Hardness",
+                "label": "IP-Hardness",
+                "description": "IP-Hardness",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 250,
+                "required": true
+            },
+            {
+                "name": "OP-Charpy Impact Test",
+                "label": "OP-Charpy Impact Test",
+                "description": "OP-Charpy Impact Test",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Hardness",
+                "label": "OP-Hardness",
+                "description": "OP-Hardness",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 250,
+                "required": true
+            },
+            {
+                "name": "IP-Reeling Yield Strength Requirement",
+                "label": "IP-Reeling Yield Strength Requirement",
+                "description": "IP-Reeling Yield Strength Requirement",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OP-Reeling Yield Strength Requirement",
+                "label": "OP-Reeling Yield Strength Requirement",
+                "description": "OP-Reeling Yield Strength Requirement",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-PREN",
+                "label": "IP-PREN",
+                "description": "IP-PREN",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-End Bevel",
+                "label": "IP-End Bevel",
+                "description": "IP-End Bevel",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "J-bevel"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Type of Bevel Protector",
+                "label": "IP-Type of Bevel Protector",
+                "description": "IP-Type of Bevel Protector",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "End Cap"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-End Bevel",
+                "label": "OP-End Bevel",
+                "description": "OP-End Bevel",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "J-bevel"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Type of Bevel Protector",
+                "label": "OP-Type of Bevel Protector",
+                "description": "OP-Type of Bevel Protector",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "End cap"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Line pipe joint length,m",
+                "label": "IP-Line pipe joint length,m",
+                "description": "IP-Line pipe joint length,m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 12.1,
+                "required": true
+            },
+            {
+                "name": "OP-Line pipe joint length,m",
+                "label": "OP-Line pipe joint length,m",
+                "description": "OP-Line pipe joint length,m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 12.1,
+                "required": true
+            },
+            {
+                "name": "Pipeline length, km",
+                "label": "Pipeline length, km",
+                "description": "Pipeline length, km",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 15,
+                "required": true
+            },
+            {
+                "name": "IP- Nominal Outer Diameter(mm)",
+                "label": "IP- Nominal Outer Diameter(mm)",
+                "description": "IP- Nominal Outer Diameter(mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 323.9,
+                "required": true
+            },
+            {
+                "name": "IP-Nominal Pipe Wall Thickness (mm)",
+                "label": "IP-Nominal Pipe Wall Thickness (mm)",
+                "description": "IP-Nominal Pipe Wall Thickness (mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 15.9,
+                "required": true
+            },
+            {
+                "name": "OP- Nominal Outer Diameter(mm)",
+                "label": "OP- Nominal Outer Diameter(mm)",
+                "description": "OP- Nominal Outer Diameter(mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 457.2,
+                "required": true
+            },
+            {
+                "name": "OP-Nominal Pipe Wall Thickness (mm)",
+                "label": "OP-Nominal Pipe Wall Thickness (mm)",
+                "description": "OP-Nominal Pipe Wall Thickness (mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 23,
+                "required": true
+            },
+            {
+                "name": "OP-Corrosion Coating",
+                "label": "OP-Corrosion Coating",
+                "description": "OP-Corrosion Coating",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "FBE",
+                    "3LPE",
+                    "3LPP"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Corrosion Coating thickness,mm",
+                "label": "OP-Corrosion Coating thickness,mm",
+                "description": "OP-Corrosion Coating thickness,mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 3,
+                "required": true
+            },
+            {
+                "name": "Corrosion coating cost, $/m^3",
+                "label": "Corrosion coating cost, $/m^3",
+                "description": "Corrosion coating cost, $/m^3",
                 "type": "number",
                 "default-unit": "",
                 "step": 1,
                 "min": 0,
                 "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Insulation",
+                "label": "Thermal Insulation",
+                "description": "Thermal Insulation",
+                "type": "string",
+                "default-value": "Aerogel",
+                "values": [
+                    "Aerogel",
+                    "Pyrogel"
+                ],
+                "required": true
+            },
+            {
+                "name": "Thermal insulation panel length, mm",
+                "label": "Thermal insulation panel length, mm",
+                "description": "Thermal insulation panel length, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 700,
+                "required": true
+            },
+            {
+                "name": "Thermal Insulation Upstand, mm",
+                "label": "Thermal Insulation Upstand, mm",
+                "description": "Thermal Insulation Upstand, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "Thermal insulation cost,$/unit",
+                "label": "Thermal insulation cost,$/unit",
+                "description": "Thermal insulation cost,$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Centraliser material",
+                "label": "Centraliser material",
+                "description": "Centraliser material",
+                "type": "string",
+                "default-value": "Nylon-6",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Centraliser pitch, m",
+                "label": "Centraliser pitch, m",
+                "description": "Centraliser pitch, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 2,
+                "required": true
+            },
+            {
+                "name": "Centraliser width, mm",
+                "label": "Centraliser width, mm",
+                "description": "Centraliser width, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 60,
+                "required": true
+            },
+            {
+                "name": "Centraliser thickness, mm",
+                "label": "Centraliser thickness, mm",
+                "description": "Centraliser thickness, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 31,
+                "required": true
+            },
+            {
+                "name": "Centraliser Upstand, mm",
+                "label": "Centraliser Upstand, mm",
+                "description": "Centraliser Upstand, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 6.5,
+                "required": true
+            },
+            {
+                "name": "Centraliser cost, $/unit",
+                "label": "Centraliser cost, $/unit",
+                "description": "Centraliser cost, $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead (BH) material",
+                "label": "Reelable Bulkhead (BH) material",
+                "description": "Reelable Bulkhead (BH) material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead -Quantity",
+                "label": "Reelable Bulkhead -Quantity",
+                "description": "Reelable Bulkhead -Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead Cost- $/unit",
+                "label": "Reelable Bulkhead Cost- $/unit",
+                "description": "Reelable Bulkhead Cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH material",
+                "label": "Reelable ETH-BH material",
+                "description": "Reelable ETH-BH material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH Quantity",
+                "label": "Reelable ETH-BH Quantity",
+                "description": "Reelable ETH-BH Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH Cost-$/unit",
+                "label": "Reelable ETH-BH Cost-$/unit",
+                "description": "Reelable ETH-BH Cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead (BH) material",
+                "label": "Non Reelable Bulkhead (BH) material",
+                "description": "Non Reelable Bulkhead (BH) material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead -Quantity",
+                "label": "Non Reelable Bulkhead -Quantity",
+                "description": "Non Reelable Bulkhead -Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead Cost- $/unit",
+                "label": "Non Reelable Bulkhead Cost- $/unit",
+                "description": "Non Reelable Bulkhead Cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH material",
+                "label": "Non Reelable ETH-BH material",
+                "description": "Non Reelable ETH-BH material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH Quantity",
+                "label": "Non Reelable ETH-BH Quantity",
+                "description": "Non Reelable ETH-BH Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH Cost-$/unit",
+                "label": "Non Reelable ETH-BH Cost-$/unit",
+                "description": "Non Reelable ETH-BH Cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric cable Length, m",
+                "label": "ETH Electric cable Length, m",
+                "description": "ETH Electric cable Length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH star end-quantity",
+                "label": "ETH star end-quantity",
+                "description": "ETH star end-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Hot splice-quantity",
+                "label": "ETH Electric Hot splice-quantity",
+                "description": "ETH Electric Hot splice-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics cable Length, m",
+                "label": "ETH Fibre optics cable Length, m",
+                "description": "ETH Fibre optics cable Length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optic junction box-Quantity",
+                "label": "ETH Fibre optic junction box-Quantity",
+                "description": "ETH Fibre optic junction box-Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Cable cost- $/m",
+                "label": "ETH Electric Cable cost- $/m",
+                "description": "ETH Electric Cable cost- $/m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH start end cost- $/unit",
+                "label": "ETH start end cost- $/unit",
+                "description": "ETH start end cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric hot splice cost-$/unit",
+                "label": "ETH Electric hot splice cost-$/unit",
+                "description": "ETH Electric hot splice cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH fibre optics cost- $/m",
+                "label": "ETH fibre optics cost- $/m",
+                "description": "ETH fibre optics cost- $/m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics junction box cost- $/unit",
+                "label": "ETH Fibre optics junction box cost- $/unit",
+                "description": "ETH Fibre optics junction box cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End termination pup-piece length, m",
+                "label": "End termination pup-piece length, m",
+                "description": "End termination pup-piece length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece quantity",
+                "label": "End Termination Pup-piece quantity",
+                "description": "End Termination Pup-piece quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece cost-$/unit",
+                "label": "End Termination Pup-piece cost-$/unit",
+                "description": "End Termination Pup-piece cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP Anodes- pitch, m",
+                "label": "CP Anodes- pitch, m",
+                "description": "CP Anodes- pitch, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipeline length, km",
+                "label": "Pipeline length, km",
+                "description": "Pipeline length, km",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP anodes-quantity",
+                "label": "CP anodes-quantity",
+                "description": "CP anodes-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP anode cost- $/unit",
+                "label": "CP anode cost- $/unit",
+                "description": "CP anode cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Buckle arrestor required (yes /No)",
+                "label": "Pipe Buckle arrestor required (yes /No)",
+                "description": "Pipe Buckle arrestor required (yes /No)",
+                "type": "string",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Buckle Arrestor Quantity",
+                "label": "Buckle Arrestor Quantity",
+                "description": "Buckle Arrestor Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buckle Arrestor Cost ($/unit)",
+                "label": "Buckle Arrestor Cost ($/unit)",
+                "description": "Buckle Arrestor Cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank Required (yes/No)",
+                "label": "Anode bank Required (yes/No)",
+                "description": "Anode bank Required (yes/No)",
+                "type": "string",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Anode bank quantity",
+                "label": "Anode bank quantity",
+                "description": "Anode bank quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank cost ($/unit)",
+                "label": "Anode bank cost ($/unit)",
+                "description": "Anode bank cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Inner Line pipe total cost, $",
+                "label": "Inner Line pipe total cost, $",
+                "description": "Inner Line pipe total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer line pipe total cost, $",
+                "label": "Outer line pipe total cost, $",
+                "description": "Outer line pipe total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Corrosion coating total cost, $",
+                "label": "Corrosion coating total cost, $",
+                "description": "Corrosion coating total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal insulation total cost, $",
+                "label": "Thermal insulation total cost, $",
+                "description": "Thermal insulation total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buckle arrestor total cost, $",
+                "label": "Buckle arrestor total cost, $",
+                "description": "Buckle arrestor total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anodes total cost, $",
+                "label": "Anodes total cost, $",
+                "description": "Anodes total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank total cost, $",
+                "label": "Anode bank total cost, $",
+                "description": "Anode bank total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Centraliser total cost, $",
+                "label": "Centraliser total cost, $",
+                "description": "Centraliser total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead total cost, $",
+                "label": "Reelable Bulkhead total cost, $",
+                "description": "Reelable Bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH bulkhead total cost, $",
+                "label": "Reelable ETH bulkhead total cost, $",
+                "description": "Reelable ETH bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non reelable ETH bulkhead total cost, $",
+                "label": "Non reelable ETH bulkhead total cost, $",
+                "description": "Non reelable ETH bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non reelable bulkhead total cost, $",
+                "label": "Non reelable bulkhead total cost, $",
+                "description": "Non reelable bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Cable total cost- $",
+                "label": "ETH Electric Cable total cost- $",
+                "description": "ETH Electric Cable total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH start end total cost- $",
+                "label": "ETH start end total cost- $",
+                "description": "ETH start end total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric hot splice total cost-$",
+                "label": "ETH Electric hot splice total cost-$",
+                "description": "ETH Electric hot splice total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH fibre optics total cost- $",
+                "label": "ETH fibre optics total cost- $",
+                "description": "ETH fibre optics total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics junction box total cost-$",
+                "label": "ETH Fibre optics junction box total cost-$",
+                "description": "ETH Fibre optics junction box total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece total cost-$",
+                "label": "End Termination Pup-piece total cost-$",
+                "description": "End Termination Pup-piece total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
                 "required": true
             }
         ]
     },
     {
         "main-type": "connector",
-        "sub-type": "Injection Well Subsea Tree",
-        "name": "Injection Well Subsea Tree",
-        "description": "Injection Well Subsea Tree",
+        "sub-type": "Rigid Pipeline-PiP WI",
+        "name": "Rigid Pipeline-PiP WI",
+        "description": "Rigid Pipeline-PiP WI",
         "fields": [
             {
-                "name": "Subsea control module",
-                "label": "Subsea control module",
-                "description": "Subsea control module",
+                "name": "Service",
+                "label": "Service",
+                "description": "Service",
                 "type": "string",
-                "default-value": "Electric hydraulic control",
+                "default-value": "",
+                "values": [
+                    "Static",
+                    "Dynamic"
+                ],
                 "required": true
             },
             {
-                "name": "Wellhead connector",
-                "label": "Wellhead connector",
-                "description": "Wellhead connector",
-                "type": "string",
-                "default-value": "Hydraulic control",
-                "required": true
-            },
-            {
-                "name": "Design life (years)",
-                "label": "Design life (years)",
-                "description": "Design life (years)",
+                "name": "Operating Pressure Rating (bar)",
+                "label": "Operating Pressure Rating (bar)",
+                "description": "Operating Pressure Rating (bar)",
                 "type": "number",
                 "default-unit": "",
-                "default-value": 25,
-                "step": 1,
-                "min": 0,
-                "max": 100,
-                "required": true
-            },
-            {
-                "name": "Dimension (mm)",
-                "label": "Dimension (mm)",
-                "description": "Dimension (mm)",
-                "type": "string",
-                "default-value": "5000x5000x4500",
-                "required": true
-            },
-            {
-                "name": "Weight (Te)",
-                "label": "Weight (Te)",
-                "description": "Weight (Te)",
-                "type": "number",
-                "default-unit": "Te",
-                "default-value": 50,
                 "step": 0.1,
                 "min": 0,
                 "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Number of units",
-                "label": "Number of units",
-                "description": "Number of units",
+                "name": "Operating temperature Rating (◦C)",
+                "label": "Operating temperature Rating (◦C)",
+                "description": "Operating temperature Rating (◦C)",
                 "type": "number",
                 "default-unit": "",
-                "default-value": 2,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Maximum operating depth",
+                "label": "Maximum operating depth",
+                "description": "Maximum operating depth",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Design Life",
+                "label": "Design Life",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 25,
+                "required": true
+            },
+            {
+                "name": "Pipe Designation as per code",
+                "label": "Pipe Designation as per code",
+                "description": "Pipe Designation as per code",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "DNV/API"
+                ],
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance",
+                "label": "Industry Specification Compliance",
+                "description": "Industry Specification Compliance",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "API 6A",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "Inner Pipe (IP) Material",
+                "label": "Inner Pipe (IP) Material",
+                "description": "Inner Pipe (IP) Material",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "CS-X52",
+                    "CS-X60",
+                    "CS-X65",
+                    "CSX70",
+                    "MLP-625",
+                    "MLP-825",
+                    "MLP-316",
+                    "25%Cr",
+                    "22%Cr",
+                    "13%Cr",
+                    "HRB-625",
+                    "HRB-825",
+                    "HRB-316"
+                ],
+                "required": true
+            },
+            {
+                "name": "Outer Pipe (OP) Material",
+                "label": "Outer Pipe (OP) Material",
+                "description": "Outer Pipe (OP) Material",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "X60",
+                    "X65",
+                    "X70"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Minimum Yield Strength (MPa)",
+                "label": "IP-Minimum Yield Strength (MPa)",
+                "description": "IP-Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-unit": "",
                 "step": 1,
                 "min": 0,
                 "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Cost per unit ($/unit)",
-                "label": "Cost per unit ($/unit)",
-                "description": "Cost per unit ($/unit)",
+                "name": "IP-Minimum Tensile Strength (Mpa)",
+                "label": "IP-Minimum Tensile Strength (Mpa)",
+                "description": "IP-Minimum Tensile Strength (Mpa)",
                 "type": "number",
-                "default-unit": "$/unit",
+                "default-unit": "",
                 "step": 1,
                 "min": 0,
-                "max": 10000000,
+                "max": 10000,
+                "default-value": 1,
                 "required": true
             },
             {
-                "name": "Total cost, $",
-                "label": "Total cost, $",
-                "description": "Total cost, $",
+                "name": "OP-Minimum Yield Strength (MPa)",
+                "label": "OP-Minimum Yield Strength (MPa)",
+                "description": "OP-Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OP-Minimum Tensile Strength (Mpa)",
+                "label": "OP-Minimum Tensile Strength (Mpa)",
+                "description": "OP-Minimum Tensile Strength (Mpa)",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-Material density, kg/m^3",
+                "label": "IP-Material density, kg/m^3",
+                "description": "IP-Material density, kg/m^3",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 7700,
+                "required": true
+            },
+            {
+                "name": "OP-Material density, kg/m^3",
+                "label": "OP-Material density, kg/m^3",
+                "description": "OP-Material density, kg/m^3",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 7850,
+                "required": true
+            },
+            {
+                "name": "IP-Charpy Impact Test",
+                "label": "IP-Charpy Impact Test",
+                "description": "IP-Charpy Impact Test",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Hardness",
+                "label": "IP-Hardness",
+                "description": "IP-Hardness",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 250,
+                "required": true
+            },
+            {
+                "name": "OP-Charpy Impact Test",
+                "label": "OP-Charpy Impact Test",
+                "description": "OP-Charpy Impact Test",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Hardness",
+                "label": "OP-Hardness",
+                "description": "OP-Hardness",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 250,
+                "required": true
+            },
+            {
+                "name": "IP-Reeling Yield Strength Requirement",
+                "label": "IP-Reeling Yield Strength Requirement",
+                "description": "IP-Reeling Yield Strength Requirement",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "OP-Reeling Yield Strength Requirement",
+                "label": "OP-Reeling Yield Strength Requirement",
+                "description": "OP-Reeling Yield Strength Requirement",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-PREN",
+                "label": "IP-PREN",
+                "description": "IP-PREN",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "IP-End Bevel",
+                "label": "IP-End Bevel",
+                "description": "IP-End Bevel",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "J-bevel"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Type of Bevel Protector",
+                "label": "IP-Type of Bevel Protector",
+                "description": "IP-Type of Bevel Protector",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "End Cap"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-End Bevel",
+                "label": "OP-End Bevel",
+                "description": "OP-End Bevel",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "J-bevel"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Type of Bevel Protector",
+                "label": "OP-Type of Bevel Protector",
+                "description": "OP-Type of Bevel Protector",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "End cap"
+                ],
+                "required": true
+            },
+            {
+                "name": "IP-Line pipe joint length,m",
+                "label": "IP-Line pipe joint length,m",
+                "description": "IP-Line pipe joint length,m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 12.1,
+                "required": true
+            },
+            {
+                "name": "OP-Line pipe joint length,m",
+                "label": "OP-Line pipe joint length,m",
+                "description": "OP-Line pipe joint length,m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 12.1,
+                "required": true
+            },
+            {
+                "name": "Pipeline length, km",
+                "label": "Pipeline length, km",
+                "description": "Pipeline length, km",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 15,
+                "required": true
+            },
+            {
+                "name": "IP- Nominal Outer Diameter(mm)",
+                "label": "IP- Nominal Outer Diameter(mm)",
+                "description": "IP- Nominal Outer Diameter(mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 323.9,
+                "required": true
+            },
+            {
+                "name": "IP-Nominal Pipe Wall Thickness (mm)",
+                "label": "IP-Nominal Pipe Wall Thickness (mm)",
+                "description": "IP-Nominal Pipe Wall Thickness (mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 15.9,
+                "required": true
+            },
+            {
+                "name": "OP- Nominal Outer Diameter(mm)",
+                "label": "OP- Nominal Outer Diameter(mm)",
+                "description": "OP- Nominal Outer Diameter(mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 457.2,
+                "required": true
+            },
+            {
+                "name": "OP-Nominal Pipe Wall Thickness (mm)",
+                "label": "OP-Nominal Pipe Wall Thickness (mm)",
+                "description": "OP-Nominal Pipe Wall Thickness (mm)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 23,
+                "required": true
+            },
+            {
+                "name": "OP-Corrosion Coating",
+                "label": "OP-Corrosion Coating",
+                "description": "OP-Corrosion Coating",
+                "type": "string",
+                "default-value": "",
+                "values": [
+                    "FBE",
+                    "3LPE",
+                    "3LPP"
+                ],
+                "required": true
+            },
+            {
+                "name": "OP-Corrosion Coating thickness,mm",
+                "label": "OP-Corrosion Coating thickness,mm",
+                "description": "OP-Corrosion Coating thickness,mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 3,
+                "required": true
+            },
+            {
+                "name": "Corrosion coating cost, $/m^3",
+                "label": "Corrosion coating cost, $/m^3",
+                "description": "Corrosion coating cost, $/m^3",
                 "type": "number",
                 "default-unit": "",
                 "step": 1,
                 "min": 0,
                 "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal Insulation",
+                "label": "Thermal Insulation",
+                "description": "Thermal Insulation",
+                "type": "string",
+                "default-value": "Aerogel",
+                "values": [
+                    "Aerogel",
+                    "Pyrogel"
+                ],
+                "required": true
+            },
+            {
+                "name": "Thermal insulation panel length, mm",
+                "label": "Thermal insulation panel length, mm",
+                "description": "Thermal insulation panel length, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 700,
+                "required": true
+            },
+            {
+                "name": "Thermal Insulation Upstand, mm",
+                "label": "Thermal Insulation Upstand, mm",
+                "description": "Thermal Insulation Upstand, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 10,
+                "required": true
+            },
+            {
+                "name": "Thermal insulation cost,$/unit",
+                "label": "Thermal insulation cost,$/unit",
+                "description": "Thermal insulation cost,$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Centraliser material",
+                "label": "Centraliser material",
+                "description": "Centraliser material",
+                "type": "string",
+                "default-value": "Nylon-6",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Centraliser pitch, m",
+                "label": "Centraliser pitch, m",
+                "description": "Centraliser pitch, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 2,
+                "required": true
+            },
+            {
+                "name": "Centraliser width, mm",
+                "label": "Centraliser width, mm",
+                "description": "Centraliser width, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 60,
+                "required": true
+            },
+            {
+                "name": "Centraliser thickness, mm",
+                "label": "Centraliser thickness, mm",
+                "description": "Centraliser thickness, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 31,
+                "required": true
+            },
+            {
+                "name": "Centraliser Upstand, mm",
+                "label": "Centraliser Upstand, mm",
+                "description": "Centraliser Upstand, mm",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 6.5,
+                "required": true
+            },
+            {
+                "name": "Centraliser cost, $/unit",
+                "label": "Centraliser cost, $/unit",
+                "description": "Centraliser cost, $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead (BH) material",
+                "label": "Reelable Bulkhead (BH) material",
+                "description": "Reelable Bulkhead (BH) material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead -Quantity",
+                "label": "Reelable Bulkhead -Quantity",
+                "description": "Reelable Bulkhead -Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead Cost- $/unit",
+                "label": "Reelable Bulkhead Cost- $/unit",
+                "description": "Reelable Bulkhead Cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH material",
+                "label": "Reelable ETH-BH material",
+                "description": "Reelable ETH-BH material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH Quantity",
+                "label": "Reelable ETH-BH Quantity",
+                "description": "Reelable ETH-BH Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH-BH Cost-$/unit",
+                "label": "Reelable ETH-BH Cost-$/unit",
+                "description": "Reelable ETH-BH Cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead (BH) material",
+                "label": "Non Reelable Bulkhead (BH) material",
+                "description": "Non Reelable Bulkhead (BH) material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead -Quantity",
+                "label": "Non Reelable Bulkhead -Quantity",
+                "description": "Non Reelable Bulkhead -Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable Bulkhead Cost- $/unit",
+                "label": "Non Reelable Bulkhead Cost- $/unit",
+                "description": "Non Reelable Bulkhead Cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH material",
+                "label": "Non Reelable ETH-BH material",
+                "description": "Non Reelable ETH-BH material",
+                "type": "string",
+                "values": [
+                    "Nylon-6"
+                ],
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH Quantity",
+                "label": "Non Reelable ETH-BH Quantity",
+                "description": "Non Reelable ETH-BH Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non Reelable ETH-BH Cost-$/unit",
+                "label": "Non Reelable ETH-BH Cost-$/unit",
+                "description": "Non Reelable ETH-BH Cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric cable Length, m",
+                "label": "ETH Electric cable Length, m",
+                "description": "ETH Electric cable Length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH star end-quantity",
+                "label": "ETH star end-quantity",
+                "description": "ETH star end-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Hot splice-quantity",
+                "label": "ETH Electric Hot splice-quantity",
+                "description": "ETH Electric Hot splice-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics cable Length, m",
+                "label": "ETH Fibre optics cable Length, m",
+                "description": "ETH Fibre optics cable Length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optic junction box-Quantity",
+                "label": "ETH Fibre optic junction box-Quantity",
+                "description": "ETH Fibre optic junction box-Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Cable cost- $/m",
+                "label": "ETH Electric Cable cost- $/m",
+                "description": "ETH Electric Cable cost- $/m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH start end cost- $/unit",
+                "label": "ETH start end cost- $/unit",
+                "description": "ETH start end cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric hot splice cost-$/unit",
+                "label": "ETH Electric hot splice cost-$/unit",
+                "description": "ETH Electric hot splice cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH fibre optics cost- $/m",
+                "label": "ETH fibre optics cost- $/m",
+                "description": "ETH fibre optics cost- $/m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics junction box cost- $/unit",
+                "label": "ETH Fibre optics junction box cost- $/unit",
+                "description": "ETH Fibre optics junction box cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End termination pup-piece length, m",
+                "label": "End termination pup-piece length, m",
+                "description": "End termination pup-piece length, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece quantity",
+                "label": "End Termination Pup-piece quantity",
+                "description": "End Termination Pup-piece quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece cost-$/unit",
+                "label": "End Termination Pup-piece cost-$/unit",
+                "description": "End Termination Pup-piece cost-$/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP Anodes- pitch, m",
+                "label": "CP Anodes- pitch, m",
+                "description": "CP Anodes- pitch, m",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipeline length, km",
+                "label": "Pipeline length, km",
+                "description": "Pipeline length, km",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP anodes-quantity",
+                "label": "CP anodes-quantity",
+                "description": "CP anodes-quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "CP anode cost- $/unit",
+                "label": "CP anode cost- $/unit",
+                "description": "CP anode cost- $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Pipe Buckle arrestor required (yes /No)",
+                "label": "Pipe Buckle arrestor required (yes /No)",
+                "description": "Pipe Buckle arrestor required (yes /No)",
+                "type": "string",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Buckle Arrestor Quantity",
+                "label": "Buckle Arrestor Quantity",
+                "description": "Buckle Arrestor Quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buckle Arrestor Cost ($/unit)",
+                "label": "Buckle Arrestor Cost ($/unit)",
+                "description": "Buckle Arrestor Cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank Required (yes/No)",
+                "label": "Anode bank Required (yes/No)",
+                "description": "Anode bank Required (yes/No)",
+                "type": "string",
+                "values": [
+                    "Yes",
+                    "No"
+                ],
+                "required": true
+            },
+            {
+                "name": "Anode bank quantity",
+                "label": "Anode bank quantity",
+                "description": "Anode bank quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 1000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank cost ($/unit)",
+                "label": "Anode bank cost ($/unit)",
+                "description": "Anode bank cost ($/unit)",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 100000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Inner Line pipe total cost, $",
+                "label": "Inner Line pipe total cost, $",
+                "description": "Inner Line pipe total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Outer line pipe total cost, $",
+                "label": "Outer line pipe total cost, $",
+                "description": "Outer line pipe total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Corrosion coating total cost, $",
+                "label": "Corrosion coating total cost, $",
+                "description": "Corrosion coating total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Thermal insulation total cost, $",
+                "label": "Thermal insulation total cost, $",
+                "description": "Thermal insulation total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buckle arrestor total cost, $",
+                "label": "Buckle arrestor total cost, $",
+                "description": "Buckle arrestor total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anodes total cost, $",
+                "label": "Anodes total cost, $",
+                "description": "Anodes total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Anode bank total cost, $",
+                "label": "Anode bank total cost, $",
+                "description": "Anode bank total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Centraliser total cost, $",
+                "label": "Centraliser total cost, $",
+                "description": "Centraliser total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable Bulkhead total cost, $",
+                "label": "Reelable Bulkhead total cost, $",
+                "description": "Reelable Bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Reelable ETH bulkhead total cost, $",
+                "label": "Reelable ETH bulkhead total cost, $",
+                "description": "Reelable ETH bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non reelable ETH bulkhead total cost, $",
+                "label": "Non reelable ETH bulkhead total cost, $",
+                "description": "Non reelable ETH bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Non reelable bulkhead total cost, $",
+                "label": "Non reelable bulkhead total cost, $",
+                "description": "Non reelable bulkhead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric Cable total cost- $",
+                "label": "ETH Electric Cable total cost- $",
+                "description": "ETH Electric Cable total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH start end total cost- $",
+                "label": "ETH start end total cost- $",
+                "description": "ETH start end total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Electric hot splice total cost-$",
+                "label": "ETH Electric hot splice total cost-$",
+                "description": "ETH Electric hot splice total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH fibre optics total cost- $",
+                "label": "ETH fibre optics total cost- $",
+                "description": "ETH fibre optics total cost- $",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "ETH Fibre optics junction box total cost-$",
+                "label": "ETH Fibre optics junction box total cost-$",
+                "description": "ETH Fibre optics junction box total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "End Termination Pup-piece total cost-$",
+                "label": "End Termination Pup-piece total cost-$",
+                "description": "End Termination Pup-piece total cost-$",
+                "type": "number",
+                "default-unit": "",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
                 "required": true
             }
         ]
