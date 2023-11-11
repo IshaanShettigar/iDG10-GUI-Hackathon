@@ -17558,5 +17558,306 @@
                 "required": true
             }
         ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Production Well Subsea Tree",
+        "name": "Production Well Subsea Tree",
+        "description": "Production Well Subsea Tree",
+        "fields": [
+            {
+                "name": "Structure",
+                "label": "Structure",
+                "description": "Structure",
+                "type": "string",
+                "default-value": "Horizontal (EHXT)",
+                "required": true
+            },
+            {
+                "name": "API product specification level",
+                "label": "API product specification level",
+                "description": "API product specification level",
+                "type": "string",
+                "default-value": "PSL3 (tubing hanger PSL 3G)",
+                "required": true
+            },
+            {
+                "name": "Material",
+                "label": "Material",
+                "description": "Material",
+                "type": "string",
+                "default-value": "AISI4130 Forged",
+                "values": [
+                    "AISI4130 Forged"
+                ],
+                "required": true
+            },
+            {
+                "name": "Upstream Min-Max Temperature rating (°C)",
+                "label": "Upstream Min-Max Temperature rating (°C)",
+                "description": "Upstream Min-Max Temperature rating (°C)",
+                "type": "string",
+                "default-value": "140",
+                "required": true
+            },
+            {
+                "name": "Downstream Min-Max temperature rating (°C)",
+                "label": "Downstream Min-Max temperature rating (°C)",
+                "description": "Downstream Min-Max temperature rating (°C)",
+                "type": "string",
+                "default-value": "120",
+                "required": true
+            },
+            {
+                "name": "Pressure rating (bar)",
+                "label": "Pressure rating (bar)",
+                "description": "Pressure rating (bar)",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 690,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Water depth rating (m)",
+                "label": "Water depth rating (m)",
+                "description": "Water depth rating (m)",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 3000,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control line pressure (bar)",
+                "label": "Control line pressure (bar)",
+                "description": "Control line pressure (bar)",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 690,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Control fluid and cleanliness",
+                "label": "Control fluid and cleanliness",
+                "description": "Control fluid and cleanliness",
+                "type": "string",
+                "default-value": "Water based Fluid",
+                "values": [
+                    "Water based Fluid"
+                ],
+                "required": true
+            },
+            {
+                "name": "Production nominal bore (mm)",
+                "label": "Production nominal bore (mm)",
+                "description": "Production nominal bore (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 120,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Annulus nominal bore (mm)",
+                "label": "Annulus nominal bore (mm)",
+                "description": "Annulus nominal bore (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 60,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Subsea choke",
+                "label": "Subsea choke",
+                "description": "Subsea choke",
+                "type": "string",
+                "required": true
+            },
+            {
+                "name": "Subsea control module",
+                "label": "Subsea control module",
+                "description": "Subsea control module",
+                "type": "string",
+                "default-value": "Electric hydraulic control",
+                "required": true
+            },
+            {
+                "name": "Wellhead connector",
+                "label": "Wellhead connector",
+                "description": "Wellhead connector",
+                "type": "string",
+                "default-value": "Hydraulic control",
+                "required": true
+            },
+            {
+                "name": "Design life (years)",
+                "label": "Design life (years)",
+                "description": "Design life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Dimension (mm)",
+                "label": "Dimension (mm)",
+                "description": "Dimension (mm)",
+                "type": "string",
+                "default-value": "5000x5000x4500",
+                "required": true
+            },
+            {
+                "name": "Weight (Te)",
+                "label": "Weight (Te)",
+                "description": "Weight (Te)",
+                "type": "number",
+                "default-unit": "Te",
+                "default-value": 50,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Number of units",
+                "label": "Number of units",
+                "description": "Number of units",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 2,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Cost per unit ($/unit)",
+                "label": "Cost per unit ($/unit)",
+                "description": "Cost per unit ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            },
+            {
+                "name": "Total cost, $",
+                "label": "Total cost, $",
+                "description": "Total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Injection Well Subsea Tree",
+        "name": "Injection Well Subsea Tree",
+        "description": "Injection Well Subsea Tree",
+        "fields": [
+            {
+                "name": "Subsea control module",
+                "label": "Subsea control module",
+                "description": "Subsea control module",
+                "type": "string",
+                "default-value": "Electric hydraulic control",
+                "required": true
+            },
+            {
+                "name": "Wellhead connector",
+                "label": "Wellhead connector",
+                "description": "Wellhead connector",
+                "type": "string",
+                "default-value": "Hydraulic control",
+                "required": true
+            },
+            {
+                "name": "Design life (years)",
+                "label": "Design life (years)",
+                "description": "Design life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Dimension (mm)",
+                "label": "Dimension (mm)",
+                "description": "Dimension (mm)",
+                "type": "string",
+                "default-value": "5000x5000x4500",
+                "required": true
+            },
+            {
+                "name": "Weight (Te)",
+                "label": "Weight (Te)",
+                "description": "Weight (Te)",
+                "type": "number",
+                "default-unit": "Te",
+                "default-value": 50,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Number of units",
+                "label": "Number of units",
+                "description": "Number of units",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 2,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Cost per unit ($/unit)",
+                "label": "Cost per unit ($/unit)",
+                "description": "Cost per unit ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            },
+            {
+                "name": "Total cost, $",
+                "label": "Total cost, $",
+                "description": "Total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            }
+        ]
     }
 ]
