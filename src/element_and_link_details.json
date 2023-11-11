@@ -16689,5 +16689,874 @@
                 "required": true
             }
         ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Bouyancy-Module",
+        "name": "Bouyancy Module",
+        "description": "Bouyancy Module",
+        "fields": [
+            {
+                "name": "Material body",
+                "label": "Material body",
+                "description": "Material body",
+                "type": "string",
+                "default-value": "C-String UV resistant Polyethylene",
+                "required": true
+            },
+            {
+                "name": "Lantern material",
+                "label": "Lantern material",
+                "description": "Lantern material",
+                "type": "string",
+                "default-value": "C-String Seawaterproof Aluminium and UV resistant Polycarbonate",
+                "required": true
+            },
+            {
+                "name": "Operating Pressure Rating",
+                "label": "Operating Pressure Rating",
+                "description": "Operating Pressure Rating",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Operating temperature Rating (°C)",
+                "label": "Operating temperature Rating (°C)",
+                "description": "Operating temperature Rating (°C)",
+                "type": "number",
+                "default-unit": "C",
+                "default-value": 1,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "External Corrosion Resistance",
+                "label": "External Corrosion Resistance",
+                "description": "External Corrosion Resistance",
+                "type": "string",
+                "default-value": "C-string",
+                "required": true
+            },
+            {
+                "name": "Strength member",
+                "label": "Strength member",
+                "description": "Strength member",
+                "type": "string",
+                "default-value": "S-string Steel/ Galvanized steel armor wire, helically wound",
+                "required": true
+            },
+            {
+                "name": "Maximum operating depth (m)",
+                "label": "Maximum operating depth (m)",
+                "description": "Maximum operating depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "default-value": 300,
+                "required": true
+            },
+            {
+                "name": "attachment option available",
+                "label": "attachment option available",
+                "description": "attachment option available",
+                "type": "string",
+                "default-value": "C-String threaded, studded, and flanged",
+                "required": true
+            },
+            {
+                "name": "Connecting option",
+                "label": "Connecting option",
+                "description": "Connecting option",
+                "type": "string",
+                "default-value": "C-string Available with two lockscrews/full sets of lockscrews or without lockscrews",
+                "required": true
+            },
+            {
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance",
+                "label": "Industry Specification Compliance",
+                "description": "Industry Specification Compliance",
+                "type": "string",
+                "default-value": "C-string",
+                "required": true
+            },
+            {
+                "name": "Buoyancy module quantity",
+                "label": "Buoyancy module quantity",
+                "description": "Buoyancy module quantity",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buoyancy module cost, $/unit",
+                "label": "Buoyancy module cost, $/unit",
+                "description": "Buoyancy module cost, $/unit",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            },
+            {
+                "name": "Buoyancy module total cost, $",
+                "label": "Buoyancy module total cost, $",
+                "description": "$cost$",
+                "type": "number",
+                "default-unit": "",
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "default-value": 1,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Bouyancy-Module",
+        "name": "Bouyancy Module",
+        "description": "Bouyancy Module",
+        "fields": [
+            {
+                "name": "Umbilical Outer Diameter(mm)",
+                "label": "Umbilical Outer Diameter(mm)",
+                "description": "Umbilical Outer Diameter(mm)",
+                "type": "number",
+                "default-value": 12.6,
+                "default-unit": "in / mm",
+                "required": true
+            },
+            {
+                "name": "Umbilical length (km)",
+                "label": "Umbilical length (km)",
+                "description": "Umbilical length (km)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum allowable installation tension(N)",
+                "label": "Maximum allowable installation tension(N)",
+                "description": "Maximum allowable installation tension(N)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum allowable breaking tension(N)",
+                "label": "Maximum allowable breaking tension(N)",
+                "description": "Maximum allowable breaking tension(N)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Axial stress (MPa)",
+                "label": "Axial stress (MPa)",
+                "description": "Axial stress (MPa)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Bending stress(MPa)",
+                "label": "Bending stress(MPa)",
+                "description": "Bending stress(MPa)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Torsional stiffness",
+                "label": "Torsional stiffness",
+                "description": "Torsional stiffness",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Tension/Torsion Factor",
+                "label": "Tension/Torsion Factor",
+                "description": "Tension/Torsion Factor",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Design Life(years)",
+                "label": "Design Life(years)",
+                "description": "Design Life(years)",
+                "type": "number",
+                "default-value": 25,
+                "required": true
+            },
+            {
+                "name": "Installation methods",
+                "label": "Installation methods",
+                "description": "Installation methods",
+                "type": "string",
+                "default-value": "Umbilical designed to suit client’s installation method",
+                "required": true
+            },
+            {
+                "name": "Industry Specification Compliance",
+                "label": "Industry Specification Compliance",
+                "description": "Industry Specification Compliance",
+                "type": "string",
+                "default-value": "ISO 13628-5 / API 17E, NORSOK U-001 , DNV-OS-F101",
+                "required": true
+            },
+            {
+                "name": "Strength Element Material",
+                "label": "Strength Element Material",
+                "description": "Strength Element Material",
+                "type": "string",
+                "default-value": "UNS S32750/UNS S32101/UNS S31603/API 5L X52-X80",
+                "required": true
+            },
+            {
+                "name": "Pressure Rating (bar)",
+                "label": "Pressure Rating (bar)",
+                "description": "Pressure Rating (bar)",
+                "type": "number",
+                "default-value": 690,
+                "required": true
+            },
+            {
+                "name": "Tube Diameter (mm)",
+                "label": "Tube Diameter (mm)",
+                "description": "Tube Diameter (mm)",
+                "type": "number",
+                "default-value": 101.6,
+                "required": true
+            },
+            {
+                "name": "External Corrosion Resistance",
+                "label": "External Corrosion Resistance",
+                "description": "External Corrosion Resistance",
+                "type": "string",
+                "default-value": "C-String High/Zinc Coating/limited resistance/bonder resitance",
+                "required": true
+            },
+            {
+                "name": "Pitting Resistance Equivalent",
+                "label": "Pitting Resistance Equivalent",
+                "description": "Pitting Resistance Equivalent",
+                "type": "number",
+                "default-value": 40,
+                "required": true
+            },
+            {
+                "name": "Minimum Yield Strength (MPa)",
+                "label": "Minimum Yield Strength (MPa)",
+                "description": "Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-value": 550,
+                "required": true
+            },
+            {
+                "name": "Hydraulic and chemical lines: Thermoplastic Hoses Material",
+                "label": "Hydraulic and chemical lines: Thermoplastic Hoses Material",
+                "description": "Hydraulic and chemical lines: Thermoplastic Hoses Material",
+                "type": "string",
+                "default-value": "UNS S31603/API 5L X52-X80",
+                "required": true
+            },
+            {
+                "name": "Pressure Rating (bar)",
+                "label": "Pressure Rating (bar)",
+                "description": "Pressure Rating (bar)",
+                "type": "number",
+                "default-value": 690,
+                "required": true
+            },
+            {
+                "name": "Tube Diameter (mm)",
+                "label": "Tube Diameter (mm)",
+                "description": "Tube Diameter (mm)",
+                "type": "number",
+                "default-value": 25.4,
+                "required": true
+            },
+            {
+                "name": "External Corrosion Resistance",
+                "label": "External Corrosion Resistance",
+                "description": "External Corrosion Resistance",
+                "type": "string",
+                "default-value": "C-String Limited resistance",
+                "required": true
+            },
+            {
+                "name": "Pitting Resistance Equivalent (PREN)",
+                "label": "Pitting Resistance Equivalent (PREN)",
+                "description": "Pitting Resistance Equivalent (PREN)",
+                "type": "number",
+                "default-value": 26.5,
+                "required": true
+            },
+            {
+                "name": "Minimum Yield Strength (MPa)",
+                "label": "Minimum Yield Strength (MPa)",
+                "description": "Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-value": 170,
+                "required": true
+            },
+            {
+                "name": "Hydraulic hoses Material",
+                "label": "Hydraulic hoses Material",
+                "description": "Hydraulic hoses Material",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Pressure Rating (bar)",
+                "label": "Pressure Rating (bar)",
+                "description": "Pressure Rating (bar)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Tube Diameter (mm)",
+                "label": "Tube Diameter (mm)",
+                "description": "Tube Diameter (mm)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "External Corrosion Resistance",
+                "label": "External Corrosion Resistance",
+                "description": "External Corrosion Resistance",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Pitting Resistance Equivalent (PREN)",
+                "label": "Pitting Resistance Equivalent (PREN)",
+                "description": "Pitting Resistance Equivalent (PREN)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Minimum Yield Strength (MPa)",
+                "label": "Minimum Yield Strength (MPa)",
+                "description": "Minimum Yield Strength (MPa)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Bend stiffener Material",
+                "label": "Bend stiffener Material",
+                "description": "Bend stiffener Material",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Pressure Rating (bar)",
+                "label": "Pressure Rating (bar)",
+                "description": "Pressure Rating (bar)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Tube Diameter (mm)",
+                "label": "Tube Diameter (mm)",
+                "description": "Tube Diameter (mm)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "External Corrosion Resistance",
+                "label": "External Corrosion Resistance",
+                "description": "External Corrosion Resistance",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Volume to weight ratio",
+                "label": "Volume to weight ratio",
+                "description": "Volume to weight ratio",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Minimum bend radius (m)",
+                "label": "Minimum bend radius (m)",
+                "description": "Minimum bend radius (m)",
+                "type": "number",
+                "default-value": 5,
+                "required": true
+            },
+            {
+                "name": "Strength member",
+                "label": "Strength member",
+                "description": "Strength member",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Manufacturing length limitations(m)",
+                "label": "Manufacturing length limitations(m)",
+                "description": "Manufacturing length limitations(m)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum allowable installation tension (N)",
+                "label": "Maximum allowable installation tension (N)",
+                "description": "Maximum allowable installation tension (N)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Bend Restrictor Material",
+                "label": "Bend Restrictor Material",
+                "description": "Bend Restrictor Material",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Tube Diameter(mm)",
+                "label": "Tube Diameter(mm)",
+                "description": "Tube Diameter(mm)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Operating temperature range(°C)",
+                "label": "Operating temperature range(°C)",
+                "description": "Operating temperature range(°C)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum deflection from center axis (mm)",
+                "label": "Maximum deflection from center axis (mm)",
+                "description": "Maximum deflection from center axis (mm)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Strength member",
+                "label": "Strength member",
+                "description": "Strength member",
+                "type": "string",
+                "default-value": "C-String",
+                "required": true
+            },
+            {
+                "name": "Manufacturing length limitations (m)",
+                "label": "Manufacturing length limitations (m)",
+                "description": "Manufacturing length limitations (m)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum allowable installation tension(N)",
+                "label": "Maximum allowable installation tension(N)",
+                "description": "Maximum allowable installation tension(N)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Maximum allowable breaking tension (N)",
+                "label": "Maximum allowable breaking tension (N)",
+                "description": "Maximum allowable breaking tension (N)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Axial stress (MPa)",
+                "label": "Axial stress (MPa)",
+                "description": "Axial stress (MPa)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Bending stress (Mpa)",
+                "label": "Bending stress (Mpa)",
+                "description": "Bending stress (Mpa)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Torsional stiffness",
+                "label": "Torsional stiffness",
+                "description": "Torsional stiffness",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Tension/Torsion Factor",
+                "label": "Tension/Torsion Factor",
+                "description": "Tension/Torsion Factor",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            },
+            {
+                "name": "Umbilical cost ($/m)",
+                "label": "Umbilical cost ($/m)",
+                "description": "Umbilical cost ($/m)",
+                "type": "number",
+                "default-value": 0,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Electrical Flying Lead",
+        "name": "Electrical Flying Lead",
+        "description": "Electrical Flying Lead",
+        "fields": [
+            {
+                "name": "Part Number",
+                "label": "Part Number",
+                "description": "Part Number",
+                "type": "string",
+                "default-value": "75-004-TR",
+                "required": true
+            },
+            {
+                "name": "Voltage rating (Vac)",
+                "label": "Voltage rating (Vac)",
+                "description": "Voltage rating (Vac)",
+                "type": "number",
+                "default-unit": "Vac",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min bend radius static (mm)",
+                "label": "Min bend radius static (mm)",
+                "description": "Min bend radius static (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 182,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Min bend radius dynamic (mm)",
+                "label": "Min bend radius dynamic (mm)",
+                "description": "Min bend radius dynamic (mm)",
+                "type": "number",
+                "default-unit": "mm",
+                "default-value": 273,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Maximum axial load (N)",
+                "label": "Maximum axial load (N)",
+                "description": "Maximum axial load (N)",
+                "type": "number",
+                "default-unit": "N",
+                "default-value": 1000,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Mass (air) (kg/m)",
+                "label": "Mass (air) (kg/m)",
+                "description": "Mass (air) (kg/m)",
+                "type": "number",
+                "default-unit": "kg/m",
+                "default-value": 3.71,
+                "step": 0.01,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Mass (water) (kg/m)",
+                "label": "Mass (water) (kg/m)",
+                "description": "Mass (water) (kg/m)",
+                "type": "number",
+                "default-unit": "kg/m",
+                "default-value": 1.05,
+                "step": 0.01,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Max water depth (m)",
+                "label": "Max water depth (m)",
+                "description": "Max water depth (m)",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 3000,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Resistance (ohm/km)",
+                "label": "Resistance (ohm/km)",
+                "description": "Resistance (ohm/km)",
+                "type": "number",
+                "default-unit": "ohm/km",
+                "default-value": 13.3,
+                "step": 0.01,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Conductor cross-sectional area (mm2)",
+                "label": "Conductor cross-sectional area (mm2)",
+                "description": "Conductor cross-sectional area (mm2)",
+                "type": "number",
+                "default-unit": "mm2",
+                "default-value": 1.5,
+                "step": 0.01,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Flying lead length (m)",
+                "label": "Flying lead length (m)",
+                "description": "Flying lead length (m)",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Flying lead cost ($/m)",
+                "label": "Flying lead cost ($/m)",
+                "description": "Flying lead cost ($/m)",
+                "type": "number",
+                "default-unit": "$/m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Flying lead total cost, $",
+                "label": "Flying lead total cost, $",
+                "description": "Flying lead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            }
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Hydra-Flying lead",
+        "name": "Hydra-Flying lead",
+        "description": "Hydra-Flying lead",
+        "fields": [
+            {
+                "name": "Design Life",
+                "label": "Design Life",
+                "description": "Design Life",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 25,
+                "step": 1,
+                "min": 0,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Conduit",
+                "label": "Conduit",
+                "description": "Conduit",
+                "type": "string",
+                "default-value": "Steel tube/Polymer hose",
+                "values": [
+                    "Steel tube",
+                    "Polymer hose"
+                ],
+                "required": true
+            },
+            {
+                "name": "Configuration",
+                "label": "Configuration",
+                "description": "Configuration",
+                "type": "string",
+                "default-value": "Loose tube bundle/ cable umbilical",
+                "values": [
+                    "Loose tube bundle",
+                    "Cable umbilical"
+                ],
+                "required": true
+            },
+            {
+                "name": "Potting option",
+                "label": "Potting option",
+                "description": "Potting option",
+                "type": "string",
+                "default-value": "Armor pot/ resin/potting plate",
+                "values": [
+                    "Armor pot",
+                    "Resin",
+                    "Potting plate"
+                ],
+                "required": true
+            },
+            {
+                "name": "Load rating (Te)",
+                "label": "Load rating (Te)",
+                "description": "Load rating (Te)",
+                "type": "number",
+                "default-unit": "Te",
+                "default-value": 2,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Design working pressure(bar)",
+                "label": "Design working pressure(bar)",
+                "description": "Design working pressure(bar)",
+                "type": "number",
+                "default-unit": "bar",
+                "default-value": 690,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Outer sheath option",
+                "label": "Outer sheath option",
+                "description": "Outer sheath option",
+                "type": "string",
+                "default-value": "TigerFLex",
+                "values": [
+                    "TigerFLex"
+                ],
+                "required": true
+            },
+            {
+                "name": "Cathodic protection",
+                "label": "Cathodic protection",
+                "description": "Cathodic protection",
+                "type": "string",
+                "default-value": "As per DNV-RP-401",
+                "required": true
+            },
+            {
+                "name": "Bend protection option",
+                "label": "Bend protection option",
+                "description": "Bend protection option",
+                "type": "string",
+                "default-value": "Bend limiter",
+                "required": true
+            },
+            {
+                "name": "Hydra-Flying lead length (m)",
+                "label": "Hydra-Flying lead length (m)",
+                "description": "Hydra-Flying lead length (m)",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Hydra –Flying lead cost ($/m)",
+                "label": "Hydra –Flying lead cost ($/m)",
+                "description": "Hydra –Flying lead cost ($/m)",
+                "type": "number",
+                "default-unit": "$/m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Hydra-flying lead total cost, $",
+                "label": "Hydra-flying lead total cost, $",
+                "description": "Hydra-flying lead total cost, $",
+                "type": "number",
+                "default-unit": "",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000000,
+                "required": true
+            }
+        ]
     }
 ]
