@@ -50,7 +50,7 @@ const fixFormat = function (graphjson) {
             if (!cellAttrs[key]) {
                 graphjson['cells'][i]['attrs'][key] = null;
             }
-            else {
+            else if (key != 'line') {
                 // console.log(cellAttrs[`parameter${paraNo}`])
                 var valueObj = cellAttrs[key];
                 var value = Object.values(valueObj).join('');

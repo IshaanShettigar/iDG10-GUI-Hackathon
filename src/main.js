@@ -501,7 +501,7 @@ function createTable() {
       const subTable = document.createElement('table')
       subTable.classList.add('inner-table')
 
-      // New Parameter Info
+      // New Parameter Info (Phase3.1 code)
       /* Get the cell type, match it with the element_and_link_details.json Get all the parameters 
       from there and match to the element object, then print accordingly */
 
@@ -1718,7 +1718,7 @@ openFileButton.addEventListener('click', (event) => {
  */
 function saveToBrowserLocalStorage() {
   var graphjson = mainGraph.toJSON();
-  console.log(graphjson);
+  // console.log(graphjson);
   var fixedGraphJson = fixFormat(graphjson)
   localStorage.setItem('recentGraph', JSON.stringify(fixedGraphJson))
 }
