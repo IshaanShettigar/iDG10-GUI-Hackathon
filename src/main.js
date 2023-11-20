@@ -927,7 +927,7 @@ export var mainPaper = new joint.dia.Paper({
     vertexRemove: true,
     uselinkTools: true,
   },
-  linkPinning: false,
+  linkPinning: true,
   defaultLink: () => {
     return standardLink()
   },
@@ -947,6 +947,13 @@ export var mainPaper = new joint.dia.Paper({
   //     }
   // },
   cellViewNamespace: namespace,
+  validateConnection: function (cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
+    if (cellViewS === cellViewT) return false;
+
+    if (magnetS === magnetT) return false;
+
+    return true;
+  },
 });
 
 // changing grid size in the settings modal
@@ -1184,92 +1191,100 @@ const connectorSettingsWrapper = document.getElementById('connector-settings-wra
 
 const appendDefaultLabels = function (linkView) {
   const linkModel = linkView.model
-  linkModel.appendLabel({
-    markup: [
-      {
-        tagName: 'image',
-        selector: 'label'
+  if (linkView.model.labels().length == 0) {
+    linkModel.appendLabel({
+      markup: [
+        {
+          tagName: 'image',
+          selector: 'label'
+        },
+        {
+          tagName: 'rect',
+          selector: 'body'
+        },
+      ],
+      // no `size` object provided = calc() operations need `ref` property
+      attrs: {
+        label: {
+          yAlignment: 'middle',
+          pointerEvents: 'none',
+          width: '5%',
+          height: '5%',
+          "href": "./icons/S-Lay.png",
+        },
+        body: {
+          // calc() is responsive to size of 'label':
+          // ref: 'label',
+          fill: 'rgba(0,0,0,0)',
+          stroke: 'none',
+          height: '25px',
+          width: '70px',
+          y: '-11px'
+        }
       },
-      {
-        tagName: 'rect',
-        selector: 'body'
-      },
-    ],
-    // no `size` object provided = calc() operations need `ref` property
-    attrs: {
-      label: {
-        yAlignment: 'middle',
-        pointerEvents: 'none',
-        width: '5%',
-        height: '5%',
-        "href": "./icons/S-Lay.png",
-      },
-      body: {
-        // calc() is responsive to size of 'label':
-        // ref: 'label',
-        fill: 'rgba(0,0,0,0)',
-        stroke: 'none',
-        height: '25px',
-        width: '70px',
-        y: '-11px'
+      position: {
+        distance: 0.50,
+        offset: -25,
+        args: {
+          keepGradient: true,
+          ensureLegibility: true
+        }
       }
-    },
-    position: {
-      distance: 0.50,
-      offset: -25,
-      args: {
-        keepGradient: true,
-        ensureLegibility: true
-      }
-    }
-  });
+    });
 
-  // subsea intervention
-  linkModel.appendLabel({
-    markup: [
-      {
-        tagName: 'image',
-        selector: 'label'
+    // subsea intervention
+    linkModel.appendLabel({
+      markup: [
+        {
+          tagName: 'image',
+          selector: 'label'
+        },
+        {
+          tagName: 'rect',
+          selector: 'body'
+        },
+      ],
+      // no `size` object provided = calc() operations need `ref` property
+      attrs: {
+        label: {
+          yAlignment: 'middle',
+          pointerEvents: 'none',
+          height: '6%',
+          width: '6%',
+          "href": "./icons/GRP-covers.png"
+        },
+        body: {
+          // calc() is responsive to size of 'label':
+          // ref: 'label',
+          fill: 'rgba(0,0,0,0)',
+          stroke: 'none',
+          height: '25px',
+          width: '70px',
+          y: '-11px'
+        }
       },
-      {
-        tagName: 'rect',
-        selector: 'body'
-      },
-    ],
-    // no `size` object provided = calc() operations need `ref` property
-    attrs: {
-      label: {
-        yAlignment: 'middle',
-        pointerEvents: 'none',
-        height: '6%',
-        width: '6%',
-        "href": "./icons/GRP-covers.png"
-      },
-      body: {
-        // calc() is responsive to size of 'label':
-        // ref: 'label',
-        fill: 'rgba(0,0,0,0)',
-        stroke: 'none',
-        height: '25px',
-        width: '70px',
-        y: '-11px'
+      position: {
+        distance: 0.65,
+        offset: 25,
+        args: {
+          keepGradient: true,
+          ensureLegibility: true
+        }
       }
-    },
-    position: {
-      distance: 0.65,
-      offset: 25,
-      args: {
-        keepGradient: true,
-        ensureLegibility: true
-      }
-    }
-  });
+    });
+  }
 }
 
 
 mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
+
+  linkView.removeTools() // remove tools first, since tools change if connected to an element or a link this is needed.
+
   var verticesTool = new joint.linkTools.Vertices();
   var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+  var targetAnchorTool = new joint.linkTools.TargetAnchor();
+
+
   var removeTool = new joint.linkTools.Remove({
     action: function (evt, linkView, toolView) {
       linkView.model.remove({ ui: true, tool: toolView.cid });
@@ -1279,10 +1294,21 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
   // var segmentsTool = new joint.linkTools.Segments();
   var showConnectorSettings = new showLinkSettings();
   // var boundaryTool = new joint.linkTools.Boundary();
-  console.log((linkView));
-  var linkToolsView = new joint.dia.ToolsView({
-    tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
-  });
+
+  // PHase3.1 If connected to another link then display the targetAnchorTool as well
+  const sourceType = linkView.sourceView.model.attributes.type
+  const targetType = linkView.targetView.model.attributes.type
+  console.log(sourceType, targetType);
+  if (targetType === "standard.Link" || targetType === "RigidPipelinePiP_PR") {
+    var linkToolsView = new joint.dia.ToolsView({
+      tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
+    });
+  }
+  else {
+    var linkToolsView = new joint.dia.ToolsView({
+      tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+    });
+  }
   linkView.addTools(linkToolsView)
   appendDefaultLabels(linkView)
 
@@ -1462,6 +1488,66 @@ var CONNECTOR_ATTRS = {
     strokeDasharray: "9",
     strokeWidth: 3,
     router: 'manhattan'
+  },
+  "Rigid-PT-Riser-PR": {
+    stroke: '#02a31d',
+    strokeWidth: 3
+  },
+  "Rigid-PT-Riser-WI": {
+    stroke: '#0247c7',
+    strokeWidth: 3
+  },
+  "Rigid-PT-Riser-GL/GI": {
+    stroke: "red",
+    strokeWidth: 3
+  },
+  "Flexible-PT-Riser-PR": {
+    stroke: '#02a31d',
+    strokeDasharray: "9",
+    strokeWidth: 3
+  },
+  "Flexible-PT-Riser-WI": {
+    stroke: '#0247c7',
+    strokeDasharray: "9",
+    strokeWidth: 3
+  },
+  "Flexible-PT-Riser-GL/GI": {
+    stroke: "#cc0202",
+    strokeDasharray: "9",
+    strokeWidth: 3
+  },
+  "Rigid-SCR-PR": {
+    stroke: '#02a31d',
+    strokeWidth: 3,
+    connectorShape: 'curve'
+  },
+  "Rigid-SCR-WI": {
+    stroke: '#0247c7',
+    strokeWidth: 3,
+    connectorShape: 'curve'
+  },
+  "Rigid-SCR-GL/GI": {
+    stroke: "#cc0202",
+    strokeWidth: 3,
+    connectorShape: 'curve'
+  },
+  "Flexible-Riser-PR": {
+    stroke: '#02a31d',
+    strokeDasharray: "9",
+    strokeWidth: 3,
+    connectorShape: 'curve'
+  },
+  "Flexible-Riser-WI": {
+    stroke: '#0247c7',
+    strokeDasharray: "9",
+    strokeWidth: 3,
+    connectorShape: 'curve'
+  },
+  "Flexible-Riser-GL/GI": {
+    stroke: '#cc0202',
+    strokeDasharray: "9",
+    strokeWidth: 3,
+    connectorShape: 'curve'
   }
 }
 
@@ -1547,12 +1633,18 @@ function onConnectorChange() {
 
       if (CONNECTOR_ATTRS[connector.value]["router"]) {
         model.router(CONNECTOR_ATTRS[connector.value]["router"])
-        model.connector("rounded")
         populateConnectorSettings(model)
       }
       else {
         model.router("normal")
         populateConnectorSettings(model)
+      }
+
+      if (CONNECTOR_ATTRS[connector.value]["connectorShape"]) {
+        model.connector(CONNECTOR_ATTRS[connector.value]["connectorShape"])
+      }
+      else {
+        model.connector("rounded")
       }
     }
     else {
