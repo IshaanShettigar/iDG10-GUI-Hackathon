@@ -763,11 +763,98 @@ const RigidPipelinePiP_PR = joint.dia.Link.define('RigidPipelinePiP_PR', {
     }
   }]
 });
+
+// Link definition for Elect Flying Lead
+const electFlyingLead = joint.dia.Link.define('electFlyingLead', {
+  router: { name: 'normal' },
+  connector: { name: 'rounded' },
+  attrs: {
+    line: {
+      connection: true,
+      stroke: 'white',
+      strokeWidth: 8,
+      strokeLinejoin: 'round',
+
+    },
+    outline: {
+      connection: true,
+      stroke: 'black',
+      strokeWidth: 12,
+      strokeLinejoin: 'round',
+      strokeDasharray: 8
+    },
+    central2: {
+      connection: true,
+      stroke: 'green',
+      strokeWidth: 4,
+      strokeLinejoin: 'round',
+      strokeDasharray: '6 5'
+    },
+    central: {
+      connection: true,
+      stroke: 'red',
+      strokeWidth: 3,
+      strokeLinejoin: 'round',
+      strokeDasharray: '10 1'
+    },
+    connector: "Elect-Flying-Lead",
+    installationAndConstructionVessel: null,
+    subseaIntervention: null,
+    parameter1: null,
+    parameter1: null,
+    parameter2: null,
+    parameter3: null,
+    parameter4: null,
+    parameter5: null,
+    parameter6: null,
+    parameter7: null,
+    parameter8: null,
+    parameter9: null,
+    parameter10: null,
+    parameter11: null,
+    parameter12: null,
+    parameter13: null,
+    parameter14: null,
+    parameter15: null,
+    parameter16: null,
+    parameter17: null,
+    parameter18: null,
+  },
+
+}, {
+  markup: [{
+    tagName: 'path',
+    selector: 'outline',
+    attributes: {
+      'fill': 'none'
+    }
+  }, {
+    tagName: 'path',
+    selector: 'line',
+    attributes: {
+      'fill': 'none'
+    }
+  }, {
+    tagName: 'path',
+    selector: 'central',
+    attributes: {
+      'fill': 'none'
+    }
+  },
+  {
+    tagName: 'path',
+    selector: 'central2',
+    attributes: {
+      'fill': 'none'
+    }
+  },]
+});
+
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 /* Render the toolPaper and toolGraph  */
 var namespace = {
-  ...joint.shapes, RigidPipelinePiP_PR, subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM
+  ...joint.shapes, RigidPipelinePiP_PR, electFlyingLead, subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM
 }
 /**
  * Graph object for the element tool bar on the right hand side
@@ -1605,64 +1692,72 @@ function onConnectorChange() {
     /* Insert logic to change connector attributes based on type chosen */
     let model = selectedLinkView.model
     console.log("LINK MODEL", model);
-    if (model.attributes.type == "RigidPipelinePiP_PR") { // changing from rigidpipeline pip to normal std.link
+    if (model.attributes.type == "RigidPipelinePiP_PR") { // changing from rigidpipeline pip to normal std.link or elect-flying-lead
       // create new instacne of std link and remove the old link
       console.log(`Changing from RigidPipelinePiP_PR to ${connector.value}`);
-      const newLink = standardLink();
-      newLink.source(model.attributes.source)
-      newLink.target(model.attributes.target)
-      newLink.attributes.vertices = model.attributes.vertices
-      newLink.addTo(mainGraph)
-      for (let i = 1; i <= 18; i += 1) {
-        newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+      if (connector.value === "Elect-Flying-Lead") {
+        //changing from rigidpipelinepip-pr to electflyinglead
+        console.log("WORK IN PROGRESS, CHANGING FROM PIP PR TO ELECT FLYING LEAD")
       }
-      newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
-      newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
-      newLink.attributes.connector["name"] = model.attributes.connector["name"]
-      newLink.attributes.router["name"] = model.attributes.router["name"]
+      else {
+        const newLink = standardLink();
+        newLink.source(model.attributes.source)
+        newLink.target(model.attributes.target)
+        newLink.attributes.vertices = model.attributes.vertices
+        newLink.addTo(mainGraph)
+        for (let i = 1; i <= 18; i += 1) {
+          newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+        }
+        newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
+        newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+        newLink.attributes.connector["name"] = model.attributes.connector["name"]
+        newLink.attributes.router["name"] = model.attributes.router["name"]
 
-      model.remove()
-      setSelectedLinkView(newLink.findView(mainPaper))
+        model.remove()
+        setSelectedLinkView(newLink.findView(mainPaper))
 
-      /* Add the default labels to the link */
-      appendDefaultLabels(selectedLinkView)
-      /* To add the same labels as before */
-      selectedLinkView.model.label(0, {
-        attrs: {
-          label: {
-            height: '5%',
-            width: '5%',
-            "href": `./icons/${installationAndConstructionVessel.value}.png`
-          },
-        }
-      })
-      selectedLinkView.model.label(1, {
-        attrs: {
-          label: {
-            height: '5%',
-            width: '5%',
-            "href": `./icons/${subseaIntervention.value}.png`
-          },
-        }
-      })
-      model = selectedLinkView.model
-      /* Add the Tools to the new link */
-      var verticesTool = new joint.linkTools.Vertices();
-      var removeTool = new joint.linkTools.Remove({
-        action: function (evt, linkView, toolView) {
-          linkView.model.remove({ ui: true, tool: toolView.cid });
-          connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
-        }
-      })
-      // var segmentsTool = new joint.linkTools.Segments();
-      var showConnectorSettings = new showLinkSettings();
-      // var boundaryTool = new joint.linkTools.Boundary();
-      var linkToolsView = new joint.dia.ToolsView({
-        tools: [verticesTool, removeTool, showConnectorSettings]
-      });
-      selectedLinkView.addTools(linkToolsView)
+        /* Add the default labels to the link */
+        appendDefaultLabels(selectedLinkView)
+        /* To add the same labels as before */
+        selectedLinkView.model.label(0, {
+          attrs: {
+            label: {
+              height: '5%',
+              width: '5%',
+              "href": `./icons/${installationAndConstructionVessel.value}.png`
+            },
+          }
+        })
+        selectedLinkView.model.label(1, {
+          attrs: {
+            label: {
+              height: '5%',
+              width: '5%',
+              "href": `./icons/${subseaIntervention.value}.png`
+            },
+          }
+        })
+        model = selectedLinkView.model
+        /* Add the Tools to the new link */
+        var verticesTool = new joint.linkTools.Vertices();
+        var removeTool = new joint.linkTools.Remove({
+          action: function (evt, linkView, toolView) {
+            linkView.model.remove({ ui: true, tool: toolView.cid });
+            connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+          }
+        })
+        var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+        var targetAnchorTool = new joint.linkTools.TargetAnchor();
+        // var segmentsTool = new joint.linkTools.Segments();
+        var showConnectorSettings = new showLinkSettings();
+        // var boundaryTool = new joint.linkTools.Boundary();
+        var linkToolsView = new joint.dia.ToolsView({
+          tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
+        });
+        selectedLinkView.addTools(linkToolsView)
+      }
     }
-    if (connector.value != 'Rigid-Pipeline-PiP PR') {
+    if (connector.value != 'Rigid-Pipeline-PiP PR' && connector.value != 'Elect-Flying-Lead') {
       model.attributes.attrs.line["stroke"] = CONNECTOR_ATTRS[connector.value]["stroke"]
       model.attributes.attrs.line["strokeWidth"] = CONNECTOR_ATTRS[connector.value]["strokeWidth"]
       model.attributes.attrs.line["strokeLineJoin"] = null
@@ -1691,10 +1786,7 @@ function onConnectorChange() {
         model.connector("rounded")
       }
     }
-    else {
-      console.log("Add functionality to change link to rigidpipeline pip pr");
-      // model.attributes.source
-
+    else if (connector.value === 'Rigid-Pipeline-PiP PR') {
       const newLink = new RigidPipelinePiP_PR();
       newLink.source(model.attributes.source)
       newLink.target(model.attributes.target)
@@ -1745,9 +1837,70 @@ function onConnectorChange() {
       })
       // var segmentsTool = new joint.linkTools.Segments();
       var showConnectorSettings = new showLinkSettings();
+      var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+      var targetAnchorTool = new joint.linkTools.TargetAnchor();
       // var boundaryTool = new joint.linkTools.Boundary();
       var linkToolsView = new joint.dia.ToolsView({
-        tools: [verticesTool, removeTool, showConnectorSettings]
+        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+      });
+      selectedLinkView.addTools(linkToolsView)
+    }
+    else if (connector.value === 'Elect-Flying-Lead') {
+      const newLink = new electFlyingLead();
+      newLink.source(model.attributes.source)
+      newLink.target(model.attributes.target)
+      newLink.attributes.vertices = model.attributes.vertices
+      newLink.addTo(mainGraph)
+      // copy the selectedLinkView.models attributes to the new elect flying lead
+
+      for (let i = 1; i <= 18; i += 1) {
+        newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+      }
+      newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
+      newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+      newLink.attributes.connector["name"] = model.attributes.connector["name"]
+      newLink.attributes.router["name"] = model.attributes.router["name"]
+
+      console.log(newLink);
+      console.log(model);
+      model.remove()
+      setSelectedLinkView(newLink.findView(mainPaper))
+
+      appendDefaultLabels(selectedLinkView)
+      /* To add the same labels as before */
+      selectedLinkView.model.label(0, {
+        attrs: {
+          label: {
+            height: '5%',
+            width: '5%',
+            "href": `./icons/${installationAndConstructionVessel.value}.png`
+          },
+        }
+      })
+      selectedLinkView.model.label(1, {
+        attrs: {
+          label: {
+            height: '5%',
+            width: '5%',
+            "href": `./icons/${subseaIntervention.value}.png`
+          },
+        }
+      })
+      /* Add the Tools to the new link */
+      var verticesTool = new joint.linkTools.Vertices();
+      var removeTool = new joint.linkTools.Remove({
+        action: function (evt, linkView, toolView) {
+          linkView.model.remove({ ui: true, tool: toolView.cid });
+          connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+        }
+      })
+      var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+      var targetAnchorTool = new joint.linkTools.TargetAnchor();
+      // var segmentsTool = new joint.linkTools.Segments();
+      var showConnectorSettings = new showLinkSettings();
+      // var boundaryTool = new joint.linkTools.Boundary();
+      var linkToolsView = new joint.dia.ToolsView({
+        tools: [verticesTool, removeTool, showConnectorSettings, targetAnchorTool, targetArrowheadTool]
       });
       selectedLinkView.addTools(linkToolsView)
     }
