@@ -863,7 +863,7 @@ assignCustomParams(plem)
 const standardLink = () => {
   var stdLink = new joint.shapes.standard.Link({
     router: { name: 'normal' },
-    connector: { name: 'curve' },
+    connector: { name: 'rounded' },
     attrs: {
       line: {
         stroke: "#000000",
@@ -955,6 +955,7 @@ export var mainPaper = new joint.dia.Paper({
     return true;
   },
 });
+mainPaper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
 
 // changing grid size in the settings modal
 const gridSizeInput = document.getElementById('grid-size')
@@ -1275,9 +1276,8 @@ const appendDefaultLabels = function (linkView) {
   }
 }
 
-
-mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
-
+// Function created in phase 3.1
+const addLinkToolsNew = function (linkView) {
   linkView.removeTools() // remove tools first, since tools change if connected to an element or a link this is needed.
 
   var verticesTool = new joint.linkTools.Vertices();
@@ -1293,13 +1293,12 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
   })
   // var segmentsTool = new joint.linkTools.Segments();
   var showConnectorSettings = new showLinkSettings();
-  // var boundaryTool = new joint.linkTools.Boundary();
+  // var boundary Tool = new joint.linkTools.Boundary();
 
   // PHase3.1 If connected to another link then display the targetAnchorTool as well
-  const sourceType = linkView.sourceView.model.attributes.type
-  const targetType = linkView.targetView.model.attributes.type
-  console.log(sourceType, targetType);
-  if (targetType === "standard.Link" || targetType === "RigidPipelinePiP_PR") {
+  // const sourceType = linkView.sourceView.model.attributes.type
+  // const targetType = linkView.targetView.model.attributes.type
+  if (linkView.targetView != null && (linkView.targetView.model.attributes.type === "standard.Link" || linkView.targetView.model.attributes.type === "RigidPipelinePiP_PR")) {
     var linkToolsView = new joint.dia.ToolsView({
       tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
     });
@@ -1311,6 +1310,47 @@ mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
   }
   linkView.addTools(linkToolsView)
   appendDefaultLabels(linkView)
+}
+mainPaper.on('link:connect', (linkView, evt, elementViewConnected, magnet) => {
+
+  /**
+   *  The code below is used to add link tools, but this has since been moved to the mainGraph.on('add') event
+   * 
+   */
+  addLinkToolsNew(linkView)
+  // linkView.removeTools() // remove tools first, since tools change if connected to an element or a link this is needed.
+
+  // var verticesTool = new joint.linkTools.Vertices();
+  // var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+  // var targetAnchorTool = new joint.linkTools.TargetAnchor();
+
+
+  // var removeTool = new joint.linkTools.Remove({
+  //   action: function (evt, linkView, toolView) {
+  //     linkView.model.remove({ ui: true, tool: toolView.cid });
+  //     connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+  //   }
+  // })
+  // // var segmentsTool = new joint.linkTools.Segments();
+  // var showConnectorSettings = new showLinkSettings();
+  // // var boundaryTool = new joint.linkTools.Boundary();
+
+  // // PHase3.1 If connected to another link then display the targetAnchorTool as well
+  // const sourceType = linkView.sourceView.model.attributes.type
+  // const targetType = linkView.targetView.model.attributes.type
+  // console.log(sourceType, targetType);
+  // if (targetType === "standard.Link" || targetType === "RigidPipelinePiP_PR") {
+  //   var linkToolsView = new joint.dia.ToolsView({
+  //     tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
+  //   });
+  // }
+  // else {
+  //   var linkToolsView = new joint.dia.ToolsView({
+  //     tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+  //   });
+  // }
+  // linkView.addTools(linkToolsView)
+  // appendDefaultLabels(linkView)
 
 })
 
@@ -1831,6 +1871,14 @@ mainGraph.on('add', (cell) => {
   // }
   // undoStack.push(Object.assign({}, undoJSON))
 
+
+  // Code to add link tools to a cell if it is a link
+  if (cell.isLink()) {
+    var linkView = cell.findView(mainPaper)
+    console.log(linkView);
+
+    addLinkToolsNew(linkView)
+  }
 })
 
 mainGraph.on('remove', (cell) => {
