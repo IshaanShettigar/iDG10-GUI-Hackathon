@@ -1362,6 +1362,10 @@ mainPaper.on('link:mouseleave', (linkView) => {
   linkView.hideTools()
 })
 
+mainPaper.on('link:pointerup', (linkView, evt, x, y) => {
+  addLinkToolsNew(linkView)
+})
+
 /* Adding logic to popup the element settings table and listen to input changes */
 /**
  * Adds event listeners to all the inputs on the element pop-up on the left hand side of the screen
@@ -1872,13 +1876,13 @@ mainGraph.on('add', (cell) => {
   // undoStack.push(Object.assign({}, undoJSON))
 
 
-  // Code to add link tools to a cell if it is a link
-  if (cell.isLink()) {
-    var linkView = cell.findView(mainPaper)
-    console.log(linkView);
+  // Code to add link tools to a cell if it is a link (DEPRECATED)
+  // if (cell.isLink()) {
+  //   var linkView = cell.findView(mainPaper)
+  //   // console.log(linkView);
 
-    addLinkToolsNew(linkView)
-  }
+  //   // addLinkToolsNew(linkView)
+  // }
 })
 
 mainGraph.on('remove', (cell) => {
