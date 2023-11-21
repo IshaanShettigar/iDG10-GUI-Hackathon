@@ -22,7 +22,7 @@ export function Overlay({
         <MenuBar graph={graph} paper={paper} />
         {/* @ts-ignore */}
         <DynamicSidebar data={data} className="flex-grow overflow-y-auto" />
-        <ToolBar className="self-start " graph={graph} paper={paper} />
+        <ToolBar className="self-start " />
       </div>
       {!openLibrary ? (
         <Button
