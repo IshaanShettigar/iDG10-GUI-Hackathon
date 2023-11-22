@@ -34,7 +34,8 @@
     "canvg": "^4.0.1",
     "jointjs": "^3.7.4",
     "jquery": "^3.7.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "config": {
     "forge": {

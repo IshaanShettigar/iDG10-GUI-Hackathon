@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import * as joint from 'jointjs';
+import * as XLSX from 'xlsx';
 import { subseaSeparator, subseaPump, UTA, productionWellST, injectionWellST, manifold, platform, UTH, PLET, FPSO, PLEM } from "./elements.js"
 import { addElementEventListener2, assignCustomParams, createParameterHTML, resetParameterHTML } from "./element-attrs.js"
 import { saveGraph, openFile, fixFormat, saveImage } from "./persist.js"
@@ -341,6 +342,125 @@ function downloadConnectorCSV() {
   }
 }
 
+/**
+ * Function called when user tries to print bill of material of components as XLSX
+ */
+function generateExcelForComponents() {
+  // Group cells by 'sub-type'
+  const groupedCells = mainGraph.getCells().reduce((groups, cell) => {
+    if (cell.isLink()) return groups;
+    const subType = cell.attributes.type;
+    groups[subType] = groups[subType] || [];
+    groups[subType].push(cell);
+    return groups;
+  }, {});
+
+  // Create a workbook
+  const wb = XLSX.utils.book_new();
+
+
+  // Process each group and generate Excel file
+  for (const subType in groupedCells) {
+    // Use JSONData for the headers and use the cell attributes for the values
+    const updatedFields = [];
+    JSONData.forEach((data) => {
+      if (data['sub-type'] === subType) {
+        data['fields'].forEach((field) => {
+          updatedFields.push(field['label'])
+        })
+      }
+    })
+
+    const groupData = groupedCells[subType].map(cell => ({
+      'sub-type': subType,
+      'fields': updatedFields.reduce((fields, field) => {
+        fields[field] = cell.attributes.attrs[field];
+        return fields;
+      }, {})
+    }));
+
+    const wsData = [];
+
+    // Add headers for the 'fields' properties
+    const fieldHeaders = Object.keys(groupData[0].fields);
+    wsData.push(fieldHeaders);
+
+    // Add values for each row
+    groupData.forEach(data => {
+      const fieldValues = Object.values(data.fields);
+      wsData.push(fieldValues);
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    XLSX.utils.book_append_sheet(wb, ws, subType);
+  }
+
+  // Save the workbook
+  XLSX.writeFile(wb, `Component-BOM.xlsx`);
+}
+
+/**
+ * Function called when user tries to print bill of material of connectors as XLSX
+ */
+function generateExcelForConnectors() {
+  // Group cells by 'sub-type'
+  const groupedCells = mainGraph.getCells().reduce((groups, cell) => {
+    if (!cell.isLink()) return groups;
+    const subType = cell.attributes.type;
+    groups[subType] = groups[subType] || [];
+    groups[subType].push(cell);
+    return groups;
+  }, {});
+
+  // Create a workbook
+  const wb = XLSX.utils.book_new();
+
+
+  // Process each group and generate Excel file
+  for (const subType in groupedCells) {
+    // Use JSONData for the headers and use the cell attributes for the values
+    const updatedFields = [];
+    JSONData.forEach((data) => {
+      if (data['sub-type'] === subType) {
+        data['fields'].forEach((field) => {
+          updatedFields.push(field['label'])
+        })
+      }
+    })
+
+    console.log(updatedFields)
+
+    const groupData = groupedCells[subType].map(cell => ({
+      'sub-type': subType,
+      'fields': updatedFields.reduce((fields, field) => {
+        fields[field] = cell.attributes.attrs[field];
+        return fields;
+      }, {})
+    }));
+
+    console.log(groupData)
+
+    const wsData = [];
+
+    // Add headers for the 'fields' properties
+    const fieldHeaders = Object.keys(groupData[0].fields);
+    wsData.push(fieldHeaders);
+
+    // Add values for each row
+    groupData.forEach(data => {
+      const fieldValues = Object.values(data.fields);
+      wsData.push(fieldValues);
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    XLSX.utils.book_append_sheet(wb, ws, subType);
+  }
+
+  // Save the workbook
+  XLSX.writeFile(wb, `Connector-BOM.xlsx`);
+}
 
 /**
  * Function called when user clicks on print bill of material
@@ -549,8 +669,8 @@ const downloadConnectorCSVButton = document.getElementById('download-connector-c
 const printBOMButton = document.getElementById('print-bom')
 
 generateBOMButton.addEventListener('click', openBOMModal)
-downloadComponentCSVButton.addEventListener('click', downloadComponentCSV)
-downloadConnectorCSVButton.addEventListener('click', downloadConnectorCSV)
+downloadComponentCSVButton.addEventListener('click', generateExcelForComponents)
+downloadConnectorCSVButton.addEventListener('click', generateExcelForConnectors)
 printBOMButton.addEventListener('click', printTable)
 
 

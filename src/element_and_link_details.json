@@ -17377,7 +17377,7 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Electrical Flying Lead",
+        "sub-type": "electFlyingLead",
         "name": "Electrical Flying Lead",
         "description": "Electrical Flying Lead",
         "fields": [
@@ -17681,7 +17681,7 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Rigid Pipeline-PiP PR",
+        "sub-type": "RigidPipelinePiP_PR",
         "name": "Rigid Pipeline-PiP PR",
         "description": "Rigid Pipeline-PiP PR",
         "fields": [
