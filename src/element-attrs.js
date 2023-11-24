@@ -29,38 +29,44 @@ function assignCustomParams(element) {
  * 
  */
 const createParameterHTML = (element) => {
-    let eleAttrs = element.attributes.attrs;
-    let eleName = element.attributes.type;
+    if (element.isElement()) {
+        let eleAttrs = element.attributes.attrs;
+        let eleName = element.attributes.type;
 
-    let elementSettings = document.getElementById('element-settings');
-    /*  Let us add the element name  */
-    // Create the parent div
-    const div = document.createElement('div');
-    div.className = 'parameter element-name';
+        let elementSettings = document.getElementById('element-settings');
+        /*  Let us add the element name  */
+        // Create the parent div
+        const div = document.createElement('div');
+        div.className = 'parameter element-name';
 
-    const span = document.createElement('span');
-    span.id = 'elementName';
-    div.appendChild(span);
-    elementSettings.appendChild(div)
-    for (let item of data) {
-        if (item['sub-type'] == eleName) {
-            span.textContent = item['name'];
-            for (let i = 0; i < item.fields.length; i++) {
-                let field = item.fields[i];
+        const span = document.createElement('span');
+        span.id = 'elementName';
+        div.appendChild(span);
+        elementSettings.appendChild(div)
+        for (let item of data) {
+            if (item['sub-type'] == eleName) {
+                span.textContent = item['name'];
+                for (let i = 0; i < item.fields.length; i++) {
+                    let field = item.fields[i];
 
-                if (field.type === "number") {
-                    let inputBox = createInputBox(i, field["label"], element)
-                    elementSettings.appendChild(inputBox)
-                }
-                else if (field.type === "string") {
-                    let selectBox = createSelectBox(i, field["label"], field["values"], element)
-                    elementSettings.appendChild(selectBox)
-                }
-                else {
-                    alert("FATAL ERROR IN JSON field.type is not number nor string")
+                    if (field.type === "number") {
+                        let inputBox = createInputBox(i, field["label"], element)
+                        elementSettings.appendChild(inputBox)
+                    }
+                    else if (field.type === "string") {
+                        let selectBox = createSelectBox(i, field["label"], field["values"], element)
+                        elementSettings.appendChild(selectBox)
+                    }
+                    else {
+                        alert("FATAL ERROR IN JSON field.type is not number nor string")
+                    }
                 }
             }
         }
+    }
+    else if (element.isLink()) {
+        console.log("IS LINK=true")
+
     }
 }
 

@@ -8877,7 +8877,7 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Rigid SCR PR",
+        "sub-type": "Rigid-SCR-PR",
         "name": "Rigid SCR PR",
         "description": "Rigid SCR PR",
         "fields": [
@@ -9697,7 +9697,7 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Rigid SCR WI",
+        "sub-type": "Rigid-SCR-WI",
         "name": "Rigid SCR WI",
         "description": "Rigid SCR WI",
         "fields": [
@@ -10517,7 +10517,7 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Rigid SCR GL",
+        "sub-type": "Rigid-SCR-GL/GI",
         "name": "Rigid SCR GL",
         "description": "Rigid SCR GL",
         "fields": [
@@ -11337,9 +11337,9 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Flexible-Flowline-PR",
-        "name": "Flexible Flowline PR",
-        "description": "Flexible Flowline PR",
+        "sub-type": "Flexible-Pipeline-PR",
+        "name": "Flexible Pipeline PR",
+        "description": "Flexible Pipeline PR",
         "fields": [
             {
                 "name": "Operating Pressure Rating",
@@ -11932,9 +11932,9 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Flexible-Flowline-WI",
-        "name": "Flexible Flowline WI",
-        "description": "Flexible Flowline WI",
+        "sub-type": "Flexible-Pipeline-WI",
+        "name": "Flexible Pipeline WI",
+        "description": "Flexible Pipeline WI",
         "fields": [
             {
                 "name": "Operating Pressure Rating",
@@ -12527,9 +12527,9 @@
     },
     {
         "main-type": "connector",
-        "sub-type": "Flexible-Flowline-GL",
-        "name": "Flexible Flowline GL",
-        "description": "Flexible Flowline GL",
+        "sub-type": "Flexible-Pipeline-GL/GI",
+        "name": "Flexible Pipeline GL/GI",
+        "description": "Flexible Pipeline GL/GI",
         "fields": [
             {
                 "name": "Operating Pressure Rating",
