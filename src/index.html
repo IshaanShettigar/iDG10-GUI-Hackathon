@@ -8,7 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.6.2/joint.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./icons/icon.ico" />
+    <link rel="icon" type="image/x-icon" href="/icons/icon.ico" />
     <title>Subsea Field Layout Designer</title>
   </head>
 
@@ -17,7 +17,7 @@
       <!--Top menu, with HamburgerButton and ElementButton`-->
       <div class="top-buttons-menu">
         <button class="burger-button" id="burger-button">
-          <img src="./icons/menu-burger.png" class="menu-icon" />
+          <img src="icons/menu-burger.png" class="menu-icon" />
         </button>
         <button class="element-button" id="element-button">Element</button>
       </div>
@@ -28,31 +28,31 @@
       <div class="sub-menu-wrap" id="sub-menu-wrap">
         <div class="sub-menu">
           <div class="open-file" id="open-file">
-            <img src="./icons/open-file-24.png" />
+            <img src="/icons/open-file-24.png" />
             <span>Open</span>
           </div>
           <div class="save-file" id="save-file">
-            <img src="./icons/download-32.png" />
+            <img src="/icons/download-32.png" />
             <span>Save to...</span>
           </div>
           <div class="save-as-png" id="save-as-png">
-            <img src="./icons/png-50.png" />
+            <img src="/icons/png-50.png" />
             <span>Save as Image</span>
           </div>
           <div class="generate-bom" id="generate-bom">
-            <img src="./icons/bill-50.png" />
+            <img src="/icons/bill-50.png" />
             <span>Generate BoM</span>
           </div>
           <div class="clear-paper" id="clear-paper">
-            <img src="./icons/delete.png" />
+            <img src="/icons/delete.png" />
             <span>Reset the canvas</span>
           </div>
           <div class="settings" id="settings-button">
-            <img src="./icons/settings-50.png" />
+            <img src="/icons/settings-50.png" />
             <span>Settings</span>
           </div>
           <!-- <div class="help" id="help">
-          <img src="./icons/help-32.png" />
+          <img src="/icons/help-32.png" />
           <span>Help</span>
         </div> -->
         </div>
@@ -430,7 +430,7 @@
       <!--Settings Pop-Up, when Settings icon is clicked in the hamburger menu-->
       <section class="settings-modal hidden" id="settings-modal">
         <button class="cross-btn" id="close-modal">
-          <img src="./icons/cross-50.png" class="" />
+          <img src="/icons/cross-50.png" class="" />
         </button>
         <div class="within-modal">
           <div class="paper-background-color">
@@ -484,7 +484,7 @@
       <!-- To be displayed on click of the clear background option in the hamburger menu-->
       <div class="clear-background-modal hidden" id="clear-background-modal">
         <button class="cross-btn" id="close-modal-bg">
-          <img src="./icons/cross-50.png" class="" />
+          <img src="/icons/cross-50.png" class="" />
         </button>
         <label>Are you sure you want to clear the entire canvas?</label>
         <div class="buttons-div">
@@ -509,11 +509,11 @@
       <!-- The Zoom-in Zoom-out and Reset-Zoom buttons in the bottom right -->
       <div class="footer-tools">
         <button class="zoom-in" id="zoom-in">
-          <img src="./icons/zoom-in-50.png" />
+          <img src="/icons/zoom-in-50.png" />
         </button>
         <button class="reset-zoom" id="reset-zoom">Reset</button>
         <button class="zoom-out" id="zoom-out">
-          <img src="./icons/zoom-out-50.png" />
+          <img src="/icons/zoom-out-50.png" />
         </button>
       </div>
 
@@ -521,7 +521,7 @@
       <div class="element-menu-wrap" id="element-menu-wrap">
         <div class="element-menu">
           <!-- <button class="pin-button" id="pin-button">
-          <img src="./icons/vertical-pin.png" alt="pin" />
+          <img src="/icons/vertical-pin.png" alt="pin" />
         </button> -->
           <span id="comp-lib-span">Component Library</span>
         </div>
@@ -533,6 +533,6 @@
         </div>
       </div>
     </nav>
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

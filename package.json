@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "main": "electron.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "start": "electron-forge start",
@@ -31,10 +31,12 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
     "canvg": "^4.0.1",
     "jointjs": "^3.7.4",
     "jquery": "^3.7.0",
     "lodash": "^4.17.21",
+    "react": "^18.2.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "config": {
