@@ -742,10 +742,16 @@ let mapping = {
 }
 export { mapping }
 
-const getDOMInputNodes = () => {
-  let childrenArr = document.getElementById('element-settings').childNodes
+const getDOMInputNodes = (choice) => {
+  if (choice == "element") {
+    var childrenArr = document.getElementById('element-settings').childNodes
+  }
+  else {
+    var childrenArr = document.getElementById('connector-settings').childNodes
+  }
   // This array will hold all the input elements that I need to populate (i.e the inputs and select)
   let inputArray = []
+  console.log(childrenArr)
   for (let i = 0; i < childrenArr.length; i++) {
     if (childrenArr[i].querySelector('input')) {
       inputArray.push(childrenArr[i].querySelector('input'))
@@ -766,17 +772,21 @@ const getDOMInputNodes = () => {
  * of the screen
  * @param {joint.dia.Element} model 
  */
-const populateElementSettings = (model) => {
+export const populateElementSettings = (model) => {
 
   console.log(`Populating ${model.attributes.type}`)
   let modelAttrs = model.attributes.attrs
 
-  let inputArray = getDOMInputNodes();
+  if (model.isElement()) { var inputArray = getDOMInputNodes("element"); }
+
+  if (model.isLink()) { var inputArray = getDOMInputNodes("link") }
+
 
   // Now that we have the required DOMElements in the inputArray let us traverse the array and attach event listeners.
   inputArray.forEach((DOMinput) => {
     DOMinput.value = modelAttrs[DOMinput.id]
   })
+  console.log(inputArray);
   // for (let i = 1; i <= 18; i++) {
   //   // if (modelAttrs[`parameter${i}`] != null) {
   //   // copy to elementsettings
@@ -1311,7 +1321,7 @@ mainPaper.on("element:pointerclick", function (cellView) {
   selectedCellView = displayHighlight(cellView, mainGraph, mask, mainPaper)
   createParameterHTML(cellView.model)
   populateElementSettings(cellView.model)
-  elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
+  // elementSettingsName.innerHTML = `<strong>${selectedCellView.model.attributes.type}</strong>`
   elementSettingsWrapper.classList.add('is-active')
   connectorSettingsWrapper.classList.remove('is-active')
 
@@ -1683,17 +1693,17 @@ var CONNECTOR_ATTRS = {
     stroke: "red",
     strokeWidth: 3
   },
-  "Flexible Pipeline-PR": {
+  "Flexible-Pipeline-PR": {
     stroke: '#02a31d',
     strokeDasharray: "9",
     strokeWidth: 3
   },
-  "Flexible Pipeline-WI": {
+  "Flexible-Pipeline-WI": {
     stroke: '#0247c7',
     strokeDasharray: "9",
     strokeWidth: 3
   },
-  "Flexible Pipeline-GL/GI": {
+  "Flexible-Pipeline-GL/GI": {
     stroke: "#cc0202",
     strokeDasharray: "9",
     strokeWidth: 3
@@ -1806,7 +1816,7 @@ var CONNECTOR_ATTRS = {
  * It uses the global variable selectedLinkView and CONNECTOR_ATTRS as well as the RigidPipeline Pip PR if it is required. 
  * It handles all the logic necessary to change the link attributes based on the value specified by the user
  */
-function onConnectorChange() {
+export function onConnectorChange(connector, installationAndConstructionVessel, subseaIntervention) {
   if (selectedLinkView != null) {
     selectedLinkView.model.attributes.attrs['connector'] = connector.value;
     /* Insert logic to change connector attributes based on type chosen */
@@ -1877,7 +1887,66 @@ function onConnectorChange() {
         selectedLinkView.addTools(linkToolsView)
       }
     }
+    if (model.attributes.type == "electFlyingLead") {
+      console.log("Changing from Elect Flying lead to normal link");
+      const newLink = standardLink();
+      newLink.source(model.attributes.source)
+      newLink.target(model.attributes.target)
+      newLink.attributes.vertices = model.attributes.vertices
+      newLink.addTo(mainGraph)
+      for (let i = 1; i <= 18; i += 1) {
+        newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
+      }
+      newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
+      newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
+      newLink.attributes.connector["name"] = model.attributes.connector["name"]
+      newLink.attributes.router["name"] = model.attributes.router["name"]
+
+      model.remove()
+      setSelectedLinkView(newLink.findView(mainPaper))
+
+      /* Add the default labels to the link */
+      appendDefaultLabels(selectedLinkView)
+      /* To add the same labels as before */
+      selectedLinkView.model.label(0, {
+        attrs: {
+          label: {
+            height: '5%',
+            width: '5%',
+            "href": `./icons/${installationAndConstructionVessel.value}.png`
+          },
+        }
+      })
+      selectedLinkView.model.label(1, {
+        attrs: {
+          label: {
+            height: '5%',
+            width: '5%',
+            "href": `./icons/${subseaIntervention.value}.png`
+          },
+        }
+      })
+      model = selectedLinkView.model
+      /* Add the Tools to the new link */
+      var verticesTool = new joint.linkTools.Vertices();
+      var removeTool = new joint.linkTools.Remove({
+        action: function (evt, linkView, toolView) {
+          linkView.model.remove({ ui: true, tool: toolView.cid });
+          connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
+        }
+      })
+      var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+      var targetAnchorTool = new joint.linkTools.TargetAnchor();
+      // var segmentsTool = new joint.linkTools.Segments();
+      var showConnectorSettings = new showLinkSettings();
+      // var boundaryTool = new joint.linkTools.Boundary();
+      var linkToolsView = new joint.dia.ToolsView({
+        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
+      });
+      selectedLinkView.addTools(linkToolsView)
+    }
     if (connector.value != 'Rigid-Pipeline-PiP PR' && connector.value != 'Elect-Flying-Lead') {
+      console.log("HELLO", model.attributes.attrs.line, CONNECTOR_ATTRS[connector.value], connector.value);
       model.attributes.attrs.line["stroke"] = CONNECTOR_ATTRS[connector.value]["stroke"]
       model.attributes.attrs.line["strokeWidth"] = CONNECTOR_ATTRS[connector.value]["strokeWidth"]
       model.attributes.attrs.line["strokeLineJoin"] = null
@@ -1892,11 +1961,13 @@ function onConnectorChange() {
 
       if (CONNECTOR_ATTRS[connector.value]["router"]) {
         model.router(CONNECTOR_ATTRS[connector.value]["router"])
-        populateConnectorSettings(model)
+        // populateConnectorSettings(model)
+        populateElementSettings(model) //test, its the same function
       }
       else {
         model.router("normal")
-        populateConnectorSettings(model)
+        // populateConnectorSettings(model)
+        populateElementSettings(model)
       }
 
       if (CONNECTOR_ATTRS[connector.value]["connectorShape"]) {
@@ -1910,21 +1981,24 @@ function onConnectorChange() {
       const newLink = new RigidPipelinePiP_PR();
       newLink.source(model.attributes.source)
       newLink.target(model.attributes.target)
+
       newLink.attributes.vertices = model.attributes.vertices
+
       newLink.addTo(mainGraph)
       // copy the selectedLinkView.models attributes to the new rigid Pips link
 
       for (let i = 1; i <= 18; i += 1) {
         newLink.attributes.attrs[`parameter${i}`] = model.attributes.attrs[`parameter${i}`]
       }
+
       newLink.attributes.attrs['subseaIntervention'] = model.attributes.attrs['subseaIntervention']
       newLink.attributes.attrs['installationAndConstructionVessel'] = model.attributes.attrs['installationAndConstructionVessel']
       newLink.attributes.connector["name"] = model.attributes.connector["name"]
       newLink.attributes.router["name"] = model.attributes.router["name"]
-
       console.log(newLink);
       console.log(model);
       model.remove()
+
       setSelectedLinkView(newLink.findView(mainPaper))
 
       appendDefaultLabels(selectedLinkView)
@@ -2032,10 +2106,9 @@ function onConnectorChange() {
 }
 
 // Adds an event listener to the connector input on the link parameters pop-up on the left hand side of the screen
-connector.addEventListener('change', onConnectorChange)
+// connector.addEventListener('change', onConnectorChange)
 
-
-subseaIntervention.addEventListener('change', () => {
+export const subseaInterventionCallback = (subseaIntervention) => {
   if (selectedLinkView != null) {
     selectedLinkView.model.attributes.attrs['subseaIntervention'] = subseaIntervention.value;
     selectedLinkView.model.label(1, {
@@ -2051,8 +2124,9 @@ subseaIntervention.addEventListener('change', () => {
   else {
     alert("No selected link 3")
   }
-})
-installationAndConstructionVessel.addEventListener('change', () => {
+}
+
+export const installVesselCallback = (installationAndConstructionVessel) => {
   if (selectedLinkView != null) {
     selectedLinkView.model.attributes.attrs['installationAndConstructionVessel'] = installationAndConstructionVessel.value;
     selectedLinkView.model.label(0, {
@@ -2068,7 +2142,8 @@ installationAndConstructionVessel.addEventListener('change', () => {
   else {
     alert("No selected link 4")
   }
-})
+}
+
 
 connectionShape.addEventListener('change', function () {
   if (selectedLinkView != null) {
