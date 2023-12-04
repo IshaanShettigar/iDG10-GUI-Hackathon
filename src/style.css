@@ -53,7 +53,8 @@ nav button:hover {
   max-width: 200px;
 }
 
-.sub-menu-wrap {
+.sub-menu-wrap,
+.rbs-menu-wrapper {
   margin-top: 10px;
   width: 200px;
   background: #ffffff;
@@ -75,13 +76,28 @@ nav button:hover {
   margin-left: 10px;
 }
 
+.rbs-menu-wrapper {
+  margin-top: 170px;
+  transition: none !important;
+  margin-left: 215px;
+  max-height: 195px;
+  max-width: 250px;
+  display: none;
+}
+
+.rbs-menu-wrapper.open-menu {
+  display: block;
+}
+
 .open-file,
 .save-file,
 .help,
 .clear-paper,
 .generate-bom,
 .save-as-png,
-.settings {
+.settings,
+.rbs-button,
+.rbs-menu-option {
   display: flex;
   flex-direction: row;
   margin: 0px 5px;
@@ -107,18 +123,32 @@ nav button:hover {
 .clear-paper:hover,
 .generate-bom:hover,
 .save-as-png:hover,
-.settings:hover {
+.settings:hover,
+.rbs-button:hover,
+.rbs-menu-option:hover {
   background-color: rgb(240, 240, 240);
   cursor: pointer;
 }
 
-/* Disabling save as png for now */
-/* .save-as-png span {
+/* Disabling options for now */
+#SPIP span,
+#SPWT span,
+#SPP span {
   color: #cacaca;
-} */
+}
+
+#SPIP:hover,
+#SPWT:hover,
+#SPP:hover {
+  cursor: default;
+  background-color: #ffffff;
+}
+
+
 
 /* Settings modal */
-.settings-modal {
+.settings-modal,
+.rbs-modal {
   width: 500px;
   height: 500px;
   background: #ffffff;
@@ -134,8 +164,18 @@ nav button:hover {
   margin: auto auto;
 }
 
+
 .within-modal {
   width: 25rem;
+}
+
+.settings-modal span,
+.rbs-modal span {
+  margin: 5px 0;
+}
+
+.rbs-calculate-btn {
+  margin: 5em auto;
 }
 
 .paper-background-color {
@@ -161,9 +201,6 @@ nav button:hover {
   transition: 0.1s;
 }
 
-.settings-modal span {
-  margin: 5px 0;
-}
 
 .paper-background-color .paper-color-btn:hover {
   box-shadow: rgba(150, 150, 150, 0.5) 0 2px 5px 0;
@@ -224,7 +261,8 @@ nav button:hover {
 
 /* cross button */
 .settings-modal .cross-btn,
-.clear-background-modal .cross-btn {
+.clear-background-modal .cross-btn,
+.rbs-modal .cross-btn {
   padding: 3px 5px 0 5px;
   /* border: 1px solid #d5d9d9; */
   border: none;
@@ -236,25 +274,61 @@ nav button:hover {
 }
 
 .settings-modal .cross-btn:hover,
-.clear-background-modal .cross-btn:hover {
+.clear-background-modal .cross-btn:hover,
+.rbs-modal .cross-btn:hover {
   background-color: rgb(240, 240, 240);
 }
 
-.settings-modal .cross-btn img {
+.settings-modal .cross-btn img,
+.rbs-modal .cross-btn img {
   height: 18px;
   width: 18px;
 }
 
-.paper-background-type {
-  display: flex;
-  flex-direction: column;
-  margin: 10px auto 20px auto;
+.rbs-modal input {
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+  max-width: 80px;
+  padding: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: px 8px;
 }
 
-.paper-background-type .grid-type {
-  width: 200px;
-  padding: 5px 4px;
-  margin-top: 4px;
+.rbs-modal span {
+  margin: 5px 5px 0 5px;
+}
+
+.rbs-modal table {
+  margin: auto auto;
+  border-collapse: collapse;
+  /* border-spacing: 0; */
+}
+
+.rbs-modal hr {
+  width: 220% !important;
+  margin: 3px auto !important;
+}
+
+.rbs-modal tr {
+  /* Hacky way of applying margin to table-row as it doesnt work usually*/
+  border-top: 0.25em solid transparent;
+  border-bottom: 0.25em solid transparent;
+}
+
+.rbs-calculate-btn {
+  display: block !important;
+  margin: 2em auto !important;
+}
+
+.rbs-result {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.rbs-result-div {
+  margin: 2em auto;
+  text-align: center;
 }
 
 /* Overlay for the modal, to blur the background */
@@ -271,9 +345,24 @@ nav button:hover {
   z-index: 99;
 }
 
-.settings-modal {
+.settings-modal,
+.rbs-modal {
   z-index: 100;
 }
+
+
+.paper-background-type {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto 20px auto;
+}
+
+.paper-background-type .grid-type {
+  width: 200px;
+  padding: 5px 4px;
+  margin-top: 4px;
+}
+
 
 /* Custom color pop up within settings modal */
 .custom-color-pop-up {
@@ -626,8 +715,9 @@ th {
   font-weight: 600;
 }
 
-/* styling the print pdf and print csv buttons*/
-.download-csv {
+/* styling the print pdf and print csv buttons AND the calculate rbs modal button*/
+.download-csv,
+.rbs-calculate-btn {
   appearance: none;
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, 0.15);
@@ -652,28 +742,33 @@ th {
   margin-right: 20px;
 }
 
-.download-csv:focus:not(:focus-visible):not(.focus-visible) {
+.download-csv:focus:not(:focus-visible):not(.focus-visible),
+.rbs-calculate-btn:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
 
-.download-csv:hover {
+.download-csv:hover,
+.rbs-calculate-btn:hover {
   background-color: #2c974b;
 }
 
-.download-csv:focus {
+.download-csv:focus,
+.rbs-calculate-btn:focus {
   box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
   outline: none;
 }
 
-.download-csv:disabled {
+.download-csv:disabled,
+.rbs-calculate-btn:disabled {
   background-color: #94d3a2;
   border-color: rgba(27, 31, 35, 0.1);
   color: rgba(255, 255, 255, 0.8);
   cursor: default;
 }
 
-.download-csv:active {
+.download-csv:active,
+.rbs-calculate-btn:active {
   background-color: #298e46;
   box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }

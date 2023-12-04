@@ -9,6 +9,7 @@ import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, el
 import { showLinkSettings } from "./showLinkSettings.js"
 import { selectedLinkView, setSelectedLinkView } from './selectedLinkView.js';
 import JSONData from './element_and_link_details.json' assert { type: 'json' };
+import { handleRBS } from './expert.js';
 
 /** Defining fsm global variable for element undo redo */
 let STATE = 0;
@@ -32,11 +33,15 @@ let menuButton = document.getElementById("burger-button")
 
 menuButton.addEventListener("click", () => {
   subMenuWrap.classList.toggle("open-menu")
+  rbsWrapper.classList.remove('open-menu')
+
 })
 
 /* Right hand side element toolbar menu */
 let elementButton = document.getElementById('element-button')
 let elementMenuWrap = document.getElementById('element-menu-wrap')
+
+
 // Got rid of pinning functionality
 // let pinButton = document.getElementById('pin-button');
 
@@ -66,6 +71,16 @@ const saveAsPNGButton = document.getElementById('save-as-png')
 saveAsPNGButton.addEventListener('click', () => {
   saveImage(mainPaper.svg, 'Diagram', "png", "#ffffff")
 }) // not working as of 18th June
+
+/* RBS Sub menu */
+const rbsBtn = document.getElementById('rbs-button');
+const rbsWrapper = document.getElementById('rbs-menu-wrapper')
+
+rbsBtn.addEventListener("click", function () {
+
+  rbsWrapper.classList.add('open-menu')
+})
+
 
 /* Settings Modal  */
 const settingsBtn = document.getElementById("settings-button");
@@ -120,9 +135,16 @@ clearCanvas.addEventListener("click", function () {
 });
 
 
+// rbs-modal div
+const rbsModalDiv = document.getElementById('rbs-modal')
+const rbsModalCrossBtn = document.getElementById('close-modal-rbs')
+
+
 const closeModal = function () {
   settingsModal.classList.add("hidden");
   modalOverlay.classList.add("hidden");
+  rbsWrapper.classList.remove('open-menu')
+  rbsModalDiv.classList.add('hidden')
   subMenuWrap.classList.toggle("open-menu")
   closeCustomColorPopUp();
   clearCanvasModal.classList.add("hidden");
@@ -143,6 +165,8 @@ confirmClearBG.addEventListener("click", function () {
   connectorSettingsWrapper.classList.remove('is-active')
   elementSettingsWrapper.classList.remove('is-active')
 })
+
+rbsModalCrossBtn.addEventListener('click', closeModal)
 
 /* Code to highlight active grid color in settings modals */
 const color1 = document.getElementById("color1")
@@ -672,6 +696,14 @@ generateBOMButton.addEventListener('click', openBOMModal)
 downloadComponentCSVButton.addEventListener('click', generateExcelForComponents)
 downloadConnectorCSVButton.addEventListener('click', generateExcelForConnectors)
 printBOMButton.addEventListener('click', printTable)
+
+/* Rule Based System Code (Pipeline Expert) */
+const pipeMaterialBtn = document.getElementById('pipe-material')
+pipeMaterialBtn.addEventListener('click', () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Pipe Material Selection')
+})
 
 
 
@@ -1350,6 +1382,7 @@ mainPaper.on("blank:pointerclick", function () {
   elementSettingsWrapper.classList.remove('is-active')
   connectorSettingsWrapper.classList.remove('is-active')
   subMenuWrap.classList.remove('open-menu')
+  rbsWrapper.classList.remove('open-menu')
 });
 
 const connectorSettingsWrapper = document.getElementById('connector-settings-wrapper')

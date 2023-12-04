@@ -22,7 +22,7 @@
         <button class="element-button" id="element-button">Element</button>
       </div>
       <div id="main-paper-wrapper">
-        <div id="main-paper-div"></div>
+        <div id="main-paper-div"></div> <!-- In javascript, we attach the main paper to this div -->
       </div>
       <!--Hamburger Menu-->
       <div class="sub-menu-wrap" id="sub-menu-wrap">
@@ -47,6 +47,10 @@
             <img src="/icons/delete.png" />
             <span>Reset the canvas</span>
           </div>
+          <div class="rbs-button" id="rbs-button">
+            <img src="/icons/ai-50-brain.png" />
+            <span>RBS</span>
+          </div>
           <div class="settings" id="settings-button">
             <img src="/icons/settings-50.png" />
             <span>Settings</span>
@@ -57,6 +61,31 @@
         </div> -->
         </div>
       </div>
+
+      <!-- RBS Sub Menu -->
+      <div class="rbs-menu-wrapper" id="rbs-menu-wrapper">
+        <div class="rbs-menu sub-menu">
+          <div class="rbs-menu-option" id="pipe-bore">
+            <span>Pipe Bore P&T Drop</span>
+          </div>
+          <div class="rbs-menu-option" id="pipe-material">
+            <span>Pipe Material Selection</span>
+          </div>
+          <div class="rbs-menu-option" id="SPWT">
+            <span>Subsea Pipeline WT Design</span>
+          </div>
+          <div class="rbs-menu-option" id="SPIP">
+            <span>Subsea Piepline In-place Design</span>
+          </div>
+          <div class="rbs-menu-option" id="rbs-installation">
+            <span>Installation Method</span>
+          </div>
+          <div class="rbs-menu-option" id="SPP">
+            <span>Subsea Pipeline Protection</span>
+          </div>
+        </div>
+      </div>
+
 
       <div id="bom-modal" class="bom-modal">
         <div class="bom-modal-content" id="bom-modal-content">
@@ -468,7 +497,7 @@
             >
             <input type="number" step="1" class="grid-size" id="grid-size" />
           </div>
-          <hr />
+          <!-- <hr /> -->
           <!-- <div class="advanced-link-settings">
           <button id="adv-link-settings-button">
             Advanced Link Settings
@@ -479,6 +508,18 @@
           <span>Hex code</span>
           <input type="text" id="custom-color-input" placeholder="#ffffff" />
         </section>
+      </section>
+
+      <section class="rbs-modal hidden" id="rbs-modal">
+        <button class="cross-btn" id="close-modal-rbs">
+          <img src="/icons/cross-50.png" class="" />
+        </button>
+
+        <div class="within-modal" id="within-modal">
+          
+          <!-- Content is generated dynamically based on which option is chosen in the rbs  -->
+          
+        </div>
       </section>
 
       <!-- To be displayed on click of the clear background option in the hamburger menu-->
@@ -493,7 +534,7 @@
         </div>
       </div>
 
-      <div class="settings-overlay hidden" id="settings-overlay"></div>
+      <div class="settings-overlay hidden" id="settings-overlay"></div> <!--We re-use this overlay for other modals so technically, its not just a settings modal-->
 
       <div class="tooltip-container hidden" id="tooltip-container-id">
         <span style="font-weight: 600; margin-bottom: 5px" id="cname"
