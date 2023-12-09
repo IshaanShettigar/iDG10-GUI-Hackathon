@@ -165,6 +165,10 @@ nav button:hover {
 }
 
 
+.rbs-modal {
+  height: fit-content;
+}
+
 .within-modal {
   width: 25rem;
 }
@@ -285,7 +289,8 @@ nav button:hover {
   width: 18px;
 }
 
-.rbs-modal input {
+.rbs-modal input,
+.rbs-modal select {
   border: 1px solid #a7a7a7;
   border-radius: 5px;
   max-width: 80px;
@@ -295,7 +300,11 @@ nav button:hover {
   padding: px 8px;
 }
 
-.rbs-modal span {
+.rbs-modal select {
+  max-width: 180px;
+}
+
+.rbsr .rbs-modal span {
   margin: 5px 5px 0 5px;
 }
 
@@ -306,7 +315,7 @@ nav button:hover {
 }
 
 .rbs-modal hr {
-  width: 220% !important;
+  width: 105% !important;
   margin: 3px auto !important;
 }
 
@@ -314,6 +323,10 @@ nav button:hover {
   /* Hacky way of applying margin to table-row as it doesnt work usually*/
   border-top: 0.25em solid transparent;
   border-bottom: 0.25em solid transparent;
+}
+
+.rbs-modal td {
+  text-align: center;
 }
 
 .rbs-calculate-btn {

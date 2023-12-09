@@ -37,7 +37,8 @@
     "jquery": "^3.7.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
+    "xlsx-populate": "^1.21.0"
   },
   "config": {
     "forge": {

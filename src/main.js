@@ -706,6 +706,19 @@ pipeMaterialBtn.addEventListener('click', () => {
 })
 
 
+const installationBtn = document.getElementById('rbs-installation')
+installationBtn.addEventListener('click', () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Installation')
+})
+
+const PTDropBtn = document.getElementById('pipe-bore')
+PTDropBtn.addEventListener("click", () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Pipe Bore P&T Drop')
+})
 
 /* Element Settings */
 const elementP1 = document.getElementById('ele-p1')
