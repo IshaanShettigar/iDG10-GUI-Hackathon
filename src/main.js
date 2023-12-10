@@ -78,7 +78,7 @@ const rbsWrapper = document.getElementById('rbs-menu-wrapper')
 
 rbsBtn.addEventListener("click", function () {
 
-  rbsWrapper.classList.add('open-menu')
+  rbsWrapper.classList.toggle('open-menu')
 })
 
 
@@ -431,7 +431,7 @@ function generateExcelForConnectors() {
   // Group cells by 'sub-type'
   const groupedCells = mainGraph.getCells().reduce((groups, cell) => {
     if (!cell.isLink()) return groups;
-    const subType = cell.attributes.type;
+    const subType = cell.attributes.attrs.connector;
     groups[subType] = groups[subType] || [];
     groups[subType].push(cell);
     return groups;
@@ -440,9 +440,10 @@ function generateExcelForConnectors() {
   // Create a workbook
   const wb = XLSX.utils.book_new();
 
-
+  console.log("grouped cells: ", groupedCells);
   // Process each group and generate Excel file
   for (const subType in groupedCells) {
+    console.log("sub Type: ", subType);
     // Use JSONData for the headers and use the cell attributes for the values
     const updatedFields = [];
     JSONData.forEach((data) => {
@@ -620,19 +621,6 @@ function createTable() {
         }
       })
 
-      // LEGACY PHASE 2 CODE
-      // for (let i = 1; i <= 18; i += 1) {
-      //   const subRow = document.createElement('tr')
-      //   const parameterName = document.createElement('td')
-      //   const parameterValue = document.createElement('td');
-      //   parameterName.textContent = `Parameter${i}`
-      //   parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
-      //   subRow.appendChild(parameterName)
-      //   subRow.appendChild(parameterValue)
-      //   subTable.appendChild(subRow)
-      //   // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-      // }
-
       // Adding subsea internvetion
       const si = document.createElement('tr')
       const siKey = document.createElement('td')
@@ -691,18 +679,6 @@ function createTable() {
         }
       })
 
-      // PHASE 2 CODE
-      // for (let i = 1; i <= 18; i += 1) {
-      //   const subRow = document.createElement('tr')
-      //   const parameterName = document.createElement('td')
-      //   const parameterValue = document.createElement('td');
-      //   parameterName.textContent = `Parameter${i}`
-      //   parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
-      //   subRow.appendChild(parameterName)
-      //   subRow.appendChild(parameterValue)
-      //   subTable.appendChild(subRow)
-      //   // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-      // }
       tdSubTable.appendChild(subTable)
       row.appendChild(tdSubTable)
       componentTable.appendChild(row);
@@ -868,7 +844,7 @@ export const populateElementSettings = (model) => {
 
 
 /* Connector Settings */
-/**
+/** not being used anymore
  * Analogous to the populateElementSettings function, except it populates all link parameters
  * @param {joint.dia.Link} model 
  */
