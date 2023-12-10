@@ -232,6 +232,7 @@ const handleRBS = function (filePath, sheetName) {
     calcButton.id = 'rbs-calculate-btn';
     calcButton.textContent = "Calculate"
     withinModalDiv.appendChild(calcButton)
+
     if (sheetName === "Pipe Material Selection") {
         // Add event listener so that when button is clicked it displays the correct Pipe Material
         calcButton.addEventListener('click', () => calculatePipeMaterial(jsonData))

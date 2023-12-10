@@ -599,17 +599,40 @@ function createTable() {
       const tdSubTable = document.createElement('td')
       const subTable = document.createElement('table')
       subTable.classList.add('inner-table')
-      for (let i = 1; i <= 18; i += 1) {
-        const subRow = document.createElement('tr')
-        const parameterName = document.createElement('td')
-        const parameterValue = document.createElement('td');
-        parameterName.textContent = `Parameter${i}`
-        parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
-        subRow.appendChild(parameterName)
-        subRow.appendChild(parameterValue)
-        subTable.appendChild(subRow)
-        // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
-      }
+
+      JSONData.forEach((data) => {
+        console.log(cell);
+        if (data['sub-type'] === cell.attributes.attrs.connector) {
+
+          data['fields'].forEach((field) => {
+            const subRow = document.createElement('tr')
+            const parameterName = document.createElement('td')
+            const parameterValue = document.createElement('td');
+
+            parameterName.textContent = field['label']
+            parameterValue.textContent = cell.attributes.attrs[field['label']]
+
+            subRow.appendChild(parameterName)
+            subRow.appendChild(parameterValue)
+            subTable.appendChild(subRow)
+          })
+
+        }
+      })
+
+      // LEGACY PHASE 2 CODE
+      // for (let i = 1; i <= 18; i += 1) {
+      //   const subRow = document.createElement('tr')
+      //   const parameterName = document.createElement('td')
+      //   const parameterValue = document.createElement('td');
+      //   parameterName.textContent = `Parameter${i}`
+      //   parameterValue.textContent = cell.attributes.attrs[`parameter${i}`]
+      //   subRow.appendChild(parameterName)
+      //   subRow.appendChild(parameterValue)
+      //   subTable.appendChild(subRow)
+      //   // console.log(`parameter${i}: ${cell.attributes.attrs[`parameter${i}`]}`);
+      // }
+
       // Adding subsea internvetion
       const si = document.createElement('tr')
       const siKey = document.createElement('td')
