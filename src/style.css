@@ -498,10 +498,11 @@ hr {
   display: block;
 }
 
+/* 
 .element-settings-wrapper::-webkit-scrollbar,
 .connector-settings-wrapper::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .element-settings,
 .connector-settings {
@@ -881,4 +882,35 @@ th {
 
 .si-icv-modal .parameter:last-of-type {
   margin-bottom: 25px;
+}
+
+.si-icv-modal {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 650px;
+}
+
+.si-icv-modal::-webkit-scrollbar,
+.element-settings-wrapper::-webkit-scrollbar,
+.connector-settings-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.si-icv-modal::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.si-icv-modal::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.si-icv-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.si-icv-modal::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, .9);
 }
