@@ -19,6 +19,7 @@ export default defineConfig({
                 ])
             ),
         },
+        outDir: '../dist'
     },
     preview: {
         port: 8080,

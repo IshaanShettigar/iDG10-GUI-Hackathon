@@ -20166,5 +20166,147 @@
                 "required": true
             }
         ]
+    },
+    {
+        "main-type": "installation-and-construction-vessel",
+        "sub-type": "Reel-Lay",
+        "name": "Reel-Lay",
+        "description": "Reel-Lay",
+        "fields": [
+            {
+                "name": "Vessel Name",
+                "label": "Vessel Name",
+                "description": "Vessel Name",
+                "type": "string",
+                "default-value": "ABC",
+                "values": [
+                    "ABC",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
+                ],
+                "required": true
+            },
+            {
+                "name": "Reel Radius (m)",
+                "label": "Reel Radius (m)",
+                "description": "Reel Radius (m)",
+                "type": "number",
+                "default-unit": "m",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Vessel Pipe loading capacity (Te)",
+                "label": "Vessel Pipe loading capacity (Te)",
+                "description": "Vessel Pipe loading capacity (Te)",
+                "type": "number",
+                "default-unit": "Te",
+                "default-value": 0,
+                "step": 1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Vessel mobilisation duration (days)",
+                "label": "Vessel mobilisation duration (days)",
+                "description": "Vessel mobilisation duration (days)",
+                "type": "number",
+                "default-unit": "day",
+                "default-value": 0,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pipeline stalk spooling rate (km/hr)",
+                "label": "Pipeline stalk spooling rate (km/hr)",
+                "description": "Pipeline stalk spooling rate (km/hr)",
+                "type": "number",
+                "default-unit": "km/hr",
+                "default-value": 0,
+                "step": 0.1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Estimated Vessel transit duration to field (days)",
+                "label": "Estimated Vessel transit duration to field (days)",
+                "description": "Vessel transit duration to field (days)",
+                "type": "number",
+                "default-unit": "day",
+                "default-value": 10,
+                "step": 0.1,
+                "min": 0,
+                "max": 10000,
+                "required": true
+            },
+            {
+                "name": "Pipeline installation rate (km/hr)",
+                "label": "Pipeline installation rate (km/hr)",
+                "description": "Pipeline installation rate (km/hr)",
+                "type": "number",
+                "default-unit": "km/hr",
+                "default-value": 0,
+                "step": 0.1,
+                "min": 0,
+                "max": 1000,
+                "required": true
+            },
+            {
+                "name": "Vessel transit  duration to spoolbase (days)",
+                "label": "Vessel transit  duration to spoolbase (days)",
+                "description": "Vessel transit  duration to spoolbase (days)",
+                "type": "number",
+                "default-unit": "day",
+                "default-value": 10,
+                "step": 1,
+                "min": 1,
+                "max": 500,
+                "required": true
+            },
+            {
+                "name": "Pipeline stalk – weld production rate (no. of welds/shift)",
+                "label": "Pipeline stalk – weld production rate (no. of welds/shift)",
+                "description": "Pipeline stalk – weld production rate (no. of welds/shift)",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Subsea Separator Unit Cost ($/unit)",
+                "label": "Subsea Separator Unit Cost ($/unit)",
+                "description": "Subsea Separator Unit Cost ($/unit)",
+                "type": "number",
+                "default-unit": "$/unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            },
+            {
+                "name": "Subsea Separator Total Cost ($)",
+                "label": "Subsea Separator Total Cost ($)",
+                "description": "Subsea Separator Total Cost ($)",
+                "type": "number",
+                "default-unit": "no-unit",
+                "default-value": 1,
+                "step": 1,
+                "min": 1,
+                "max": 100,
+                "required": true
+            }
+        ]
     }
 ]

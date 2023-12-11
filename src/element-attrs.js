@@ -117,6 +117,8 @@ const createParameterHTML = (element) => {
 }
 
 const createSubseaInterventionDiv = function () {
+    const parentDiv = document.createElement('div')
+    parentDiv.classList = "parent-div-install-vessel"
     // Create a div element
     var subseaInterventionDiv = document.createElement("div");
     subseaInterventionDiv.className = "parameter subsea-intervention";
@@ -127,9 +129,15 @@ const createSubseaInterventionDiv = function () {
 
     // Create a select element
     var subseaInterventionSelect = document.createElement("select");
+    subseaInterventionSelect.style.width = '138px'
     // subseaInterventionSelect.id = "subsea-intervention";
     subseaInterventionSelect.id = "subseaIntervention";
 
+    const editParameterBtn = document.createElement('button')
+    editParameterBtn.id = "subsea-intervention-details"
+    const editIcon = document.createElement('img')
+    editIcon.src = "/icons/edit-property-50.png"
+    editParameterBtn.appendChild(editIcon)
     // Define an array of option values
     var subseaInterventionOptions = [
         "Rock-Dumping",
@@ -150,18 +158,23 @@ const createSubseaInterventionDiv = function () {
 
     subseaInterventionSelect.addEventListener('change', () => { subseaInterventionCallback(subseaInterventionSelect) })
 
+
+    parentDiv.appendChild(subseaInterventionSelect)
+    parentDiv.appendChild(editParameterBtn)
     // Append the span and select elements to the div element
     subseaInterventionDiv.appendChild(subseaInterventionSpan);
-    subseaInterventionDiv.appendChild(subseaInterventionSelect);
+    subseaInterventionDiv.appendChild(parentDiv);
 
     return subseaInterventionDiv;
 }
 
 const createInstallVesselDiv = function () {
+
+    const parentDiv = document.createElement('div')
+    parentDiv.classList = "parent-div-install-vessel"
     // Create a div element
     var installVesselDiv = document.createElement("div");
     installVesselDiv.className = "parameter install-vessel";
-
     // Create a span element
     var installVesselSpan = document.createElement("span");
     installVesselSpan.textContent = "Installation & Construction Vessel";
@@ -170,7 +183,13 @@ const createInstallVesselDiv = function () {
     var installVesselSelect = document.createElement("select");
     // installVesselSelect.id = "install-vessel"
     installVesselSelect.id = "installationAndConstructionVessel";
+    installVesselSelect.style.width = "138px"
 
+    const editParameterBtn = document.createElement('button')
+    editParameterBtn.id = "install-vessel-details"
+    const editIcon = document.createElement('img')
+    editIcon.src = "/icons/edit-property-50.png"
+    editParameterBtn.appendChild(editIcon)
 
     // Define an array of option values
     var installVesselOptions = [
@@ -193,10 +212,12 @@ const createInstallVesselDiv = function () {
 
     installVesselSelect.addEventListener('change', () => { installVesselCallback(installVesselSelect) })
 
+    parentDiv.appendChild(installVesselSelect)
+    parentDiv.appendChild(editParameterBtn)
 
     // Append the span and select elements to the div element
     installVesselDiv.appendChild(installVesselSpan);
-    installVesselDiv.appendChild(installVesselSelect);
+    installVesselDiv.appendChild(parentDiv);
 
     return installVesselDiv;
 }

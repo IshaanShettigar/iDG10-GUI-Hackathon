@@ -1,9 +1,9 @@
 {
-  "name": "draw.idg",
+  "name": "sfc-configurator",
   "private": true,
   "author": "Team Bro-Code",
-  "description": "idg10 hackathon",
-  "version": "1.0.0",
+  "description": "phase 3",
+  "version": "1.3.0",
   "main": "electron.js",
   "scripts": {
     "dev": "vite dev",

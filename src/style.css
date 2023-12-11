@@ -529,6 +529,34 @@ hr {
   margin-top: 4px;
 }
 
+.parent-div-install-vessel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.parent-div-install-vessel button {
+  margin-right: 10px;
+  background-color: #fff;
+  border: 1px solid #5b5b5b;
+  border-radius: 5px;
+  box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  padding: 0px 7px 3px 9px;
+}
+
+.parent-div-install-vessel img {
+  height: 18px;
+  margin-top: 7px;
+}
+
+.parent-div-install-vessel button:hover {
+  background-color: #f4f4f4;
+}
+
+
 #elementName {
   font-size: 18px;
   font-weight: 600;

@@ -153,8 +153,16 @@ const handleRBS = function (filePath, sheetName) {
     withinModalDiv.className = 'within-modal'
 
     rbsModalDiv.appendChild(withinModalDiv)
+    const rbsModalHeading = document.createElement('span')
+    rbsModalHeading.textContent = sheetName
+    rbsModalHeading.style.fontWeight = "600";
+    rbsModalHeading.style.fontSize = "1.5em";
+    rbsModalHeading.style.marginBottom = "1em"
+    rbsModalHeading.style.textAlign = "center"
+    rbsModalHeading.style.display = "block"
+    withinModalDiv.appendChild(rbsModalHeading)
 
-    /* Pull from excel, sheet=Pipe Material Selection */
+    /* Pull from excel */
     let jsonData = getJSON(sheetName)
 
 
