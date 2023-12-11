@@ -138,6 +138,9 @@ clearCanvas.addEventListener("click", function () {
 // rbs-modal div
 const rbsModalDiv = document.getElementById('rbs-modal')
 const rbsModalCrossBtn = document.getElementById('close-modal-rbs')
+// code for the crossBtn on the si-icv 
+const siIcvModal = document.getElementById('si-icv-modal')
+const siIcvModalCrossBtn = document.getElementById('close-modal-si-icv')
 
 
 const closeModal = function () {
@@ -145,9 +148,10 @@ const closeModal = function () {
   modalOverlay.classList.add("hidden");
   rbsWrapper.classList.remove('open-menu')
   rbsModalDiv.classList.add('hidden')
-  subMenuWrap.classList.toggle("open-menu")
+  subMenuWrap.classList.remove("open-menu")
   closeCustomColorPopUp();
   clearCanvasModal.classList.add("hidden");
+  siIcvModal.classList.add("hidden")
 }
 closeModalBtn.addEventListener("click", closeModal)
 
@@ -167,7 +171,7 @@ confirmClearBG.addEventListener("click", function () {
 })
 
 rbsModalCrossBtn.addEventListener('click', closeModal)
-
+siIcvModalCrossBtn.addEventListener('click', closeModal)
 /* Code to highlight active grid color in settings modals */
 const color1 = document.getElementById("color1")
 const color2 = document.getElementById("color2")

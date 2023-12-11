@@ -866,3 +866,19 @@ th {
   display: inline-block;
   padding: 3px 5px;
 }
+
+
+/* CSS for the subsea intervention parameter modal and the installation construction vessel modal */
+.si-icv-modal .heading {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.si-icv-modal input,
+.si-icv-modal select {
+  margin-left: 1em;
+}
+
+.si-icv-modal .parameter:last-of-type {
+  margin-bottom: 25px;
+}

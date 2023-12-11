@@ -82,8 +82,8 @@ const createParameterHTML = (element) => {
 
         /*  */
 
-        const subseaInterventionDiv = createSubseaInterventionDiv();
-        const installVesselDiv = createInstallVesselDiv();
+        const subseaInterventionDiv = createSubseaInterventionDiv(element);
+        const installVesselDiv = createInstallVesselDiv(element);
         const connectorChoiceDiv = createConnectorChoiceDiv(); // Div responsible for allowing Eg) Flexible-Pipeline-PR to Umbillical 
         linkSettings.appendChild(connectorChoiceDiv)
         linkSettings.appendChild(subseaInterventionDiv)
@@ -116,7 +116,71 @@ const createParameterHTML = (element) => {
     }
 }
 
-const createSubseaInterventionDiv = function () {
+/**
+ * Method to reset the modal used to display the parameters for "Subsea Intervention" and "Installation & Construction Vessel"
+ */
+const resetSiIcvModal = () => {
+    const siicvModal = document.getElementById('si-icv-modal')
+    const oldWithinModalDiv = document.getElementById('within-si-icv-modal')
+
+    if (oldWithinModalDiv) { siicvModal.removeChild(oldWithinModalDiv) }
+
+    const withinModalDiv = document.createElement('div')
+    withinModalDiv.classList = "within-modal"
+    withinModalDiv.id = "within-si-icv-modal"
+
+    siicvModal.appendChild(withinModalDiv)
+}
+/**
+ * 
+ * @param {String} selectBoxId  Either id of subsea intervention select box or installation and construction vessel select box
+ */
+const onClickSiIcv = (selectBoxId, element) => {
+
+    resetSiIcvModal()
+    // add the modal overlay to blur & darken the background
+    document.getElementById("settings-overlay").classList.remove("hidden");
+
+    const siicvModal = document.getElementById('si-icv-modal')
+    siicvModal.classList.remove('hidden');
+
+    const withinModalDiv = document.getElementById('within-si-icv-modal')
+    /* dynamically display the contents of the modal    */
+
+    // get the value present in the select box
+    const selectBox = document.getElementById(selectBoxId)
+    console.log(selectBox.value)
+
+    const heading = document.createElement('span');
+    heading.classList = "heading"
+    heading.textContent = selectBox.value
+
+    for (let item of data) {
+        if (item['sub-type'] === selectBox.value) {
+
+            for (let i = 0; i < item.fields.length; i++) {
+                let field = item.fields[i];
+
+                if (field.type === "number") {
+                    let inputBox = createInputBox(i, field["label"], element)
+                    // This line populates the element with the correct value that it gets from the object of the link (seen here as element)
+                    inputBox.getElementsByClassName('input-number')[0].value = element.attributes.attrs[`${field["label"]}`];
+                    withinModalDiv.appendChild(inputBox)
+                }
+                else if (field.type === "string") {
+                    let selectBox = createSelectBox(i, field["label"], field["values"], element)
+                    selectBox.getElementsByClassName('input-select')[0].value = element.attributes.attrs[`${field["label"]}`];
+                    withinModalDiv.appendChild(selectBox)
+                }
+                else {
+                    alert("FATAL ERROR IN JSON field.type is not number nor string,", field)
+                }
+            }
+        }
+    }
+}
+
+const createSubseaInterventionDiv = function (element) {
     const parentDiv = document.createElement('div')
     parentDiv.classList = "parent-div-install-vessel"
     // Create a div element
@@ -138,6 +202,9 @@ const createSubseaInterventionDiv = function () {
     const editIcon = document.createElement('img')
     editIcon.src = "/icons/edit-property-50.png"
     editParameterBtn.appendChild(editIcon)
+
+    editParameterBtn.addEventListener('click', () => onClickSiIcv("subseaIntervention", element))
+
     // Define an array of option values
     var subseaInterventionOptions = [
         "Rock-Dumping",
@@ -168,7 +235,7 @@ const createSubseaInterventionDiv = function () {
     return subseaInterventionDiv;
 }
 
-const createInstallVesselDiv = function () {
+const createInstallVesselDiv = function (element) {
 
     const parentDiv = document.createElement('div')
     parentDiv.classList = "parent-div-install-vessel"
@@ -190,6 +257,9 @@ const createInstallVesselDiv = function () {
     const editIcon = document.createElement('img')
     editIcon.src = "/icons/edit-property-50.png"
     editParameterBtn.appendChild(editIcon)
+
+    editParameterBtn.addEventListener('click', () => onClickSiIcv("installationAndConstructionVessel", element))
+
 
     // Define an array of option values
     var installVesselOptions = [
@@ -345,6 +415,7 @@ const createSelectBox = (i, title, options, element) => {
 
     const select1 = document.createElement('select');
     select1.id = title;
+    select1.className = "input-select"
 
     for (let i = 0; i < options.length; i++) {
         let option = document.createElement('option');
