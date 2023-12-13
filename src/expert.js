@@ -116,7 +116,7 @@ const getJSON = (sheetName) => {
         {
             "Production Rate (boe/day)": { "type": "number" },
             "Flow velocity (m/s)": { "type": "number" },
-            "Bore Diameter (mm)": { "type": "number" },
+            // "Bore Diameter (mm)": { "type": "number" },
             "Pipeline Length (m)": { "type": "number" },
             "Fluid Dynamic Viscosity (Poise)": { "type": "number" },
             "Fluid Density (kg/m^3)": { "type": "number" },
@@ -354,13 +354,28 @@ const calcInstallationMethod = function (jsonData) {
 const calcPTDrop = function (jsonData) {
     const productionRate = document.getElementById('Production Rate (boe/day)')
     const flowVelocity = document.getElementById('Flow velocity (m/s)')
-    const boreDiameter = document.getElementById('Bore Diameter (mm)')
+    // const boreDiameter = document.getElementById('Bore Diameter (mm)')
     const pipelineLength = document.getElementById('Pipeline Length (m)')
     const fluidDensity = document.getElementById('Fluid Density (kg/m^3)')
     const fluidDynamicViscosity = document.getElementById('Fluid Dynamic Viscosity (Poise)')
     const pipeBoreRoughness = document.getElementById("Pipe bore roughness (microns)")
 
-    console.log(("Coming soon....."));
+    console.log(`INPUTS:\n productionRate: ${productionRate.value}\n flowVelocity: ${flowVelocity.value}\n pipelineLength: ${pipelineLength.value}\n
+                fluidDensity: ${fluidDensity.value}\n fluidDynamicViscosity: ${fluidDynamicViscosity.value}\n pipeBoreRoughness: ${pipeBoreRoughness.value}`);
+
+    // productionRate in m^3/day
+    const y = (0.158987 * productionRate.value) / (24 * 60 * 60);
+    // bore diameter (mm)
+    const d = 1000 * Math.sqrt(((y / flowVelocity.value) / (Math.PI / 4)))
+
+    const reynoldsNo = (fluidDensity.value * flowVelocity.value * d * 0.001) / (fluidDynamicViscosity.value)
+
+    const relativeRoughness = (pipeBoreRoughness.value) / (d * 0.001)
+    const frictionFactor = (0.0055) * (1 + Math.cbrt((20000 * relativeRoughness + (Math.pow(10, 6) / reynoldsNo))))
+    const pressureLoss = (0.01 * fluidDensity.value * frictionFactor * pipelineLength.value * (flowVelocity.value * flowVelocity.value)) / (2 * d)
+    console.log(`COMPUTATION: Y:${y}\n d: ${d}\n reynoldsNo: ${reynoldsNo}\n relativeRoughness: ${relativeRoughness}\n frictionFactor: ${frictionFactor}`);
+    console.log(`\n\nOUTPUT: Pressure Loss: ${pressureLoss}`)
+    document.getElementById('rbs-result').textContent = `Pressure Loss: \n${pressureLoss}`;
 }
 
 export { handleRBS, calculatePipeMaterial }
