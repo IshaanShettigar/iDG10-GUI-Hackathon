@@ -888,6 +888,11 @@ th {
   overflow: scroll;
   overflow-x: hidden;
   max-height: 650px;
+  width: 40rem;
+}
+
+.si-icv-modal .within-modal {
+  width: 35rem;
 }
 
 .si-icv-modal::-webkit-scrollbar,
@@ -913,4 +918,12 @@ th {
 
 .si-icv-modal::-webkit-scrollbar-thumb:active {
   background: rgba(0, 0, 0, .9);
+}
+
+.si-icv-modal .heading {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0 auto 1em auto;
+  display: block;
+  text-align: center;
 }

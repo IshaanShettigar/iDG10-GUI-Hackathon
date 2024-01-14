@@ -1,0 +1,472 @@
+[
+    {
+        "main-type": "component",
+        "sub-type": "subseaSeparator",
+        "name": "Subsea Separator",
+        "description": "Subsea Separator",
+        "values": [
+            "Pipe Design Code",
+            "Water Depth",
+            "Design Pressure (bar)",
+            "Foundation Type",
+            "Max Temperature",
+            "Min Temperature",
+            "Subsea Separator Total Cost ($)"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "subseaPump",
+        "name": "Subsea Pump",
+        "description": "subseaPump",
+        "values": [
+            "Pipe Design Code",
+            "Water Depth",
+            "Design Pressure (bar)",
+            "Foundation Type",
+            "Max Temperature",
+            "Min Temperature",
+            "Subsea Pump Total Cost ($)"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "productionWellST",
+        "name": "Production Well & Subsea Tree",
+        "description": "Production Well & Subsea Tree",
+        "values": [
+            "Material",
+            "Upstream Min-Max Temperature rating (◦C)",
+            "Downstream Min-Max Temperature rating (◦C)",
+            "Water Depth",
+            "Pressure Rating",
+            "Design Life",
+            "Dimension",
+            "Weight",
+            "Total Cost"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "injectionWellST",
+        "name": "Injection Well & Subsea Tree",
+        "description": "Injection Well & Subsea Tree",
+        "values": [
+            "Material",
+            "Upstream Min-Max Temperature rating (◦C)",
+            "Downstream Min-Max Temperature rating (◦C)",
+            "Water Depth",
+            "Pressure Rating",
+            "Design Life",
+            "Dimension",
+            "Weight",
+            "Total Cost"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "manifold",
+        "name": "Manifold",
+        "description": "Tie in Manifold",
+        "values": [
+            "Pipe Design Code",
+            "Water Depth",
+            "Design Pressure",
+            "Foundation Type",
+            "Max Temperature (◦C)",
+            "Min Temperature (◦C)",
+            "Design Life (years)",
+            "Tie-in Manifold Total Cost ($)"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "PLET",
+        "name": "PLET",
+        "description": "PLET",
+        "values": [
+            "Pipe Design Code",
+            "Water Depth",
+            "Design Pressure",
+            "Foundation Type",
+            "Max Temperature (◦C)",
+            "Design Life (years)",
+            "PLET Total Cost"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "PLEM",
+        "name": "PLEM",
+        "description": "PLEM",
+        "values": [
+            "Pipe Design Code",
+            "Water Depth",
+            "Design Pressure",
+            "Foundation Type",
+            "Max Temperature (◦C)",
+            "Min Temperature (◦C)",
+            "PLEM Total Cost"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "UTA",
+        "name": "UTA",
+        "description": "UTA",
+        "values": [
+            "Design Pressure",
+            "Water Depth",
+            "Max Temperature (◦C)",
+            "Min Temperature (◦C)",
+            "Design Life (years)",
+            "Weight",
+            "UTA Total Cost"
+        ]
+    },
+    {
+        "main-type": "component",
+        "sub-type": "UTH",
+        "name": "UTH",
+        "description": "UTH",
+        "values": [
+            "Design Pressure",
+            "Water Depth",
+            "Max Temperature (◦C)",
+            "Min Temperature (◦C)",
+            "Design Life (years)",
+            "Weight",
+            "UTH Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-PR",
+        "name": "Rigid Pipeline PR",
+        "description": "Rigid Pipeline PR",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-WI",
+        "name": "Rigid Pipeline WI",
+        "description": "Rigid Pipeline WI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-GL/GI",
+        "name": "Rigid Pipeline GL/GI",
+        "description": "Rigid Pipeline GL/GI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Spool-PR",
+        "name": "Rigid Spool PR",
+        "description": "Rigid Spool PR",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Spool-WI",
+        "name": "Rigid Spool WI",
+        "description": "Rigid Spool WI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Spool-GL/GI",
+        "name": "Rigid Spool GL/GI",
+        "description": "Rigid Spool GL/GI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-SCR-PR",
+        "name": "Rigid SCR PR",
+        "description": "Rigid SCR PR",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-SCR-WI",
+        "name": "Rigid SCR WI",
+        "description": "Rigid SCR WI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-SCR-GL/GI",
+        "name": "Rigid SCR GL",
+        "description": "Rigid SCR GL",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth (m)",
+            "Line pipe Total Cost",
+            "Wet Insulation Total Cost",
+            "Corrosion Coating Total Cost ",
+            "Buckle Arrestor Total Cost",
+            "Anode Total Cost",
+            "Anode Bank Total Cost"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Pipeline-PR",
+        "name": "Flexible Pipeline PR",
+        "description": "Flexible Pipeline PR",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Pipeline-WI",
+        "name": "Flexible Pipeline WI",
+        "description": "Flexible Pipeline WI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Pipeline-GL/GI",
+        "name": "Flexible Pipeline GL/GI",
+        "description": "Flexible Pipeline GL/GI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-PR",
+        "name": "Flexible Jumper PR",
+        "description": "Flexible Jumper PR",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-WI",
+        "name": "Flexible Jumper WI",
+        "description": "Flexible Jumper WI",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Flexible-Jumper-GL/GI",
+        "name": "Flexible Jumper GL",
+        "description": "Flexible Jumper GL",
+        "values": [
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Tube Inner Diameter",
+            "Maximum Operating Depth (m)",
+            "End Fitting Internal Coating Material",
+            "Flexible pipe total cost $",
+            "End fitting structure total cost $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Bouyancy-Module",
+        "name": "Bouyancy Module",
+        "description": "Bouyancy Module",
+        "values": [
+            "Material body",
+            "Lantern material",
+            "Operating Pressure Rating",
+            "Operating Temperature Rating (°C)",
+            "External Corrosion Resistance",
+            "Buoyancy module total cost, $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Umbillical",
+        "name": "Umbilical",
+        "description": "Umbilical",
+        "values": [
+            "Umbilical Outer Diameter(mm)",
+            "Umbilical length (km)",
+            "Design Life (years)",
+            "Umbilical total cost, $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Elect-Flying-Lead",
+        "name": "Electrical Flying Lead",
+        "description": "Electrical Flying Lead",
+        "values": [
+            "Voltage rating (Vac)",
+            "Max water depth (m)",
+            "Resistance (ohm/km)",
+            "Conductor cross-sectional area (mm2)",
+            "Flying lead length (m)",
+            "Flying lead total cost, $"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Hydr-Flying Lead",
+        "name": "Hydra-Flying lead",
+        "description": "Hydra-Flying lead",
+        "values": [
+            "Design Life",
+            "Load rating (Te)",
+            "Design working pressure(bar)",
+            "Hydra-Flying lead length (m)",
+            "Hydra-flying lead total cost ($)"
+        ]
+    },
+    {
+        "main-type": "connector",
+        "sub-type": "Rigid-Pipeline-PiP PR",
+        "name": "Rigid Pipeline-PiP PR",
+        "description": "Rigid Pipeline-PiP PR",
+        "values": [
+            "Operating Pressure Rating (bar)",
+            "Operating Temperature Rating (°C)",
+            "Design Life (years)",
+            "Maximum Operating Depth",
+            "Inner Line pipe total cost, $",
+            "Outer line pipe total cost, $",
+            "Corrosion coating total cost, $",
+            "Thermal insulation total cost, $",
+            "Buckle arrestor total cost, $",
+            "Anodes total cost, $",
+            "Anode bank total cost, $"
+        ]
+    }
+]

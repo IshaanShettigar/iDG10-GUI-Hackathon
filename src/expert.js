@@ -1,7 +1,7 @@
 const getJSON = (sheetName) => {
     const pipeMaterialJSON = [
         {
-            "pCO2 (bara)": { "value": "(,0.1)", "type": "number" },//"<0.1",
+            "pCO2 (bara)": { "value": "(,0.11)", "type": "number" },//"<0.1",
             "pH2S (mbara)": { "value": "(-1, 1)", "type": "number" },
             "in-situ pH": { "value": "(5,1000000)", "type": "number" },//">5",
             "NaCL(mg/L)": { "value": "(,53000)", "type": "number" },//"<53000",
@@ -9,7 +9,7 @@ const getJSON = (sheetName) => {
             "Proposed Pipe Material": "Carbon Steel"
         },
         {
-            "pCO2 (bara)": { "value": "(,0.1)", "type": "number" },
+            "pCO2 (bara)": { "value": "(,0.11)", "type": "number" },
             "pH2S (mbara)": { "value": "(0,1001)", "type": "number" },
             "in-situ pH": { "value": "(5,1000000)", "type": "number" },
             "NaCL(mg/L)": { "value": "(,53000)", "type": "number" },
@@ -17,7 +17,7 @@ const getJSON = (sheetName) => {
             "Proposed Pipe Material": "Carbon Steel-Sour grade"
         },
         {
-            "pCO2 (bara)": { "value": "(,0.5)", "type": "number" },
+            "pCO2 (bara)": { "value": "(,0.51)", "type": "number" },
             "pH2S (mbara)": { "value": "(0,1001)", "type": "number" },
             "in-situ pH": { "value": "(4.45,5.1)", "type": "number" },//">4.5 & <5",
             "NaCL(mg/L)": { "value": "(,53000)", "type": "number" },
@@ -58,7 +58,7 @@ const getJSON = (sheetName) => {
         },
         {
             "pCO2 (bara)": { "value": "(325,500]", "type": "number" },//">325 & <=500",
-            "pH2S (mbara)": { "value": "(0,501)", "type": "number" },
+            "pH2S (mbara)": { "value": "(100,501)", "type": "number" },
             "in-situ pH": { "value": "(,3.01)", "type": "number" },
             "NaCL(mg/L)": { "value": "(53000,1000000)", "type": "number" },
             "NaHCO3(mg/L)": { "value": "(1000,1000000)", "type": "number" },
@@ -66,7 +66,7 @@ const getJSON = (sheetName) => {
         },
         {
             "pCO2 (bara)": { "value": "(500,1000000)", "type": "number" },
-            "pH2S (mbara)": { "value": "(1001,1000000)", "type": "number" },
+            "pH2S (mbara)": { "value": "(999.9,1000000)", "type": "number" },
             "in-situ pH": { "value": "(,3.01)", "type": "number" },
             "NaCL(mg/L)": { "value": ">53000", "type": "number" },
             "NaHCO3(mg/L)": { "value": "(1000,1000000)", "type": "number" },
@@ -81,7 +81,7 @@ const getJSON = (sheetName) => {
                 "type": "select"
             },
             "Steel Pipe OD (mm)": { "value": "(0,457.3)", "type": "number" },//<=457.2",
-            "Steel Pipe WT (mm)": { "value": "(20,20.3)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
             "OD/Wt": { "value": "(6.9,21.1]", "type": "number" },//">7 and <=21",
             "Water Depth (m)": { "value": "(49.9,1600)", "type": "number" },//">50 and <1600",
             "Proposed Installation Method": "Reel-lay"
@@ -89,7 +89,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(0,457.3)", "type": "number" },
-            "Steel Pipe WT (mm)": { "value": "(20,20.3)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
             "OD/Wt": { "value": "(20.9,45.1)", "type": "number" },//">21 and <45",
             "Water Depth (m)": { "value": "(0,50)", "type": "number" },//"<50",
             "Proposed Installation Method": "S-Lay"
@@ -97,7 +97,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(457.1,1219.3)", "type": "number" },//">457.2 and <1219.2",
-            "Steel Pipe WT (mm)": { "value": "(20,20.3)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
             "OD/Wt": { "value": "(20.9,45.1)", "type": "number" },//">21 and <45",
             "Water Depth (m)": { "value": "(50,600)", "type": "number" },//">50 and <600",
             "Proposed Installation Method": "S-Lay"
@@ -105,7 +105,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(457.3,609.1)", "type": "number" },//">457.2 and <=609",
-            "Steel Pipe WT (mm)": { "value": "(20,20.3)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
             "OD/Wt": { "value": "(6.9,21.1)", "type": "number" },//">7 and <=21",
             "Water Depth (m)": { "value": "(600,100000)", "type": "number" },
             "Proposed Installation Method": "J-Lay"
@@ -116,7 +116,7 @@ const getJSON = (sheetName) => {
         {
             "Production Rate (boe/day)": { "type": "number" },
             "Flow velocity (m/s)": { "type": "number" },
-            // "Bore Diameter (mm)": { "type": "number" },
+            "Bore Diameter (mm)": { "type": "number" },
             "Pipeline Length (m)": { "type": "number" },
             "Fluid Dynamic Viscosity (Poise)": { "type": "number" },
             "Fluid Density (kg/m^3)": { "type": "number" },
@@ -241,6 +241,25 @@ const handleRBS = function (filePath, sheetName) {
     calcButton.textContent = "Calculate"
     withinModalDiv.appendChild(calcButton)
 
+    // This section has been added only for pipe bore p&t drop
+    // This places the transient temperature button and result on clicking the button below the calcbutton
+    if (sheetName === "Pipe Bore P&T Drop") {
+        const transTempBtn = document.createElement('button');
+        transTempBtn.className = 'rbs-calculate-btn';
+        transTempBtn.id = 'rbs-transtemp-btn';
+        transTempBtn.textContent = "Pipeline Transient Temperature Profile and Drop"
+        withinModalDiv.appendChild(transTempBtn)
+
+        transTempBtn.addEventListener('click', () => {
+            const transTempResultSpan = document.createElement('span');
+            transTempResultSpan.className = 'rbs-result'
+            transTempResultSpan.id = 'rbs-transTemp-result'
+            transTempResultSpan.style = "display: table; margin: 0 auto; text-align:center"
+            transTempResultSpan.textContent = "Use SPDT Pipeline Transient Temperature Simulator (FE based)"
+            withinModalDiv.appendChild(transTempResultSpan)
+        })
+    }
+
     if (sheetName === "Pipe Material Selection") {
         // Add event listener so that when button is clicked it displays the correct Pipe Material
         calcButton.addEventListener('click', () => calculatePipeMaterial(jsonData))
@@ -305,9 +324,13 @@ const calculatePipeMaterial = function (jsonData) {
         const res4 = checkConditionNumber(NaCLNumbers, parseFloat(NaCL.value))
         const res5 = checkConditionNumber(NaHCO3Numbers, parseFloat(NaHCO3.value))
 
-        if (res1 && res2 && res3 && res4 && res5) {
-            document.getElementById('rbs-result').textContent = `Proposed Pipe Material: \n${data["Proposed Pipe Material"]}`;
+        if (res1 && res2 && res3 && res4 && res5 && !foundRes) {
+            document.getElementById('rbs-result').textContent = `Proposed Pipe Material: 1. \n${data["Proposed Pipe Material"]}`;
             foundRes = true;
+        }
+        else if (res1 && res2 && res3 && res4 && res5 && foundRes) {
+            document.getElementById('rbs-result').textContent += `\n2. ${data["Proposed Pipe Material"]}`;
+
         }
     })
     if (foundRes === false) {
@@ -333,6 +356,10 @@ const calcInstallationMethod = function (jsonData) {
         let pipelineTypeValues = data["Pipeline Type"]["value"].split(',') // this is the select box 
 
         console.log(SPODNumbers, SPWTNumbers, ODNumbers, WDNumbers, pipelineTypeValues);
+
+        if (OD.value === "") {
+            OD.value = SPOD.value / SPWT.value
+        }
         const res1 = checkConditionSelect(pipelineTypeValues, pipelineType.value)
         const res2 = checkConditionNumber(SPODNumbers, SPOD.value)
         const res3 = checkConditionNumber(SPWTNumbers, SPWT.value)
@@ -354,7 +381,7 @@ const calcInstallationMethod = function (jsonData) {
 const calcPTDrop = function (jsonData) {
     const productionRate = document.getElementById('Production Rate (boe/day)')
     const flowVelocity = document.getElementById('Flow velocity (m/s)')
-    // const boreDiameter = document.getElementById('Bore Diameter (mm)')
+    const boreDiameter = document.getElementById('Bore Diameter (mm)')
     const pipelineLength = document.getElementById('Pipeline Length (m)')
     const fluidDensity = document.getElementById('Fluid Density (kg/m^3)')
     const fluidDynamicViscosity = document.getElementById('Fluid Dynamic Viscosity (Poise)')
@@ -366,7 +393,14 @@ const calcPTDrop = function (jsonData) {
     // productionRate in m^3/day
     const y = (0.158987 * productionRate.value) / (24 * 60 * 60);
     // bore diameter (mm)
-    const d = 1000 * Math.sqrt(((y / flowVelocity.value) / (Math.PI / 4)))
+    let d = 0;
+    if (boreDiameter.value == '') {
+        d = 1000 * Math.sqrt(((y / flowVelocity.value) / (Math.PI / 4)))
+        boreDiameter.value = d;
+    }
+    else {
+        d = boreDiameter.value;
+    }
 
     const reynoldsNo = (fluidDensity.value * flowVelocity.value * d * 0.001) / (fluidDynamicViscosity.value)
 

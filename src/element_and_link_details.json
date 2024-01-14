@@ -175,9 +175,9 @@
         "description": "subseaPump",
         "fields": [
             {
-                "name": "Design Pressure",
-                "label": "Design Pressure",
-                "description": "Design Pressure",
+                "name": "Design Pressure (bar)",
+                "label": "Design Pressure (bar)",
+                "description": "Design Pressure (bar)",
                 "type": "number",
                 "default-unit": "bar",
                 "default-value": 0,
@@ -21104,7 +21104,7 @@
         ]
     },
     {
-        "main-type": "subseaIntervention",
+        "main-type": "Subsea Intervention",
         "sub-type": "Trenching-back filling",
         "name": "Trenching-back filling",
         "description": "Trenching-back filling",
@@ -21232,7 +21232,7 @@
         ]
     },
     {
-        "main-type": "subseaIntervention",
+        "main-type": "Subsea Intervention",
         "sub-type": "Concrete-mattress",
         "name": "Concrete-mattress",
         "description": "Concrete-mattress",
@@ -21312,7 +21312,7 @@
         ]
     },
     {
-        "main-type": "subseaIntervention",
+        "main-type": "Subsea Intervention",
         "sub-type": "Sleepers",
         "name": "Sleepers",
         "description": "Sleepers",
@@ -21392,7 +21392,7 @@
         ]
     },
     {
-        "main-type": "subseaIntervention",
+        "main-type": "Subsea Intervention",
         "sub-type": "Rock-Dumping",
         "name": "Rock-Dumping",
         "description": "Rock-Dumping",

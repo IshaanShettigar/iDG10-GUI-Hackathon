@@ -147,6 +147,7 @@ const pasteElement = (copiedCellView, copiedCoordinates, mainGraph, mainPaper) =
  * @param {joint.dia.Paper} mainPaper main paper
  */
 function addElementTools(cell, mainPaper) {
+    // console.log(cell.attributes.type);
     var RotateTool = elementToolsMapping[cell.attributes.type][0]
     var ResizeToolBottomLeft = elementToolsMapping[cell.attributes.type][1]
     var ResizeToolBottomRight = elementToolsMapping[cell.attributes.type][2]
@@ -290,6 +291,7 @@ const addToolsOnFileLoad = (mainPaper, mainGraph, connectorSettingsWrapper) => {
         }
         // If the cell is an element
         else if (cell.isElement()) {
+            // console.log(cell)
             addElementTools(cell, mainPaper)
         }
     });

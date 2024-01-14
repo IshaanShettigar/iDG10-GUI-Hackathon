@@ -9,6 +9,8 @@ import { displayHighlight, removeHighlight, pasteElement, addToolsOnFileLoad, el
 import { showLinkSettings } from "./showLinkSettings.js"
 import { selectedLinkView, setSelectedLinkView } from './selectedLinkView.js';
 import JSONData from './element_and_link_details.json' assert { type: 'json' };
+import onHoverJSONData from './on_hover_details.json' assert { type: 'json' };
+
 import { handleRBS } from './expert.js';
 
 /** Defining fsm global variable for element undo redo */
@@ -1053,73 +1055,203 @@ var toolPaper = new joint.dia.Paper({
   interactive: false
 });
 
-
+var labelSS = new joint.shapes.standard.Rectangle();
+labelSS.position(20, 80);
+labelSS.resize(120, 40);
+labelSS.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null
+  },
+  label: {
+    text: 'Subsea Separator',
+    fill: 'black'
+  }
+});
+labelSS.addTo(toolGraph)
 const SS = new subseaSeparator()
-SS.position(30, 50)
+SS.position(35, 30)
 SS.size(85, 50)
 SS.addTo(toolGraph);
 assignCustomParams(SS)
 // console.log(SS);
 
+var labelSP = new joint.shapes.standard.Rectangle();
+labelSP.position(25, 185);
+labelSP.resize(100, 40);
+labelSP.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'Subsea Pump',
+    fill: 'black'
+  }
+});
+labelSP.addTo(toolGraph)
+
 const SP = new subseaPump();
-SP.position(40, 130)
+SP.position(43, 130)
 SP.size(60, 60);
 SP.addTo(toolGraph);
 assignCustomParams(SP)
 
 const uta = new UTA()
-uta.position(25, 220)
+uta.position(30, 240)
 uta.size(93, 55)
 uta.addTo(toolGraph)
 assignCustomParams(uta)
 
+var labelPWST = new joint.shapes.standard.Rectangle();
+labelPWST.position(30, 400);
+labelPWST.resize(100, 40);
+labelPWST.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'Production Well ST',
+    fill: 'black'
+  }
+});
+labelPWST.addTo(toolGraph)
 const PWST = new productionWellST()
-PWST.position(50, 320)
+PWST.position(55, 340)
 PWST.size(50, 50)
 PWST.addTo(toolGraph)
 assignCustomParams(PWST)
 
+var labelPlatform = new joint.shapes.standard.Rectangle();
+labelPlatform.position(30, 565);
+labelPlatform.resize(100, 40);
+labelPlatform.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'Platform',
+    fill: 'black'
+  }
+});
+labelPlatform.addTo(toolGraph)
+
 const PL = new platform()
-PL.position(30, 480);
+PL.position(30, 520);
 PL.size(100, 25)
 PL.addTo(toolGraph)
 assignCustomParams(PL)
 
+var labelIWST = new joint.shapes.standard.Rectangle();
+labelIWST.position(30, 685);
+labelIWST.resize(100, 40);
+labelIWST.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'Injection Well ST',
+    fill: 'black'
+  }
+});
+labelIWST.addTo(toolGraph)
 const IWST = new injectionWellST();
-IWST.position(50, 585)
+IWST.position(55, 630)
 IWST.resize(50, 50)
 IWST.addTo(toolGraph)
 assignCustomParams(IWST)
 
+var labelManifold = new joint.shapes.standard.Rectangle();
+labelManifold.position(30, 790);
+labelManifold.resize(100, 40);
+labelManifold.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'Manifold',
+    fill: 'black'
+  }
+});
+labelManifold.addTo(toolGraph)
 const MANIFOLD = new manifold()
-MANIFOLD.position(38, 695)
+MANIFOLD.position(43, 750)
 MANIFOLD.resize(70, 35)
 MANIFOLD.addTo(toolGraph)
 assignCustomParams(MANIFOLD)
 
 const uth = new UTH();
-uth.position(15, 765);
+uth.position(15, 825);
 uth.resize(140, 82)
 uth.addTo(toolGraph)
 assignCustomParams(uth)
 
+var labelPLET = new joint.shapes.standard.Rectangle();
+labelPLET.position(30, 975);
+labelPLET.resize(100, 40);
+labelPLET.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'PLET',
+    fill: 'black'
+  }
+});
+labelPLET.addTo(toolGraph)
 const plet = new PLET();
-plet.position(10, 850);
+plet.position(10, 910);
 plet.resize(140, 82)
 plet.addTo(toolGraph)
 assignCustomParams(plet)
 
+
+var labelFPSO = new joint.shapes.standard.Rectangle();
+labelFPSO.position(30, 1110);
+labelFPSO.resize(100, 40);
+labelFPSO.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'FPSO',
+    fill: 'black'
+  }
+});
+labelFPSO.addTo(toolGraph)
 const fpso = new FPSO()
-fpso.position(32, 1000)
+fpso.position(32, 1080)
 fpso.resize(100, 35)
 fpso.addTo(toolGraph)
 assignCustomParams(fpso)
 
+var labelPLEM = new joint.shapes.standard.Rectangle();
+labelPLEM.position(35, 1250);
+labelPLEM.resize(100, 40);
+labelPLEM.attr({
+  body: {
+    fill: 'rgba(255,255,255,0.75)',
+    stroke: null,
+  },
+  label: {
+    text: 'PLEM',
+    fill: 'black'
+  }
+});
+labelPLEM.addTo(toolGraph)
 const plem = new PLEM()
-plem.position(50, 1100)
+plem.position(50, 1190)
 plem.resize(65, 65)
 plem.addTo(toolGraph)
 assignCustomParams(plem)
+
+const elementLabelArray = [labelSS, labelIWST, labelFPSO, labelSP, labelManifold, labelPLEM, labelPLET, labelPlatform, labelPWST]
 
 /**
  * Function that defines the standard link and its associated properties
@@ -1259,93 +1391,99 @@ The centre of the element is dropped where your mouse is, even if you started th
  */
 toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
   // console.log(cellView.model.getBBox("deep"))
-  $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
-  var flyGraph = new joint.dia.Graph
-  /**
-   * Create a flyPaper, this represents the paper that the element will reside in while it is being dragged
-   */
-  var flyPaper = new joint.dia.Paper({
-    el: $('#flyPaper'),
-    model: flyGraph,
-    height: 200,
-    width: 150,
-    interactive: false,
-    background: {
-      color: "rgba(0,0,0,0)"
-    },
+  console.log(cellView.model, elementLabelArray)
+  if (!elementLabelArray.includes(cellView.model)) {
+    $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
+    var flyGraph = new joint.dia.Graph
+    /**
+     * Create a flyPaper, this represents the paper that the element will reside in while it is being dragged
+     */
+    var flyPaper = new joint.dia.Paper({
+      el: $('#flyPaper'),
+      model: flyGraph,
+      height: 200,
+      width: 150,
+      interactive: false,
+      background: {
+        color: "rgba(0,0,0,0)"
+      },
 
-  })
-  var flyShape = cellView.model.clone()
-  var pos = cellView.model.position()
-  var offset = {
-    x: x - pos.x,
-    y: y - pos.y
-  };
+    })
+    var flyShape = cellView.model.clone()
+    var pos = cellView.model.position()
+    var offset = {
+      x: x - pos.x,
+      y: y - pos.y
+    };
 
-  flyShape.position(35, 40);
-  flyGraph.addCell(flyShape);
-  $("#flyPaper").offset({
-    left: e.pageX - offset.x - 35,
-    top: e.pageY - offset.y - 35
-  });
-  $('body').on('mousemove.fly', function (e) {
+    flyShape.position(35, 40);
+    flyGraph.addCell(flyShape);
     $("#flyPaper").offset({
       left: e.pageX - offset.x - 35,
       top: e.pageY - offset.y - 35
     });
-  });
-
-  $('body').on('mouseup.fly', function (e) {
-    var x = e.pageX;
-    var y = e.pageY;
-    var target = mainPaper.$el.offset();
-    var dropPosition = mainPaper.clientToLocalPoint(x - target.left - 35, y - target.top - 20);
-    var scale = mainPaper.scale()
-    console.log("scale", scale)
-    console.log("Height bounding box", 0 - (mainPaper.translate().ty * scale.sy), mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy), "DropPosition:y:", dropPosition.y)
-    console.log("Width bounding box", 0 - (mainPaper.translate().tx * scale.sx), mainPaper.$el.width() - (mainPaper.translate().tx * scale.sx), "DropPosition:x:", dropPosition.x)
-    //  mainPaper.$el.width() Represents the papers width 
-    //  mainPaper.$el.height() Represents the papers height
-    // if (
-    //     dropPosition.x > 0 - (mainPaper.translate().tx * scale.sx) &&
-    //     dropPosition.x < (mainPaper.$el.width() - mainPaper.translate().tx * scale.sx) &&
-    //     dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
-    //     dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
-    // ) {
-    var droppedElement = flyShape.clone(); console.log(droppedElement)
-    droppedElement.position(dropPosition.x, dropPosition.y);
-    mainGraph.addCell(droppedElement);
-    // Need to find the view of the element and add its corresponding tools
-    //find the correct tools
-    // console.log("HELLO", droppedElement.attributes.type);
-    var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
-    var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
-    var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
-    var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
-    var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
-
-    var EletoolsView = new joint.dia.ToolsView({
-      tools: [
-
-        new RotateTool({ selector: "root" }),
-        new ResizeToolBottomLeft({ selector: 'outline' }),
-        new ResizeToolBottomRight({ selector: 'outline' }),
-        new ResizeToolTopLeft({ selector: 'outline' }),
-        new ResizeToolTopRight({ selector: 'outline' }),
-
-      ],
+    $('body').on('mousemove.fly', function (e) {
+      $("#flyPaper").offset({
+        left: e.pageX - offset.x - 35,
+        top: e.pageY - offset.y - 35
+      });
     });
 
-    var droppedEleView = droppedElement.findView(mainPaper);
-    droppedEleView.addTools(EletoolsView);
-    droppedEleView.hideTools();
-    // }
+    $('body').on('mouseup.fly', function (e) {
+      var x = e.pageX;
+      var y = e.pageY;
+      var target = mainPaper.$el.offset();
+      var dropPosition = mainPaper.clientToLocalPoint(x - target.left - 35, y - target.top - 20);
+      var scale = mainPaper.scale()
+      console.log("scale", scale)
+      console.log("Height bounding box", 0 - (mainPaper.translate().ty * scale.sy), mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy), "DropPosition:y:", dropPosition.y)
+      console.log("Width bounding box", 0 - (mainPaper.translate().tx * scale.sx), mainPaper.$el.width() - (mainPaper.translate().tx * scale.sx), "DropPosition:x:", dropPosition.x)
+      //  mainPaper.$el.width() Represents the papers width 
+      //  mainPaper.$el.height() Represents the papers height
+      // if (
+      //     dropPosition.x > 0 - (mainPaper.translate().tx * scale.sx) &&
+      //     dropPosition.x < (mainPaper.$el.width() - mainPaper.translate().tx * scale.sx) &&
+      //     dropPosition.y > 0 - (mainPaper.translate().ty * scale.sy) &&
+      //     dropPosition.y < mainPaper.$el.height() - (mainPaper.translate().ty * scale.sy)
+      // ) {
+      var droppedElement = flyShape.clone(); console.log(droppedElement)
+      droppedElement.position(dropPosition.x, dropPosition.y);
+      mainGraph.addCell(droppedElement);
+      // Need to find the view of the element and add its corresponding tools
+      //find the correct tools
+      // console.log("HELLO", droppedElement.attributes.type);
+      var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
+      var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
+      var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
+      var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
+      var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
 
-    // Cleanup and remove temporary elements
-    $('body').off('mousemove.fly').off('mouseup.fly');
-    flyShape.remove();
-    $('#flyPaper').remove();
-  });
+      var EletoolsView = new joint.dia.ToolsView({
+        tools: [
+
+          new RotateTool({ selector: "root" }),
+          new ResizeToolBottomLeft({ selector: 'outline' }),
+          new ResizeToolBottomRight({ selector: 'outline' }),
+          new ResizeToolTopLeft({ selector: 'outline' }),
+          new ResizeToolTopRight({ selector: 'outline' }),
+
+        ],
+      });
+
+      var droppedEleView = droppedElement.findView(mainPaper);
+      droppedEleView.addTools(EletoolsView);
+      droppedEleView.hideTools();
+      // }
+
+      // Cleanup and remove temporary elements
+      $('body').off('mousemove.fly').off('mouseup.fly');
+      flyShape.remove();
+      $('#flyPaper').remove();
+    });
+  }
+  else {
+    console.log("Trying to drag a label out of toolGraph; prevented")
+  }
 });
 
 
@@ -2147,6 +2285,10 @@ export function onConnectorChange(connector, installationAndConstructionVessel, 
       });
       selectedLinkView.addTools(linkToolsView)
     }
+    // This was added to ensure that when the link changes the link parameters on the left side panel are also updated.
+    resetParameterHTML()
+    createParameterHTML(selectedLinkView.model)
+    populateElementSettings(selectedLinkView.model)
     selectedLinkView.render()
   }
   else {
@@ -2538,22 +2680,22 @@ let hoverContainer = document.getElementById('tooltip-container-id')
 
 let modalCompName = document.getElementById('cname');
 
-let hoverP1 = document.getElementById('p1')
-let hoverP2 = document.getElementById('p2')
-let hoverP3 = document.getElementById('p3')
-let hoverP4 = document.getElementById('p4')
-let hoverP5 = document.getElementById('p5')
+// let hoverP1 = document.getElementById('p1')
+// let hoverP2 = document.getElementById('p2')
+// let hoverP3 = document.getElementById('p3')
+// let hoverP4 = document.getElementById('p4')
+// let hoverP5 = document.getElementById('p5')
 
-let hoverV1 = document.getElementById('v1')
-let hoverV2 = document.getElementById('v2')
-let hoverV3 = document.getElementById('v3')
-let hoverV4 = document.getElementById('v4')
-let hoverV5 = document.getElementById('v5')
+// let hoverV1 = document.getElementById('v1')
+// let hoverV2 = document.getElementById('v2')
+// let hoverV3 = document.getElementById('v3')
+// let hoverV4 = document.getElementById('v4')
+// let hoverV5 = document.getElementById('v5')
 
 
 
 let isHovering = false;
-mainPaper.on("element:mouseenter", (cellView, evt) => {
+mainPaper.on("element:mouseenter link:mouseenter", (cellView, evt) => {
   if (isHovering != true && isHighlighted == false) {
     isHovering = true;
   }
@@ -2561,15 +2703,40 @@ mainPaper.on("element:mouseenter", (cellView, evt) => {
     if (isHovering == true) {
       let modelAttrs = cellView.model.attributes.attrs /* There are multiple declarations of modelAttrs will that affect? maybe based on the diff between let and var maybe some problem in the future */
 
+      const tooltipContainer = document.getElementById('tooltip-container-id')
+      tooltipContainer.replaceChildren()
 
+      // console.log(cellView.model.attributes.attrs.connector);
+      onHoverJSONData.forEach((data) => {
+        if (cellView.model.attributes.type === data["sub-type"] || cellView.model.attributes.attrs.connector === data["sub-type"]) {
 
+          // adding the heading (name)
+          const span1 = document.createElement('span')
+          span1.style = "font-weight: 700; font-size: large"
+          span1.textContent = data["name"]
+          const brTag = document.createElement('br')
 
+          tooltipContainer.appendChild(span1)
+          tooltipContainer.appendChild(brTag)
+          tooltipContainer.appendChild(document.createElement('br'))
 
-      hoverV1.textContent = modelAttrs["Water Depth"]
-      hoverV2.textContent = modelAttrs["Design Life"]
-      // hoverV3.textContent =
-      //   hoverV4.textContent =
-      //   hoverV5.textContent =
+          data.values.forEach((val) => {
+            console.log(val);
+            const span1 = document.createElement('span')
+            span1.style = "font-weight: 600; font-size: small"
+            span1.textContent = val + ": "
+            const span2 = document.createElement('span')
+            span2.style = "font-weight: 500; font-size: small"
+
+            span2.textContent = modelAttrs[val]
+            const brTag = document.createElement('br')
+
+            tooltipContainer.appendChild(span1)
+            tooltipContainer.appendChild(span2)
+            tooltipContainer.appendChild(brTag)
+          })
+        }
+      })
 
       modalCompName.textContent = cellView.model.attributes.type;
 
@@ -2579,7 +2746,8 @@ mainPaper.on("element:mouseenter", (cellView, evt) => {
       let hoverY = evt["originalEvent"].clientY + 20;
       console.log(`HoverX ${hoverX} HoverY ${hoverY} Window Height ${window.innerHeight} Width ${window.innerWidth}`);
       let modelSize = cellView.model.attributes.size;
-      // The below if conditions handle the edges of having to display the modal when on the edges of the screen so that the modal is still visible
+
+      // The below if conditions handle the edge cases of having to display the modal when on the edges of the screen so that the modal is still visible
       if (hoverY + 160 > window.innerHeight) {
         hoverContainer.style.top = `${hoverY - 3.5 * modelSize.height}px`
         hoverContainer.style.left = `${hoverX}px`
@@ -2598,10 +2766,11 @@ mainPaper.on("element:mouseenter", (cellView, evt) => {
   // displayOnHover(cellView, evt)
 })
 
-mainPaper.on("element:mouseout", (cellView, evt) => {
+mainPaper.on("element:mouseout link:mouseleave", (cellView, evt) => {
   isHovering = false;
   hoverContainer.classList.add('hidden')
 })
+
 
 mainPaper.on("element:pointerdblclick", (cellView, evt) => {
   /* To deal with the on hover MODAL */

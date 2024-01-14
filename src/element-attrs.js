@@ -7,7 +7,7 @@ import { installVesselCallback, onConnectorChange, subseaInterventionCallback } 
 /* To create the 18 parameters and assign them to an element */
 /**
  * Initializes the 18 custom parameters as null.
- * @param {joint.dia.Element} element Element to which to assign the 18 parameters
+ * 
  */
 function assignCustomParams(element) {
 
@@ -26,7 +26,7 @@ function assignCustomParams(element) {
 
 /**
  * 
- * This is going to be inserted in the div with id "element-settings"
+ * This is going to be inserted in the div with id "element-settings" or "connector-settings"
  * 
  */
 const createParameterHTML = (element) => {
@@ -153,11 +153,14 @@ const onClickSiIcv = (selectBoxId, element) => {
 
     const heading = document.createElement('span');
     heading.classList = "heading"
-    heading.textContent = selectBox.value
+    // heading.textContent = selectBox.value
+
+
+    withinModalDiv.appendChild(heading)
 
     for (let item of data) {
         if (item['sub-type'] === selectBox.value) {
-
+            heading.textContent = `${item["main-type"]}: ${selectBox.value}`
             for (let i = 0; i < item.fields.length; i++) {
                 let field = item.fields[i];
 
@@ -337,7 +340,7 @@ const createConnectorChoiceDiv = function () {
 }
 
 /**
- * This function just resets the right hand side element/link parameter pop up.
+ * This function just resets the left hand side element/link parameter pop up.
  * @param {*} element 
  */
 const resetParameterHTML = (element) => {
