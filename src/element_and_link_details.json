@@ -17806,9 +17806,9 @@
                 "required": true
             },
             {
-                "name": "Operating temperature Rating (◦C)",
-                "label": "Operating temperature Rating (◦C)",
-                "description": "Operating temperature Rating (◦C)",
+                "name": "Operating Temperature Rating (◦C)",
+                "label": "Operating Temperature Rating (◦C)",
+                "description": "Operating Temperature Rating (◦C)",
                 "type": "number",
                 "default-unit": "",
                 "step": 0.1,
@@ -17818,9 +17818,9 @@
                 "required": true
             },
             {
-                "name": "Maximum operating depth",
-                "label": "Maximum operating depth",
-                "description": "Maximum operating depth",
+                "name": "Maximum Operating Depth",
+                "label": "Maximum Operating Depth",
+                "description": "Maximum Operating Depth",
                 "type": "number",
                 "default-unit": "",
                 "step": 0.1,
@@ -17830,9 +17830,9 @@
                 "required": true
             },
             {
-                "name": "Design Life",
-                "label": "Design Life",
-                "description": "Design Life",
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
                 "type": "number",
                 "default-unit": "",
                 "step": 1,
@@ -19002,9 +19002,9 @@
                 "required": true
             },
             {
-                "name": "Operating temperature Rating (◦C)",
-                "label": "Operating temperature Rating (◦C)",
-                "description": "Operating temperature Rating (◦C)",
+                "name": "Operating Temperature Rating (◦C)",
+                "label": "Operating Temperature Rating (◦C)",
+                "description": "Operating Temperature Rating (◦C)",
                 "type": "number",
                 "default-unit": "",
                 "step": 0.1,
@@ -19014,9 +19014,9 @@
                 "required": true
             },
             {
-                "name": "Maximum operating depth",
-                "label": "Maximum operating depth",
-                "description": "Maximum operating depth",
+                "name": "Maximum Operating Depth",
+                "label": "Maximum operating Depth",
+                "description": "Maximum Operating Depth",
                 "type": "number",
                 "default-unit": "",
                 "step": 0.1,
@@ -19026,9 +19026,9 @@
                 "required": true
             },
             {
-                "name": "Design Life",
-                "label": "Design Life",
-                "description": "Design Life",
+                "name": "Design Life (years)",
+                "label": "Design Life (years)",
+                "description": "Design Life (years)",
                 "type": "number",
                 "default-unit": "",
                 "step": 1,

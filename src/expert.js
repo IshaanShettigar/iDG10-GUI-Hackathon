@@ -162,116 +162,138 @@ const handleRBS = function (filePath, sheetName) {
     rbsModalHeading.style.display = "block"
     withinModalDiv.appendChild(rbsModalHeading)
 
-    /* Pull from excel */
-    let jsonData = getJSON(sheetName)
+    /* We are adding this if condition because we just want to display a simple pop up when the user clicks on the SPIP button 
+        The code in the else block contains the normal follow of the RBS system.
+    */
+    if (sheetName === 'Subsea Pipeline In-Place Design') {
+        const miniHeading = document.createElement('h4')
+        miniHeading.textContent = "Use the following SPDT modules"
+        const textArray = ["Expansion and Global Buckling Assessment", "Thermal Assessment", "On Bottom Analysis", "Free-Span Analysis", "CP Design", "OnBottom Roughness Assessment(FE based)", "Advance Global Buckling Assessment(FE Based)"]
+        const ul = document.createElement('ul')
+        ul.style = "margin-bottom: 30px"
+        textArray.forEach(moduleText => {
+            const li = document.createElement('li');
+            li.textContent = moduleText;
+            li.style = "margin: 10px 0 10px 0;"
+            ul.appendChild(li);
+        });
+        console.log(ul);
+        withinModalDiv.appendChild(miniHeading)
+        withinModalDiv.appendChild(ul)
+    }
+    else {
+        /* Pull from excel */
+        let jsonData = getJSON(sheetName)
 
 
-    // let us dynamically create the input fields based on the 0th element of jsonData
-    let keys = Object.keys(jsonData[0])
-    let table = document.createElement('table');
+        // let us dynamically create the input fields based on the 0th element of jsonData
+        let keys = Object.keys(jsonData[0])
+        let table = document.createElement('table');
 
-    keys.slice(0, - 1).forEach((key) => {
-        let row = document.createElement('tr');
+        keys.slice(0, - 1).forEach((key) => {
+            let row = document.createElement('tr');
 
-        let headingCell = document.createElement('td');
-        let inputCell = document.createElement('td');
+            let headingCell = document.createElement('td');
+            let inputCell = document.createElement('td');
 
-        let heading = document.createElement('span')
-        heading.textContent = key;
-        headingCell.appendChild(heading)
+            let heading = document.createElement('span')
+            heading.textContent = key;
+            headingCell.appendChild(heading)
 
 
-        if (jsonData[0][key]['type'] === 'number') {
+            if (jsonData[0][key]['type'] === 'number') {
 
-            let input = document.createElement('input')
-            input.className = 'rbs-input'
-            input.id = key
-            input.type = 'number';
-            input.step = 'any';
+                let input = document.createElement('input')
+                input.className = 'rbs-input'
+                input.id = key
+                input.type = 'number';
+                input.step = 'any';
 
-            inputCell.appendChild(input)
-            row.appendChild(headingCell);
-            row.appendChild(inputCell);
-            table.appendChild(row);
-        }
-
-        else if (jsonData[0][key]["type"] === "select") {
-            const select = document.createElement('select');
-            select.className = 'rbs-select'
-            select.id = key
-
-            let options = jsonData[0][key]["value"].split(',')             //  possible cause for bugs later on
-            console.log(options);
-            for (let i = 0; i < options.length; i++) {
-                let option = document.createElement('option');
-                option.textContent = options[i];
-                select.appendChild(option)
+                inputCell.appendChild(input)
+                row.appendChild(headingCell);
+                row.appendChild(inputCell);
+                table.appendChild(row);
             }
 
-            inputCell.appendChild(select)
-            row.appendChild(headingCell);
-            row.appendChild(inputCell);
-            table.appendChild(row);
+            else if (jsonData[0][key]["type"] === "select") {
+                const select = document.createElement('select');
+                select.className = 'rbs-select'
+                select.id = key
+
+                let options = jsonData[0][key]["value"].split(',')             //  possible cause for bugs later on
+                console.log(options);
+                for (let i = 0; i < options.length; i++) {
+                    let option = document.createElement('option');
+                    option.textContent = options[i];
+                    select.appendChild(option)
+                }
+
+                inputCell.appendChild(select)
+                row.appendChild(headingCell);
+                row.appendChild(inputCell);
+                table.appendChild(row);
+            }
+
+            // let me append another row within which there is an hr
+            let hrRow = document.createElement('tr')
+            let hrTd = document.createElement('td')
+            hrTd.colSpan = '2';
+            hrTd.appendChild(document.createElement('hr'))
+            hrRow.appendChild(hrTd)
+            table.appendChild(hrRow)
+        })
+        withinModalDiv.appendChild(table)
+
+        const resultDiv = document.createElement('div')
+        resultDiv.className = 'rbs-result-div';
+        resultDiv.id = 'rbs-result-div';
+
+        const resultSpan = document.createElement('span');
+        resultSpan.className = 'rbs-result'
+        resultSpan.id = 'rbs-result'
+
+        resultDiv.appendChild(resultSpan)
+        withinModalDiv.appendChild(resultDiv)
+
+        const calcButton = document.createElement('button');
+        calcButton.className = 'rbs-calculate-btn';
+        calcButton.id = 'rbs-calculate-btn';
+        calcButton.textContent = "Calculate"
+        withinModalDiv.appendChild(calcButton)
+
+        // This section has been added only for pipe bore p&t drop
+        // This places the transient temperature button and result on clicking the button below the calcbutton
+        if (sheetName === "Pipe Bore P&T Drop") {
+            const transTempBtn = document.createElement('button');
+            transTempBtn.className = 'rbs-calculate-btn';
+            transTempBtn.id = 'rbs-transtemp-btn';
+            transTempBtn.textContent = "Pipeline Transient Temperature Profile and Drop"
+            withinModalDiv.appendChild(transTempBtn)
+
+            transTempBtn.addEventListener('click', () => {
+                const transTempResultSpan = document.createElement('span');
+                transTempResultSpan.className = 'rbs-result'
+                transTempResultSpan.id = 'rbs-transTemp-result'
+                transTempResultSpan.style = "display: table; margin: 0 auto; text-align:center"
+                transTempResultSpan.textContent = "Use SPDT Pipeline Transient Temperature Simulator (FE based)"
+                withinModalDiv.appendChild(transTempResultSpan)
+            })
         }
 
-        // let me append another row within which there is an hr
-        let hrRow = document.createElement('tr')
-        let hrTd = document.createElement('td')
-        hrTd.colSpan = '2';
-        hrTd.appendChild(document.createElement('hr'))
-        hrRow.appendChild(hrTd)
-        table.appendChild(hrRow)
-    })
-    withinModalDiv.appendChild(table)
+        if (sheetName === "Pipe Material Selection") {
+            // Add event listener so that when button is clicked it displays the correct Pipe Material
+            calcButton.addEventListener('click', () => calculatePipeMaterial(jsonData))
+        }
+        else if (sheetName === "Installation") {
+            calcButton.addEventListener('click', () => calcInstallationMethod(jsonData))
+        }
+        else if (sheetName === "Pipe Bore P&T Drop") {
+            calcButton.addEventListener('click', () => calcPTDrop(jsonData))
+        }
 
-    const resultDiv = document.createElement('div')
-    resultDiv.className = 'rbs-result-div';
-    resultDiv.id = 'rbs-result-div';
-
-    const resultSpan = document.createElement('span');
-    resultSpan.className = 'rbs-result'
-    resultSpan.id = 'rbs-result'
-
-    resultDiv.appendChild(resultSpan)
-    withinModalDiv.appendChild(resultDiv)
-
-    const calcButton = document.createElement('button');
-    calcButton.className = 'rbs-calculate-btn';
-    calcButton.id = 'rbs-calculate-btn';
-    calcButton.textContent = "Calculate"
-    withinModalDiv.appendChild(calcButton)
-
-    // This section has been added only for pipe bore p&t drop
-    // This places the transient temperature button and result on clicking the button below the calcbutton
-    if (sheetName === "Pipe Bore P&T Drop") {
-        const transTempBtn = document.createElement('button');
-        transTempBtn.className = 'rbs-calculate-btn';
-        transTempBtn.id = 'rbs-transtemp-btn';
-        transTempBtn.textContent = "Pipeline Transient Temperature Profile and Drop"
-        withinModalDiv.appendChild(transTempBtn)
-
-        transTempBtn.addEventListener('click', () => {
-            const transTempResultSpan = document.createElement('span');
-            transTempResultSpan.className = 'rbs-result'
-            transTempResultSpan.id = 'rbs-transTemp-result'
-            transTempResultSpan.style = "display: table; margin: 0 auto; text-align:center"
-            transTempResultSpan.textContent = "Use SPDT Pipeline Transient Temperature Simulator (FE based)"
-            withinModalDiv.appendChild(transTempResultSpan)
-        })
     }
-
-    if (sheetName === "Pipe Material Selection") {
-        // Add event listener so that when button is clicked it displays the correct Pipe Material
-        calcButton.addEventListener('click', () => calculatePipeMaterial(jsonData))
-    }
-    else if (sheetName === "Installation") {
-        calcButton.addEventListener('click', () => calcInstallationMethod(jsonData))
-    }
-    else if (sheetName === "Pipe Bore P&T Drop") {
-        calcButton.addEventListener('click', () => calcPTDrop(jsonData))
-    }
-
     rbsModalDiv.classList.remove('hidden')
+
 }
 
 /**

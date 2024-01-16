@@ -725,6 +725,13 @@ PTDropBtn.addEventListener("click", () => {
   handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Pipe Bore P&T Drop')
 })
 
+const SPIPBtn = document.getElementById('SPIP')
+SPIPBtn.addEventListener('click', () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Subsea Pipeline In-Place Design')
+})
+
 /* Element Settings */
 const elementP1 = document.getElementById('ele-p1')
 const elementP2 = document.getElementById('ele-p2')

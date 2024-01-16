@@ -131,13 +131,11 @@ nav button:hover {
 }
 
 /* Disabling options for now */
-#SPIP span,
 #SPWT span,
 #SPP span {
   color: #cacaca;
 }
 
-#SPIP:hover,
 #SPWT:hover,
 #SPP:hover {
   cursor: default;
@@ -180,6 +178,10 @@ nav button:hover {
 
 .rbs-calculate-btn {
   margin: 5em auto;
+}
+
+.rbs-modal ul li {
+  margin-bottom: 100px;
 }
 
 .paper-background-color {
