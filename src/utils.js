@@ -211,67 +211,17 @@ function addlinkTools(cell, mainPaper, connectorSettingsWrapper) {
     // load link tools
     var verticesTool = new linkTools.Vertices();
     var targetArrowheadTool = new linkTools.TargetArrowhead({ scale: 0.8 });
+    var sourceArrowheadTool = new joint.linkTools.SourceArrowhead({ scale: 0.8 });
     var removeTool = new linkTools.Remove({
         action: function (evt, linkView, toolView) {
             linkView.model.remove({ ui: true, tool: toolView.cid });
             connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
         }
     })
-    /**
- * @constant {joint.dia.linkTools} showLinkSettings
- * Defines the button that will trigger the connector settings popup on the left hand side when clicked
- */
-    // var showLinkSettings = joint.linkTools.Button.extend({
-    //     name: "show-link-settings",
-    //     options: {
-    //         markup: [
-    //             {
-    //                 tagName: "circle",
-    //                 selector: "outer",
-    //                 attributes: {
-    //                     r: 9,
-    //                     fill: "#ffffff",
-    //                     cursor: "pointer",
-    //                 },
-    //             },
-    //             {
-    //                 tagName: "circle",
-    //                 selector: "button",
-    //                 attributes: {
-    //                     r: 7,
-    //                     fill: "#000000",
-    //                     cursor: "pointer",
-    //                 },
-    //             },
-    //             {
-    //                 tagName: "path",
-    //                 selector: "icon",
-    //                 attributes: {
-    //                     d: "M -2 4 2 4 M 0 3 0 0 M -2 -1 1 -1 M -1 -4 1 -4",
-    //                     fill: "none",
-    //                     stroke: "#FFFFFF",
-    //                     "stroke-width": 2,
-    //                     "pointer-events": "none",
-    //                 },
-    //             },
-    //         ],
-    //         distance: "50%",
-    //         offset: 0,
-    //         action: function (evt, linkView, buttonView) {
-    //             // console.log(linkView.model.attributes.attrs)
-    //             connectorSettingsWrapper.classList.add('is-active')
-    //             populateConnectorSettings(linkView.model)
-    //             elementSettingsWrapper.classList.remove('is-active')
-    //             selectedLinkView = linkView;
-    //             removeHighlight(mainGraph, mask, mainPaper)
-    //             // highlight the link
-    //             displayLinkHighlight(linkView, mainGraph, mask, mainPaper)
-    //         },
-    //     },
-    // });
+
     var showConnectorSettings = new showLinkSettings();
     var linkToolsView = new joint.dia.ToolsView({
-        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+        tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, sourceArrowheadTool]
     });
     var linkView = cell.findView(mainPaper)
     linkView.addTools(linkToolsView)

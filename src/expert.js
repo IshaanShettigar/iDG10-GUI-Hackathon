@@ -41,17 +41,17 @@ const getJSON = (sheetName) => {
             "Proposed Pipe Material": "MLP/HRB 316L"
         },
         {
-            "pCO2 (bara)": { "value": "(70,180]", "type": "number" },//">70 & <=180",
-            "pH2S (mbara)": { "value": "(0,1001)", "type": "number" },
-            "in-situ pH": { "value": "(,4.01)", "type": "number" },
+            "pCO2 (bara)": { "value": "(70,180.1]", "type": "number" },//">70 & <=180",
+            "pH2S (mbara)": { "value": "(0,101)", "type": "number" },
+            "in-situ pH": { "value": "(3.49,4.01)", "type": "number" },
             "NaCL(mg/L)": { "value": "(53000,1000000)", "type": "number" },
             "NaHCO3(mg/L)": { "value": "(1000,1000000)", "type": "number" },//">1000",
             "Proposed Pipe Material": "MLP/HRB 825"
         },
         {
-            "pCO2 (bara)": { "value": "(180,325]", "type": "number" },//">180 & <=325",
+            "pCO2 (bara)": { "value": "(180,325.1]", "type": "number" },//">180 & <=325",
             "pH2S (mbara)": { "value": "(0,101)", "type": "number" },
-            "in-situ pH": { "value": "(,3.51)", "type": "number" },
+            "in-situ pH": { "value": "(2.99,3.51)", "type": "number" },
             "NaCL(mg/L)": { "value": "(53000,1000000)", "type": "number" },
             "NaHCO3(mg/L)": { "value": "(1000,1000000)", "type": "number" },
             "Proposed Pipe Material": "Solid 22%Cr"
@@ -81,7 +81,7 @@ const getJSON = (sheetName) => {
                 "type": "select"
             },
             "Steel Pipe OD (mm)": { "value": "(0,457.3)", "type": "number" },//<=457.2",
-            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(0,1000000)", "type": "number" }, // > 0
             "OD/Wt": { "value": "(6.9,21.1]", "type": "number" },//">7 and <=21",
             "Water Depth (m)": { "value": "(49.9,1600)", "type": "number" },//">50 and <1600",
             "Proposed Installation Method": "Reel-lay"
@@ -89,7 +89,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(0,457.3)", "type": "number" },
-            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(0,1000000)", "type": "number" },
             "OD/Wt": { "value": "(20.9,45.1)", "type": "number" },//">21 and <45",
             "Water Depth (m)": { "value": "(0,50)", "type": "number" },//"<50",
             "Proposed Installation Method": "S-Lay"
@@ -97,7 +97,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(457.1,1219.3)", "type": "number" },//">457.2 and <1219.2",
-            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(0,1000000)", "type": "number" },
             "OD/Wt": { "value": "(20.9,45.1)", "type": "number" },//">21 and <45",
             "Water Depth (m)": { "value": "(50,600)", "type": "number" },//">50 and <600",
             "Proposed Installation Method": "S-Lay"
@@ -105,7 +105,7 @@ const getJSON = (sheetName) => {
         {
             "Pipeline Type": { "value": "Carbon Steel(CS),Mechanically Lined Pipeline(MLP),Hot Rolled Bonded (HRB)", "type": "select" },
             "Steel Pipe OD (mm)": { "value": "(457.3,609.1)", "type": "number" },//">457.2 and <=609",
-            "Steel Pipe WT (mm)": { "value": "(20,20.4)", "type": "number" },
+            "Steel Pipe WT (mm)": { "value": "(0,1000000)", "type": "number" },
             "OD/Wt": { "value": "(6.9,21.1)", "type": "number" },//">7 and <=21",
             "Water Depth (m)": { "value": "(600,100000)", "type": "number" },
             "Proposed Installation Method": "J-Lay"
@@ -180,6 +180,16 @@ const handleRBS = function (filePath, sheetName) {
         console.log(ul);
         withinModalDiv.appendChild(miniHeading)
         withinModalDiv.appendChild(ul)
+    }
+    else if (sheetName === "Subsea Pipeline WT Design") {
+        const miniHeading = document.createElement('h4')
+        miniHeading.textContent = "Use SPDT  DNV-OS-F101 WT design Module"
+        withinModalDiv.appendChild(miniHeading)
+    }
+    else if (sheetName === "Subsea Pipeline Protection") {
+        const miniHeading = document.createElement('h4')
+        miniHeading.textContent = "Use SPDT Subsea pipeline protection Assessment Module"
+        withinModalDiv.appendChild(miniHeading)
     }
     else {
         /* Pull from excel */
@@ -379,17 +389,17 @@ const calcInstallationMethod = function (jsonData) {
 
         console.log(SPODNumbers, SPWTNumbers, ODNumbers, WDNumbers, pipelineTypeValues);
 
-        if (OD.value === "") {
-            OD.value = SPOD.value / SPWT.value
-        }
+
+        OD.value = SPOD.value / SPWT.value
+
         const res1 = checkConditionSelect(pipelineTypeValues, pipelineType.value)
         const res2 = checkConditionNumber(SPODNumbers, SPOD.value)
-        const res3 = checkConditionNumber(SPWTNumbers, SPWT.value)
+        // const res3 = checkConditionNumber(SPWTNumbers, SPWT.value)
         const res4 = checkConditionNumber(ODNumbers, OD.value)
         const res5 = checkConditionNumber(WDNumbers, waterDepth.value)
 
-        console.log(res1, res2, res3, res4, res5);
-        if (res1 && res2 && res3 && res4 && res5) {
+        console.log(res1, res2, res4, res5);
+        if (res1 && res2 && res4 && res5) {
             document.getElementById('rbs-result').textContent = `Proposed Installation Method: \n${data["Proposed Installation Method"]}`;
             foundRes = true;
             console.log("truetruetrue")

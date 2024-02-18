@@ -459,7 +459,7 @@
             "Operating Pressure Rating (bar)",
             "Operating Temperature Rating (°C)",
             "Design Life (years)",
-            "Maximum Operating Depth",
+            "Maximum Operating Depth (m)",
             "Inner Line pipe total cost, $",
             "Outer line pipe total cost, $",
             "Corrosion coating total cost, $",

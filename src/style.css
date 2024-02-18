@@ -131,7 +131,7 @@ nav button:hover {
 }
 
 /* Disabling options for now */
-#SPWT span,
+/* #SPWT span,
 #SPP span {
   color: #cacaca;
 }
@@ -140,7 +140,7 @@ nav button:hover {
 #SPP:hover {
   cursor: default;
   background-color: #ffffff;
-}
+} */
 
 
 
@@ -928,4 +928,10 @@ th {
   margin: 0 auto 1em auto;
   display: block;
   text-align: center;
+}
+
+/* Disabling the input field for RBS modal - OD/Wt */
+#OD\/Wt {
+  pointer-events: none;
+  background-color: rgb(238, 238, 238);
 }

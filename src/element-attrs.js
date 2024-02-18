@@ -66,11 +66,7 @@ const createParameterHTML = (element) => {
         }
     }
     else if (element.isLink()) {
-        console.log("IS LINK=true", element.attributes.attrs.connector)
-        // let linkName = element.attributes.type;
-
         let linkSettings = document.getElementById('connector-settings');
-        /*  Let us add the element name  */
         // Create the parent div
         const div = document.createElement('div');
         div.className = 'parameter element-name';

@@ -384,10 +384,12 @@ function generateExcelForComponents() {
     groups[subType].push(cell);
     return groups;
   }, {});
-
+  // console.log(groupedCells)
   // Create a workbook
   const wb = XLSX.utils.book_new();
 
+  // var allCostData = []
+  var costData = [];
 
   // Process each group and generate Excel file
   for (const subType in groupedCells) {
@@ -401,6 +403,7 @@ function generateExcelForComponents() {
       }
     })
 
+
     const groupData = groupedCells[subType].map(cell => ({
       'sub-type': subType,
       'fields': updatedFields.reduce((fields, field) => {
@@ -409,22 +412,55 @@ function generateExcelForComponents() {
       }, {})
     }));
 
-    const wsData = [];
+    let wsData = [];
 
     // Add headers for the 'fields' properties
     const fieldHeaders = Object.keys(groupData[0].fields);
     wsData.push(fieldHeaders);
 
+    // Let us get the fields related to costs.
+    const costHeader = fieldHeaders.filter((field) => {
+
+      if (field.includes(" cost") || field.includes(" Cost") || field.includes("Cost") || field.includes("cost")) {
+        // console.log("Field", field)
+        return true;
+      }
+    })
+
+    // console.log(costHeader)
     // Add values for each row
     groupData.forEach(data => {
       const fieldValues = Object.values(data.fields);
       wsData.push(fieldValues);
+      // console.log("in the for loop", data);
+      const costValueRow = costHeader.map((field) => {
+        // console.log(data[field], field)
+        return data.fields[field]
+      })
+      const costHeaderCopy = costHeader.slice()
+      costHeaderCopy.unshift("Component Name")
+      costData.push(costHeaderCopy)
+
+      costValueRow.unshift(`${String(subType)}`);
+      costData.push(costValueRow)
     });
 
+    // console.log("costData", costData)
+    // allCostData.push(costData)
+    // console.log(wsData)
     // Create worksheet
+    costData.push(['', ''])
     const ws = XLSX.utils.aoa_to_sheet(wsData);
+    console.log(wsData)
     XLSX.utils.book_append_sheet(wb, ws, subType);
   }
+  console.log(costData)
+  // /* Incorporating a separate sheet for cost summaries of all components */
+  // console.log(costData);
+  // const costWorksheetData = XLSX.utils.aoa_to_sheet(costData)
+  const costWorksheet = XLSX.utils.aoa_to_sheet(costData);
+  XLSX.utils.book_append_sheet(wb, costWorksheet, "Cost Summaries");
+
 
   // Save the workbook
   XLSX.writeFile(wb, `Component-BOM.xlsx`);
@@ -445,6 +481,8 @@ function generateExcelForConnectors() {
 
   // Create a workbook
   const wb = XLSX.utils.book_new();
+  var costData = [];
+
 
   console.log("grouped cells: ", groupedCells);
   // Process each group and generate Excel file
@@ -478,17 +516,42 @@ function generateExcelForConnectors() {
     const fieldHeaders = Object.keys(groupData[0].fields);
     wsData.push(fieldHeaders);
 
+    // Let us get the fields related to costs.
+    const costHeader = fieldHeaders.filter((field) => {
+
+      if (field.includes(" cost") || field.includes(" Cost") || field.includes("Cost") || field.includes("cost")) {
+        // console.log("Field", field)
+        return true;
+      }
+    })
+
+
     // Add values for each row
     groupData.forEach(data => {
       const fieldValues = Object.values(data.fields);
       wsData.push(fieldValues);
+
+      // console.log("in the for loop", data);
+      const costValueRow = costHeader.map((field) => {
+        // console.log(data[field], field)
+        return data.fields[field]
+      })
+      const costHeaderCopy = costHeader.slice()
+      costHeaderCopy.unshift("Component Name")
+      costData.push(costHeaderCopy)
+
+      costValueRow.unshift(`${String(subType)}`);
+      costData.push(costValueRow)
     });
 
     // Create worksheet
     const ws = XLSX.utils.aoa_to_sheet(wsData);
     XLSX.utils.book_append_sheet(wb, ws, subType);
   }
+  console.log(costData)
 
+  const costWorksheet = XLSX.utils.aoa_to_sheet(costData);
+  XLSX.utils.book_append_sheet(wb, costWorksheet, "Cost Summaries");
   // Save the workbook
   XLSX.writeFile(wb, `Connector-BOM.xlsx`);
 }
@@ -730,6 +793,20 @@ SPIPBtn.addEventListener('click', () => {
 
   modalOverlay.classList.remove("hidden");
   handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Subsea Pipeline In-Place Design')
+})
+
+const SPWTDesignBtn = document.getElementById('SPWT')
+SPWTDesignBtn.addEventListener('click', () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Subsea Pipeline WT Design')
+})
+
+const SPPBtn = document.getElementById('SPP')
+SPPBtn.addEventListener('click', () => {
+
+  modalOverlay.classList.remove("hidden");
+  handleRBS('./SPDT- RBS Rules-20Oct2023.xlsx', 'Subsea Pipeline Protection')
 })
 
 /* Element Settings */
@@ -1054,7 +1131,7 @@ var toolPaper = new joint.dia.Paper({
   el: document.getElementById('tool-paper-div'),
   model: toolGraph,
   width: 158,
-  height: 1300,
+  height: 1450,
   background: {
     color: "rgba(255,255,255,0.75)"
   },
@@ -1299,6 +1376,14 @@ const standardLink = () => {
   })
   return stdLink
 }
+
+const toolGraphLink = standardLink()
+toolGraphLink.position(50, 1390)
+toolGraphLink.source({ x: 30, y: 1330 })
+toolGraphLink.target({ x: 125, y: 1400 })
+// toolGraphLink.resize(65, 65)
+toolGraphLink.addTo(toolGraph)
+
 /* Create the main paper and graph */
 const GRID_SIZE = 5;
 const GRID_NAME = "fixedDot";
@@ -1354,7 +1439,7 @@ export var mainPaper = new joint.dia.Paper({
   validateConnection: function (cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
     if (cellViewS === cellViewT) return false;
 
-    if (magnetS === magnetT) return false;
+    // if (magnetS === magnetT) return false;
 
     return true;
   },
@@ -1396,9 +1481,10 @@ The centre of the element is dropped where your mouse is, even if you started th
 /**
  * Event listener for element drag and drop from the tool paper onto the main paper
  */
-toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
+toolPaper.on('cell:pointerdown link:pointerdown', function (cellView, e, x, y) {
   // console.log(cellView.model.getBBox("deep"))
-  console.log(cellView.model, elementLabelArray)
+  // console.log(cellView.model, elementLabelArray)
+  console.log("toolPaper.on(cell:pointerdown link:pointerdown)")
   if (!elementLabelArray.includes(cellView.model)) {
     $('body').append('<div id="flyPaper" style="position:fixed;z-index:101;opacity:.5;pointer-event:none;"></div>')
     var flyGraph = new joint.dia.Graph
@@ -1456,31 +1542,39 @@ toolPaper.on('cell:pointerdown', function (cellView, e, x, y) {
       var droppedElement = flyShape.clone(); console.log(droppedElement)
       droppedElement.position(dropPosition.x, dropPosition.y);
       mainGraph.addCell(droppedElement);
-      // Need to find the view of the element and add its corresponding tools
-      //find the correct tools
-      // console.log("HELLO", droppedElement.attributes.type);
-      var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
-      var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
-      var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
-      var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
-      var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
+      if (droppedElement.isElement()) {
+        // Need to find the view of the element and add its corresponding tools
+        //find the correct tools
+        // console.log("HELLO", droppedElement.attributes.type);
+        var RotateTool = elementToolsMapping[droppedElement.attributes.type][0]
+        var ResizeToolBottomLeft = elementToolsMapping[droppedElement.attributes.type][1]
+        var ResizeToolBottomRight = elementToolsMapping[droppedElement.attributes.type][2]
+        var ResizeToolTopLeft = elementToolsMapping[droppedElement.attributes.type][3]
+        var ResizeToolTopRight = elementToolsMapping[droppedElement.attributes.type][4]
 
-      var EletoolsView = new joint.dia.ToolsView({
-        tools: [
+        var EletoolsView = new joint.dia.ToolsView({
+          tools: [
 
-          new RotateTool({ selector: "root" }),
-          new ResizeToolBottomLeft({ selector: 'outline' }),
-          new ResizeToolBottomRight({ selector: 'outline' }),
-          new ResizeToolTopLeft({ selector: 'outline' }),
-          new ResizeToolTopRight({ selector: 'outline' }),
+            new RotateTool({ selector: "root" }),
+            new ResizeToolBottomLeft({ selector: 'outline' }),
+            new ResizeToolBottomRight({ selector: 'outline' }),
+            new ResizeToolTopLeft({ selector: 'outline' }),
+            new ResizeToolTopRight({ selector: 'outline' }),
 
-        ],
-      });
+          ],
+        });
 
-      var droppedEleView = droppedElement.findView(mainPaper);
-      droppedEleView.addTools(EletoolsView);
-      droppedEleView.hideTools();
-      // }
+        let droppedEleView = droppedElement.findView(mainPaper);
+        droppedEleView.addTools(EletoolsView);
+        droppedEleView.hideTools();
+      }
+      else {
+        droppedElement.source({ x: dropPosition.x, y: dropPosition.y })
+        droppedElement.target({ x: dropPosition.x + 95, y: dropPosition.y + 70 })
+        let droppedLinkView = droppedElement.findView(mainPaper);
+        // console.log(droppedLinkView.targetView, droppedLinkView.sourceView)
+        addLinkToolsNew(droppedLinkView);
+      }
 
       // Cleanup and remove temporary elements
       $('body').off('mousemove.fly').off('mouseup.fly');
@@ -1691,12 +1785,13 @@ const appendDefaultLabels = function (linkView) {
 const addLinkToolsNew = function (linkView) {
   linkView.removeTools() // remove tools first, since tools change if connected to an element or a link this is needed.
 
-  var verticesTool = new joint.linkTools.Vertices();
-  var targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
-  var targetAnchorTool = new joint.linkTools.TargetAnchor();
+  let verticesTool = new joint.linkTools.Vertices();
+  let targetArrowheadTool = new joint.linkTools.TargetArrowhead({ scale: 0.8 });
+  var sourceArrowheadTool = new joint.linkTools.SourceArrowhead({ scale: 0.8 });
+  let targetAnchorTool = new joint.linkTools.TargetAnchor();
+  let sourceAnchorTool = new joint.linkTools.SourceAnchor();
 
-
-  var removeTool = new joint.linkTools.Remove({
+  let removeTool = new joint.linkTools.Remove({
     action: function (evt, linkView, toolView) {
       linkView.model.remove({ ui: true, tool: toolView.cid });
       connectorSettingsWrapper.classList.remove('is-active') // if the connector settings is shown then after deleting hide it again
@@ -1714,9 +1809,17 @@ const addLinkToolsNew = function (linkView) {
       tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool]
     });
   }
+
+  // this is for when the link is dragged from the library side bar into the main paper(we need it to have a source anchor tool as well) 
+  else if (linkView.targetView == null && linkView.sourceView == null) {
+    console.log("link dragged from side library")
+    var linkToolsView = new joint.dia.ToolsView({
+      tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, targetAnchorTool, sourceAnchorTool, sourceArrowheadTool]
+    });
+  }
   else {
     var linkToolsView = new joint.dia.ToolsView({
-      tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool]
+      tools: [verticesTool, removeTool, showConnectorSettings, targetArrowheadTool, sourceAnchorTool]
     });
   }
   linkView.addTools(linkToolsView)
@@ -1851,6 +1954,7 @@ const addLinkEventListener = (DOMElement, event) => {
   })
 }
 
+// code not needed
 addLinkEventListener(connectorP1, 'input')
 addLinkEventListener(connectorP3, 'input')
 addLinkEventListener(connectorP4, 'input')
